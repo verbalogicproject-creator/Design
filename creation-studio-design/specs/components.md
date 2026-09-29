@@ -166,3 +166,28 @@ Step indicator (four segments, done grey, current amber, label 11px). Big Record
 
 ### 23. Bottom sheets
 Radius `10 10 0 0`, top edge 2px `alu-dim`, `sheet` shadow, grab handle 44 x 5. Over a 62 % scrim (`rgba(16,22,26,.62)`). Close button 44 x 44 at the top right. Sheets never stack.
+
+
+### 24. Morph (scene morph pad): the performance feature
+**What it is:** four stored sounds ("scenes") of one instrument sit on the corners of a square pad: A Rolling, B Acid, C Open, D Scream. The puck's position blends all four; **every knob on the instrument follows live**. It is the psytrance build-up tool: one thumb takes a rolling bass from dark to screaming over 16 bars.
+
+**Maths:** bilinear weights from puck x, y (0 to 1, y up): A = (1-x)(1-y), B = x(1-y), C = (1-x)y, D = xy. Each parameter = sum of scene value x weight. Stepped parameters (filter type, waveform switch) take the scene with the largest weight.
+
+**Layout (phone portrait):** title row (Morph tape, one-line hint, **Ride** key); pad 396 x 272 (`well`, grid at thirds, faint diagonals); corner tapes are **buttons** (44 x 44 min) with the scene name and live weight %; the heavier scene's % turns amber; weight bars (A B C D, 6 px) under the pad; the instrument's knobs (sm) below; Glide segmented control; one line of help.
+
+**Puck:** 28 px `alu` disc, 3 px ink ring, 3 px amber outer ring. Soft amber halo (r 22, r 30 while dragging).
+
+**Knobs:** each shows its **range across the four scenes as the green ring**, so you can see which knobs a morph will move and how far before you touch the pad.
+
+**Gestures and alternatives**
+- Drag anywhere on the pad (pointer capture, `touch-action: none`).
+- **Tap a corner** = glide to that scene over the Glide time: Jump, 1 beat, 1 bar, 4 bars (tempo-synced, ease-in-out).
+- **Hold a corner** = store the current sound in that scene (confirm toast with Undo).
+- Keyboard: pad is focusable; arrows move 5 % (Shift 1 %); keys 1 to 4 glide to A to D. `aria-label` announces the weights.
+- Reduced motion: glides jump; nothing else animates.
+
+**Ride (record):** a toggle with a tally lamp. While on, the transport record lamp lights, a `● RIDING · writing automation` badge shows, and the puck path is written as automation (one clip per changed parameter, or a single "Morph X/Y" pair). The trail is solid amber while riding, dotted when not.
+
+**States:** idle; dragging (bigger halo); gliding (puck animates); riding (tally); disabled (instrument frozen: pad dimmed, reason shown).
+
+**Seen in:** `screens/Morph.png`, `source/Morph.dc.html` (a working prototype: open the live canvas and use Play).

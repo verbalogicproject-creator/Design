@@ -24,6 +24,9 @@ Visual identity: **the console and the scribble strip**. Steel panels, masking-t
 3. Use `screens/INDEX.md` to find a screen. Phone screens are 412 x 880, landscape 892 x 412, desktop 1440 x 900, plugin 900 x 600.
 4. `specs/structure.md` is the guide for rebuilding in React with your own CSS variables.
 
+## The signature feature: Morph
+`screens/Morph.png` and spec 24 in `specs/components.md`. A scene-morph pad: four stored sounds on the corners, drag between them and every knob blends live, tap a corner to glide over a musical length, Ride to record the movement as automation. On the live canvas it is a working prototype.
+
 ## Hard rules the design follows
 Touch targets at least 44 x 44. No information by colour alone. Body text at least 4.5:1. Reduced motion respected. The page never scrolls sideways (only the timeline, roll and patch canvases pan). Every drag has a tap alternative.
 

@@ -55,6 +55,7 @@ Breakpoints: phone portrait 412 x 880, phone landscape 892 x 412, desktop 1440 x
 | [AutoMenu](AutoMenu.png) | 412 x 880 | Automation | Automation 1 · Knob menu | Hold a knob: menu with Create automation clip. |
 | [AutoClip](AutoClip.png) | 892 x 412 | Automation | Automation 2 · Clip editor, points | Clip editor open over the playlist, point mode. |
 | [AutoClipPencil](AutoClipPencil.png) | 892 x 412 | Automation | Automation 3 · Clip editor, pencil | Clip editor, pencil stroke in progress. |
+| [Morph](Morph.png) | 412 x 880 | Performance | Morph · scene morph pad (interactive) | Four stored sounds on the corners of a pad. Drag, tap a corner (glides over a musical length) or use arrow keys; all six knobs blend live. Ride records the movement as automation. |
 | [StartAudio](StartAudio.png) | 412 x 880 | First run | First run · Tap to start audio | Tap to start audio (Chrome needs one tap). |
 | [AudioSettings](AudioSettings.png) | 412 x 880 | Settings | Settings · Audio and latency | Output, buffer size, recording delay measurement, auto-freeze. |
 | [Keys](Keys.png) | 412 x 880 | Play | Play · On-screen keys | On-screen keys folded to the scale, record into pattern. |

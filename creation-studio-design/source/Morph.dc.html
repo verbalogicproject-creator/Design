@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Phone · Morph scenes</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="synth.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Permanent+Marker&display=swap">
+<style>body{margin:0;background:#33404a}</style>
+</helmet>
+<div class="sx ph" style="width: 412px; height: 880px">
+<div class="ph-hdr">
+<button class="btn ghost sq" aria-label="Back to Psy Bass">‹</button>
+<span class="tape s">Rolling Bass</span>
+<span class="sm dim b">Psy Bass</span>
+<span class="f1"></span>
+<span class="rev un"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#f2b33d" stroke-width="2.6"><circle cx="12" cy="12" r="6"></circle></svg>unsaved · r12</span>
+</div>
+<div style="flex: none; height: 106px">
+<dc-import name="Transport" mode="phone" pos="016:4:03" bpm="146.0" cpu="41" lost="0" playing="1" rec="{{recFlag}}" loop="1" hint-size="412px,106px"></dc-import>
+</div>
+<div class="ph-body c" style="padding: 6px 8px; gap: 6px">
+<div class="r g8" style="min-height: 44px">
+<span class="tape l">Morph</span>
+<span class="sm dim f1">Four scenes. Drag between them; every knob follows.</span>
+<button class="btn tg rec {{rideCls}}" aria-pressed="{{riding}}" onClick="{{toggleRide}}"><svg width="18" height="18" viewBox="0 0 24 24"><circle class="rec-ico" cx="12" cy="12" r="7"></circle></svg>Ride</button>
+</div>
+
+<div class="mpad" style="height: 272px" tabindex="0" role="application" aria-label="Morph pad. {{ariaPos}} Arrow keys move, 1 to 4 jump to a scene." onPointerDown="{{down}}" onPointerMove="{{move}}" onPointerUp="{{up}}" onPointerLeave="{{up}}" onKeyDown="{{key}}">
+<svg class="abs" style="left: 0; top: 0; pointer-events: none" width="396" height="272" viewBox="0 0 396 272" aria-hidden="true">
+<path d="M132 0V272M264 0V272M0 91H396M0 181H396" stroke="#232c33" stroke-width="1"></path>
+<path d="M22 250L374 22M22 22L374 250" stroke="#2a353d" stroke-width="1" stroke-dasharray="3 5"></path>
+<path d="{{trailD}}" fill="none" stroke="#f2b33d" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" opacity="{{trailOp}}" stroke-dasharray="{{trailDash}}"></path>
+<circle cx="{{px}}" cy="{{py}}" r="{{halo}}" fill="#f2b33d" fill-opacity="0.10"></circle>
+</svg>
+<sc-for list="{{ corners }}" as="c" hint-placeholder-count="4">
+<button class="mcorner" style="{{ c.pos }}" onPointerDown="{{ c.stop }}" onClick="{{ c.go }}" aria-label="Go to scene {{ c.k }}, {{ c.name }}"><span class="c g2" style="{{ c.align }}"><span class="tape s">{{ c.k }} · {{ c.name }}</span><span class="sm b" style="color: {{ c.col }}">{{ c.pct }}</span></span></button>
+</sc-for>
+<i class="mpuck {{glideCls}}" style="left: {{px}}px; top: {{py}}px"></i>
+<sc-if value="{{ riding }}" hint-placeholder-val="{{ false }}"><span class="badge abs" style="left: 50%; top: 8px; transform: translateX(-50%); color: var(--tally-text); z-index: 5">● RIDING · writing automation</span></sc-if>
+</div>
+
+<div class="r g6" aria-label="Scene mix">
+<sc-for list="{{ corners }}" as="c" hint-placeholder-count="4"><div class="mw"><span class="lbl">{{ c.k }} {{ c.pct }}</span><div class="bar"><i style="width: {{ c.w }}%"></i></div></div></sc-for>
+</div>
+
+<div class="plate" style="padding: 8px 6px 4px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px 0; justify-items: center">
+<sc-for list="{{ knobs }}" as="k" hint-placeholder-count="6">
+<dc-import name="Knob" label="{{ k.n }}" size="sm" value="{{ k.v }}" readout="{{ k.r }}" mod-start="{{ k.lo }}" mod-len="{{ k.len }}" hint-size="80px,86px"></dc-import>
+</sc-for>
+</div>
+
+<div class="r g8">
+<span class="lbl" style="width: 40px">Glide</span>
+<div class="seg f1" role="group" aria-label="Glide time when you tap a scene">
+<sc-for list="{{ glides }}" as="g" hint-placeholder-count="4"><button class="btn f1 {{ g.cls }}" aria-pressed="{{ g.on }}" onClick="{{ g.pick }}">{{ g.t }}</button></sc-for>
+</div>
+</div>
+<span class="sm dim">Green rings show each knob’s range across the four scenes. Hold a corner to store the current sound there.</span>
+</div>
+<div style="flex: none; height: 60px">
+<dc-import name="Nav" mode="bottom" active="rack" hint-size="412px,60px"></dc-import>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":412,"height":880}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { x: 0.3, y: 0.62, drag: false, ride: false, glide: 2, gliding: false, trail: [[0.08, 0.1], [0.14, 0.2], [0.2, 0.34], [0.24, 0.46], [0.28, 0.56], [0.3, 0.62]] };
+  }
+  setPos(x, y, keep) {
+    x = Math.max(0, Math.min(1, x)); y = Math.max(0, Math.min(1, y));
+    const trail = keep ? this.state.trail.concat([[x, y]]).slice(-60) : [[this.state.x, this.state.y], [x, y]];
+    this.setState({ x: x, y: y, trail: trail });
+  }
+  fromEvent(e) {
+    const r = e.currentTarget.getBoundingClientRect();
+    return [(e.clientX - r.left) / r.width, 1 - (e.clientY - r.top) / r.height];
+  }
+  renderVals() {
+    const s = this.state;
+    const W = 396, H = 272, M = 22;
+    const X = (x) => M + x * (W - 2 * M), Y = (y) => M + (1 - y) * (H - 2 * M);
+    const scenes = [
+      { k: 'A', name: 'Rolling', x: 0, y: 0 }, { k: 'B', name: 'Acid', x: 1, y: 0 },
+      { k: 'C', name: 'Open', x: 0, y: 1 }, { k: 'D', name: 'Scream', x: 1, y: 1 }
+    ];
+    const w = [(1 - s.x) * (1 - s.y), s.x * (1 - s.y), (1 - s.x) * s.y, s.x * s.y];
+    const P = [
+      ['Cutoff', [35, 55, 80, 95], (v) => { const f = 200 * Math.pow(60, v / 100); return f >= 1000 ? (f / 1000).toFixed(1) + ' kHz' : Math.round(f) + ' Hz'; }],
+      ['Reso', [20, 75, 30, 85], (v) => Math.round(v) + ' %'],
+      ['Drive', [25, 45, 20, 90], (v) => (v * 0.12).toFixed(1) + ' dB'],
+      ['Env amt', [70, 90, 40, 60], (v) => '+' + Math.round(v) + ' %'],
+      ['Decay', [30, 20, 60, 45], (v) => Math.round(40 + v * 4) + ' ms'],
+      ['Delay', [5, 15, 45, 30], (v) => (-30 + v * 0.3).toFixed(0) + ' dB']
+    ];
+    const knobs = P.map((p) => {
+      const v = p[1].reduce((a, b, i) => a + b * w[i], 0);
+      const lo = Math.min.apply(null, p[1]), hi = Math.max.apply(null, p[1]);
+      return { n: p[0], v: v.toFixed(1), r: p[2](v), lo: String(lo), len: String(hi - lo) };
+    });
+    const pos = [
+      'left: 0; bottom: 0', 'right: 0; bottom: 0', 'left: 0; top: 0', 'right: 0; top: 0'
+    ];
+    const corners = scenes.map((c, i) => ({
+      k: c.k, name: c.name, pos: pos[i], align: i % 2 ? 'align-items: flex-end' : 'align-items: flex-start',
+      pct: Math.round(w[i] * 100) + ' %', w: (w[i] * 100).toFixed(0), col: w[i] > 0.4 ? '#f2b33d' : '#b8c2c9',
+      go: () => this.glideTo(c.x, c.y),
+      stop: (e) => e.stopPropagation()
+    }));
+    const tr = s.trail.map((q, i) => (i ? 'L' : 'M') + X(q[0]).toFixed(1) + ' ' + Y(q[1]).toFixed(1)).join(' ');
+    const gl = ['Jump', '1 beat', '1 bar', '4 bars'];
+    return {
+      px: X(s.x).toFixed(1), py: Y(s.y).toFixed(1), halo: s.drag ? 30 : 22,
+      trailD: tr, trailOp: s.ride ? '0.95' : '0.5', trailDash: s.ride ? '0' : '2 6',
+      glideCls: s.gliding ? 'glide' : '',
+      corners: corners, knobs: knobs,
+      riding: s.ride, rideCls: s.ride ? 'on' : '', recFlag: s.ride ? '1' : '0',
+      toggleRide: () => this.setState({ ride: !s.ride }),
+      ariaPos: corners.map((c) => c.k + ' ' + c.pct).join(', ') + '.',
+      glides: gl.map((t, i) => ({ t: t, on: s.glide === i, cls: s.glide === i ? 'on' : '', pick: () => this.setState({ glide: i }) })),
+      down: (e) => { const p = this.fromEvent(e); try { e.currentTarget.setPointerCapture(e.pointerId); } catch (_) {} this.setState({ drag: true, gliding: false }); this.setPos(p[0], p[1], true); },
+      move: (e) => { if (!this.state.drag) return; const p = this.fromEvent(e); this.setPos(p[0], p[1], true); },
+      up: () => { if (this.state.drag) this.setState({ drag: false }); },
+      key: (e) => {
+        const st = e.shiftKey ? 0.01 : 0.05;
+        const m = { ArrowLeft: [-st, 0], ArrowRight: [st, 0], ArrowUp: [0, st], ArrowDown: [0, -st] }[e.key];
+        if (m) { e.preventDefault(); this.setState({ gliding: false }); this.setPos(this.state.x + m[0], this.state.y + m[1], true); }
+        const j = { '1': [0, 0], '2': [1, 0], '3': [0, 1], '4': [1, 1] }[e.key];
+        if (j) { e.preventDefault(); this.glideTo(j[0], j[1]); }
+      }
+    };
+  }
+  glideTo(x, y) {
+    const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (this.state.glide === 0 || reduce) { this.setState({ gliding: false }); this.setPos(x, y, false); return; }
+    const x0 = this.state.x, y0 = this.state.y, dur = [0, 410, 1640, 3000][this.state.glide];
+    const t0 = performance.now();
+    this.setState({ gliding: false });
+    const step = (now) => {
+      const t = Math.min(1, (now - t0) / dur), e = t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
+      this.setPos(x0 + (x - x0) * e, y0 + (y - y0) * e, true);
+      if (t < 1) this.raf = requestAnimationFrame(step);
+    };
+    cancelAnimationFrame(this.raf);
+    this.raf = requestAnimationFrame(step);
+  }
+  componentWillUnmount() { cancelAnimationFrame(this.raf); }
+}
+</script>
+</body>
+</html>

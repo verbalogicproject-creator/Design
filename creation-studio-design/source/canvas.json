@@ -443,6 +443,14 @@
    "w": 412,
    "h": 880,
    "title": "Error \u00b7 Microphone blocked"
+  },
+  "Morph.dc.html": {
+   "x": 4564,
+   "y": 7800,
+   "w": 412,
+   "h": 880,
+   "title": "Morph \u00b7 scene morph pad (interactive)",
+   "is_interactive": true
   }
  },
  "order": [
@@ -495,6 +503,7 @@
   "AutoMenu.dc.html",
   "AutoClip.dc.html",
   "AutoClipPencil.dc.html",
+  "Morph.dc.html",
   "StartAudio.dc.html",
   "AudioSettings.dc.html",
   "Keys.dc.html",
@@ -548,9 +557,9 @@
   "t5": {
    "x": 0,
    "y": 7500,
-   "text": "Flows \u00b7 Sing an idea, and automating a knob",
+   "text": "Flows \u00b7 Sing an idea, automating a knob, and Morph",
    "kind": "title1",
-   "maxW": 4480
+   "maxW": 4976
   },
   "t6": {
    "x": 0,
