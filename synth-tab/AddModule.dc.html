@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Phone · Add module sheet</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="synth.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Permanent+Marker&display=swap">
+<style>body{margin:0;background:#33404a}</style>
+</helmet>
+<div class="sx" style="width: 412px; height: 880px">
+<dc-import name="Main" hint-size="412px,880px"></dc-import>
+<div class="scrim"></div>
+<div class="sheet tall c" role="dialog" aria-label="Add module" style="padding: 10px 12px 12px">
+<div class="grab"></div>
+<div class="r jb" style="min-height: 44px">
+<div class="c"><span class="h3">Add module</span><span class="sm dim">Every module is a self-contained faceplate.</span></div>
+<button class="btn ghost sq" aria-label="Close"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#e9ecee" stroke-width="2.6" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>
+</div>
+<div class="f1 c g8" style="min-height: 0; overflow: hidden; margin-top: 4px">
+<sc-for list="{{ groups }}" as="g" hint-placeholder-count="3">
+<div class="c g6">
+<div class="r jb"><span class="tape s">{{ g.title }}</span><span class="sm dim">{{ g.sub }}</span></div>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px">
+<sc-for list="{{ g.items }}" as="m" hint-placeholder-count="6">
+<button class="mod-card" aria-label="{{ m.label }}"><b>{{ m.name }}</b><span class="io">{{ m.inTxt }}<i class="{{ m.inCls }}"></i><span>→</span><i class="{{ m.outCls }}"></i>{{ m.outTxt }}</span></button>
+</sc-for>
+</div>
+</div>
+</sc-for>
+</div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":412,"height":880}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const mk = (name, i, o) => ({
+      name: name,
+      label: name + ', ' + i + ' in, ' + o + ' out',
+      inTxt: i === 'none' ? '' : (i === 'notes' ? 'Notes' : 'Audio'), inCls: i === 'notes' ? 'ndi' : i === 'audio' ? 'adi' : '',
+      outTxt: o === 'notes' ? 'Notes' : 'Audio', outCls: o === 'notes' ? 'ndi' : 'adi'
+    });
+    const groups = [
+      { title: 'Instruments', sub: 'adds a new channel', items: [mk('Kick', 'notes', 'audio'), mk('Psy Bass', 'notes', 'audio'), mk('Poly Synth', 'notes', 'audio'), mk('Sampler', 'notes', 'audio'), mk('Audio Player', 'none', 'audio')] },
+      { title: 'Effects', sub: 'inserts on Rolling Bass', items: [mk('Reverb', 'audio', 'audio'), mk('Delay', 'audio', 'audio'), mk('Drive', 'audio', 'audio'), mk('EQ', 'audio', 'audio'), mk('Compressor', 'audio', 'audio'), mk('Limiter', 'audio', 'audio'), mk('Ducker', 'audio', 'audio')] },
+      { title: 'Note tools', sub: 'sit before the instrument', items: [mk('Arpeggiator', 'notes', 'notes'), mk('Step Sequencer', 'none', 'notes'), mk('Psy Bass Pattern', 'none', 'notes')] }
+    ];
+    return { groups: groups };
+  }
+}
+</script>
+</body>
+</html>

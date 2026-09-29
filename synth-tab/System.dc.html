@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Design system sheet</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="synth.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Permanent+Marker&display=swap">
+<style>body{margin:0;background:#33404a}</style>
+</helmet>
+<div class="sx" style="width: 1440px; height: 3120px; padding: 56px 64px">
+<div class="r g16"><span class="tape l">Design system</span><span class="h2">Tokens and component coverage · the console and the scribble strip</span></div>
+
+<div class="c g12" style="margin-top: 32px">
+<div class="r jb"><span class="h3">1 · Colour</span><span class="sm dim">CSS custom properties, dark only. Extensions are marked +.</span></div>
+<div style="display: grid; grid-template-columns: repeat(8, minmax(0, 1fr)); gap: 10px">
+<sc-for list="{{ colours }}" as="c" hint-placeholder-count="24">
+<div class="plate c g4" style="padding: 6px"><div class="swatch" style="{{ c.st }}; height: 40px"></div><span class="b" style="font-size: 12px">{{ c.name }}</span><span class="sm dim">{{ c.hex }}</span></div>
+</sc-for>
+</div>
+<div class="plate c g6" style="padding: 12px">
+<span class="lbl">Contrast pairs in use</span>
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px 24px">
+<sc-for list="{{ pairs }}" as="p" hint-placeholder-count="12">
+<div class="r g8"><span class="r jc" style="{{ p.st }}; width: 56px; height: 28px; border-radius: 4px; font-weight: 800; font-size: 13px; flex: none">Aa</span><span class="sm f1">{{ p.label }}</span><span class="b sm">{{ p.ratio }}</span></div>
+</sc-for>
+</div>
+</div>
+</div>
+
+<div class="r g24 ast" style="margin-top: 36px">
+<div class="c g12 f1">
+<div class="r jb"><span class="h3">2 · Type scale</span><span class="sm dim">Archivo Variable, tabular figures. Marker only on tape.</span></div>
+<div class="plate c" style="padding: 8px 16px">
+<sc-for list="{{ types }}" as="t" hint-placeholder-count="10">
+<div class="r g16" style="min-height: 52px; border-bottom: 1px solid var(--seam)"><span class="sm dim b" style="width: 96px; flex: none">{{ t.name }}</span><span class="f1" style="{{ t.st }}">{{ t.sample }}</span><span class="sm dim" style="width: 200px; flex: none; text-align: right">{{ t.spec }}</span></div>
+</sc-for>
+</div>
+</div>
+<div class="c g12" style="width: 420px">
+<div class="r jb"><span class="h3">3 · Spacing</span><span class="sm dim">4 · 8 · 12 · 16 · 24 · 32</span></div>
+<div class="plate c g8" style="padding: 12px">
+<sc-for list="{{ spaces }}" as="s" hint-placeholder-count="6">
+<div class="r g12"><span class="b" style="width: 34px">{{ s.n }}</span><i style="{{ s.st }}; height: 16px; background: var(--amber); border-radius: 1px; flex: none"></i><span class="sm dim f1">{{ s.use }}</span></div>
+</sc-for>
+</div>
+<div class="callout">Tap targets are 44 px whatever the spacing. Two neighbouring targets keep at least 4 px between them.</div>
+</div>
+</div>
+
+<div class="r g24 ast" style="margin-top: 36px">
+<div class="c g12" style="width: 560px">
+<div class="r jb"><span class="h3">4 · Radii</span><span class="sm dim">Small and hard-edged, like machined parts</span></div>
+<div class="plate" style="padding: 12px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px">
+<sc-for list="{{ radii }}" as="r" hint-placeholder-count="6">
+<div class="c g6"><div style="{{ r.st }}; height: 56px; background: var(--alu-dim); box-shadow: inset 0 0 0 2px var(--ink)"></div><span class="b" style="font-size: 13px">{{ r.n }}</span><span class="sm dim">{{ r.use }}</span></div>
+</sc-for>
+</div>
+</div>
+<div class="c g12 f1">
+<div class="r jb"><span class="h3">5 · Elevation is physical panel depth</span><span class="sm dim">Depth in px of the part above or below the panel. Light comes from the top.</span></div>
+<div class="plate" style="padding: 16px 12px; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px 12px; background: var(--slate)">
+<sc-for list="{{ depths }}" as="d" hint-placeholder-count="8">
+<div class="c g8"><div class="r jc" style="{{ d.st }}; height: 64px; border-radius: 6px"><span class="b" style="{{ d.tx }}">{{ d.z }}</span></div><span class="b" style="font-size: 13px">{{ d.name }}</span><span class="sm dim">{{ d.use }}</span><span class="sm dim" style="font-size: 11px; word-break: break-word">{{ d.css }}</span></div>
+</sc-for>
+</div>
+</div>
+</div>
+
+<div class="r g24 ast" style="margin-top: 36px">
+<div class="plate c g6 f1" style="padding: 12px">
+<span class="h2">Other tokens</span>
+<sc-for list="{{ misc }}" as="m" hint-placeholder-count="6">
+<div class="r g12 ast"><span class="tape s" style="flex: none; width: 92px; text-align: center">{{ m.k }}</span><span class="sm">{{ m.v }}</span></div>
+</sc-for>
+</div>
+<div class="plate c g6 f1" style="padding: 12px">
+<span class="h2">Icons and marks</span>
+<div class="r g16 wrap">
+<div class="c g4" style="align-items: center"><i class="adi" style="width: 18px; height: 18px"></i><span class="sm">Audio port</span></div>
+<div class="c g4" style="align-items: center"><i class="ndi" style="width: 16px; height: 16px"></i><span class="sm">Notes port</span></div>
+<div class="c g4" style="align-items: center"><i class="mdi" style="margin: 3px"></i><span class="sm">Mod port</span></div>
+<div class="c g4" style="align-items: center"><i class="dot" style="width: 14px; height: 14px"></i><span class="sm">Automated</span></div>
+<div class="c g4" style="align-items: center"><span class="coin">$</span><span class="sm">Costs money</span></div>
+<div class="c g4" style="align-items: center"><span class="b gr" style="font-size: 20px; line-height: 1">~</span><span class="sm">Modulated</span></div>
+</div>
+<span class="sm dim">Icons are 2 px round-cap strokes on a 24 px grid, drawn in currentColor. No emoji, no filled illustration.</span>
+</div>
+</div>
+
+<div class="c g12" style="margin-top: 36px">
+<div class="r jb"><span class="h3">6 · Component library · state coverage</span><span class="sm dim">Every component shown in every state that applies. n/a says why.</span></div>
+<div class="plate c" style="padding: 8px 12px">
+<div class="r g8" style="min-height: 36px; border-bottom: 1px solid var(--seam)"><span class="lbl" style="width: 230px; flex: none">Component</span><span class="lbl f1" style="text-align: center">Default</span><span class="lbl f1" style="text-align: center">Hover · focus</span><span class="lbl f1" style="text-align: center">Pressed</span><span class="lbl f1" style="text-align: center">Disabled</span><span class="lbl f1" style="text-align: center">Modulated</span><span class="lbl f1" style="text-align: center">Automated</span><span class="lbl" style="width: 150px; flex: none; text-align: right">Board</span></div>
+<sc-for list="{{ matrix }}" as="r" hint-placeholder-count="14">
+<div class="r g8" style="min-height: 40px; border-bottom: 1px solid var(--seam)"><span class="b" style="width: 230px; flex: none; font-size: 13px">{{ r.n }}</span><sc-for list="{{ r.cells }}" as="c" hint-placeholder-count="6"><span class="f1 sm" style="text-align: center; {{ c.st }}">{{ c.t }}</span></sc-for><span class="sm dim" style="width: 150px; flex: none; text-align: right">{{ r.board }}</span></div>
+</sc-for>
+</div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":3120}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const c = (name, hex) => ({ name: name, hex: hex, st: 'background:' + hex });
+    const colours = [
+      c('slate', '#33404a'), c('slate-deep', '#2a353d'), c('slate-lift', '#3d4b56'), c('seam', '#232c33'),
+      c('alu', '#c5cbcf'), c('alu-dim', '#8e979d'), c('tape', '#e6d6a2'), c('tape-shadow', '#b9a978'),
+      c('ink', '#1f2a33'), c('amber', '#f2b33d'), c('tally', '#e0452b'), c('text', '#e9ecee'),
+      c('text-dim', '#a9b4bc'), c('cap-red', '#d9483b'), c('cap-yellow', '#e8c547'), c('cap-blue', '#4a7fc1'),
+      c('cap-white', '#eef0f1'), c('cap-green', '#5ba67a'), c('+ tally-text', '#ff9580'), c('+ blue-text', '#8db4e8'),
+      c('+ green-text', '#8fd1a9'), c('+ well', '#1c2429'), c('+ alu-shade', '#6c757b'), c('+ amber-off', '#4d4020')
+    ];
+    const pr = (label, fg, bg, ratio) => ({ label: label, ratio: ratio, st: 'color:' + fg + ';background:' + bg });
+    const pairs = [
+      pr('text on slate', '#e9ecee', '#33404a', '8.9:1'), pr('text on slate-deep', '#e9ecee', '#2a353d', '10.5:1'),
+      pr('text-dim on slate', '#a9b4bc', '#33404a', '5.0:1'), pr('text-dim on slate-deep', '#a9b4bc', '#2a353d', '5.9:1'),
+      pr('ink on tape', '#1f2a33', '#e6d6a2', '10.1:1'), pr('ink on alu', '#1f2a33', '#c5cbcf', '8.9:1'),
+      pr('amber on slate', '#f2b33d', '#33404a', '5.7:1'), pr('amber on well', '#f2b33d', '#1c2429', '8.4:1'),
+      pr('tally-text on slate', '#ff9580', '#33404a', '5.0:1'), pr('blue-text on slate', '#8db4e8', '#33404a', '5.0:1'),
+      pr('green-text on slate', '#8fd1a9', '#33404a', '6.0:1'), pr('tally outline on slate-deep', '#e0452b', '#2a353d', '3.0:1 ui')
+    ];
+    const t = (name, sample, st, spec) => ({ name: name, sample: sample, st: st, spec: spec });
+    const types = [
+      t('Display', 'Rolling Bass 03', 'font-size:40px;font-weight:800;font-stretch:78%;line-height:1.05', '40 / 42 · 800 · width 78'),
+      t('Title', 'Sing an idea', 'font-size:28px;font-weight:800;font-stretch:80%', '28 / 32 · 800 · width 80'),
+      t('Heading', 'Channel rack', 'font-size:18px;font-weight:700;font-stretch:85%', '18 / 24 · 700 · width 85'),
+      t('Section label', 'CHANNEL RACK', 'font-size:15px;font-weight:800;font-stretch:78%;letter-spacing:.14em;color:var(--text-dim)', '15 / 20 · 800 · caps +14%'),
+      t('Body', 'Every drag has a tap alternative.', 'font-size:14px;line-height:1.45', '14 / 20 · 400 · width 100'),
+      t('Small', 'Playing the instrument, medium confidence.', 'font-size:12px;line-height:1.35', '12 / 16 · 400'),
+      t('Label', 'CUTOFF · RESO', 'font-size:11px;font-weight:700;font-stretch:75%;letter-spacing:.08em;color:var(--text-dim)', '11 / 12 · 700 · caps +8% · min size'),
+      t('Numerals', '012:3:04 · 146.0 · −12.0 dB', 'font-size:20px;font-weight:700;letter-spacing:.02em', '20 · 700 · tabular'),
+      t('Tape', 'Rolling Bass', "font-family:'Permanent Marker',cursive;font-size:18px;background:var(--tape);color:var(--ink);padding:6px 10px;align-self:flex-start;width:fit-content", 'Permanent Marker 11 · 14 · 18')
+    ];
+    const s = (n, use) => ({ n: String(n), st: 'width:' + n * 3 + 'px', use: use });
+    const spaces = [
+      s(4, 'inside a control, between a key and its lamp, between neighbouring targets'),
+      s(8, 'between controls in a row, inside chips'),
+      s(12, 'plate padding, gaps between cards'),
+      s(16, 'plate padding on desktop, section gaps in a plate'),
+      s(24, 'between groups, desktop gutters'),
+      s(32, 'between sections, board margins on library sheets')
+    ];
+    const r = (n, px, use) => ({ n: n, use: use, st: 'border-radius:' + px });
+    const radii = [
+      r('2 px', '2px', 'tape, lamps, blocks grips'),
+      r('3 px', '3px', 'fader caps, note bars, step cells'),
+      r('4 px', '4px', 'keys, fields, pattern blocks'),
+      r('6 px', '6px', 'plates, wells, cards, chips, toasts'),
+      r('10 px top', '10px 10px 0 0', 'bottom sheets'),
+      r('50 %', '50%', 'knobs, ports, coins, lamps')
+    ];
+    const d = (z, name, use, css, st, tx) => ({ z: z, name: name, use: use, css: css, st: st, tx: tx || 'color:var(--text-dim)' });
+    const depths = [
+      d('−2', 'Well', 'meters, lanes, LCD, step off', 'inset 0 2px 4px rgba(0,0,0,.35)', 'background:var(--slate-deep);box-shadow:inset 0 2px 4px rgba(0,0,0,.35)'),
+      d('−1', 'Field', 'inputs, sunken keys', 'inset 0 2px 3px rgba(0,0,0,.5)', 'background:var(--well);box-shadow:inset 0 2px 3px rgba(0,0,0,.5)'),
+      d('0', 'Panel', 'page, grain only', 'no shadow', 'background:var(--slate)'),
+      d('+2', 'Plate', 'faceplates, cards, modules', 'top light edge + 0 2px 0 rgba(0,0,0,.25)', 'background:var(--slate-lift);box-shadow:inset 0 1px 0 rgba(255,255,255,.07),0 2px 0 rgba(0,0,0,.25)'),
+      d('+3', 'Key', 'aluminium buttons, cells on', '0 3px 0 alu-shade + 0 5px 6px .35', 'background:var(--alu);box-shadow:0 3px 0 #6c757b,0 5px 6px rgba(0,0,0,.35)', 'color:var(--ink)'),
+      d('+1', 'Key pressed', 'while held, latched on', '0 1px 0 alu-shade, moves 2 px down', 'background:#aeb5ba;transform:translateY(2px);box-shadow:0 1px 0 #6c757b,0 2px 3px rgba(0,0,0,.35)', 'color:var(--ink)'),
+      d('+8', 'Lifted', 'a block being dragged', '0 8px 12px rgba(0,0,0,.5)', 'background:var(--yellow);box-shadow:0 8px 12px rgba(0,0,0,.5);transform:translateY(-4px)', 'color:var(--ink)'),
+      d('+12', 'Sheet', 'above a 62 % scrim', '0 -8px 20px rgba(0,0,0,.4) + top edge', 'background:var(--slate-lift);border-top:2px solid var(--alu-dim);box-shadow:0 -8px 20px rgba(0,0,0,.4)')
+    ];
+    const misc = [
+      { k: 'Focus', v: '2 px amber ring, 2 px offset, on every interactive part. Same colour as the playhead: it means where you are.' },
+      { k: 'Touch', v: 'Minimum 44 × 44 px. Hit areas may be larger than the drawing. Pointer-only density: 26 to 36 px on desktop.' },
+      { k: 'Lines', v: 'Seam 1 px in seam colour with a 1 px light line beneath. Cables 3.5 px, audio 4.5 px.' },
+      { k: 'Grain', v: 'Horizontal repeating line, 1 px in 3, 1.6 % white and 2.5 % black. On every panel.' },
+      { k: 'Motion', v: 'Playhead, recording lamp and rendering pulse only. Reduced motion stops the pulses. Key travel is 2 px, no easing curves.' },
+      { k: 'Z order', v: 'Panel, plate, content, playhead, toast, scrim, sheet.' }
+    ];
+    const Y = { t: '✓', st: '' };
+    const NA = (why) => ({ t: 'n/a · ' + why, st: 'color:var(--text-dim)' });
+    const row = (n, board, cells) => ({ n: n, board: board, cells: cells });
+    const all = [Y, Y, Y, Y, Y, Y];
+    const matrix = [
+      row('1 Knob', 'Controls', all),
+      row('2 Fader and stereo meter', 'Controls', all),
+      row('3 Toggle and segmented', 'Controls', all),
+      row('4 Envelope editor', 'Editors', all),
+      row('5 EQ curve', 'Editors', all),
+      row('6 XY pad', 'Controls', all),
+      row('7 Step-grid cell', 'Controls', all),
+      row('8 Pattern block', 'Editors', [Y, Y, Y, Y, NA('automation block is the form'), Y]),
+      row('9 Automation lane', 'Editors', all),
+      row('10 Patch node, ports, cables', 'Objects', all),
+      row('11 Macro knob and chips', 'Objects', all),
+      row('12 Take card', 'Objects', [Y, Y, Y, NA('always live'), NA('not a parameter'), NA('not a parameter')]),
+      row('13 Cost and consent chip', 'Objects', [Y, Y, Y, Y, NA('price is fixed'), NA('price is fixed')]),
+      row('14 Toasts and states', 'Objects', [Y, NA('not focusable'), NA('has its button'), NA('n/a'), NA('n/a'), NA('n/a')])
+    ];
+    return { colours: colours, pairs: pairs, types: types, spaces: spaces, radii: radii, depths: depths, misc: misc, matrix: matrix };
+  }
+}
+</script>
+</body>
+</html>
