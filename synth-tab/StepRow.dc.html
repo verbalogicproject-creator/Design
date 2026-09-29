@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Step grid</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="synth.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Permanent+Marker&display=swap">
+<style>body{margin:0;background:#3d4b56}</style>
+</helmet>
+<div class="sx" style="display: inline-block; overflow: visible; background: none; padding: 0">
+<div class="steps {{sizeCls}}">
+<sc-for list="{{ rows }}" as="row" hint-placeholder-count="2">
+<div class="srow">
+<sc-for list="{{ row.cells }}" as="c" hint-placeholder-count="8">
+<button class="cell {{ c.cls }}" aria-label="{{ c.label }}"><i class="lamp"></i><i class="vel" style="{{ c.vst }}"></i><b class="acc">{{ c.mark }}</b><span class="no">{{ c.no }}</span></button>
+</sc-for>
+</div>
+</sc-for>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"pat":{"editor":null,"default":"x..ox.a.x..ox.a."},"cols":{"editor":null,"default":"8"},"cell":{"editor":null,"default":"44"},"head":{"editor":null,"default":"-1"},"nums":{"editor":null,"default":"0"},"$preview":{"width":400,"height":100}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const p = this.props;
+    const pat = String(p.pat || 'x..ox.a.x..ox.a.').padEnd(16, '.');
+    const cols = parseInt(p.cols) || 8;
+    const cell = parseInt(p.cell) || 44;
+    const head = parseInt(p.head);
+    const cells = [];
+    for (let i = 0; i < 16; i++) {
+      const ch = pat[i];
+      const on = ch !== '.';
+      const vel = (ch === 'x' || ch === 'a') ? 100 : ch === 'o' ? 70 : ch === 'l' ? 40 : 0;
+      const acc = ch === 'a';
+      cells.push({
+        cls: (on ? 'on' : '') + (acc ? ' acc' : '') + (i === head ? ' head' : '') + ((i % 4 === 0 && i % cols !== 0) ? ' grp' : ''),
+        label: 'Step ' + (i + 1) + (on ? ', velocity ' + vel + ' percent' + (acc ? ', accent' : '') : ', off'),
+        vst: 'height:' + Math.round(vel * 0.28) + '%',
+        mark: acc ? '>' : '',
+        no: (p.nums === '1' && i % 4 === 0) ? String(i + 1) : ''
+      });
+    }
+    const rows = [];
+    for (let i = 0; i < 16; i += cols) rows.push({ cells: cells.slice(i, i + cols) });
+    return { sizeCls: 's' + cell, rows: rows };
+  }
+}
+</script>
+</body>
+</html>

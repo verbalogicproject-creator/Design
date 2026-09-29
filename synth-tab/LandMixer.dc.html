@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Landscape · Mixer</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="synth.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Permanent+Marker&display=swap">
+<style>body{margin:0;background:#33404a}</style>
+</helmet>
+<div class="sx" style="width: 892px; height: 412px; display: flex; flex-direction: column">
+<div style="flex: none; height: 56px"><dc-import name="Transport" mode="wide" pos="005:2:01" bpm="146.0" cpu="38" lost="0" playing="1" rec="0" loop="1" hint-size="892px,56px"></dc-import></div>
+<div class="r astr" style="flex: 1 1 0; min-height: 0">
+<div style="flex: none; width: 60px; height: 356px"><dc-import name="Nav" mode="rail" active="mixer" hint-size="60px,356px"></dc-import></div>
+<div class="f1 r ast" style="min-width: 0; padding: 4px 3px 0">
+<dc-import name="Strip" label="Kick" num="1" color="red" vol="82" pan="0" l="96" r="92" pk="100" clip="1" fx="2" fh="226" w="120" layout="side" hint-size="120px,330px"></dc-import>
+<dc-import name="Strip" label="Bass" num="2" color="yellow" vol="78" pan="-8" l="58" r="55" pk="70" fx="3" sel="1" fh="226" w="120" layout="side" hint-size="120px,330px"></dc-import>
+<dc-import name="Strip" label="Hats" num="3" color="white" vol="64" pan="22" l="34" r="38" pk="52" solo="1" fx="1" fh="226" w="120" layout="side" hint-size="120px,330px"></dc-import>
+<dc-import name="Strip" label="Clap" num="4" color="blue" vol="70" pan="-14" l="46" r="44" pk="60" mute="1" fx="0" fh="226" w="120" layout="side" hint-size="120px,330px"></dc-import>
+<dc-import name="Strip" label="Lead" num="5" color="green" vol="60" pan="10" l="40" r="42" pk="55" fx="2" fh="226" w="120" layout="side" hint-size="120px,330px"></dc-import>
+<dc-import name="Strip" label="Pad" num="6" color="green" vol="52" pan="0" l="30" r="31" pk="44" fx="4" fh="226" w="120" layout="side" hint-size="120px,330px"></dc-import>
+<dc-import name="Strip" label="Master" num="M" color="white" vol="80" pan="0" l="74" r="71" pk="86" fh="226" w="98" layout="side" no-ms="1" hint-size="98px,330px"></dc-import>
+</div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":892,"height":412}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

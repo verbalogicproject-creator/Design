@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Phone · Rack</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="synth.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Permanent+Marker&display=swap">
+<style>body{margin:0;background:#33404a}</style>
+</helmet>
+<div class="sx ph" style="width: 412px; height: 880px">
+<div class="ph-hdr">
+<b class="h3">Synth</b>
+<span class="tape s">Rolling Bass 03</span>
+<span class="f1"></span>
+<span class="rev"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#8fd1a9" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5 11-11"></path></svg>saved r12</span>
+</div>
+<div style="flex: none; height: 106px">
+<dc-import name="Transport" mode="phone" pos="012:3:04" bpm="146.0" cpu="72" lost="2" playing="1" rec="0" loop="1" hint-size="412px,106px"></dc-import>
+</div>
+<div class="ph-body">
+<div class="sec jb">
+<span class="h2">Channel rack</span>
+<button class="btn tiny" aria-label="Add channel"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1f2a33" stroke-width="3" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg>Add</button>
+</div>
+<div class="c">
+<sc-for list="{{ chans }}" as="ch" hint-placeholder-count="6">
+<div class="chrow {{ ch.rowCls }}">
+<i class="chcap {{ ch.capCls }}"></i>
+<span class="chnum">{{ ch.num }}</span>
+<span class="tape s" style="width: 86px; overflow: hidden; text-overflow: ellipsis">{{ ch.name }}</span>
+<div class="f1 r" style="min-width: 0">
+<sc-if value="{{ ch.hasSteps }}" hint-placeholder-val="{{ true }}"><dc-import name="StepRow" pat="{{ ch.pat }}" cell="12" cols="16" hint-size="183px,16px"></dc-import></sc-if>
+<sc-if value="{{ ch.isAi }}" hint-placeholder-val="{{ false }}"><span class="chip">AI audio · 32 s</span></sc-if>
+</div>
+<button class="btn sq tg m {{ ch.mCls }}" aria-label="Mute {{ ch.name }}" aria-pressed="{{ ch.mute }}">M</button>
+</div>
+</sc-for>
+</div>
+<div class="plate screws" style="margin: 8px 8px 0; padding: 12px 10px 10px">
+<div class="r jb" style="margin-bottom: 8px">
+<span class="tape l">Rolling Bass</span>
+<span class="sm dim b">SubSaw · preset “Forest 146”</span>
+</div>
+<div class="r jb">
+<dc-import name="Knob" label="Cutoff" value="62" readout="1.2 kHz" mod-start="48" mod-len="22" hint-size="72px,100px"></dc-import>
+<dc-import name="Knob" label="Reso" value="28" readout="28 %" hint-size="72px,100px"></dc-import>
+<dc-import name="Knob" label="Drive" value="40" readout="4.2 dB" auto="1" hint-size="72px,100px"></dc-import>
+<dc-import name="Knob" label="Env amt" value="70" readout="+70 %" hint-size="72px,100px"></dc-import>
+</div>
+</div>
+<div style="padding: 10px 8px 0">
+<div class="r jb" style="margin-bottom: 6px"><span class="lbl">Steps · Rolling Bass</span><span class="sm dim">tap on/off · hold for velocity</span></div>
+<dc-import name="StepRow" pat=".xoo.xoo.xoo.xoa" cell="44" cols="8" head="5" hint-size="376px,92px"></dc-import>
+</div>
+</div>
+<div style="flex: none; height: 60px">
+<dc-import name="Nav" mode="bottom" active="rack" hint-size="412px,60px"></dc-import>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":412,"height":880}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const rows = [
+      { num: '1', name: 'Kick', color: 'red', pat: 'a...x...x...x...', sel: false, mute: false },
+      { num: '2', name: 'Rolling Bass', color: 'yellow', pat: '.xoo.xoo.xoo.xoa', sel: true, mute: false },
+      { num: '3', name: 'Hats', color: 'white', pat: '..x...x...x...x.', sel: false, mute: false },
+      { num: '4', name: 'Clap', color: 'blue', pat: '....x.......x...', sel: false, mute: false },
+      { num: '5', name: 'Lead arp', color: 'green', pat: 'xoloxolox.lox.lo', sel: false, mute: true },
+      { num: '6', name: 'Forest pad', color: 'green', pat: '', sel: false, mute: false, ai: true }
+    ];
+    return {
+      chans: rows.map((r) => ({
+        num: r.num, name: r.name,
+        capCls: 'cap-' + r.color,
+        rowCls: (r.sel ? 'sel' : '') + (r.mute ? ' dimmed' : ''),
+        pat: r.pat, hasSteps: !r.ai, isAi: !!r.ai,
+        mute: r.mute, mCls: r.mute ? 'on' : ''
+      }))
+    };
+  }
+}
+</script>
+</body>
+</html>

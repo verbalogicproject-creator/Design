@@ -1,0 +1,54 @@
+{
+  "v": 3,
+  "createdOnFiles": {"v": 1, "at": "2026-09-29T11:20:00Z"},
+  "title": "Synth tab · Creation Studio",
+  "launch": {"view": "canvas"},
+  "pages": [],
+  "boards": {
+    "Foundations.dc.html": {"x": 0, "y": 0, "w": 1440, "h": 2640, "title": "Foundations"},
+    "Controls.dc.html": {"x": 1520, "y": 0, "w": 1440, "h": 2160, "title": "Library · Controls"},
+    "Editors.dc.html": {"x": 3040, "y": 0, "w": 1440, "h": 2700, "title": "Library · Editors"},
+    "Objects.dc.html": {"x": 4560, "y": 0, "w": 1440, "h": 3100, "title": "Library · Objects and states"},
+
+    "Main.dc.html": {"x": 0, "y": 3440, "w": 412, "h": 880, "title": "Phone · Rack"},
+    "Playlist.dc.html": {"x": 492, "y": 3440, "w": 412, "h": 880, "title": "Phone · Playlist"},
+    "Mixer.dc.html": {"x": 984, "y": 3440, "w": 412, "h": 880, "title": "Phone · Mixer"},
+    "Roll.dc.html": {"x": 1476, "y": 3440, "w": 412, "h": 880, "title": "Phone · Piano roll"},
+    "Patch.dc.html": {"x": 1968, "y": 3440, "w": 412, "h": 880, "title": "Phone · Patch"},
+    "Mod.dc.html": {"x": 2460, "y": 3440, "w": 412, "h": 880, "title": "Phone · Mod"},
+    "Sing.dc.html": {"x": 2952, "y": 3440, "w": 412, "h": 880, "title": "Phone · Sing an idea"},
+    "Generate.dc.html": {"x": 3444, "y": 3440, "w": 412, "h": 880, "title": "Phone · AI generate"},
+    "Consent.dc.html": {"x": 3936, "y": 3440, "w": 412, "h": 880, "title": "Phone · Cloud consent"},
+
+    "LandPlaylist.dc.html": {"x": 0, "y": 4660, "w": 892, "h": 412, "title": "Landscape · Playlist"},
+    "LandRoll.dc.html": {"x": 972, "y": 4660, "w": 892, "h": 412, "title": "Landscape · Piano roll"},
+    "LandMixer.dc.html": {"x": 1944, "y": 4660, "w": 892, "h": 412, "title": "Landscape · Mixer"},
+    "Plugin.dc.html": {"x": 2916, "y": 4660, "w": 900, "h": 600, "title": "Plugin window 900 × 600"},
+
+    "DeskWorkspace.dc.html": {"x": 0, "y": 5600, "w": 1440, "h": 900, "title": "Desktop · Rack + Playlist"},
+    "DeskRoll.dc.html": {"x": 1520, "y": 5600, "w": 1440, "h": 900, "title": "Desktop · Piano roll"},
+    "DeskPatch.dc.html": {"x": 3040, "y": 5600, "w": 1440, "h": 900, "title": "Desktop · Patch + Mod"},
+    "DeskMixer.dc.html": {"x": 4560, "y": 5600, "w": 1440, "h": 900, "title": "Desktop · Mixer"},
+
+    "Transport.dc.html": {"x": 0, "y": 6840, "w": 412, "h": 106, "title": "Part · Transport bar"},
+    "Nav.dc.html": {"x": 492, "y": 6840, "w": 412, "h": 60, "title": "Part · View navigation"},
+    "Knob.dc.html": {"x": 984, "y": 6840, "w": 120, "h": 140, "title": "Part · Knob"},
+    "Fader.dc.html": {"x": 1184, "y": 6840, "w": 120, "h": 320, "title": "Part · Fader"},
+    "Strip.dc.html": {"x": 1384, "y": 6840, "w": 90, "h": 560, "title": "Part · Mixer strip"},
+    "PatternBlock.dc.html": {"x": 1554, "y": 6840, "w": 200, "h": 60, "title": "Part · Pattern block"},
+    "StepRow.dc.html": {"x": 1834, "y": 6840, "w": 400, "h": 100, "title": "Part · Step grid"},
+    "EnvCurve.dc.html": {"x": 2314, "y": 6840, "w": 320, "h": 190, "title": "Part · Envelope editor"},
+    "EqCurve.dc.html": {"x": 2714, "y": 6840, "w": 420, "h": 200, "title": "Part · EQ curve"},
+    "TakeCard.dc.html": {"x": 3214, "y": 6840, "w": 380, "h": 250, "title": "Part · Take card"},
+    "XyPad.dc.html": {"x": 3674, "y": 6840, "w": 200, "h": 240, "title": "Part · XY pad"}
+  },
+  "order": ["Foundations.dc.html", "Controls.dc.html", "Editors.dc.html", "Objects.dc.html", "Main.dc.html", "Playlist.dc.html", "Mixer.dc.html", "Roll.dc.html", "Patch.dc.html", "Mod.dc.html", "Sing.dc.html", "Generate.dc.html", "Consent.dc.html", "LandPlaylist.dc.html", "LandRoll.dc.html", "LandMixer.dc.html", "Plugin.dc.html", "DeskWorkspace.dc.html", "DeskRoll.dc.html", "DeskPatch.dc.html", "DeskMixer.dc.html", "Transport.dc.html", "Nav.dc.html", "Knob.dc.html", "Fader.dc.html", "Strip.dc.html", "PatternBlock.dc.html", "StepRow.dc.html", "EnvCurve.dc.html", "EqCurve.dc.html", "TakeCard.dc.html", "XyPad.dc.html"],
+  "notes": {
+    "t0": {"x": 0, "y": -300, "text": "Synth tab · foundations and component library", "kind": "title1", "maxW": 3000},
+    "t1": {"x": 0, "y": 3140, "text": "Phone · 412 px portrait, thumb first", "kind": "title1", "maxW": 2400},
+    "t2": {"x": 0, "y": 4360, "text": "Landscape 892 × 412 and the plugin window", "kind": "title1", "maxW": 2400},
+    "t3": {"x": 0, "y": 5300, "text": "Desktop · 1440 px, panels docked side by side", "kind": "title1", "maxW": 2400},
+    "t4": {"x": 0, "y": 6540, "text": "Parts · the library components the screens are built from", "kind": "title1", "maxW": 2400}
+  },
+  "designSystems": []
+}

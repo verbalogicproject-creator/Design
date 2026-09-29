@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Library · Objects and states</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="synth.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Permanent+Marker&display=swap">
+<style>body{margin:0;background:#33404a}</style>
+</helmet>
+<div class="sx" style="width: 1440px; height: 3100px; padding: 56px 64px">
+<div class="r g16"><span class="tape l">Objects and states</span><span class="h2">Nodes, macros, takes, prices, toasts</span></div>
+
+<div class="c g12" style="margin-top: 32px">
+<div class="r jb"><span class="h3">10 · Patch node, ports and cables</span><span class="sm dim">A module faceplate: name on tape, knobs in the middle, inputs on the left, outputs on the right. Every port is a 44 px target.</span></div>
+<div class="r g16 ast">
+<div class="plate" style="width: 420px; padding: 16px; height: 300px; position: relative">
+<div class="node sel rel" style="width: 220px; margin: 0 auto">
+<div class="node-h" style="height: 30px"><span class="tape s">SuperSaw</span><span class="sm dim">synth</span></div>
+<div class="prow"><button class="port note used" aria-label="Notes input"><i class="pg"></i></button><span class="plbl f1">Notes</span><span class="plbl">Audio</span><button class="port audio used" aria-label="Audio output"><i class="pg"></i></button></div>
+<div class="prow"><button class="port mod used" aria-label="Detune modulation input"><i class="pg"></i></button><span class="plbl f1">Detune</span></div>
+<div class="r jb" style="padding: 0 8px 8px"><dc-import name="Knob" label="Voices" size="sm" value="55" readout="5" hint-size="64px,86px"></dc-import><dc-import name="Knob" label="Detune" size="sm" value="34" readout="+14 ct" mod-start="28" mod-len="20" hint-size="64px,86px"></dc-import><dc-import name="Knob" label="Sub" size="sm" value="70" readout="−6 dB" hint-size="64px,86px"></dc-import></div>
+</div>
+</div>
+<div class="c g8 f1">
+<div class="grid6">
+<sc-for list="{{ ports }}" as="p" hint-placeholder-count="6">
+<div class="state-card"><div class="rel" style="height: 50px; display: grid; place-items: center"><button class="port {{ p.cls }}" aria-label="{{ p.cap }}"><i class="pg"></i></button><sc-if value="{{ p.auto }}" hint-placeholder-val="{{ false }}"><i class="mkr-auto" style="left: 6px; top: 6px"></i></sc-if></div><span class="cap">{{ p.cap }}</span><span class="dsc">{{ p.dsc }}</span></div>
+</sc-for>
+</div>
+<div class="plate c g6" style="padding: 12px">
+<span class="lbl">Tap A, then B</span>
+<div class="flow wrap">
+<span class="chip t"><span class="tape s">1</span>Tap an output. It rings.</span><i class="arrow"></i>
+<span class="chip t"><span class="tape s">2</span>Only matching inputs stay lit.</span><i class="arrow"></i>
+<span class="chip t"><span class="tape s">3</span>Tap one: the cable snaps on.</span>
+</div>
+</div>
+</div>
+</div>
+<div class="grid4">
+<sc-for list="{{ cables }}" as="c" hint-placeholder-count="12">
+<div class="state-card" style="padding: 8px"><svg width="200" height="42" viewBox="0 0 200 42" role="img" aria-label="{{ c.cap }}"><path d="M8 32 C80 32 120 10 192 10" fill="none" stroke="#e9ecee" stroke-width="{{ c.halo }}" stroke-linecap="round" opacity="{{ c.haloOp }}"></path><path d="M8 32 C80 32 120 10 192 10" fill="none" stroke="{{ c.col }}" stroke-width="{{ c.w }}" stroke-dasharray="{{ c.dash }}" stroke-linecap="round" opacity="{{ c.op }}"></path><sc-if value="{{ c.x }}" hint-placeholder-val="{{ false }}"><path d="M92 14L108 30M108 14L92 30" stroke="#ff9580" stroke-width="3" stroke-linecap="round"></path></sc-if></svg><span class="cap" style="font-size: 12px">{{ c.cap }}</span></div>
+</sc-for>
+</div>
+</div>
+
+<div class="c g12" style="margin-top: 36px">
+<div class="r jb"><span class="h3">11 · Macro knob</span><span class="sm dim">One knob drives several parameters. Each target is a chip with its own min to max range. Tap a chip to edit it.</span></div>
+<div class="r g16 ast">
+<div class="plate c g8" style="width: 420px; padding: 12px">
+<div class="r jb"><span class="tape">Macro 1 · Tension</span><span class="badge gr"><i class="mdi"></i>3 targets</span></div>
+<div class="r g12 ast">
+<dc-import name="Knob" label="Tension" size="lg" value="64" readout="64 %" hint-size="90px,120px"></dc-import>
+<div class="c g4 f1">
+<div class="mchip"><span class="f1">Cutoff</span><div class="rng" style="max-width: 70px"><i style="left: 20%; width: 50%"></i></div><span class="sm b" style="min-width: 44px; text-align: right">20–70</span></div>
+<div class="mchip"><span class="f1">Drive</span><div class="rng" style="max-width: 70px"><i style="left: 10%; width: 30%"></i></div><span class="sm b" style="min-width: 44px; text-align: right">10–40</span></div>
+<div class="mchip"><span class="f1">Reso</span><div class="rng" style="max-width: 70px"><i style="left: 0%; width: 25%"></i></div><span class="sm b" style="min-width: 44px; text-align: right">0–25</span></div>
+<button class="btn ghost">+ Add target</button>
+</div>
+</div>
+</div>
+<div class="plate c g8" style="width: 400px; padding: 12px">
+<div class="r jb"><span class="tape s">Cutoff · range</span><span class="sm dim">tap chip to edit</span></div>
+<div class="rel" style="height: 44px"><div class="rng" style="position: absolute; left: 12px; right: 12px; top: 18px; height: 10px"><i style="left: 20%; width: 50%"></i></div>
+<i class="abs" style="left: 20%; margin-left: 2px; top: 6px; width: 28px; height: 32px; background: var(--alu); border-radius: 4px; box-shadow: 0 2px 0 var(--alu-shade), 0 0 0 2px var(--ink)"></i>
+<i class="abs" style="left: 70%; margin-left: -2px; top: 6px; width: 28px; height: 32px; background: var(--alu); border-radius: 4px; box-shadow: 0 2px 0 var(--alu-shade), 0 0 0 2px var(--ink)"></i></div>
+<div class="r jb g8">
+<div class="r g6"><span class="lbl">Min</span><div class="step-b"><button class="btn ghost sq" aria-label="Min down">−</button><span class="v">20</span><button class="btn ghost sq" aria-label="Min up">+</button></div></div>
+<div class="r g6"><span class="lbl">Max</span><div class="step-b"><button class="btn ghost sq" aria-label="Max down">−</button><span class="v">70</span><button class="btn ghost sq" aria-label="Max up">+</button></div></div>
+</div>
+<div class="r g8"><button class="btn tg tiny" style="min-height: 44px">Invert</button><button class="btn ghost f1">Remove target</button></div>
+</div>
+<div class="grid3 f1" style="grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px">
+<div class="state-card"><dc-import name="Knob" label="Macro" size="md" value="64" readout="64 %" state="disabled" hint-size="80px,110px"></dc-import><span class="cap">No targets</span><span class="dsc">Disabled until one target exists.</span></div>
+<div class="state-card"><dc-import name="Knob" label="Macro" size="md" value="64" readout="64 %" state="modulated" hint-size="80px,110px"></dc-import><span class="cap">Modulated</span><span class="dsc">An LFO moves the macro itself.</span></div>
+<div class="state-card"><dc-import name="Knob" label="Macro" size="md" value="64" readout="64 %" state="automated" hint-size="80px,110px"></dc-import><span class="cap">Automated</span><span class="dsc">Dot on the cap.</span></div>
+</div>
+</div>
+</div>
+
+<div class="c g12" style="margin-top: 36px">
+<div class="r jb"><span class="h3">12 · Take card</span><span class="sm dim">Used by Sing an idea and by AI generations. Play what was made, then decide. Nothing goes into the project until “Use this take”.</span></div>
+<div class="grid3">
+<div class="c g8"><dc-import name="TakeCard" label="Take 1" dur="0:12" kind="sing" playing="voice" conf="High" conf-pct="92%" note="Melody matches your voice closely." warn="Bar 3: pitch wobbles, snapped to the nearest note." seed="3" hint-size="400px,262px"></dc-import><span class="sm dim">Playing the voice.</span></div>
+<div class="c g8"><dc-import name="TakeCard" label="Take 2" dur="0:09" kind="sing" playing="inst" conf="Medium" conf-pct="71%" note="Two notes were hard to hear." warn="Bars 2 and 4: check the marked notes in the roll." seed="6" hint-size="400px,262px"></dc-import><span class="sm dim">Playing the instrument. Medium confidence is amber text with a badge, never colour alone.</span></div>
+<div class="c g8"><dc-import name="TakeCard" label="Take 2" dur="0:30" kind="ai" playing="voice" conf="Medium" conf-pct="78%" note="Groove sits on your 146 BPM grid." warn="Low end is thin below 60 Hz. Try the EQ." chosen="1" seed="5" hint-size="400px,262px"></dc-import><span class="sm dim">AI take that is now in the project. The card is outlined and the button offers undo.</span></div>
+</div>
+</div>
+
+<div class="c g12" style="margin-top: 36px">
+<div class="r jb"><span class="h3">13 · Cost and consent</span><span class="sm dim">A price is always an outlined tally chip with a coin and the amount. Never a filled red button. Red on its own means recording.</span></div>
+<div class="grid6">
+<sc-for list="{{ costs }}" as="c" hint-placeholder-count="6">
+<div class="state-card"><button class="{{ c.bcls }}"><sc-if value="{{ c.coin }}" hint-placeholder-val="{{ true }}"><span class="coin">$</span></sc-if>{{ c.label }}<sc-if value="{{ c.coin }}" hint-placeholder-val="{{ true }}"> · <span class="price">$0.08</span></sc-if></button><span class="cap">{{ c.cap }}</span><span class="dsc">{{ c.dsc }}</span></div>
+</sc-for>
+</div>
+<div class="r g16 ast">
+<div class="plate c g8 f1" style="padding: 12px">
+<span class="lbl">What happens on tap</span>
+<div class="flow wrap">
+<span class="cost" style="cursor: default"><span class="coin">$</span>Polish · <span class="price">$0.04</span></span><i class="arrow"></i>
+<span class="chip t">Sends your voice or family audio?</span><i class="arrow"></i>
+<span class="chip t" style="border-color: var(--alu-dim)">Consent sheet</span><i class="arrow"></i>
+<span class="chip t">Rendering… toast</span>
+</div>
+<span class="sm dim">Anything that only spends money asks with one clear tap on the chip. Anything that would send the user’s own voice or family audio to the cloud shows the consent sheet first, every time, and offers “Keep on device”.</span>
+</div>
+<div class="plate c g6" style="width: 420px; padding: 12px">
+<div class="r g8 ast"><span class="tape s" style="flex: none; width: 64px; text-align: center">Sent</span><span class="sm">What leaves the device, in words.</span></div>
+<div class="r g8 ast"><span class="tape s" style="flex: none; width: 64px; text-align: center">To</span><span class="sm">Who receives it and why.</span></div>
+<div class="r g8 ast"><span class="tape s" style="flex: none; width: 64px; text-align: center">Kept</span><span class="sm">A link to the provider terms.</span></div>
+<div class="r g8 ast"><span class="check" style="width: 20px; height: 20px"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#f2b33d" stroke-width="4" stroke-linecap="round"><path d="M4 12l5 5 11-11"></path></svg></span><span class="sm">Permission from everyone heard. Required.</span></div>
+</div>
+</div>
+</div>
+
+<div class="c g12" style="margin-top: 36px">
+<div class="r jb"><span class="h3">14 · Toasts and states</span><span class="sm dim">Say what happened, then what to do. No error codes as the message.</span></div>
+<div class="grid2">
+<div class="c g10" style="gap: 10px">
+<div class="toast err"><span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ff9580" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v6M12 16.5v.5"></path></svg></span><div class="c g4 f1"><b>Take 3 didn’t render.</b><span class="sm dim">Your prompt is too long for Lyria. Shorten it to about 200 characters and try again. You weren’t charged.</span></div><button class="btn tiny">Edit prompt</button></div>
+<div class="toast err"><span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ff9580" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v6M12 16.5v.5"></path></svg></span><div class="c g4 f1"><b>Chrome is blocking the microphone.</b><span class="sm dim">Tap the lock icon in the address bar, choose Site settings, set Microphone to Allow, then come back.</span></div><button class="btn tiny">Try again</button></div>
+<div class="toast warn"><span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#f2b33d" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"><path d="M12 3 2 21h20z"></path><path d="M12 10v5M12 18v.5"></path></svg></span><div class="c g4 f1"><b>Audio dropped out 2 times.</b><span class="sm dim">Your phone couldn’t keep up. Freeze the heaviest channel, or raise the buffer to 512.</span></div><button class="btn tiny">Buffer 512</button></div>
+<div class="toast"><span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#8fd1a9" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5 11-11"></path></svg></span><div class="c g4 f1"><b>Take 2 added to Pad.</b><span class="sm dim">It’s on the playlist at bar 5.</span></div><button class="btn ghost tiny">Undo</button></div>
+<div class="toast"><span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#e9ecee" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M2 2l20 20M8.5 4.5A9 9 0 0 1 21 12M5 8a9 9 0 0 0 12 12"></path></svg></span><div class="c g4 f1"><b>You’re offline.</b><span class="sm dim">Local sounds still work. AI generation needs a connection. Changes are kept as r13 and saved when you’re back.</span></div></div>
+</div>
+<div class="c" style="gap: 10px">
+<div class="plate c g8" style="padding: 12px"><div class="r jb"><span class="tape">Take 3</span><span class="badge am pulse">Rendering…</span></div><div class="prog" role="progressbar" aria-valuenow="46" aria-valuemin="0" aria-valuemax="100" aria-label="Rendering"><i style="width: 46%"></i></div><div class="r jb"><span class="sm dim">About 20 s left · 46 %. Keep working.</span><button class="btn ghost tiny">Cancel</button></div></div>
+<div class="grid2" style="gap: 10px">
+<div class="empty"><span class="tape">Nothing here yet</span><span class="sm dim">Draw a block on the timeline, or tap a pattern to stamp it.</span><button class="btn">Add pattern</button></div>
+<div class="empty"><span class="tape">No takes</span><span class="sm dim">Sing, hum or tap a rhythm. It shows up here.</span><button class="btn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1f2a33" stroke-width="2.2" stroke-linecap="round"><rect x="9" y="3" width="6" height="11" rx="3"></rect><path d="M5 11a7 7 0 0 0 14 0M12 18v3"></path></svg>Sing</button></div>
+</div>
+<div class="plate c g8" style="padding: 12px">
+<span class="lbl">Revision badge</span>
+<div class="r wrap g8">
+<span class="rev"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#8fd1a9" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5 11-11"></path></svg>saved r12</span>
+<span class="rev un"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#f2b33d" stroke-width="2.6"><circle cx="12" cy="12" r="6"></circle></svg>unsaved · r12</span>
+<span class="rev"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#e9ecee" stroke-width="2.6" stroke-linecap="round"><path d="M12 4v4M12 16v4M4 12h4M16 12h4"></path></svg>saving…</span>
+<span class="rev" style="border-color: var(--tally)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#ff9580" stroke-width="2.6" stroke-linecap="round"><path d="M12 6v8M12 18v.5"></path></svg>not saved · retry</span>
+</div>
+<span class="sm dim">Hollow dashed = changes since the last revision. A check = safe. The number is the revision you can go back to.</span>
+</div>
+<div class="plate r g12 wrap" style="padding: 12px">
+<span class="lost" style="min-height: 44px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1f2a33" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"><path d="M12 3 2 21h20z"></path><path d="M12 10v5M12 18v.5"></path></svg>Lost ×2</span>
+<span class="sm dim f1">Audio-lost indicator: amber, only present after a dropout. Tap for the details toast, hold to clear.</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":3100}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const ports = [
+      { cap: 'Default', cls: 'audio', auto: false, dsc: 'Hollow socket. Shape says the type.' },
+      { cap: 'Hover · focus', cls: 'audio focus hover', auto: false, dsc: 'Grows a little, amber ring.' },
+      { cap: 'Pressed · armed', cls: 'audio used armed', auto: false, dsc: 'Ringed: this is the source of the next cable.' },
+      { cap: 'Disabled', cls: 'note dim', auto: false, dsc: 'Not compatible with the armed port: dimmed.' },
+      { cap: 'Modulated', cls: 'mod used ok', auto: false, dsc: 'Filled diamond, dashed ring: takes modulation.' },
+      { cap: 'Automated', cls: 'audio used', auto: true, dsc: 'A white dot on the port that drives an automated parameter.' }
+    ];
+    const types = [['Audio', '#f2b33d', '4.5', '0'], ['Notes', '#4a7fc1', '3.5', '9 5'], ['Mod', '#5ba67a', '3.5', '1 6']];
+    const sts = ['Default', 'Selected', 'Dragging', 'Bypassed'];
+    const cables = [];
+    types.forEach((t) => sts.forEach((s) => cables.push({
+      cap: t[0] + ' · ' + s.toLowerCase(),
+      col: t[1], w: t[2],
+      dash: s === 'Dragging' ? '10 6' : t[3],
+      halo: s === 'Selected' ? String(parseFloat(t[2]) + 5) : '0', haloOp: s === 'Selected' ? '0.9' : '0',
+      op: s === 'Bypassed' ? '0.4' : '1',
+      x: s === 'Bypassed'
+    })));
+    const mk = (cap, cls, dsc) => ({ cap: cap, bcls: 'cost ' + cls, label: 'Generate', coin: true, dsc: dsc });
+    const costs = [
+      mk('Default', '', 'Outlined tally, coin, price in tally-text.'),
+      mk('Hover', 'hover', 'Warmer well behind the outline.'),
+      mk('Focus', 'focus', 'Amber ring, same as every control.'),
+      mk('Pressed', 'pressed', 'Sinks into the panel. Charges on release.'),
+      mk('Disabled', 'disabled', 'Dashed outline. Says why: no credit, or already rendering.'),
+      { cap: 'Free action', bcls: 'btn', label: 'Insert take', coin: false, dsc: 'A free action never wears this chip. It is a plain key.' }
+    ];
+    return { ports: ports, cables: cables, costs: costs };
+  }
+}
+</script>
+</body>
+</html>

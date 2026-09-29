@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Phone · Patch</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="synth.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Permanent+Marker&display=swap">
+<style>body{margin:0;background:#33404a}</style>
+</helmet>
+<div class="sx ph" style="width: 412px; height: 880px">
+<div class="ph-hdr">
+<b class="h3">Synth</b>
+<span class="tape s">Rolling Bass 03</span>
+<span class="f1"></span>
+<span class="rev"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#8fd1a9" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5 11-11"></path></svg>saved r12</span>
+</div>
+<div style="flex: none; height: 106px">
+<dc-import name="Transport" mode="phone" pos="005:2:01" bpm="146.0" cpu="38" lost="0" playing="1" rec="0" loop="1" hint-size="412px,106px"></dc-import>
+</div>
+<div class="ph-body">
+<div class="r jb g6" style="padding: 0 8px; height: 52px">
+<button class="btn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1f2a33" stroke-width="3" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg>Module</button>
+<div class="seg" role="group" aria-label="Connect method">
+<button class="btn on" aria-pressed="true">Tap</button>
+<button class="btn" aria-pressed="false">Drag</button>
+</div>
+<button class="btn ghost sq" aria-label="Undo"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#e9ecee" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 7L4 12l5 5M4 12h10a5 5 0 0 1 0 10h-4"></path></svg></button>
+</div>
+<div class="r g8" style="height: 36px; padding: 0 8px; background: var(--slate-deep); border-top: 1px solid var(--seam); border-bottom: 1px solid var(--seam)">
+<span class="mdi"></span>
+<span class="sm b f1">From LFO 1 · Out. Tap a matching input. Green ports are compatible.</span>
+<button class="btn tiny ghost">Cancel</button>
+</div>
+<div class="canvas-box" style="height: 524px; border-radius: 0; border-left: 0; border-right: 0; background-image: radial-gradient(circle, #3a4751 1px, transparent 1.5px); background-size: 22px 22px">
+<svg class="abs" style="left: 0; top: 0" width="412" height="524" viewBox="0 0 412 524" aria-hidden="true">
+<path d="M114 74 L174 74" fill="none" stroke="#4a7fc1" stroke-width="3.5" stroke-dasharray="9 5"></path>
+<path d="M262 74 C322 74 138 224 198 224" fill="none" stroke="#f2b33d" stroke-width="4.5"></path>
+<path d="M106 244 C146 244 158 268 198 268" fill="none" stroke="#5ba67a" stroke-width="3.5" stroke-dasharray="1 6" stroke-linecap="round"></path>
+<path d="M294 224 C354 224 114 394 174 394" fill="none" stroke="#f2b33d" stroke-width="4.5"></path>
+<path d="M262 394 L312 394" fill="none" stroke="#f2b33d" stroke-width="4.5"></path>
+<path d="M106 244 C140 244 140 118 174 118" fill="none" stroke="#5ba67a" stroke-width="3" stroke-dasharray="10 6"></path>
+</svg>
+
+<div class="node" style="left: 8px; top: 20px; width: 128px; height: 82px">
+<div class="node-h" style="height: 30px"><span class="tape s">Rolling seq</span></div>
+<div class="prow" style="justify-content: flex-end"><span class="plbl">Notes</span><button class="port note used dim" aria-label="Notes out, connected"><i class="pg"></i></button></div>
+</div>
+
+<div class="node" style="left: 152px; top: 20px; width: 132px; height: 126px">
+<div class="node-h" style="height: 30px"><span class="tape s">SuperSaw</span></div>
+<div class="prow"><button class="port note used dim" aria-label="Notes in, connected"><i class="pg"></i></button><span class="plbl f1">Notes</span><span class="plbl">Audio</span><button class="port audio used dim" aria-label="Audio out, connected"><i class="pg"></i></button></div>
+<div class="prow" style="justify-content: flex-start"><button class="port mod ok" aria-label="Detune modulation in. Tap to connect."><i class="pg"></i></button><span class="plbl">Detune</span></div>
+</div>
+
+<div class="node" style="left: 176px; top: 170px; width: 140px; height: 126px">
+<div class="node-h" style="height: 30px"><span class="tape s">LP Ladder</span></div>
+<div class="prow"><button class="port audio used dim" aria-label="Audio in, connected"><i class="pg"></i></button><span class="plbl f1">In</span><span class="plbl">Out</span><button class="port audio used dim" aria-label="Audio out, connected"><i class="pg"></i></button></div>
+<div class="prow" style="justify-content: flex-start"><button class="port mod used ok" aria-label="Cutoff modulation in, connected"><i class="pg"></i></button><span class="plbl">Cutoff</span></div>
+</div>
+
+<div class="node sel" style="left: 8px; top: 190px; width: 120px; height: 82px">
+<div class="node-h" style="height: 30px"><span class="tape s">LFO 1</span></div>
+<div class="prow" style="justify-content: space-between"><span class="plbl">1/8 · sine</span><button class="port mod used armed" aria-label="Modulation out, selected as source"><i class="pg"></i></button></div>
+</div>
+
+<div class="node" style="left: 152px; top: 340px; width: 132px; height: 82px">
+<div class="node-h" style="height: 30px"><span class="tape s">Drive</span></div>
+<div class="prow"><button class="port audio used dim" aria-label="Audio in, connected"><i class="pg"></i></button><span class="plbl f1">In</span><span class="plbl">Out</span><button class="port audio used dim" aria-label="Audio out, connected"><i class="pg"></i></button></div>
+</div>
+
+<div class="node" style="left: 290px; top: 340px; width: 116px; height: 82px">
+<div class="node-h" style="height: 30px"><span class="tape s">Out · Bass</span></div>
+<div class="prow" style="justify-content: flex-start"><button class="port audio used dim" aria-label="Audio in, connected"><i class="pg"></i></button><span class="plbl">To mixer 2</span></div>
+</div>
+
+<div class="abs r g4" style="right: 8px; bottom: 8px">
+<button class="btn ghost sq" aria-label="Zoom in">+</button>
+<button class="btn ghost sq" aria-label="Zoom out">−</button>
+</div>
+<span class="chip abs" style="left: 8px; bottom: 12px">Pan: two fingers</span>
+<i class="panhint" style="width: 14px"></i>
+</div>
+<div class="r g12" style="padding: 8px 10px">
+<span class="r g6 sm b"><i class="adi"></i>Audio</span>
+<span class="r g6 sm b"><i class="ndi"></i>Notes</span>
+<span class="r g6 sm b"><i class="mdi"></i>Mod</span>
+<span class="f1"></span>
+<span class="sm dim">line style differs too</span>
+</div>
+</div>
+<div style="flex: none; height: 60px">
+<dc-import name="Nav" mode="bottom" active="patch" hint-size="412px,60px"></dc-import>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":412,"height":880}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

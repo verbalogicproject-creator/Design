@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Mixer strip</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="synth.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Permanent+Marker&display=swap">
+<style>body{margin:0;background:#33404a}</style>
+</helmet>
+<div class="sx" style="display: inline-block; overflow: visible; background: none; padding: 0">
+<div class="strip {{selCls}}" style="{{wStyle}}">
+<span class="num">{{num}}</span>
+<span class="tape s">{{name}}</span>
+<sc-if value="{{ isSide }}" hint-placeholder-val="{{ false }}">
+<div class="r ast g4">
+<sc-if value="{{ showMs }}" hint-placeholder-val="{{ true }}">
+<div class="c g6" style="align-items: center">
+<button class="btn ghost sq" aria-label="Pan {{panTxt}}">{{panTxt}}</button>
+<button class="btn sq tg m {{mCls}}" aria-label="Mute {{name}}" aria-pressed="{{mute}}">M</button>
+<button class="btn sq tg s {{sCls}}" aria-label="Solo {{name}}" aria-pressed="{{solo}}">S</button>
+<sc-if value="{{ showFx }}" hint-placeholder-val="{{ true }}"><button class="btn ghost sq" aria-label="{{fx}} effects on {{name}}">FX{{fx}}</button></sc-if>
+</div>
+</sc-if>
+<dc-import name="Fader" scale="0" h="{{fh}}" value="{{vol}}" color="{{color}}" l="{{l}}" r="{{r}}" pk-l="{{pk}}" pk-r="{{pk}}" clip="{{clip}}" hint-size="72px,260px"></dc-import>
+</div>
+</sc-if>
+<sc-if value="{{ notSide }}" hint-placeholder-val="{{ true }}">
+<dc-import name="Knob" label="Pan" size="sm" value="{{panVal}}" readout="{{panTxt}}" hint-size="64px,86px"></dc-import>
+<sc-if value="{{ showMs }}" hint-placeholder-val="{{ true }}">
+<div class="ms {{msCls}}">
+<button class="btn sq tg m {{mCls}}" aria-label="Mute {{name}}" aria-pressed="{{mute}}">M</button>
+<button class="btn sq tg s {{sCls}}" aria-label="Solo {{name}}" aria-pressed="{{solo}}">S</button>
+</div>
+</sc-if>
+<dc-import name="Fader" scale="0" h="{{fh}}" value="{{vol}}" color="{{color}}" l="{{l}}" r="{{r}}" pk-l="{{pk}}" pk-r="{{pk}}" clip="{{clip}}" hint-size="72px,260px"></dc-import>
+<sc-if value="{{ showFx }}" hint-placeholder-val="{{ true }}">
+<button class="btn ghost sq" style="width: 60px" aria-label="{{fx}} effects on {{name}}">FX {{fx}}</button>
+</sc-if>
+</sc-if>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"label":{"editor":null,"default":"Bass"},"num":{"editor":null,"default":"2"},"color":{"editor":null,"default":"yellow"},"vol":{"editor":null,"default":"80"},"pan":{"editor":null,"default":"0"},"mute":{"editor":null,"default":"0"},"solo":{"editor":null,"default":"0"},"l":{"editor":null,"default":"55"},"r":{"editor":null,"default":"50"},"pk":{"editor":null,"default":"66"},"clip":{"editor":null,"default":"0"},"fx":{"editor":null,"default":"3"},"fh":{"editor":null,"default":"240"},"w":{"editor":null,"default":"72"},"layout":{"editor":null,"default":"col"},"sel":{"editor":null,"default":"0"},"showFx":{"editor":null,"default":"1"},"noMs":{"editor":null,"default":"0"},"$preview":{"width":90,"height":560}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const p = this.props;
+    const pan = parseFloat(p.pan) || 0;
+    const w = parseInt(p.w) || 72;
+    return {
+      name: p.label || '', num: p.num || '', color: p.color || 'yellow',
+      selCls: p.sel === '1' ? 'sel' : '',
+      wStyle: 'width:' + w + 'px',
+      panVal: String(50 + pan / 2),
+      panTxt: pan === 0 ? 'C' : (pan < 0 ? 'L' + Math.abs(pan) : 'R' + pan),
+      isSide: p.layout === 'side', notSide: p.layout !== 'side',
+      msCls: p.layout === 'row' ? '' : 'col',
+      mCls: p.mute === '1' ? 'on' : '', sCls: p.solo === '1' ? 'on' : '',
+      mute: p.mute === '1', solo: p.solo === '1',
+      fh: p.fh || '240', vol: p.vol || '80', l: p.l || '55', r: p.r || '50', pk: p.pk || '66',
+      clip: p.clip === '1' ? '1' : '0',
+      fx: p.fx || '0',
+      showFx: p.showFx !== '0',
+      showMs: p.noMs !== '1'
+    };
+  }
+}
+</script>
+</body>
+</html>

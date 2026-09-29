@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>View navigation</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="synth.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Permanent+Marker&display=swap">
+<style>body{margin:0;background:#2a353d}</style>
+</helmet>
+<div class="sx" style="width: 100%; overflow: visible; background: none">
+<nav class="nav {{mode}}" aria-label="Synth views">
+<button class="nv {{a.rack}}" aria-current="{{c.rack}}"><svg width="22" height="22" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="4" rx="1"></rect><rect x="3" y="10" width="18" height="4" rx="1"></rect><rect x="3" y="16" width="18" height="4" rx="1"></rect><path d="M6 6h2M6 12h2M6 18h2"></path></svg><span>Rack</span></button>
+<button class="nv {{a.playlist}}" aria-current="{{c.playlist}}"><svg width="22" height="22" viewBox="0 0 24 24"><rect x="3" y="4" width="8" height="4" rx="1"></rect><rect x="13" y="4" width="8" height="4" rx="1"></rect><rect x="3" y="10" width="13" height="4" rx="1"></rect><rect x="7" y="16" width="10" height="4" rx="1"></rect></svg><span>Playlist</span></button>
+<button class="nv {{a.mixer}}" aria-current="{{c.mixer}}"><svg width="22" height="22" viewBox="0 0 24 24"><path d="M6 3v18M12 3v18M18 3v18"></path><rect x="3.5" y="13" width="5" height="4" rx="1"></rect><rect x="9.5" y="6" width="5" height="4" rx="1"></rect><rect x="15.5" y="10" width="5" height="4" rx="1"></rect></svg><span>Mixer</span></button>
+<button class="nv {{a.roll}}" aria-current="{{c.roll}}"><svg width="22" height="22" viewBox="0 0 24 24"><path d="M3 7h18M3 12h18M3 17h18"></path><rect x="5" y="4.5" width="6" height="5" rx="1"></rect><rect x="10" y="14.5" width="8" height="5" rx="1"></rect></svg><span>Roll</span></button>
+<button class="nv {{a.patch}}" aria-current="{{c.patch}}"><svg width="22" height="22" viewBox="0 0 24 24"><rect x="3" y="4" width="7" height="6" rx="1"></rect><rect x="14" y="14" width="7" height="6" rx="1"></rect><path d="M10 7h2a2 2 0 0 1 2 2v5"></path></svg><span>Patch</span></button>
+<button class="nv {{a.mod}}" aria-current="{{c.mod}}"><svg width="22" height="22" viewBox="0 0 24 24"><path d="M2 12c3-9 5-9 8 0s5 9 8 0c1-3 2-3 4 0"></path></svg><span>Mod</span></button>
+<button class="nv sing" aria-label="Sing an idea"><svg width="22" height="22" viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"></rect><path d="M5 11a7 7 0 0 0 14 0M12 18v3"></path></svg><span class="tape s">Sing</span></button>
+</nav>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"mode":{"editor":null,"default":"bottom"},"active":{"editor":null,"default":"rack"},"$preview":{"width":412,"height":60}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const act = this.props.active || 'rack';
+    const ids = ['rack', 'playlist', 'mixer', 'roll', 'patch', 'mod'];
+    const a = {}, c = {};
+    ids.forEach((id) => { a[id] = id === act ? 'on' : ''; c[id] = id === act ? 'page' : 'false'; });
+    const m = this.props.mode;
+    return { mode: m === 'rail' ? 'rail' : m === 'top' ? 'top' : 'bottom', a: a, c: c };
+  }
+}
+</script>
+</body>
+</html>

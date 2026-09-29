@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Phone · AI generate</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="synth.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Permanent+Marker&display=swap">
+<style>body{margin:0;background:#33404a}</style>
+</helmet>
+<div class="sx ph" style="width: 412px; height: 880px">
+<div class="ph-hdr">
+<b class="h3">Synth</b>
+<span class="tape s">Rolling Bass 03</span>
+<span class="f1"></span>
+<span class="rev"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#8fd1a9" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5 11-11"></path></svg>saved r12</span>
+</div>
+<div style="flex: none; height: 106px">
+<dc-import name="Transport" mode="phone" pos="005:2:01" bpm="146.0" cpu="55" lost="0" playing="0" rec="0" loop="1" hint-size="412px,106px"></dc-import>
+</div>
+<div class="ph-body c g8" style="padding: 8px">
+<div class="r jb g8">
+<span class="h3">AI generate</span>
+<div class="seg" role="group" aria-label="Engine">
+<button class="btn on" aria-pressed="true">Lyria</button>
+<button class="btn disabled" aria-disabled="true" aria-pressed="false">Soon</button>
+</div>
+</div>
+<div class="c g4">
+<span class="tape s" style="align-self: flex-start">Prompt</span>
+<div class="field" style="min-height: 76px; align-items: flex-start; padding: 10px 12px; line-height: 1.4">Dark forest psytrance intro, rolling bass, distant pads, 146 BPM, F# minor</div>
+</div>
+<div class="r wrap g6">
+<button class="chip t">Length · 30 s</button>
+<span class="chip t"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#a9b4bc" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="9" rx="2"></rect><path d="M8 11V8a4 4 0 0 1 8 0v3"></path></svg>146 BPM · F# min</span>
+</div>
+<div class="r g8 jb">
+<span class="sm dim f1">Each take costs $0.08. You only pay for takes that finish.</span>
+<button class="cost big" aria-label="Generate, costs 8 cents"><span class="coin">$</span>Generate · <span class="price">$0.08</span></button>
+</div>
+<div class="plate" style="padding: 10px">
+<div class="r jb" style="margin-bottom: 8px"><span class="tape">Take 3</span><span class="badge am pulse">Rendering…</span></div>
+<div class="prog" role="progressbar" aria-valuenow="46" aria-valuemin="0" aria-valuemax="100" aria-label="Rendering take 3"><i style="width: 46%"></i></div>
+<div class="r jb" style="margin-top: 8px"><span class="sm dim">About 20 s left. You can keep working.</span><button class="btn ghost tiny">Cancel</button></div>
+</div>
+<dc-import name="TakeCard" label="Take 2" dur="0:30" kind="ai" playing="voice" conf="Medium" conf-pct="78%" note="Groove sits on your 146 BPM grid." warn="Low end is thin below 60 Hz. Try the EQ." seed="5" hint-size="396px,262px"></dc-import>
+</div>
+<div style="flex: none; height: 60px">
+<dc-import name="Nav" mode="bottom" active="none" hint-size="412px,60px"></dc-import>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":412,"height":880}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

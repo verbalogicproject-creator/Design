@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>EQ curve editor</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="synth.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Permanent+Marker&display=swap">
+<style>body{margin:0;background:#33404a}</style>
+</helmet>
+<div class="sx" style="display: inline-block; overflow: visible; background: none; padding: 0">
+<div class="canvas-box {{stCls}}" style="{{boxStyle}}">
+<svg width="{{W}}" height="{{H}}" viewBox="0 0 {{W}} {{H}}" role="img" aria-label="Five band equaliser curve over live spectrum">
+<sc-for list="{{ vg }}" as="g" hint-placeholder-count="8">
+<g><line x1="{{ g.x }}" y1="0" x2="{{ g.x }}" y2="{{ Hm }}" stroke="#232c33" stroke-width="1"></line><text x="{{ g.x }}" y="{{ Hb }}" text-anchor="middle" font-size="11" font-weight="600" fill="#a9b4bc">{{ g.t }}</text></g>
+</sc-for>
+<sc-for list="{{ hg }}" as="g" hint-placeholder-count="5">
+<g><line x1="0" y1="{{ g.y }}" x2="{{W}}" y2="{{ g.y }}" stroke="{{ g.col }}" stroke-width="1"></line><text x="4" y="{{ g.ty }}" font-size="11" font-weight="600" fill="#a9b4bc">{{ g.t }}</text></g>
+</sc-for>
+<polygon points="{{spec}}" fill="#f2b33d" fill-opacity="0.22" stroke="#f2b33d" stroke-opacity="0.5" stroke-width="1"></polygon>
+<sc-if value="{{ showGhost }}" hint-placeholder-val="{{ false }}"><path d="{{ghostD}}" fill="none" stroke="#5ba67a" stroke-width="2" stroke-dasharray="5 4"></path></sc-if>
+<path d="{{curveD}}" fill="none" stroke="{{lineCol}}" stroke-width="2.6" stroke-linejoin="round" stroke-dasharray="{{lineDash}}"></path>
+<sc-if value="{{ showPress }}" hint-placeholder-val="{{ false }}">
+<line x1="{{sx}}" y1="0" x2="{{sx}}" y2="{{ Hm }}" stroke="#f2b33d" stroke-width="1" stroke-dasharray="3 3"></line>
+<line x1="0" y1="{{sy}}" x2="{{W}}" y2="{{sy}}" stroke="#f2b33d" stroke-width="1" stroke-dasharray="3 3"></line>
+</sc-if>
+<sc-for list="{{ dots }}" as="d" hint-placeholder-count="5">
+<g>
+<circle cx="{{ d.x }}" cy="{{ d.y }}" r="22" fill="transparent"></circle>
+<circle cx="{{ d.x }}" cy="{{ d.y }}" r="{{ d.ring }}" fill="none" stroke="#f2b33d" stroke-width="2.5"></circle>
+<circle cx="{{ d.x }}" cy="{{ d.y }}" r="{{ d.r }}" fill="#2a353d" stroke="{{ d.col }}" stroke-width="3"></circle>
+<text x="{{ d.x }}" y="{{ d.ty }}" text-anchor="middle" font-size="11" font-weight="800" fill="#e9ecee">{{ d.n }}</text>
+</g>
+</sc-for>
+<sc-if value="{{ showPress }}" hint-placeholder-val="{{ false }}">
+<rect x="{{tipX}}" y="{{tipY}}" width="118" height="22" fill="#e6d6a2"></rect>
+<text x="{{tipTx}}" y="{{tipTy}}" text-anchor="middle" font-family="Permanent Marker, cursive" font-size="12" fill="#1f2a33">{{tipTxt}}</text>
+</sc-if>
+</svg>
+<sc-if value="{{ showMod }}" hint-placeholder-val="{{ false }}"><span class="badge gr abs" style="right: 6px; top: 6px">~ mod band 3</span></sc-if>
+<sc-if value="{{ showAuto }}" hint-placeholder-val="{{ false }}"><span class="badge abs" style="right: 6px; top: 6px"><i class="dot"></i> auto band 3</span></sc-if>
+<sc-if value="{{ isOff }}" hint-placeholder-val="{{ false }}"><span class="badge abs" style="right: 6px; top: 6px">bypass</span></sc-if>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"w":{"editor":null,"default":"420"},"h":{"editor":null,"default":"200"},"state":{"editor":null,"default":"default"},"sel":{"editor":null,"default":"0"},"$preview":{"width":420,"height":200}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const p = this.props;
+    const n = (v, d) => { const x = parseFloat(v); return isNaN(x) ? d : x; };
+    const W = n(p.w, 420), H = n(p.h, 200);
+    const st = p.state || 'default';
+    const sel = parseInt(p.sel) || 0;
+    const axis = 16;
+    const Hm = H - axis;
+    const lo = Math.log10(20), span = 3;
+    const X = (fr) => (Math.log10(fr) - lo) / span * W;
+    const Y = (db) => Hm / 2 - db / 15 * (Hm / 2 - 6);
+    const bands = [
+      { f: 32, g: 0, t: 'hp', col: '#d9483b' },
+      { f: 90, g: 3.5, t: 'bell', bw: 0.55, col: '#e8c547' },
+      { f: 400, g: -4, t: 'bell', bw: 0.6, col: '#4a7fc1' },
+      { f: 3200, g: 2.5, t: 'bell', bw: 0.5, col: '#eef0f1' },
+      { f: 9500, g: 1.8, t: 'hs', col: '#5ba67a' }
+    ];
+    const resp = (fr, bs) => {
+      let s = 0;
+      bs.forEach((b) => {
+        const l = Math.log2(fr / b.f);
+        if (b.t === 'hp') s += -30 / (1 + Math.pow(fr / b.f, 3));
+        else if (b.t === 'bell') s += b.g * Math.exp(-Math.pow(l / b.bw, 2));
+        else s += b.g / (1 + Math.exp(-l * 3));
+      });
+      return s;
+    };
+    const f1 = (v) => v.toFixed(1);
+    const curve = (bs) => {
+      let d = '';
+      for (let i = 0; i <= 140; i++) {
+        const fr = Math.pow(10, lo + span * i / 140);
+        d += (i ? ' L' : 'M') + f1(X(fr)) + ' ' + f1(Math.max(4, Math.min(Hm - 4, Y(resp(fr, bs)))));
+      }
+      return d;
+    };
+    const spec = [];
+    spec.push(f1(0) + ',' + f1(Hm));
+    for (let i = 0; i <= 90; i++) {
+      const t = i / 90;
+      const v = 0.18 + 0.52 * Math.exp(-Math.pow((t - 0.27) / 0.09, 2)) + 0.3 * (1 - t) * Math.exp(-Math.pow((t - 0.55) / 0.3, 2)) + 0.05 * Math.sin(t * 60) + 0.04 * Math.sin(t * 131 + 1) - 0.28 * Math.max(0, t - 0.6);
+      spec.push(f1(t * W) + ',' + f1(Hm - Math.max(0.03, Math.min(0.95, v)) * (Hm - 8)));
+    }
+    spec.push(f1(W) + ',' + f1(Hm));
+    const vg = [[50, '50'], [100, '100'], [200, '200'], [500, '500'], [1000, '1k'], [2000, '2k'], [5000, '5k'], [10000, '10k']].map((a) => ({ x: f1(X(a[0])), t: a[1] }));
+    const hg = [[12, '+12'], [6, ''], [0, '0'], [-6, ''], [-12, '−12']].map((a) => ({ y: f1(Y(a[0])), ty: f1(Y(a[0]) - 3), t: a[1], col: a[0] === 0 ? '#3d4b56' : '#232c33' }));
+    const dots = bands.map((b, i) => {
+      const yy = b.t === 'hp' ? Y(0) : Y(resp(b.f, [b]));
+      const on = sel === i + 1;
+      return { x: f1(X(b.f)), y: f1(yy), n: String(i + 1), col: b.col, r: on ? 11 : 9, ring: on ? 15 : 0, ty: f1(yy + 4) };
+    });
+    const sb = sel ? bands[sel - 1] : null;
+    const selY = sb ? (sb.t === 'hp' ? Y(0) : Y(resp(sb.f, [sb]))) : 0;
+    const ghost = bands.map((b, i) => i === 2 ? { f: b.f * 1.5, g: b.g - 3, t: 'bell', bw: b.bw } : b);
+    const press = st === 'pressed' && !!sb;
+    const tx = sb ? Math.min(W - 62, Math.max(62, X(sb.f))) : 0;
+    const off = st === 'disabled';
+    const fq = (fr) => fr >= 1000 ? (fr / 1000).toFixed(1).replace('.0', '') + ' kHz' : fr + ' Hz';
+    return {
+      W: W, H: H, Hm: Hm, Hb: H - 3,
+      stCls: 'st-' + st,
+      boxStyle: 'width:' + W + 'px;height:' + H + 'px' + (off ? ';opacity:.5' : ''),
+      vg: vg, hg: hg, spec: spec.join(' '),
+      curveD: off ? 'M0 ' + f1(Y(0)) + ' L' + W + ' ' + f1(Y(0)) : curve(bands),
+      ghostD: curve(ghost), showGhost: st === 'modulated',
+      lineCol: off ? '#8e979d' : '#e9ecee', lineDash: off ? '6 5' : '0',
+      dots: dots,
+      showPress: press,
+      sx: sb ? f1(X(sb.f)) : 0, sy: f1(selY),
+      tipX: f1(tx - 59), tipY: f1(Math.max(4, selY - 38)), tipTx: f1(tx), tipTy: f1(Math.max(4, selY - 38) + 15),
+      tipTxt: sb ? fq(sb.f) + ' ' + (sb.g >= 0 ? '+' : '−') + Math.abs(sb.g).toFixed(1) + ' dB' : '',
+      showMod: st === 'modulated', showAuto: st === 'automated', isOff: off
+    };
+  }
+}
+</script>
+</body>
+</html>

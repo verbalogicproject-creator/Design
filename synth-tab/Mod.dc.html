@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Phone · Mod</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="synth.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Permanent+Marker&display=swap">
+<style>body{margin:0;background:#33404a}</style>
+</helmet>
+<div class="sx ph" style="width: 412px; height: 880px">
+<div class="ph-hdr">
+<b class="h3">Synth</b>
+<span class="tape s">Rolling Bass 03</span>
+<span class="f1"></span>
+<span class="rev"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#8fd1a9" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5 11-11"></path></svg>saved r12</span>
+</div>
+<div style="flex: none; height: 106px">
+<dc-import name="Transport" mode="phone" pos="005:2:01" bpm="146.0" cpu="38" lost="0" playing="1" rec="0" loop="1" hint-size="412px,106px"></dc-import>
+</div>
+<div class="ph-body c g8" style="padding: 8px">
+<div class="plate" style="padding: 10px">
+<div class="r jb" style="margin-bottom: 8px"><span class="tape">Macro 1 · Tension</span><span class="badge gr"><i class="mdi"></i>3 targets</span></div>
+<div class="r g12 ast">
+<dc-import name="Knob" label="Tension" size="lg" value="64" readout="64 %" mod-start="0" mod-len="0" hint-size="90px,120px"></dc-import>
+<div class="c g4 f1">
+<div class="mchip"><span class="f1">Cutoff</span><div class="rng" style="max-width: 96px"><i style="left: 20%; width: 50%"></i></div><span class="sm b" style="min-width: 48px; text-align: right">20–70</span></div>
+<div class="mchip"><span class="f1">Drive</span><div class="rng" style="max-width: 96px"><i style="left: 10%; width: 30%"></i></div><span class="sm b" style="min-width: 48px; text-align: right">10–40</span></div>
+<div class="mchip"><span class="f1">Reso</span><div class="rng" style="max-width: 96px"><i style="left: 0%; width: 25%"></i></div><span class="sm b" style="min-width: 48px; text-align: right">0–25</span></div>
+</div>
+</div>
+</div>
+<div class="plate r g12" style="padding: 10px">
+<div class="c g6" style="width: 178px; flex: none">
+<div class="r jb"><span class="tape s">LFO 1</span><span class="sm dim b">1/8 · sync</span></div>
+<div class="canvas-box" style="height: 44px"><svg width="176" height="44" viewBox="0 0 176 44" aria-hidden="true"><path d="M0 22 C22 -6 44 -6 66 22 S110 50 132 22 S166 -6 176 22" fill="none" stroke="#5ba67a" stroke-width="2.6"></path></svg></div>
+<div class="seg" style="align-self: flex-start" role="group" aria-label="LFO shape">
+<button class="btn sq on" aria-label="Sine" aria-pressed="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1f2a33" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12c3-9 5-9 8 0s5 9 8 0c1-3 2-3 4 0"></path></svg></button>
+<button class="btn sq" aria-label="Triangle" aria-pressed="false"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1f2a33" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M2 18L8 6l8 12 6-12"></path></svg></button>
+<button class="btn sq" aria-label="Saw" aria-pressed="false"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1f2a33" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18L12 6v12l9-12"></path></svg></button>
+</div>
+</div>
+<dc-import name="Knob" label="Rate" size="sm" value="45" readout="1/8" hint-size="64px,86px"></dc-import>
+<dc-import name="Knob" label="Depth" size="sm" value="70" readout="70 %" mod-start="40" mod-len="24" hint-size="64px,86px"></dc-import>
+</div>
+<div class="plate" style="padding: 10px">
+<div class="r jb" style="margin-bottom: 6px"><span class="tape s">Env 2 · Filter</span><span class="sm dim b">tap a handle to type</span></div>
+<dc-import name="EnvCurve" w="372" h="96" a="8" hold="4" d="26" s="55" r="24" t-a="2 ms" t-h="0 ms" t-d="220 ms" t-s="55%" t-r="300 ms" sel="d" hint-size="372px,140px"></dc-import>
+</div>
+<div class="c g4">
+<div class="r jb" style="padding: 0 2px"><span class="h2">Routes</span><button class="btn tiny ghost">+ Route</button></div>
+<div class="mchip"><span class="tape s">LFO 1</span><span class="mdi"></span><span class="f1">Cutoff · Bass</span><div class="step-b"><button class="btn ghost sq tiny" style="min-height: 44px; min-width: 44px" aria-label="Less">−</button><span class="v gr">+32 %</span><button class="btn ghost sq tiny" style="min-height: 44px; min-width: 44px" aria-label="More">+</button></div></div>
+<div class="mchip"><span class="tape s">Env 2</span><span class="mdi"></span><span class="f1">Cutoff · Bass</span><div class="step-b"><button class="btn ghost sq tiny" style="min-height: 44px; min-width: 44px" aria-label="Less">−</button><span class="v gr">+58 %</span><button class="btn ghost sq tiny" style="min-height: 44px; min-width: 44px" aria-label="More">+</button></div></div>
+</div>
+</div>
+<div style="flex: none; height: 60px">
+<dc-import name="Nav" mode="bottom" active="mod" hint-size="412px,60px"></dc-import>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":412,"height":880}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

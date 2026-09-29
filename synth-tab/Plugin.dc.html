@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Plugin window · Rolling Bass</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="synth.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Permanent+Marker&display=swap">
+<style>body{margin:0;background:#33404a}</style>
+</helmet>
+<div class="sx" style="width: 900px; height: 600px; display: flex; flex-direction: column">
+<div class="r g12" style="height: 48px; flex: none; padding: 0 12px; background: var(--slate-deep); border-bottom: 1px solid var(--seam)">
+<span class="tape l">Rolling Bass</span>
+<span class="sm dim b">Creation Studio · plugin</span>
+<span class="f1"></span>
+<button class="btn ghost sq" aria-label="Previous preset">‹</button>
+<div class="field" style="width: 200px">Forest 146</div>
+<button class="btn ghost sq" aria-label="Next preset">›</button>
+<span class="rev"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#8fd1a9" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5 11-11"></path></svg>saved r12</span>
+<button class="btn panic" style="min-width: 96px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ff9580" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2h8l6 6v8l-6 6H8l-6-6V8z"></path><path d="M9 9l6 6M15 9l-6 6"></path></svg>Panic</button>
+</div>
+<div class="c g8" style="flex: 1 1 0; padding: 10px 12px 0; min-height: 0">
+<div class="r g8 astr" style="height: 206px">
+<div class="plate screws" style="width: 300px; padding: 12px 10px 8px">
+<div class="r jb" style="margin-bottom: 6px"><span class="tape s">Osc</span>
+<div class="seg" role="group" aria-label="Waveform"><button class="btn on" aria-pressed="true">Saw</button><button class="btn" aria-pressed="false">Sq</button><button class="btn" aria-pressed="false">Tri</button></div></div>
+<div class="r jb">
+<dc-import name="Knob" label="Detune" value="34" readout="+14 ct" hint-size="72px,100px"></dc-import>
+<dc-import name="Knob" label="Voices" value="55" readout="5" hint-size="72px,100px"></dc-import>
+<dc-import name="Knob" label="Sub" value="70" readout="−6 dB" hint-size="72px,100px"></dc-import>
+<dc-import name="Knob" label="Glide" value="12" readout="18 ms" auto="1" hint-size="72px,100px"></dc-import>
+</div>
+</div>
+<div class="plate screws" style="width: 300px; padding: 12px 10px 8px">
+<div class="r jb" style="margin-bottom: 6px"><span class="tape s">Filter</span>
+<div class="seg" role="group" aria-label="Filter type"><button class="btn on" aria-pressed="true">LP</button><button class="btn" aria-pressed="false">BP</button><button class="btn" aria-pressed="false">HP</button></div></div>
+<div class="r jb">
+<dc-import name="Knob" label="Cutoff" value="62" readout="1.2 kHz" mod-start="48" mod-len="22" hint-size="72px,100px"></dc-import>
+<dc-import name="Knob" label="Reso" value="28" readout="28 %" hint-size="72px,100px"></dc-import>
+<dc-import name="Knob" label="Drive" value="40" readout="4.2 dB" hint-size="72px,100px"></dc-import>
+<dc-import name="Knob" label="Env" value="70" readout="+70 %" hint-size="72px,100px"></dc-import>
+</div>
+</div>
+<div class="plate screws f1" style="padding: 12px 10px 8px">
+<div class="r jb" style="margin-bottom: 6px"><span class="tape s">Amp env</span><span class="sm dim">AHDSR</span></div>
+<dc-import name="EnvCurve" w="236" h="112" a="6" hold="0" d="20" s="70" r="22" t-a="1 ms" t-h="0 ms" t-d="140 ms" t-s="70%" t-r="180 ms" sel="a" hint-size="236px,150px"></dc-import>
+</div>
+</div>
+<div class="r g8 astr" style="height: 236px">
+<div class="plate screws" style="width: 236px; padding: 12px 10px 8px">
+<div class="r jb" style="margin-bottom: 6px"><span class="tape s">Macro 1</span><span class="badge gr"><i class="mdi"></i>3</span></div>
+<div class="r g8 ast">
+<dc-import name="Knob" label="Tension" size="lg" value="64" readout="64 %" hint-size="86px,120px"></dc-import>
+<div class="c g4 f1">
+<div class="mchip" style="min-height: 44px; padding: 0 8px"><span class="f1 sm">Cutoff</span><span class="sm b">20–70</span></div>
+<div class="mchip" style="min-height: 44px; padding: 0 8px"><span class="f1 sm">Drive</span><span class="sm b">10–40</span></div>
+<div class="mchip" style="min-height: 44px; padding: 0 8px"><span class="f1 sm">Reso</span><span class="sm b">0–25</span></div>
+</div>
+</div>
+</div>
+<div class="plate screws" style="width: 236px; padding: 12px 10px 8px">
+<div class="r jb" style="margin-bottom: 6px"><span class="tape s">LFO 1</span><span class="sm dim b">1/8 · sync</span></div>
+<div class="canvas-box" style="height: 56px"><svg width="214" height="56" viewBox="0 0 214 56" aria-hidden="true"><path d="M0 28 C26 -8 54 -8 80 28 S134 64 160 28 S200 -8 214 28" fill="none" stroke="#5ba67a" stroke-width="2.6"></path></svg></div>
+<div class="r jb" style="margin-top: 6px">
+<dc-import name="Knob" label="Rate" size="sm" value="45" readout="1/8" hint-size="64px,86px"></dc-import>
+<dc-import name="Knob" label="Depth" size="sm" value="70" readout="70 %" hint-size="64px,86px"></dc-import>
+<dc-import name="Knob" label="Phase" size="sm" value="0" readout="0°" hint-size="64px,86px"></dc-import>
+</div>
+</div>
+<div class="plate screws f1" style="padding: 12px 10px 8px">
+<div class="r jb" style="margin-bottom: 6px"><span class="tape s">EQ</span><span class="sm dim">drag a dot · tap to type</span></div>
+<dc-import name="EqCurve" w="300" h="170" sel="3" hint-size="300px,170px"></dc-import>
+</div>
+<div class="plate" style="width: 84px; padding: 8px 6px; display: flex; justify-content: center">
+<dc-import name="Fader" scale="0" h="128" value="80" color="yellow" l="64" r="60" pk-l="76" pk-r="72" hint-size="70px,220px"></dc-import>
+</div>
+</div>
+<div class="r" style="height: 52px; background: var(--slate-deep); border-radius: 4px; overflow: hidden; box-shadow: inset 0 2px 4px rgba(0,0,0,.35)">
+<sc-for list="{{ keys }}" as="k" hint-placeholder-count="26"><div style="{{ k.st }}"></div></sc-for>
+</div>
+</div>
+<div class="r jb" style="height: 34px; flex: none; padding: 0 12px; background: var(--slate-deep); border-top: 1px solid var(--seam)">
+<span class="sm dim b">Host 146 BPM · synced</span>
+<span class="sm dim b">Voices 5 · CPU 22 %</span>
+<span class="sm dim b">Open in Synth tab to patch and modulate</span>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":900,"height":600}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const keys = [];
+    for (let i = 0; i < 26; i++) {
+      const pressed = i === 9 || i === 12;
+      keys.push({ st: 'flex:1 1 0;height:100%;border-right:1px solid #232c33;background:' + (pressed ? 'var(--amber)' : 'var(--alu)') });
+    }
+    return { keys: keys };
+  }
+}
+</script>
+</body>
+</html>

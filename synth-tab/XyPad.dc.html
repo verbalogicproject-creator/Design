@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>XY pad</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="synth.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Permanent+Marker&display=swap">
+<style>body{margin:0;background:#33404a}</style>
+</helmet>
+<div class="sx" style="display: inline-block; overflow: visible; background: none; padding: 0">
+<div class="c g4 {{stCls}}" style="{{boxStyle}}">
+<div class="canvas-box" style="{{padStyle}}">
+<svg width="{{W}}" height="{{W}}" viewBox="0 0 {{W}} {{W}}" role="img" aria-label="XY pad, {{xl}} {{xv}}, {{yl}} {{yv}}">
+<sc-for list="{{ grid }}" as="g" hint-placeholder-count="6"><path d="{{ g.d }}" stroke="#232c33" stroke-width="1" fill="none"></path></sc-for>
+<sc-if value="{{ showMod }}" hint-placeholder-val="{{ false }}">
+<rect x="{{rx}}" y="{{ry}}" width="{{rw}}" height="{{rh}}" fill="#5ba67a" fill-opacity="0.14" stroke="#5ba67a" stroke-width="2" stroke-dasharray="5 4"></rect>
+</sc-if>
+<line x1="{{px}}" y1="0" x2="{{px}}" y2="{{W}}" stroke="#8e979d" stroke-width="1"></line>
+<line x1="0" y1="{{py}}" x2="{{W}}" y2="{{py}}" stroke="#8e979d" stroke-width="1"></line>
+<circle cx="{{px}}" cy="{{py}}" r="22" fill="transparent"></circle>
+<circle cx="{{px}}" cy="{{py}}" r="{{ringR}}" fill="none" stroke="#f2b33d" stroke-width="2.5" stroke-opacity="{{ringOp}}"></circle>
+<circle cx="{{px}}" cy="{{py}}" r="{{puckR}}" fill="#c5cbcf" stroke="#1f2a33" stroke-width="2.5"></circle>
+<circle cx="{{px}}" cy="{{py}}" r="3" fill="#1f2a33"></circle>
+<sc-if value="{{ showTip }}" hint-placeholder-val="{{ false }}">
+<rect x="{{tipX}}" y="{{tipY}}" width="76" height="22" fill="#e6d6a2"></rect>
+<text x="{{tipTx}}" y="{{tipTy}}" text-anchor="middle" font-family="Permanent Marker, cursive" font-size="12" fill="#1f2a33">{{xv}} · {{yv}}</text>
+</sc-if>
+</svg>
+<sc-if value="{{ showMod }}" hint-placeholder-val="{{ false }}"><span class="badge gr abs" style="right: 6px; top: 6px">~ mod</span></sc-if>
+<sc-if value="{{ showAuto }}" hint-placeholder-val="{{ false }}"><span class="badge abs" style="right: 6px; top: 6px"><i class="dot"></i> auto</span></sc-if>
+</div>
+<div class="r jb"><span class="tape s">X {{xl}}</span><span class="tape s">Y {{yl}}</span></div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"w":{"editor":null,"default":"200"},"x":{"editor":null,"default":"62"},"y":{"editor":null,"default":"70"},"xl":{"editor":null,"default":"Cutoff"},"yl":{"editor":null,"default":"Reso"},"state":{"editor":null,"default":"default"},"$preview":{"width":200,"height":240}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const p = this.props;
+    const n = (v, d) => { const q = parseFloat(v); return isNaN(q) ? d : q; };
+    const W = n(p.w, 200);
+    const x = n(p.x, 62), y = n(p.y, 70);
+    const st = p.state || 'default';
+    const px = x / 100 * W, py = (100 - y) / 100 * W;
+    const grid = [];
+    for (let i = 1; i < 4; i++) { grid.push({ d: 'M' + (W / 4 * i) + ' 0V' + W }); grid.push({ d: 'M0 ' + (W / 4 * i) + 'H' + W }); }
+    const rw = W * 0.3, rh = W * 0.24;
+    return {
+      W: W, stCls: 'st-' + st,
+      boxStyle: 'width:' + W + 'px' + (st === 'disabled' ? ';opacity:.42' : ''),
+      padStyle: 'width:' + W + 'px;height:' + W + 'px',
+      grid: grid, px: px.toFixed(1), py: py.toFixed(1),
+      xl: p.xl || 'X', yl: p.yl || 'Y', xv: Math.round(x) + '%', yv: Math.round(y) + '%',
+      puckR: st === 'pressed' ? 13 : 10,
+      ringR: (st === 'focus' || st === 'pressed') ? 17 : 0, ringOp: (st === 'focus' || st === 'pressed') ? 1 : 0,
+      showMod: st === 'modulated', showAuto: st === 'automated',
+      rx: Math.max(0, px - rw / 2).toFixed(1), ry: Math.max(0, py - rh / 2).toFixed(1), rw: rw.toFixed(1), rh: rh.toFixed(1),
+      showTip: st === 'pressed',
+      tipX: Math.min(W - 78, Math.max(2, px - 38)).toFixed(1), tipY: Math.max(4, py - 46).toFixed(1),
+      tipTx: Math.min(W - 40, Math.max(40, px)).toFixed(1), tipTy: (Math.max(4, py - 46) + 15).toFixed(1)
+    };
+  }
+}
+</script>
+</body>
+</html>

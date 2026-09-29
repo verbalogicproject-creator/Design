@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Landscape · Piano roll</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="synth.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Permanent+Marker&display=swap">
+<style>body{margin:0;background:#33404a}</style>
+</helmet>
+<div class="sx" style="width: 892px; height: 412px; display: flex; flex-direction: column">
+<div style="flex: none; height: 56px"><dc-import name="Transport" mode="wide" pos="005:2:01" bpm="146.0" cpu="38" lost="0" playing="1" rec="0" loop="1" hint-size="892px,56px"></dc-import></div>
+<div class="r astr" style="flex: 1 1 0; min-height: 0">
+<div style="flex: none; width: 60px; height: 356px"><dc-import name="Nav" mode="rail" active="roll" hint-size="60px,356px"></dc-import></div>
+<div class="f1 c" style="min-width: 0">
+<div class="r g6" style="height: 44px; padding: 0 6px">
+<div class="seg" style="padding: 0 4px; background: none" role="group" aria-label="Roll tool">
+<button class="btn sq on" aria-label="Draw" aria-pressed="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1f2a33" stroke-width="2.4" stroke-linejoin="round"><path d="M4 20l1-5L16 4l4 4L9 19z"></path></svg></button>
+<button class="btn sq" aria-label="Select"><svg width="20" height="20" viewBox="0 0 24 24" fill="#1f2a33"><path d="M5 3l14 8-6 2-3 6z"></path></svg></button>
+<button class="btn sq" aria-label="Erase"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1f2a33" stroke-width="2.4" stroke-linejoin="round"><path d="M4 16l8-10 8 8-4 4H8z"></path></svg></button>
+</div>
+<button class="btn ghost">Snap 1/16</button>
+<button class="btn tg on" aria-pressed="true">Fold to scale</button>
+<span class="chip t">F# minor</span>
+<span class="f1"></span>
+<span class="b">A2 · step 6 · ⅛ · vel 96</span>
+<button class="btn ghost">Note…</button>
+</div>
+<div class="r" style="padding: 0 6px">
+<div style="width: 56px; flex: none">
+<div class="lbl" style="height: 20px; line-height: 20px">Bar 5</div>
+<div class="rel" style="height: 224px"><sc-for list="{{ keys }}" as="k" hint-placeholder-count="7"><div class="key w" style="{{ k.st }}">{{ k.n }}<b style="margin-left: 3px">{{ k.root }}</b></div></sc-for></div>
+</div>
+<div class="f1" style="min-width: 0">
+<div style="height: 20px; background: var(--slate-lift); border-bottom: 1px solid var(--seam)"></div>
+<div class="roll" style="height: 224px; background-image: repeating-linear-gradient(90deg,#232c33 0 1px,transparent 1px 44px), repeating-linear-gradient(90deg,#4a5a66 0 2px,transparent 2px 176px)">
+<sc-for list="{{ rows }}" as="r" hint-placeholder-count="7"><div class="rrow {{ r.cls }}" style="{{ r.st }}"></div></sc-for>
+<sc-for list="{{ notes }}" as="n" hint-placeholder-count="14"><div class="rnote {{ n.cls }}" style="{{ n.st }}"><i class="l"></i><i class="r"></i></div></sc-for>
+<div class="playhead" style="left: 330px"></div>
+</div>
+</div>
+</div>
+<div class="r" style="padding: 4px 6px 0">
+<div class="lbl" style="width: 56px; flex: none">Vel</div>
+<div class="canvas-box f1" style="height: 52px"><sc-for list="{{ vels }}" as="v" hint-placeholder-count="14"><i class="abs" style="{{ v.st }}"></i></sc-for></div>
+</div>
+</div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":892,"height":412}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const names = ['D3', 'C#3', 'B2', 'A2', 'G#2', 'F#2', 'E2'];
+    const RH = 32;
+    const keys = names.map((n, i) => ({ n: n, root: n.charAt(0) === 'F' ? '●' : '', st: 'top:' + (i * RH) + 'px;height:' + RH + 'px' }));
+    const rows = names.map((n, i) => ({ st: 'top:' + (i * RH) + 'px;height:' + RH + 'px', cls: (i % 2 ? 'black' : '') }));
+    const src = [];
+    [1, 2, 3, 5, 6, 7, 9, 10, 11, 13, 14, 15].forEach((s) => src.push({ s: s, l: 1, r: 5, v: 70 + (s * 7) % 30 }));
+    src.push({ s: 6, l: 2, r: 3, v: 96, sel: true });
+    src.push({ s: 12, l: 2, r: 1, v: 100 });
+    const notes = src.map((q) => ({
+      cls: q.sel ? 'sel' : '',
+      st: 'left:' + (q.s * 44 + 2) + 'px;top:' + (q.r * RH + 3) + 'px;width:' + (q.l * 44 - 4) + 'px;height:' + (RH - 6) + 'px'
+    }));
+    const vels = src.map((q) => ({
+      st: 'left:' + (q.s * 44 + 14) + 'px;bottom:0;width:14px;height:' + Math.round(q.v * 0.42) + 'px;background:' + (q.sel ? 'var(--amber)' : 'var(--alu-dim)') + (q.sel ? ';box-shadow:0 0 0 2px var(--ink)' : '')
+    }));
+    return { keys: keys, rows: rows, notes: notes, vels: vels };
+  }
+}
+</script>
+</body>
+</html>
