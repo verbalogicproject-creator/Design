@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Phone · Kick panel</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="synth.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Permanent+Marker&display=swap">
+<style>body{margin:0;background:#33404a}</style>
+</helmet>
+<div class="sx ph" style="width: 412px; height: 880px">
+<div class="ph-hdr">
+<button class="btn ghost sq" aria-label="Back to rack">‹</button>
+<span class="tape s">Kick</span>
+<span class="sm dim b">ch 1</span>
+<span class="f1"></span>
+<span class="rev"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#8fd1a9" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5 11-11"></path></svg>saved r12</span>
+</div>
+<div style="flex: none; height: 106px">
+<dc-import name="Transport" mode="phone" pos="012:3:04" bpm="146.0" cpu="38" lost="0" playing="0" rec="0" loop="1" hint-size="412px,106px"></dc-import>
+</div>
+<div class="ph-body c g8" style="padding: 8px">
+<div class="r jb" style="min-height: 40px">
+<span class="tape l">Kick</span>
+<button class="chip t" aria-label="Preset Forest punch">Forest punch ▾</button>
+</div>
+<div class="plate" style="padding: 10px">
+<div class="r jb" style="margin-bottom: 8px">
+<div class="r g8"><span class="tape s">Preview</span><span class="sm dim b">0 to 250 ms</span></div>
+<button class="btn" aria-label="Audition kick"><svg width="16" height="16" viewBox="0 0 24 24" fill="#1f2a33"><path d="M8 5v14l11-7z"></path></svg>Hit</button>
+</div>
+<div class="canvas-box"><svg width="354" height="130" viewBox="0 0 354 130" role="img" aria-label="Kick waveform: pitch drops fast from about 200 hertz to 48 hertz while the level decays over 140 milliseconds">
+<path d="M0 65H354" stroke="#232c33" stroke-width="1"></path>
+<path d="M88.5 0V130M177 0V130M265.5 0V130" stroke="#232c33" stroke-width="1"></path>
+<path d="{{ pitchD }}" fill="none" stroke="#a9b4bc" stroke-width="1.6" stroke-dasharray="5 4"></path>
+<path d="{{ waveD }}" fill="none" stroke="#f2b33d" stroke-width="1.6" stroke-linejoin="round"></path>
+<rect x="0" y="6" width="9" height="118" fill="#f2b33d" fill-opacity="0.14"></rect>
+<text x="14" y="16" font-size="11" font-weight="700" fill="#a9b4bc">click</text>
+<text x="348" y="16" text-anchor="end" font-size="11" font-weight="700" fill="#a9b4bc">- - pitch</text>
+<text x="4" y="124" font-size="11" font-weight="700" fill="#a9b4bc">0</text>
+<text x="350" y="124" text-anchor="end" font-size="11" font-weight="700" fill="#a9b4bc">250 ms</text>
+</svg></div>
+</div>
+<div class="plate" style="padding: 10px 10px 6px">
+<div class="r jb" style="margin-bottom: 8px"><span class="tape s">Punch</span><span class="sm dim b">tap a knob to type a value</span></div>
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px 0; justify-items: center">
+<dc-import name="Knob" label="Tune" size="md" value="40" readout="48 Hz" hint-size="96px,100px"></dc-import>
+<dc-import name="Knob" label="Pitch amount" size="md" value="62" readout="+34 st" hint-size="120px,100px"></dc-import>
+<dc-import name="Knob" label="Pitch decay" size="md" value="30" readout="28 ms" hint-size="110px,100px"></dc-import>
+<dc-import name="Knob" label="Decay" size="md" value="55" readout="140 ms" hint-size="96px,100px"></dc-import>
+<dc-import name="Knob" label="Click" size="md" value="35" readout="35 %" auto="1" hint-size="96px,100px"></dc-import>
+<dc-import name="Knob" label="Drive" size="md" value="25" readout="3.0 dB" mod-start="18" mod-len="20" hint-size="96px,100px"></dc-import>
+</div>
+</div>
+<div class="plate r g12" style="padding: 10px">
+<dc-import name="Knob" label="Output" size="md" value="80" readout="0 dB" hint-size="72px,100px"></dc-import>
+<div class="c g4 f1"><span class="lbl">Level</span><div class="r g4"><div class="mt" style="height: 12px; width: auto; flex: 1"><div class="mt-fill" style="width: 74%; height: 100%; right: auto"></div><i class="mt-grid"></i></div></div><div class="r g4"><div class="mt" style="height: 12px; width: auto; flex: 1"><div class="mt-fill" style="width: 70%; height: 100%; right: auto"></div><i class="mt-grid"></i></div></div><span class="sm dim">Peak −4.2 dB · no clipping</span></div>
+</div>
+</div>
+<div style="flex: none; height: 60px">
+<dc-import name="Nav" mode="bottom" active="rack" hint-size="412px,60px"></dc-import>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":412,"height":880}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const W = 354, H = 130, N = 1200, T = 0.25;
+    const tune = 48, amt = 150, pd = 0.028, dec = 0.11, click = 0.35;
+    let ph = 0, d = '', pd2 = '';
+    const dt = T / N;
+    for (let i = 0; i <= N; i++) {
+      const t = i * dt;
+      const f = tune + amt * Math.exp(-t / pd);
+      ph += 2 * Math.PI * f * dt;
+      let y = Math.exp(-t / dec) * Math.sin(ph);
+      if (t < 0.004) y += click * 0.9 * Math.sin(2 * Math.PI * 3000 * t) * (1 - t / 0.004);
+      y = Math.max(-1, Math.min(1, y));
+      const x = i / N * W;
+      d += (i ? ' L' : 'M') + x.toFixed(1) + ' ' + (H / 2 - y * (H / 2 - 8)).toFixed(1);
+      if (i % 10 === 0) pd2 += (i ? ' L' : 'M') + x.toFixed(1) + ' ' + (H - 8 - (f / (tune + amt)) * (H - 24)).toFixed(1);
+    }
+    return { waveD: d, pitchD: pd2 };
+  }
+}
+</script>
+</body>
+</html>

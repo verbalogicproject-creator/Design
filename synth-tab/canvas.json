@@ -254,6 +254,20 @@
    "w": 412,
    "h": 880,
    "title": "Phone \u00b7 Rack, channel open"
+  },
+  "PsyBass.dc.html": {
+   "x": 5412,
+   "y": 3440,
+   "w": 412,
+   "h": 880,
+   "title": "Phone \u00b7 Psy Bass panel"
+  },
+  "KickPanel.dc.html": {
+   "x": 5904,
+   "y": 3440,
+   "w": 412,
+   "h": 880,
+   "title": "Phone \u00b7 Kick panel"
   }
  },
  "order": [
@@ -273,6 +287,8 @@
   "Consent.dc.html",
   "AddModule.dc.html",
   "RackOpen.dc.html",
+  "PsyBass.dc.html",
+  "KickPanel.dc.html",
   "LandPlaylist.dc.html",
   "LandRoll.dc.html",
   "LandMixer.dc.html",
