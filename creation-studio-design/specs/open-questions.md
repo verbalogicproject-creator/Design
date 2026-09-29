@@ -56,6 +56,7 @@
 5. **Morph in a Full song on the phone:** assumed off, with its recorded automation still playing and the knobs editable. Confirm.
 6. **Unfreeze on the phone** only for Lite instruments. Parts made with Full-only instruments stay frozen until opened on the desktop.
 7. Desktop (Full) versions of the Lite-only screens (Drum Kit, drum grid, Lite Synth) were not requested this round.
-8. **Sample picker** (screen 3) is referenced by "Change sample" and the missing-sample pad, but not drawn yet.
+8. **Sample picker:** drawn. Freesound needs an account/API key on the app side; attribution for CC-BY is written into the song notes automatically (assumed). CC-BY-NC results are assumed to be hidden, since songs may be sold.
 9. **Fills** apply to the bar shown; confirm whether they should apply to the whole pattern instead.
 10. **Portrait drum grid** pages 8 steps at a time to keep 44 px steps; landscape shows all 16 and hides the nav rail. Confirm the rail can be hidden there.
+11. **Lite Synth presets** reuse the existing preset sheet (drawn for Psy Bass); a Lite Synth preset list was not drawn.

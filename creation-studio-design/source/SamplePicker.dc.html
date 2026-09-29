@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Sample picker</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="synth.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Permanent+Marker&display=swap">
+<style>body{margin:0;background:#33404a}</style>
+</helmet>
+<div class="sx" style="width: 412px; height: 880px">
+<dc-import name="DrumKit" hint-size="412px,880px"></dc-import>
+<div class="scrim"></div>
+<div class="sheet c" role="dialog" aria-label="Choose a sample for Pad 8" style="top: 72px; padding: 8px 12px 12px; gap: 8px">
+<div class="grab" style="margin-bottom: 0"></div>
+<div class="r g8" style="min-height: 44px"><div class="c f1"><span class="h3">Choose sample</span><span class="sm dim">For Pad 8 · plays on tap, nothing changes until you choose</span></div><button class="btn ghost sq" aria-label="Close"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#e9ecee" stroke-width="2.6" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg></button></div>
+<div class="seg" style="width: 100%" role="tablist" aria-label="Source">
+<sc-for list="{{ tabs }}" as="t" hint-placeholder-count="3"><button class="btn f1 {{ t.cls }}" role="tab" aria-selected="{{ t.on }}">{{ t.t }}</button></sc-for>
+</div>
+<div class="field" style="gap: 8px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#b8c2c9" stroke-width="2.4" stroke-linecap="round"><circle cx="11" cy="11" r="6"></circle><path d="M16 16l5 5"></path></svg><span class="f1 {{ qCls }}">{{ q }}</span><sc-if value="{{ hasQ }}" hint-placeholder-val="{{ true }}"><button class="btn ghost sq tiny" style="min-width: 44px; margin-right: -12px" aria-label="Clear search">×</button></sc-if></div>
+<div class="r g6 wrap" role="group" aria-label="Type">
+<sc-for list="{{ types }}" as="y" hint-placeholder-count="7"><button class="chip t {{ y.cls }}" style="min-height: 44px; padding: 0 10px" aria-pressed="{{ y.on }}">{{ y.t }}</button></sc-for>
+</div>
+<div class="r jb"><span class="lbl">{{ countTxt }}</span><span class="sm dim">{{ note }}</span></div>
+
+<sc-if value="{{ isList }}" hint-placeholder-val="{{ true }}">
+<div class="c" style="flex: 1 1 0; min-height: 0; overflow: hidden; margin: 0 -4px">
+<sc-for list="{{ rows }}" as="r" hint-placeholder-count="6">
+<div class="srow-s {{ r.cls }}">
+<button class="btn sq" aria-label="Play {{ r.n }}"><svg width="18" height="18" viewBox="0 0 24 24" fill="#1f2a33"><path d="M8 5v14l11-7z"></path></svg></button>
+<button class="pick" aria-label="{{ r.lab }}" aria-pressed="{{ r.on }}">
+<span class="c f1" style="min-width: 0; gap: 2px"><b style="font-size: 14px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{ r.n }}</b><span class="sm dim" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{ r.meta }}</span></span>
+<svg width="72" height="28" viewBox="0 0 72 28" aria-hidden="true" style="flex: none; background: var(--well); border-radius: 3px"><path d="{{ r.w }}" fill="#f2b33d" fill-opacity="0.85"></path></svg>
+</button>
+<span class="lic {{ r.licCls }}">{{ r.lic }}</span>
+</div>
+</sc-for>
+</div>
+</sc-if>
+
+<sc-if value="{{ isLoading }}" hint-placeholder-val="{{ false }}">
+<div class="c" style="flex: 1 1 0; gap: 0" role="status" aria-label="Searching Freesound">
+<div class="r g8 sm b" style="min-height: 32px"><i class="pulse" style="display: inline-block; width: 10px; height: 10px; border-radius: 50%; background: var(--amber)"></i>Searching Freesound…</div>
+<sc-for list="{{ skel }}" as="k" hint-placeholder-count="5"><div class="srow-s"><i class="skel" style="width: 44px; height: 44px"></i><span class="c f1 g6"><i class="skel" style="{{ k.a }}; height: 12px"></i><i class="skel" style="{{ k.b }}; height: 10px"></i></span><i class="skel" style="width: 72px; height: 28px"></i><i class="skel" style="width: 40px; height: 22px"></i></div></sc-for>
+</div>
+</sc-if>
+
+<sc-if value="{{ isEmpty }}" hint-placeholder-val="{{ false }}">
+<div class="c jc f1" style="align-items: center">
+<div class="empty" style="width: 100%"><span class="tape">No results</span><span class="body">No hats for “vinyl crackle” on Freesound.</span><span class="sm dim">Try fewer words, or show all types.</span><div class="r g8"><button class="btn ghost">All types</button><button class="btn">Search “crackle”</button></div></div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isOffline }}" hint-placeholder-val="{{ false }}">
+<div class="c jc f1 g12">
+<div class="toast err" style="box-shadow: none"><span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ffa594" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 2l20 20M8.5 4.5A9 9 0 0 1 21 12M5 8a9 9 0 0 0 12 12"></path></svg></span>
+<div class="c g4 f1"><b>No connection</b><span class="sm dim">Freesound needs the internet. Kit and My library work offline.</span></div></div>
+<div class="r g8"><button class="btn ghost f1">Try again</button><button class="btn f1">Open My library</button></div>
+</div>
+</sc-if>
+
+<div class="r g8" style="flex: none">
+<button class="btn ghost big">Cancel</button>
+<button class="btn big f1 {{ useCls }}" aria-disabled="{{ useDis }}">{{ useTxt }}</button>
+</div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"tab":{"editor":"enum","options":["kit","lib","freesound"],"default":"freesound"},"state":{"editor":"enum","options":["list","loading","empty","offline"],"default":"list"},"$preview":{"width":412,"height":880}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const tab = this.props.tab || 'freesound', st = this.props.state || 'list';
+    const tabs = [['kit', 'Kit'], ['lib', 'My library'], ['freesound', 'Freesound']].map((t) => ({ t: t[1], on: t[0] === tab, cls: t[0] === tab ? 'on' : '' }));
+    const typeSel = tab === 'lib' ? 'Perc' : 'Hat';
+    const types = ['All', 'Kick', 'Snare', 'Hat', 'Cymbal', 'Perc', 'Effect'].map((t) => ({ t: t, on: t === typeSel, cls: t === typeSel ? 'on' : '' }));
+    let s = 5;
+    const r = () => { s = (s * 9301 + 49297) % 233280; return s / 233280; };
+    const wave = (dec) => { const top = [], bot = []; for (let i = 0; i <= 36; i++) { const e = Math.exp(-i / dec) * (0.35 + 0.65 * r()); top.push((i * 2) + ' ' + (14 - e * 12).toFixed(1)); bot.push((i * 2) + ' ' + (14 + e * 12).toFixed(1)); } return 'M' + top.join(' L') + ' L' + bot.reverse().join(' L') + ' Z'; };
+    const FS = [['Open hat, tape saturated', 'by lowfreq_ana · 0.62 s', 'CC0', 14, 1], ['Hat loop one-shot 146', 'by k-marx · 0.31 s', 'CC-BY', 7, 0], ['Brushed open hat', 'by tamborine · 0.88 s', 'CC0', 20, 0], ['Vinyl hat, dusty', 'by crate_d · 0.44 s', 'CC-BY', 10, 0], ['Closed hat, tight', 'by ahm_ok · 0.12 s', 'CC0', 3, 0], ['Shaker hat', 'by bodhi · 0.27 s', 'CC0', 6, 0]];
+    const LIB = [['Lyria intro · cut 3', 'Lyria take 2 · bar 5 · 0.50 s', 'Mine', 9, 1], ['Lyria intro · cut 7', 'Lyria take 2 · bar 9 · 0.36 s', 'Mine', 6, 0], ['Sung click', 'Sing take, made on desktop · 0.18 s', 'Mine', 3, 0], ['Bottle perc', 'recorded 12 Sep · 0.41 s', 'Mine', 8, 0], ['Clap room (Forest)', 'from Forest Roll 07 · 0.52 s', 'Mine', 12, 0]];
+    const KIT = [['Hat 01 · tight', 'Kit · 0.10 s', 'CC0', 3, 0], ['Hat 02 · open', 'Kit · 0.58 s', 'CC0', 15, 1], ['Hat 03 · lo-fi', 'Kit · 0.40 s', 'CC0', 10, 0], ['Hat 04 · shaker', 'Kit · 0.25 s', 'CC0', 6, 0]];
+    const src = tab === 'lib' ? LIB : tab === 'kit' ? KIT : FS;
+    const rows = src.map((x) => ({ n: x[0], meta: x[1], lic: x[2], licCls: x[2] === 'CC-BY' ? 'by' : '', w: wave(x[3]), on: !!x[4], cls: x[4] ? 'on' : '',
+      lab: 'Choose ' + x[0] + ', ' + x[1] + ', licence ' + x[2] }));
+    const sel = src.find((x) => x[4]);
+    const q = tab === 'freesound' ? (st === 'empty' ? 'vinyl crackle' : 'open hat') : '';
+    return {
+      tabs: tabs, types: types, rows: rows, q: q || 'Search ' + (tab === 'lib' ? 'my sounds' : 'the kit'), qCls: q ? '' : 'dim', hasQ: !!q,
+      isList: st === 'list', isLoading: st === 'loading', isEmpty: st === 'empty', isOffline: st === 'offline',
+      skel: [0, 1, 2, 3, 4].map((i) => ({ a: 'width:' + (60 + (i * 13) % 30) + '%', b: 'width:' + (35 + (i * 7) % 20) + '%' })),
+      countTxt: st === 'list' ? (tab === 'freesound' ? '214 results · hats' : rows.length + ' sounds') : st === 'loading' ? 'Searching' : st === 'empty' ? '0 results' : 'Freesound offline',
+      note: tab === 'freesound' ? 'CC-BY adds a credit to the song' : tab === 'lib' ? 'includes cut-up Lyria takes' : 'free to use',
+      useTxt: sel && st === 'list' ? 'Use for Pad 8' : 'Choose a sound first', useCls: sel && st === 'list' ? '' : 'disabled', useDis: !(sel && st === 'list')
+    };
+  }
+}
+</script>
+</body>
+</html>

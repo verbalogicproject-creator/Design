@@ -75,8 +75,14 @@ Breakpoints: phone portrait 412 x 880, phone landscape 892 x 412, desktop 1440 x
 | [DrumKit](DrumKit.png) | 412 x 880 | Lite | Drum Kit | 4 x 2 pads on tape (playing, selected, muted, empty, sample missing); selected pad waveform with start/end handles, Tune, Decay, Filter, Level, Pan, choke group, Change sample. |
 | [DrumGrid](DrumGrid.png) | 412 x 880 | Lite | Drum grid | Kick + kit rows, 8 steps per page at 44 px, off/on/accent, mute, fill menu open, bars 1-4, length, swing, playhead. |
 | [LandDrumGrid](LandDrumGrid.png) | 892 x 412 | Lite | Drum grid, landscape | Every row x 16 steps at 44 px, playhead column, bars, length, swing, velocity popover open. |
-| [LiteSynth](LiteSynth.png) | 412 x 880 | Lite | Lite Synth | Two oscillators, filter, AHDSR, LFO, voice meter. |
+| [LiteSynth](LiteSynth.png) | 412 x 880 | Lite | Lite Synth | Plates Osc, Filter, Amp envelope, LFO; panel scrolls inside itself; preset chip; 6 voices. |
 | [LiteStrip](LiteStrip.png) | 412 x 880 | Lite | Mixer, one track | Volume, pan, M/S, 3-band EQ, reverb and delay sends, duck from Kick. |
 | [LiteShared](LiteShared.png) | 412 x 880 | Lite | Reverb, delay, master | Shared reverb and delay, master limiter and loudness. |
 | [FromFull](FromFull.png) | 412 x 880 | Lite | Opened a Full song | Which parts are frozen and why; nothing is lost. |
 | [Freeze](Freeze.png) | 412 x 880 | Lite | Freeze a track | CPU before and after, what stays live, what locks. |
+| [LiteSynthScrolled](LiteSynthScrolled.png) | 412 x 880 | Lite | Lite Synth, scrolled | The end of the panel: LFO (shape, target, rate Sync/Free, amount) and Output (glide, level). |
+| [SamplePicker](SamplePicker.png) | 412 x 880 | Lite | Sample picker · Freesound | Tabs, search, type filter, results with author and CC0 / CC-BY licence, Use for Pad 8. |
+| [SamplePickerLib](SamplePickerLib.png) | 412 x 880 | Lite | Sample picker · My library | The user's sounds, including cut-up Lyria takes. |
+| [SamplePickerLoading](SamplePickerLoading.png) | 412 x 880 | Lite | Sample picker · loading | Skeleton rows, Searching Freesound. |
+| [SamplePickerEmpty](SamplePickerEmpty.png) | 412 x 880 | Lite | Sample picker · no results | Query shown, two ways out. |
+| [SamplePickerOffline](SamplePickerOffline.png) | 412 x 880 | Lite | Sample picker · no connection | Freesound offline; Kit and My library still work. |

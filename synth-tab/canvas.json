@@ -528,6 +528,48 @@
    "w": 892,
    "h": 412,
    "title": "Lite \u00b7 Drum grid, landscape"
+  },
+  "SamplePicker.dc.html": {
+   "x": 0,
+   "y": 11700,
+   "w": 412,
+   "h": 880,
+   "title": "Lite \u00b7 Sample picker, Freesound"
+  },
+  "SamplePickerLib.dc.html": {
+   "x": 492,
+   "y": 11700,
+   "w": 412,
+   "h": 880,
+   "title": "Lite \u00b7 Sample picker, My library"
+  },
+  "SamplePickerLoading.dc.html": {
+   "x": 984,
+   "y": 11700,
+   "w": 412,
+   "h": 880,
+   "title": "Lite \u00b7 Sample picker, loading"
+  },
+  "SamplePickerEmpty.dc.html": {
+   "x": 1476,
+   "y": 11700,
+   "w": 412,
+   "h": 880,
+   "title": "Lite \u00b7 Sample picker, no results"
+  },
+  "SamplePickerOffline.dc.html": {
+   "x": 1968,
+   "y": 11700,
+   "w": 412,
+   "h": 880,
+   "title": "Lite \u00b7 Sample picker, no connection"
+  },
+  "LiteSynthScrolled.dc.html": {
+   "x": 2460,
+   "y": 11700,
+   "w": 412,
+   "h": 880,
+   "title": "Lite \u00b7 Lite Synth, scrolled to the end"
   }
  },
  "order": [
@@ -604,7 +646,13 @@
   "LiteShared.dc.html",
   "FromFull.dc.html",
   "Freeze.dc.html",
-  "LandDrumGrid.dc.html"
+  "LandDrumGrid.dc.html",
+  "SamplePicker.dc.html",
+  "SamplePickerLib.dc.html",
+  "SamplePickerLoading.dc.html",
+  "SamplePickerEmpty.dc.html",
+  "SamplePickerOffline.dc.html",
+  "LiteSynthScrolled.dc.html"
  ],
  "notes": {
   "t0": {

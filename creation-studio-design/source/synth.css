@@ -478,3 +478,14 @@ label.optcard,.optcard label{cursor:pointer}
 .popm .mi:hover,.popm .mi:focus-visible{background:var(--slate-deep);outline:none;box-shadow:inset 0 0 0 2px var(--amber)}
 .popm .mi .pv{margin-left:auto}
 .phcol{position:absolute;top:0;bottom:0;width:44px;background:rgba(242,179,61,.12);border-left:2px solid var(--amber);border-right:2px solid var(--amber);pointer-events:none;z-index:2}
+/* sample picker */
+.srow-s{display:flex;align-items:center;gap:8px;min-height:60px;padding:0 4px;border-bottom:1px solid var(--seam)}
+.srow-s.on{background:var(--slate);box-shadow:inset 3px 0 0 var(--amber)}
+.srow-s .pick{flex:1 1 0;min-width:0;display:flex;align-items:center;gap:8px;min-height:52px;padding:0 4px;background:transparent;border:0;color:var(--text);font-family:inherit;text-align:left;cursor:pointer}
+.srow-s .pick:focus-visible{outline:2px solid var(--amber);outline-offset:-2px;border-radius:4px}
+.lic{flex:none;display:inline-flex;align-items:center;gap:4px;min-height:22px;padding:0 6px;border-radius:3px;border:1.5px solid var(--alu-dim);font-size:11px;font-weight:800;letter-spacing:.04em;color:var(--text)}
+.lic.by{border-color:var(--tape);color:var(--tape)}
+.skel{background:var(--slate-deep);border-radius:3px}
+.chip.t.on{border-color:var(--amber);box-shadow:inset 0 0 0 1px var(--amber)}
+.pscroll{position:relative;overflow-y:auto;overflow-x:hidden;flex:1 1 0;min-height:0}
+.pthumb{position:absolute;right:1px;width:4px;border-radius:2px;background:var(--alu-dim);z-index:5}

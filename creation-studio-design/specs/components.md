@@ -228,3 +228,10 @@ Opened from a 44 px key on a drum-grid row. A popover (`slate-lift`, 2px `alu-di
 
 ### 31. Step velocity popover (reuse)
 Opened by holding a step. Tape title (row and step), a velocity slider (mini-fader with a real range input, 1-127) with -/+ steppers, and an Off / On / Acc segmented control that mirrors the tap cycle. Room is left for per-step settings later.
+
+
+### 32. Licence chip (reuse of the badge)
+Inline 22 px chip, 1.5px outline, 11px/800. `CC0`: `alu-dim` outline. `CC-BY`: `tape` outline and text (credit required; the app writes the credit). `Mine`: the user's own sound. Never interactive; the row carries the action.
+
+### 33. Sample row (composition)
+Play key (44) + a button (name, meta line, 72 x 28 waveform in a well) + licence chip. Selected: `slate` fill and a 3px amber left edge, `aria-pressed="true"`. Loading skeleton: the same geometry in `slate-deep` blocks.

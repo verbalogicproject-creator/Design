@@ -21,7 +21,8 @@ A Lite song opens in Full unchanged. A Full song opens in Lite with its heavy pa
 | **Drum Kit**: snare, closed hat, open hat, crash, ride, clap + 2 free pads | `DrumKit` | **drum pad (new)**, knobs (Tune, Decay, Filter, Level, Pan), waveform well with start/end handles + steppers, toggle + segmented (choke group), "Change sample" key |
 | **Drum step grid** | `DrumGrid` (portrait: every row, 8 steps per page at 44 px, fill menu open), `LandDrumGrid` (landscape: every row x 16 steps at 44 px, velocity popover open) | step cells (7) with off / on / accent, mute key, fill menu (popover), segmented (bars 1-4, length 1/2/4, steps 1-8 / 9-16), swing |
 | Psy Bass | `PsyBass` (existing) | unchanged |
-| **Lite Synth**: 2 oscillators, filter, AHDSR, 1 LFO, 6 voices | `LiteSynth` | knobs, segmented (waveforms, filter type, LFO target), envelope editor (4), voice meter (CPU-segment style) |
+| **Lite Synth**: 2 oscillators, filter, AHDSR, 1 LFO, output, 6 voices | `LiteSynth`, `LiteSynthScrolled` | plates Osc (wave, octave stepper, detune, mix), Filter (Low/High/Band, cutoff, resonance, env amount), Amp envelope (4), LFO (shape, rate with Sync/Free, amount, target Cutoff/Pitch/Volume), Output (glide, level). Preset chip opens the existing preset sheet. |
+| **Sample picker** | `SamplePicker` (Freesound), `SamplePickerLib` (My library), `SamplePickerLoading`, `SamplePickerEmpty`, `SamplePickerOffline` | bottom sheet (23), segmented tabs, field, chips (type filter), rows with play key, waveform well, licence chip |
 | Lyria takes as audio tracks | `Generate` (existing), audio row in `LiteRack` | unchanged |
 | Per track: volume, pan, mute, solo, 3-band EQ, reverb send, delay send, duck from kick | `LiteStrip` | one-strip mixer (MixerSingle), fader + meter, knobs, duck indicator (18). No insert slots: the Lite chain is fixed. |
 | Shared reverb, delay, master limiter | `LiteShared` | knobs, segmented (delay time), LCD readouts, gain-reduction meter |
@@ -54,3 +55,15 @@ A Lite song opens in Full unchanged. A Full song opens in Lite with its heavy pa
 
 ## Numbers that are placeholders
 Drum Kit hits at once (8), budget thresholds (75 %, 90 %), CPU freed by freezing (14 %), Full-song CPU (180 %). The brief gave: 6 voices, one or two Lite Synth tracks.
+
+## Sample picker
+- **Opened from:** "Change sample" on the Drum Kit panel, an empty pad, or a missing-sample pad. It is a bottom sheet over the kit, so the pads stay in view above it.
+- **Tabs:** Kit (built-in free samples), My library (the user's sounds, including cut-up Lyria takes), Freesound (online search).
+- **Search and filter:** a search field, then type chips: All, Kick, Snare, Hat, Cymbal, Perc, Effect (44 px, wrapping to two rows so nothing scrolls sideways).
+- **Row (60 px):** a play key (44 px, auditions without choosing), then a button holding name, meta and a small waveform (tapping it selects the row: amber edge), then the licence chip. Freesound rows show the author ("by lowfreq_ana"); My library rows say where the sound came from.
+- **Licence chip:** `CC0` (grey outline), `CC-BY` (tape-coloured outline and text), `Mine`. The text is the information; the colour is a second cue. Choosing a CC-BY sound adds a credit line to the song's notes automatically.
+- **Footer:** Cancel and "Use for Pad 8". Disabled ("Choose a sound first") until a row is selected. Nothing changes on the pad until Use.
+- **States:** loading ("Searching Freesound…" with skeleton rows and a pulsing lamp; reduced motion stops the pulse), no results (empty box with the query, and two ways out: All types, a shorter search), no connection (error toast: Freesound needs the internet, Kit and My library work offline; Try again, Open My library).
+
+## Lite Synth layout
+The header (transport, project) and the nav stay fixed; the **panel scrolls inside itself** (vertical only, with a thumb on the right). Top of the panel: name tape, preset chip (opens the existing preset sheet), and "6 voices" in small caps. Plates in order: Osc, Filter, Amp envelope, LFO, Output. `LiteSynthScrolled` shows the end of the panel.
