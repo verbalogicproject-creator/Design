@@ -60,3 +60,9 @@
 9. **Fills** apply to the bar shown; confirm whether they should apply to the whole pattern instead.
 10. **Portrait drum grid** pages 8 steps at a time to keep 44 px steps; landscape shows all 16 and hides the nav rail. Confirm the rail can be hidden there.
 11. **Lite Synth presets** reuse the existing preset sheet (drawn for Psy Bass); a Lite Synth preset list was not drawn.
+12. **Track FX sheet:** EQ bands are fixed at about 120 Hz (low shelf), 1 kHz (bell), 7 kHz (high shelf) for Lite. Confirm the frequencies, and that the Duck amount range (up to 12 dB assumed, shown 6 dB) is right.
+13. **Duck indicator** reads gain reduction from the Kick; if the song has no Kick track the Duck plate is assumed to show "No Kick track" and stay disabled. Not drawn.
+14. **Freezing:** progress shown in bars and percent; Cancel keeps the live track. "Can't freeze" reasons drawn: already audio, recording in progress, not enough space. Other reasons (offline sample missing, engine busy) are not drawn.
+15. **Frozen from Full:** no Unfreeze key on the phone (the instrument is not in Lite). Assumed; confirm.
+16. **On PC chip** is used on Stems, Poly Synth, Insert slots and groups, and Morph. It is informational only (no tap action). Confirm whether a tap should explain more or offer "Send link to my PC".
+17. **Not designed:** Lite Synth preset list, undo/redo in the Psy Bass and Kick headers, tablet and foldable widths, landscape Rack/Patch/Mod in Lite.

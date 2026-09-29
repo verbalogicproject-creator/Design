@@ -30,3 +30,9 @@ slate, slate-deep, slate-lift, seam, alu, alu-dim, tape, tape-shadow, ink, amber
 - Tally red always appears with an icon or a price: recording (record key, `RECORDING` label), money (coin + price), destructive (trash icon or the word).
 - The grain texture uses a repeating gradient. It is texture, not decoration; everything else is flat colour.
 - New tokens are proposals. Rename freely; the values and roles matter.
+
+## Lite profile: new tokens
+**None.** Every Lite screen (Drum Kit, drum grid, sample picker, Lite Synth, Track FX sheet, frozen states, On PC chip) uses the existing `--cs-*` tokens.
+- The **On PC** chip is a dashed `alu-dim` outline with `text-dim` text; the dashed outline (not a colour) is what separates it from the solid FROZEN tag.
+- Frozen instrument names use `text-dim` in italics rather than a fainter colour, to stay at 4.5:1.
+- The licence chips (CC0 / CC-BY) reuse the badge styles.
