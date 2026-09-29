@@ -39,7 +39,7 @@
 </div>
 <div class="r g8 rkin" style="height: 46px; padding-left: 24px">
 <div class="hf" role="slider" aria-label="Volume {{ ch.name }}" aria-valuetext="{{ ch.db }}"><i class="slot"></i><i class="hfcap {{ ch.capCls }}" style="{{ ch.capSt }}"></i></div>
-<span class="sm dim b" style="width: 46px; text-align: right">{{ ch.db }}</span>
+<button class="db-btn" aria-label="Volume {{ ch.name }} {{ ch.db }}. Tap to type a value.">{{ ch.db }}</button>
 <div class="r f1" style="min-width: 0; justify-content: flex-end">
 <sc-if value="{{ ch.hasSteps }}" hint-placeholder-val="{{ true }}"><dc-import name="StepRow" pat="{{ ch.pat }}" cell="12" cols="16" head="{{ ch.head }}" hint-size="183px,16px"></dc-import></sc-if>
 <sc-if value="{{ ch.isAudio }}" hint-placeholder-val="{{ false }}"><span class="chip" style="min-height: 26px">audio clip · no steps</span></sc-if>

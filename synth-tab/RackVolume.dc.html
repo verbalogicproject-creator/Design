@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Phone · Rack, volume entry</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="synth.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Permanent+Marker&display=swap">
+<style>body{margin:0;background:#33404a}</style>
+</helmet>
+<div class="sx" style="width: 412px; height: 880px">
+<dc-import name="Main" hint-size="412px,880px"></dc-import>
+<div class="abs" style="left: 148px; top: 351px; width: 54px; height: 46px; border: 2px solid var(--amber); border-radius: 4px; z-index: 9; pointer-events: none"></div>
+<div class="abs" style="left: 168px; top: 398px; z-index: 11; border: 9px solid transparent; border-bottom: 11px solid var(--alu-dim); border-top: 0"></div>
+<div class="abs plate c g8" style="left: 8px; right: 8px; top: 409px; z-index: 10; padding: 10px; border-top: 2px solid var(--alu-dim); box-shadow: 0 10px 24px rgba(0,0,0,.5)" role="dialog" aria-label="Volume, Rolling Bass">
+<div class="r jb"><div class="r g8"><span class="tape">Rolling Bass</span><span class="sm dim b">volume</span></div>
+<button class="btn ghost sq" aria-label="Close"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#e9ecee" stroke-width="2.6" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg></button></div>
+<div class="r g6">
+<button class="btn ghost sq" aria-label="Down half a dB">−</button>
+<div class="field f1 focus" style="justify-content: flex-end; font-weight: 700; font-size: 22px">−3.0<span class="sm dim" style="margin-left: 6px">dB</span></div>
+<button class="btn ghost sq" aria-label="Up half a dB">+</button>
+</div>
+<div class="r g6">
+<button class="btn ghost f1" style="padding: 0 4px">−∞</button>
+<button class="btn ghost f1" style="padding: 0 4px">−12</button>
+<button class="btn ghost f1" style="padding: 0 4px">−6</button>
+<button class="btn ghost f1" style="padding: 0 4px">0 dB</button>
+<button class="btn ghost f1" style="padding: 0 4px">+3</button>
+</div>
+<div class="r g8"><span class="sm dim f1">Steps of 0.5 dB. Hold − or + to repeat. Double tap the fader for 0 dB.</span><button class="btn ghost">Cancel</button><button class="btn">Set</button></div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":412,"height":880}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

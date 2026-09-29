@@ -275,6 +275,34 @@
    "w": 412,
    "h": 880,
    "title": "Phone \u00b7 Mixer, one strip"
+  },
+  "LandMixerBuses.dc.html": {
+   "x": 3896,
+   "y": 4660,
+   "w": 892,
+   "h": 412,
+   "title": "Landscape \u00b7 Mixer, buses bank"
+  },
+  "MixerSingleBus.dc.html": {
+   "x": 6888,
+   "y": 3440,
+   "w": 412,
+   "h": 880,
+   "title": "Phone \u00b7 Mixer, group bus"
+  },
+  "MixerSingleMaster.dc.html": {
+   "x": 7380,
+   "y": 3440,
+   "w": 412,
+   "h": 880,
+   "title": "Phone \u00b7 Mixer, master"
+  },
+  "RackVolume.dc.html": {
+   "x": 7872,
+   "y": 3440,
+   "w": 412,
+   "h": 880,
+   "title": "Phone \u00b7 Rack, volume entry"
   }
  },
  "order": [
@@ -297,9 +325,13 @@
   "PsyBass.dc.html",
   "KickPanel.dc.html",
   "MixerSingle.dc.html",
+  "MixerSingleBus.dc.html",
+  "MixerSingleMaster.dc.html",
+  "RackVolume.dc.html",
   "LandPlaylist.dc.html",
   "LandRoll.dc.html",
   "LandMixer.dc.html",
+  "LandMixerBuses.dc.html",
   "Plugin.dc.html",
   "DeskWorkspace.dc.html",
   "DeskRoll.dc.html",

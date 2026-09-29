@@ -383,3 +383,5 @@ button.lcd{text-align:left;cursor:pointer}
 .slot-b.byp .t{text-decoration:line-through}
 .gr-m{position:relative;height:10px;flex:1 1 0;background:var(--well);border-radius:3px;box-shadow:inset 0 1px 2px rgba(0,0,0,.6);overflow:hidden}
 .gr-m i{position:absolute;right:0;top:0;bottom:0;background:var(--amber)}
+.db-btn{flex:none;width:46px;min-height:44px;padding:0;background:transparent;border:0;border-bottom:1px dotted var(--alu-dim);color:var(--text-dim);font-size:11px;font-weight:700;text-align:right;cursor:pointer}
+.db-btn:hover{color:var(--text)}
