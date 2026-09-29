@@ -352,6 +352,97 @@
    "w": 1440,
    "h": 900,
    "title": "Desktop \u00b7 Instruments + automation"
+  },
+  "StartAudio.dc.html": {
+   "x": 0,
+   "y": 9100,
+   "w": 412,
+   "h": 880,
+   "title": "First run \u00b7 Tap to start audio"
+  },
+  "AudioSettings.dc.html": {
+   "x": 492,
+   "y": 9100,
+   "w": 412,
+   "h": 880,
+   "title": "Settings \u00b7 Audio and latency"
+  },
+  "Keys.dc.html": {
+   "x": 984,
+   "y": 9100,
+   "w": 412,
+   "h": 880,
+   "title": "Play \u00b7 On-screen keys"
+  },
+  "History.dc.html": {
+   "x": 1476,
+   "y": 9100,
+   "w": 412,
+   "h": 880,
+   "title": "Project \u00b7 Revision history"
+  },
+  "Export.dc.html": {
+   "x": 1968,
+   "y": 9100,
+   "w": 412,
+   "h": 880,
+   "title": "Project \u00b7 Export"
+  },
+  "Tempo.dc.html": {
+   "x": 2460,
+   "y": 9100,
+   "w": 412,
+   "h": 880,
+   "title": "Sheet \u00b7 Tempo and meter"
+  },
+  "Presets.dc.html": {
+   "x": 2952,
+   "y": 9100,
+   "w": 412,
+   "h": 880,
+   "title": "Sheet \u00b7 Preset browser"
+  },
+  "ModAssign.dc.html": {
+   "x": 3444,
+   "y": 9100,
+   "w": 412,
+   "h": 880,
+   "title": "Flow \u00b7 Add modulation"
+  },
+  "AISpend.dc.html": {
+   "x": 3936,
+   "y": 9100,
+   "w": 412,
+   "h": 880,
+   "title": "AI \u00b7 Spending and cap"
+  },
+  "SingCountIn.dc.html": {
+   "x": 4428,
+   "y": 9100,
+   "w": 412,
+   "h": 880,
+   "title": "Sing 2a \u00b7 Count-in"
+  },
+  "SingDetect.dc.html": {
+   "x": 4920,
+   "y": 9100,
+   "w": 412,
+   "h": 880,
+   "title": "Sing 3a \u00b7 Sang freely, confirm"
+  },
+  "Overload.dc.html": {
+   "x": 5412,
+   "y": 9100,
+   "w": 412,
+   "h": 880,
+   "title": "Error \u00b7 CPU overload"
+  },
+  "MicDenied.dc.html": {
+   "x": 5904,
+   "y": 9100,
+   "w": 412,
+   "h": 880,
+   "title": "Error \u00b7 Microphone blocked"
   }
  },
  "order": [
@@ -403,7 +494,20 @@
   "SingUse.dc.html",
   "AutoMenu.dc.html",
   "AutoClip.dc.html",
-  "AutoClipPencil.dc.html"
+  "AutoClipPencil.dc.html",
+  "StartAudio.dc.html",
+  "AudioSettings.dc.html",
+  "Keys.dc.html",
+  "History.dc.html",
+  "Export.dc.html",
+  "Tempo.dc.html",
+  "Presets.dc.html",
+  "ModAssign.dc.html",
+  "AISpend.dc.html",
+  "SingCountIn.dc.html",
+  "SingDetect.dc.html",
+  "Overload.dc.html",
+  "MicDenied.dc.html"
  ],
  "notes": {
   "t0": {
@@ -447,6 +551,13 @@
    "text": "Flows \u00b7 Sing an idea, and automating a knob",
    "kind": "title1",
    "maxW": 4480
+  },
+  "t6": {
+   "x": 0,
+   "y": 8800,
+   "text": "Product gaps \u00b7 first run, settings, project, sheets and errors",
+   "kind": "title1",
+   "maxW": 6300
   }
  },
  "designSystems": []

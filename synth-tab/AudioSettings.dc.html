@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Phone · Audio settings</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="synth.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Permanent+Marker&display=swap">
+<style>body{margin:0;background:#33404a}</style>
+</helmet>
+<div class="sx" style="width: 412px; height: 880px">
+<dc-import name="Main" hint-size="412px,880px"></dc-import>
+<div class="scrim"></div>
+<div class="sheet c g8" role="dialog" aria-label="Audio settings" style="top: 150px; overflow: hidden">
+<div class="grab"></div>
+<div class="r g8" style="min-height: 44px"><div class="c f1"><span class="h3">Audio settings</span><span class="sm dim">Changes apply after a short silence.</span></div><button class="btn ghost sq" aria-label="Close"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#e9ecee" stroke-width="2.6" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg></button></div>
+<div class="plate c g6" style="padding: 10px">
+<span class="lbl">Output</span>
+<div class="r g6 wrap"><button class="chip t" style="border-color: var(--amber)">Phone speaker</button><button class="chip t">Wired headphones</button><button class="chip t">USB interface</button></div>
+</div>
+<div class="plate c g6" style="padding: 10px">
+<div class="r jb"><span class="lbl">Buffer size</span><span class="sm b">256 · 5.8 ms</span></div>
+<div class="seg" style="width: 100%" role="group" aria-label="Buffer size"><button class="btn f1">128</button><button class="btn f1 on" aria-pressed="true">256</button><button class="btn f1">512</button><button class="btn f1">1024</button></div>
+<span class="sm dim">Smaller feels tighter but drops out more. If you see “Lost”, go one step up.</span>
+</div>
+<div class="plate c g6" style="padding: 10px">
+<div class="r jb"><span class="lbl">Recording delay</span><span class="sm b">measured 42 ms</span></div>
+<span class="sm dim">Sing and Record shift your takes by this much so they land on the beat.</span>
+<div class="r g8"><button class="btn f1">Measure again</button><button class="btn ghost f1">Type a value</button></div>
+</div>
+<div class="plate r g12" style="padding: 10px">
+<button class="btn tg on" aria-pressed="true">Auto-freeze</button>
+<span class="sm f1">When CPU stays over 90 %, offer to freeze the heaviest channel.</span>
+</div>
+<div class="r jb sm dim" style="padding: 0 2px"><span>48 kHz · Web Audio</span><span>Latency out 22 ms</span></div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":412,"height":880}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

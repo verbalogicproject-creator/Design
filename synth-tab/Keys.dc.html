@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Phone · Play keys</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="synth.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Permanent+Marker&display=swap">
+<style>body{margin:0;background:#33404a}</style>
+</helmet>
+<div class="sx" style="width: 412px; height: 880px">
+<dc-import name="Main" hint-size="412px,880px"></dc-import>
+<div class="scrim"></div>
+<div class="sheet c g8" role="dialog" aria-label="Play Rolling Bass" style="top: 380px; overflow: hidden">
+<div class="grab"></div>
+<div class="r g8" style="min-height: 44px"><div class="c f1"><span class="h3">Play · Rolling Bass</span><span class="sm dim">Psy Bass · keys fold to F# minor, every key is in the scale</span></div><button class="btn ghost sq" aria-label="Close"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#e9ecee" stroke-width="2.6" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg></button></div>
+<div class="r g8">
+<div class="seg" role="group" aria-label="Surface"><button class="btn on" aria-pressed="true">Keys</button><button class="btn" aria-pressed="false">Pads</button></div>
+<div class="step-b"><button class="btn ghost sq" aria-label="Octave down">−</button><span class="v">Oct 2</span><button class="btn ghost sq" aria-label="Octave up">+</button></div>
+<button class="btn tg on" aria-pressed="true">Scale</button>
+</div>
+<div class="r" style="border-radius: 6px; overflow: hidden; box-shadow: var(--d-well)"><button class="f1" style="height: 150px; background: var(--alu); border: 0; border-right: 1px solid var(--seam); border-radius: 0 0 5px 5px; display: flex; align-items: flex-end; justify-content: center; padding-bottom: 8px; font-weight: 700; color: var(--ink); font-family: inherit" aria-label="F#">F#</button><button class="f1" style="height: 150px; background: var(--alu); border: 0; border-right: 1px solid var(--seam); border-radius: 0 0 5px 5px; display: flex; align-items: flex-end; justify-content: center; padding-bottom: 8px; font-weight: 700; color: var(--ink); font-family: inherit" aria-label="G#"></button><button class="f1" style="height: 150px; background: var(--alu); background: var(--amber); border: 0; border-right: 1px solid var(--seam); border-radius: 0 0 5px 5px; display: flex; align-items: flex-end; justify-content: center; padding-bottom: 8px; font-weight: 700; color: var(--ink); font-family: inherit" aria-label="A"></button><button class="f1" style="height: 150px; background: var(--alu); border: 0; border-right: 1px solid var(--seam); border-radius: 0 0 5px 5px; display: flex; align-items: flex-end; justify-content: center; padding-bottom: 8px; font-weight: 700; color: var(--ink); font-family: inherit" aria-label="B"></button><button class="f1" style="height: 150px; background: var(--alu); border: 0; border-right: 1px solid var(--seam); border-radius: 0 0 5px 5px; display: flex; align-items: flex-end; justify-content: center; padding-bottom: 8px; font-weight: 700; color: var(--ink); font-family: inherit" aria-label="C#"></button><button class="f1" style="height: 150px; background: var(--alu); border: 0; border-right: 1px solid var(--seam); border-radius: 0 0 5px 5px; display: flex; align-items: flex-end; justify-content: center; padding-bottom: 8px; font-weight: 700; color: var(--ink); font-family: inherit" aria-label="D"></button><button class="f1" style="height: 150px; background: var(--alu); border: 0; border-right: 1px solid var(--seam); border-radius: 0 0 5px 5px; display: flex; align-items: flex-end; justify-content: center; padding-bottom: 8px; font-weight: 700; color: var(--ink); font-family: inherit" aria-label="E"></button><button class="f1" style="height: 150px; background: var(--alu); border: 0; border-right: 1px solid var(--seam); border-radius: 0 0 5px 5px; display: flex; align-items: flex-end; justify-content: center; padding-bottom: 8px; font-weight: 700; color: var(--ink); font-family: inherit" aria-label="F#">F#</button></div>
+<span class="sm dim">Slide up a key for louder. Only scale notes are shown, so each key stays about 46 px wide.</span>
+<div class="r g8">
+<button class="btn tg rec" aria-pressed="false"><svg width="18" height="18" viewBox="0 0 24 24"><circle class="rec-ico" cx="12" cy="12" r="7"></circle></svg>Record into Bass roll</button>
+<button class="chip t f1">No MIDI keyboard · Connect</button>
+</div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":412,"height":880}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>
