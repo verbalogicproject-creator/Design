@@ -36,12 +36,13 @@
 <div style="width: 96px; flex: none" class="lbl pad8">Map</div>
 <div class="f1 rel" style="background: var(--well); box-shadow: inset 0 2px 3px rgba(0,0,0,.5)">
 <svg class="abs" style="left: 0; top: 0" width="736" height="30" viewBox="0 0 736 30" role="img" aria-label="Song overview, 80 bars: Intro, Build, Drop, Break. You are viewing bars 25 to 40.">
-<sc-for list="{{ secs }}" as="s" hint-placeholder-count="4"><g><path d="M{{ s.x }} 0V30" stroke="#3d4b56" stroke-width="1.5"></path><text x="{{ s.tx }}" y="11" font-size="11" font-weight="{{ s.fw }}" fill="{{ s.fill }}">{{ s.name }}</text></g></sc-for>
+<sc-for list="{{ secs }}" as="s" hint-placeholder-count="4"><g><path d="M{{ s.x }} 0V30" stroke="#3d4b56" stroke-width="1.5"></path></g></sc-for>
 <sc-for list="{{ mm }}" as="b" hint-placeholder-count="20"><rect x="{{ b.x }}" y="{{ b.y }}" width="{{ b.w }}" height="3" fill="{{ b.col }}"></rect></sc-for>
 <rect x="257.6" y="26" width="36.8" height="3" fill="#f2b33d"></rect>
 <rect x="221" y="14" width="147" height="15" rx="2" fill="#f2b33d" fill-opacity="0.14" stroke="#f2b33d" stroke-width="2"></rect>
 <path d="M279 12V30" stroke="#f2b33d" stroke-width="2"></path>
 </svg>
+<sc-for list="{{ secs }}" as="s" hint-placeholder-count="4"><span class="abs" style="left: {{ s.tx }}px; top: 1px; font-size: 11px; line-height: 12px; font-weight: {{ s.fw }}; color: {{ s.fill }}">{{ s.name }}</span></sc-for>
 </div>
 </div>
 
