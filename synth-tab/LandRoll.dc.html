@@ -13,38 +13,48 @@
 <style>body{margin:0;background:#33404a}</style>
 </helmet>
 <div class="sx" style="width: 892px; height: 412px; display: flex; flex-direction: column">
-<div style="flex: none; height: 56px"><dc-import name="Transport" mode="wide" pos="005:2:01" bpm="146.0" cpu="38" lost="0" playing="1" rec="0" loop="1" hint-size="892px,56px"></dc-import></div>
+<div style="flex: none; height: 56px"><dc-import name="Transport" mode="wide" pos="005:3:02" bpm="146.0" cpu="38" lost="0" playing="1" rec="0" loop="1" hint-size="892px,56px"></dc-import></div>
 <div class="r astr" style="flex: 1 1 0; min-height: 0">
 <div style="flex: none; width: 60px; height: 356px"><dc-import name="Nav" mode="rail" active="roll" hint-size="60px,356px"></dc-import></div>
 <div class="f1 c" style="min-width: 0">
-<div class="r g6" style="height: 44px; padding: 0 6px">
-<div class="seg" style="padding: 0 4px; background: none" role="group" aria-label="Roll tool">
+
+<div class="r g6" style="height: 44px; padding: 0 6px; flex: none">
+<div class="seg" style="padding: 0 2px; background: none" role="group" aria-label="Roll tool">
 <button class="btn sq on" aria-label="Draw" aria-pressed="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1f2a33" stroke-width="2.4" stroke-linejoin="round"><path d="M4 20l1-5L16 4l4 4L9 19z"></path></svg></button>
-<button class="btn sq" aria-label="Select"><svg width="20" height="20" viewBox="0 0 24 24" fill="#1f2a33"><path d="M5 3l14 8-6 2-3 6z"></path></svg></button>
-<button class="btn sq" aria-label="Erase"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1f2a33" stroke-width="2.4" stroke-linejoin="round"><path d="M4 16l8-10 8 8-4 4H8z"></path></svg></button>
+<button class="btn sq" aria-label="Select" aria-pressed="false"><svg width="20" height="20" viewBox="0 0 24 24" fill="#1f2a33"><path d="M5 3l14 8-6 2-3 6z"></path></svg></button>
+<button class="btn sq" aria-label="Slice" aria-pressed="false"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1f2a33" stroke-width="2.4" stroke-linecap="round"><path d="M12 3v18M6 8l6-5 6 5"></path></svg></button>
+<button class="btn sq" aria-label="Glue" aria-pressed="false"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1f2a33" stroke-width="2.4" stroke-linejoin="round"><rect x="2" y="9" width="8" height="6" rx="1"></rect><rect x="14" y="9" width="8" height="6" rx="1"></rect><path d="M10 12h4"></path></svg></button>
 </div>
-<button class="btn ghost">Snap 1/16</button>
-<button class="btn tg on" aria-pressed="true">Fold to scale</button>
-<span class="chip t">F# minor</span>
-<span class="f1"></span>
-<span class="b">A2 · step 6 · ⅛ · vel 96</span>
-<button class="btn ghost">Note…</button>
+<button class="btn ghost">Quantise</button>
+<div class="r g4"><span class="lbl">Strength</span>
+<div class="hf" style="width: 96px" role="slider" aria-label="Quantise strength" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"><i class="slot"></i><i class="hfcap cap-white" style="left: 74px"></i></div>
+<b class="sm" style="width: 34px">80 %</b></div>
+<button class="btn tg on" aria-pressed="true">Scale</button>
+<button class="btn ghost" aria-label="Down an octave" style="min-width: 48px">−12</button>
+<button class="btn ghost" aria-label="Up an octave" style="min-width: 48px">+12</button>
+<button class="btn tg on" aria-pressed="true">Ghost</button>
 </div>
-<div class="r" style="padding: 0 6px">
-<div style="width: 56px; flex: none">
-<div class="lbl" style="height: 20px; line-height: 20px">Bar 5</div>
-<div class="rel" style="height: 224px"><sc-for list="{{ keys }}" as="k" hint-placeholder-count="7"><div class="key w" style="{{ k.st }}">{{ k.n }}<b style="margin-left: 3px">{{ k.root }}</b></div></sc-for></div>
+
+<div class="r" style="padding: 0 6px; flex: none">
+<div class="lbl" style="width: 56px; flex: none; height: 20px; line-height: 20px">Bar 5</div>
+<div class="f1 r jb" style="height: 20px; background: var(--slate-lift); border-bottom: 1px solid var(--seam); padding: 0 6px">
+<span class="sm b r g6"><i style="display: inline-block; width: 10px; height: 10px; box-shadow: inset 0 0 0 2px var(--red)"></i>Kick <i style="display: inline-block; width: 10px; height: 10px; box-shadow: inset 0 0 0 2px var(--green); margin-left: 6px"></i>Lead arp</span>
+<span class="sm b r g6"><i style="display: inline-block; width: 16px; height: 10px; border: 2px dashed var(--ink); background: #f6e29a"></i>? dashed = not sure what you sang</span>
 </div>
+</div>
+<div class="r" style="padding: 0 6px; flex: none">
+<div style="width: 56px; flex: none"><div class="rel" style="height: 224px"><sc-for list="{{ keys }}" as="k" hint-placeholder-count="8"><div class="key w" style="{{ k.st }}">{{ k.n }}<b style="margin-left: 3px">{{ k.root }}</b></div></sc-for></div></div>
 <div class="f1" style="min-width: 0">
-<div style="height: 20px; background: var(--slate-lift); border-bottom: 1px solid var(--seam)"></div>
 <div class="roll" style="height: 224px; background-image: repeating-linear-gradient(90deg,#232c33 0 1px,transparent 1px 44px), repeating-linear-gradient(90deg,#4a5a66 0 2px,transparent 2px 176px)">
-<sc-for list="{{ rows }}" as="r" hint-placeholder-count="7"><div class="rrow {{ r.cls }}" style="{{ r.st }}"></div></sc-for>
-<sc-for list="{{ notes }}" as="n" hint-placeholder-count="14"><div class="rnote {{ n.cls }}" style="{{ n.st }}"><i class="l"></i><i class="r"></i></div></sc-for>
-<div class="playhead" style="left: 330px"></div>
+<sc-for list="{{ rows }}" as="r" hint-placeholder-count="8"><div class="rrow {{ r.cls }}" style="{{ r.st }}"></div></sc-for>
+<sc-for list="{{ ghosts }}" as="g" hint-placeholder-count="8"><div class="rnote ghost" style="{{ g.st }}"></div></sc-for>
+<sc-for list="{{ notes }}" as="n" hint-placeholder-count="14"><div class="rnote {{ n.cls }}" style="{{ n.st }}"><i class="l"></i><i class="r"></i><sc-if value="{{ n.unc }}" hint-placeholder-val="{{ false }}"><b class="q" aria-label="Unsure note">?</b></sc-if></div></sc-for>
+<span class="tape s abs" style="left: 236px; top: 96px; z-index: 6">A2 · 62 % sure</span>
+<div class="playhead" style="left: 418px"></div>
 </div>
 </div>
 </div>
-<div class="r" style="padding: 4px 6px 0">
+<div class="r" style="padding: 4px 6px 0; flex: none">
 <div class="lbl" style="width: 56px; flex: none">Vel</div>
 <div class="canvas-box f1" style="height: 52px"><sc-for list="{{ vels }}" as="v" hint-placeholder-count="14"><i class="abs" style="{{ v.st }}"></i></sc-for></div>
 </div>
@@ -55,22 +65,26 @@
 <script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":892,"height":412}}'>
 class Component extends DCLogic {
   renderVals() {
-    const names = ['D3', 'C#3', 'B2', 'A2', 'G#2', 'F#2', 'E2'];
-    const RH = 32;
+    const names = ['F#3', 'E3', 'D3', 'C#3', 'B2', 'A2', 'G#2', 'F#2'];
+    const RH = 28, SW = 44;
     const keys = names.map((n, i) => ({ n: n, root: n.charAt(0) === 'F' ? '●' : '', st: 'top:' + (i * RH) + 'px;height:' + RH + 'px' }));
     const rows = names.map((n, i) => ({ st: 'top:' + (i * RH) + 'px;height:' + RH + 'px', cls: (i % 2 ? 'black' : '') }));
     const src = [];
-    [1, 2, 3, 5, 6, 7, 9, 10, 11, 13, 14, 15].forEach((s) => src.push({ s: s, l: 1, r: 5, v: 70 + (s * 7) % 30 }));
-    src.push({ s: 6, l: 2, r: 3, v: 96, sel: true });
-    src.push({ s: 12, l: 2, r: 1, v: 100 });
+    [1, 2, 3, 5, 7, 9, 11, 13, 15].forEach((s) => src.push({ s: s, l: 1, r: 7, v: 76 + (s * 7) % 22 }));
+    src.push({ s: 6, l: 1, r: 5, v: 88, unc: true, sel: true });
+    src.push({ s: 10, l: 1, r: 5, v: 84, unc: true });
+    src.push({ s: 14, l: 1, r: 6, v: 80, unc: true });
     const notes = src.map((q) => ({
-      cls: q.sel ? 'sel' : '',
-      st: 'left:' + (q.s * 44 + 2) + 'px;top:' + (q.r * RH + 3) + 'px;width:' + (q.l * 44 - 4) + 'px;height:' + (RH - 6) + 'px'
+      cls: (q.unc ? 'unc ' : '') + (q.sel ? 'sel' : ''),
+      unc: !!q.unc,
+      st: 'left:' + (q.s * SW + 2) + 'px;top:' + (q.r * RH + 3) + 'px;width:' + (q.l * SW - 4) + 'px;height:' + (RH - 6) + 'px'
     }));
+    const gh = (s, l, r, col) => ({ st: 'left:' + (s * SW + 2) + 'px;top:' + (r * RH + 3) + 'px;width:' + (l * SW - 4) + 'px;height:' + (RH - 6) + 'px;box-shadow:inset 0 0 0 2px ' + col });
+    const ghosts = [gh(0, 1, 7, 'var(--red)'), gh(4, 1, 7, 'var(--red)'), gh(8, 1, 7, 'var(--red)'), gh(12, 1, 7, 'var(--red)'), gh(2, 2, 2, 'var(--green)'), gh(8, 2, 1, 'var(--green)'), gh(11, 3, 0, 'var(--green)')];
     const vels = src.map((q) => ({
-      st: 'left:' + (q.s * 44 + 14) + 'px;bottom:0;width:14px;height:' + Math.round(q.v * 0.42) + 'px;background:' + (q.sel ? 'var(--amber)' : 'var(--alu-dim)') + (q.sel ? ';box-shadow:0 0 0 2px var(--ink)' : '')
+      st: 'left:' + (q.s * SW + 14) + 'px;bottom:0;width:14px;height:' + Math.round(q.v * 0.5) + 'px;background:' + (q.unc ? '#f6e29a' : 'var(--alu-dim)') + ';' + (q.sel ? 'box-shadow:0 0 0 2px var(--amber);' : '') + (q.unc ? 'border:2px dashed var(--ink)' : '')
     }));
-    return { keys: keys, rows: rows, notes: notes, vels: vels };
+    return { keys: keys, rows: rows, notes: notes, ghosts: ghosts, vels: vels };
   }
 }
 </script>

@@ -16,6 +16,7 @@
 <div class="strip {{selCls}}" style="{{wStyle}}">
 <span class="num">{{num}}</span>
 <span class="tape s">{{name}}</span>
+<span class="badge {{badgeCls}}" style="visibility: {{badgeVis}}">{{badge}}</span>
 <sc-if value="{{ isSide }}" hint-placeholder-val="{{ false }}">
 <div class="r ast g4">
 <sc-if value="{{ showMs }}" hint-placeholder-val="{{ true }}">
@@ -30,7 +31,7 @@
 </div>
 </sc-if>
 <sc-if value="{{ notSide }}" hint-placeholder-val="{{ true }}">
-<dc-import name="Knob" label="Pan" size="sm" value="{{panVal}}" readout="{{panTxt}}" hint-size="64px,86px"></dc-import>
+<sc-if value="{{ showPan }}" hint-placeholder-val="{{ true }}"><dc-import name="Knob" label="Pan" size="sm" value="{{panVal}}" readout="{{panTxt}}" hint-size="64px,86px"></dc-import></sc-if>
 <sc-if value="{{ showMs }}" hint-placeholder-val="{{ true }}">
 <div class="ms {{msCls}}">
 <button class="btn sq tg m {{mCls}}" aria-label="Mute {{name}}" aria-pressed="{{mute}}">M</button>
@@ -45,7 +46,7 @@
 </div>
 </div>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props='{"label":{"editor":null,"default":"Bass"},"num":{"editor":null,"default":"2"},"color":{"editor":null,"default":"yellow"},"vol":{"editor":null,"default":"80"},"pan":{"editor":null,"default":"0"},"mute":{"editor":null,"default":"0"},"solo":{"editor":null,"default":"0"},"l":{"editor":null,"default":"55"},"r":{"editor":null,"default":"50"},"pk":{"editor":null,"default":"66"},"clip":{"editor":null,"default":"0"},"fx":{"editor":null,"default":"3"},"fh":{"editor":null,"default":"240"},"w":{"editor":null,"default":"72"},"layout":{"editor":null,"default":"col"},"sel":{"editor":null,"default":"0"},"showFx":{"editor":null,"default":"1"},"noMs":{"editor":null,"default":"0"},"$preview":{"width":90,"height":560}}'>
+<script type="text/x-dc" data-dc-script data-props='{"label":{"editor":null,"default":"Bass"},"num":{"editor":null,"default":"2"},"color":{"editor":null,"default":"yellow"},"vol":{"editor":null,"default":"80"},"pan":{"editor":null,"default":"0"},"mute":{"editor":null,"default":"0"},"solo":{"editor":null,"default":"0"},"l":{"editor":null,"default":"55"},"r":{"editor":null,"default":"50"},"pk":{"editor":null,"default":"66"},"clip":{"editor":null,"default":"0"},"fx":{"editor":null,"default":"3"},"fh":{"editor":null,"default":"240"},"w":{"editor":null,"default":"72"},"layout":{"editor":null,"default":"col"},"sel":{"editor":null,"default":"0"},"showFx":{"editor":null,"default":"1"},"noMs":{"editor":null,"default":"0"},"noPan":{"editor":null,"default":"0"},"badge":{"editor":null,"default":""},"badgeCls":{"editor":null,"default":""},"$preview":{"width":90,"height":560}}'>
 class Component extends DCLogic {
   renderVals() {
     const p = this.props;
@@ -65,7 +66,9 @@ class Component extends DCLogic {
       clip: p.clip === '1' ? '1' : '0',
       fx: p.fx || '0',
       showFx: p.showFx !== '0',
-      showMs: p.noMs !== '1'
+      showMs: p.noMs !== '1',
+      showPan: p.noPan !== '1',
+      badge: p.badge || '·', badgeVis: p.badge ? 'visible' : 'hidden', badgeCls: p.badgeCls || ''
     };
   }
 }

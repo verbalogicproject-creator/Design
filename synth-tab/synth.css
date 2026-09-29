@@ -372,3 +372,14 @@ button.lcd{text-align:left;cursor:pointer}
 .mod-card:hover{background:#324049}
 .mod-card:active{background:var(--well)}
 .sheet.tall{top:96px;overflow:hidden}
+.rnote.unc{background:repeating-linear-gradient(135deg,var(--yellow) 0 4px,#f6e29a 4px 7px);box-shadow:none;border:2px dashed var(--ink)}
+.rnote .q{position:absolute;left:3px;top:50%;margin-top:-7px;width:14px;height:14px;border-radius:50%;background:var(--ink);color:var(--tape);font-size:10px;font-weight:900;line-height:14px;text-align:center}
+.rnote.ghost{background:transparent;box-shadow:none;opacity:.9;pointer-events:none}
+.slot-b{display:flex;align-items:center;gap:6px;min-height:44px;padding:0 8px;min-width:0;background:var(--slate-deep);border:1px solid var(--seam);border-radius:5px;color:var(--text);font-size:12px;font-weight:700;font-stretch:88%;text-align:left;cursor:pointer;box-shadow:inset 0 2px 3px rgba(0,0,0,.3)}
+.slot-b .n{flex:none;font-size:11px;color:var(--text-dim);width:10px}
+.slot-b .t{flex:1 1 0;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.slot-b.emp{border:1px dashed var(--alu-dim);background:transparent;box-shadow:none;color:var(--text-dim);font-weight:600}
+.slot-b.byp{opacity:.6}
+.slot-b.byp .t{text-decoration:line-through}
+.gr-m{position:relative;height:10px;flex:1 1 0;background:var(--well);border-radius:3px;box-shadow:inset 0 1px 2px rgba(0,0,0,.6);overflow:hidden}
+.gr-m i{position:absolute;right:0;top:0;bottom:0;background:var(--amber)}
