@@ -22,17 +22,19 @@
 <div class="c g8" style="flex: 1 1 0; padding: 8px; min-height: 0">
 <div class="r g8 astr" style="height: 548px">
 <div class="plate c" style="width: 560px; flex: none; padding: 0">
-<div class="r jb" style="height: 48px; padding: 0 10px"><span class="h2">Channel rack</span><div class="r g8"><span class="sm dim">Click cell to toggle · right-click for velocity</span><button class="btn tiny"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#1f2a33" stroke-width="3" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg>Add</button></div></div>
+<div class="r jb" style="height: 48px; padding: 0 10px"><span class="h2">Channel rack</span><div class="r g8"><span class="sm dim">Click a row to open its instrument</span><button class="btn tiny"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#1f2a33" stroke-width="3" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg>Add</button></div></div>
 <div class="c" style="border-top: 1px solid var(--seam)">
 <sc-for list="{{ chans }}" as="ch" hint-placeholder-count="8">
 <div class="chrow {{ ch.rowCls }}" style="height: 56px">
 <i class="chcap {{ ch.capCls }}"></i>
 <span class="chnum">{{ ch.num }}</span>
-<span class="tape s" style="width: 84px; overflow: hidden; text-overflow: ellipsis">{{ ch.name }}</span>
+<div class="c g2" style="width: 96px; flex: none; min-width: 0"><span class="tape s" style="overflow: hidden; text-overflow: ellipsis; align-self: flex-start; max-width: 100%">{{ ch.name }}</span><span class="sm dim" style="white-space: nowrap">{{ ch.inst }}</span></div>
 <div class="f1 r" style="min-width: 0">
-<sc-if value="{{ ch.hasSteps }}" hint-placeholder-val="{{ true }}"><dc-import name="StepRow" pat="{{ ch.pat }}" cell="18" cols="16" head="{{ ch.head }}" hint-size="340px,26px"></dc-import></sc-if>
-<sc-if value="{{ ch.isAi }}" hint-placeholder-val="{{ false }}"><span class="chip">AI audio · 32 s · Lyria</span></sc-if>
+<sc-if value="{{ ch.hasSteps }}" hint-placeholder-val="{{ true }}"><dc-import name="StepRow" pat="{{ ch.pat }}" cell="12" cols="16" head="{{ ch.head }}" hint-size="183px,16px"></dc-import></sc-if>
+<sc-if value="{{ ch.isAi }}" hint-placeholder-val="{{ false }}"><span class="chip">audio clip · no steps</span></sc-if>
 </div>
+<div class="hf" style="width: 64px"><input type="range" class="ovl" min="0" max="100" value="{{ ch.vol }}" aria-label="Volume {{ ch.name }}" aria-valuetext="{{ ch.db }}"><i class="slot"></i><i class="hfcap {{ ch.capCls }}" style="{{ ch.capSt }}"></i></div>
+<button class="db-btn" aria-label="Volume {{ ch.name }} {{ ch.db }}. Click to type a value.">{{ ch.db }}</button>
 <button class="btn sq tg m {{ ch.mCls }}" style="min-width: 44px; min-height: 44px" aria-label="Mute {{ ch.name }}">M</button>
 <button class="btn sq tg s {{ ch.sCls }}" style="min-width: 44px; min-height: 44px" aria-label="Solo {{ ch.name }}">S</button>
 </div>
@@ -45,15 +47,28 @@
 <div class="seg" role="group" aria-label="Playlist tool"><button class="btn sq on" aria-label="Select" aria-pressed="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="#1f2a33"><path d="M5 3l14 8-6 2-3 6z"></path></svg></button><button class="btn sq" aria-label="Draw"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1f2a33" stroke-width="2.4" stroke-linejoin="round"><path d="M4 20l1-5L16 4l4 4L9 19z"></path></svg></button><button class="btn sq" aria-label="Slice"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1f2a33" stroke-width="2.4" stroke-linecap="round"><path d="M12 3v18M6 8l6-5 6 5"></path></svg></button></div>
 <button class="btn ghost">Snap ¼ bar</button>
 </div>
-<span class="sm dim">Ctrl+wheel zoom · Shift+wheel pans · Alt-drag duplicates</span>
+<span class="sm dim">Ctrl+wheel or pinch zooms · Shift+wheel pans · right-click a block for Make unique</span>
 </div>
 <div class="rel f1" style="min-height: 0">
+<div class="r" style="height: 30px; border-top: 1px solid var(--seam)">
+<div style="width: 112px; flex: none" class="lbl pad8">Map</div>
+<div class="f1 rel" style="background: var(--well); box-shadow: inset 0 2px 3px rgba(0,0,0,.5)">
+<svg class="abs" style="left: 0; top: 0" width="100%" height="30" viewBox="0 0 744 30" preserveAspectRatio="none" role="img" aria-label="Song overview, 80 bars. Viewing bars 1 to 8."><path d="M0 0V30M149 0V30M298 0V30M595 0V30" stroke="#3d4b56" stroke-width="1.5"></path><rect x="0" y="15" width="595" height="3" fill="#d9483b"></rect><rect x="149" y="19" width="446" height="3" fill="#e8c547"></rect><rect x="0" y="23" width="744" height="3" fill="#5ba67a"></rect><rect x="0" y="12" width="74" height="17" rx="2" fill="#f2b33d" fill-opacity="0.14" stroke="#f2b33d" stroke-width="2"></rect><text x="4" y="10" font-size="11" font-weight="800" fill="#f2b33d">Intro</text><text x="153" y="10" font-size="11" font-weight="600" fill="#b8c2c9">Build</text><text x="302" y="10" font-size="11" font-weight="600" fill="#b8c2c9">Drop</text><text x="599" y="10" font-size="11" font-weight="600" fill="#b8c2c9">Break</text></svg>
+</div>
+</div>
+<div class="r" style="height: 26px; background: var(--slate-lift); border-top: 1px solid var(--seam)">
+<div style="width: 112px; flex: none" class="lbl pad8">Sections</div>
+<div class="f1 rel" style="overflow: visible; z-index: 7">
+<button class="flag-hit" style="left: 4px" aria-label="Intro section, unlocked"><span class="tape s" style="display: flex; align-items: center; gap: 4px">Intro<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#1f2a33" stroke-width="2.6" stroke-linecap="round"><rect x="5" y="11" width="14" height="9" rx="2"></rect><path d="M8 11V8a4 4 0 0 1 7-2.5"></path></svg></span></button>
+<button class="flag-hit" style="left: 380px" aria-label="Build section, locked"><span class="tape s" style="display: flex; align-items: center; gap: 4px">Build<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#1f2a33" stroke-width="2.6" stroke-linecap="round"><rect x="5" y="11" width="14" height="9" rx="2" fill="#1f2a33"></rect><path d="M8 11V8a4 4 0 0 1 8 0v3"></path></svg><b style="font-family: Archivo, sans-serif; font-size: 11px">LOCKED</b></span></button>
+</div>
+</div>
 <div class="r" style="height: 28px; background: var(--slate-lift); border-top: 1px solid var(--seam); border-bottom: 1px solid var(--seam)">
 <div style="width: 112px; flex: none" class="lbl pad8">Bar</div>
 <div class="ruler f1" style="border-bottom: 0"><sc-for list="{{ bars }}" as="b" hint-placeholder-count="8"><b style="{{ b.st }}">{{ b.n }}</b></sc-for><i class="loopbar" style="left: 376px; width: 376px"></i></div>
 </div>
 <sc-for list="{{ tracks }}" as="t" hint-placeholder-count="8">
-<div class="trk" style="height: 56px">
+<div class="trk" style="height: 52px">
 <div class="trk-h" style="width: 112px">
 <i class="stripe cap-{{ t.color }}"></i>
 <div class="c"><span class="lbl" style="color: var(--text)">{{ t.name }}</span><span class="sm dim">{{ t.sub }}</span></div>
@@ -65,7 +80,8 @@
 </div>
 </div>
 </sc-for>
-<div class="playhead" style="left: 605px; top: 0"></div>
+<div class="playhead" style="left: 605px; top: 56px"></div>
+<div class="abs r g4 plate" style="left: 440px; top: 94px; z-index: 8; padding: 4px" role="toolbar" aria-label="Block actions: Bass roll, used 2 times"><button class="btn ghost">Duplicate</button><button class="btn ghost">Split</button><button class="btn">Make unique</button><button class="btn ghost sq" style="box-shadow: inset 0 0 0 2px var(--tally)" aria-label="Delete block"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ffa594" stroke-width="2.4" stroke-linecap="round"><path d="M5 7h14M9 7V4h6v3M7 7l1 13h8l1-13"></path></svg></button></div>
 </div>
 </div>
 </div>
@@ -99,29 +115,29 @@
 class Component extends DCLogic {
   renderVals() {
     const rows = [
-      { num: '1', name: 'Kick', color: 'red', pat: 'a...x...x...x...', sel: false },
-      { num: '2', name: 'Rolling Bass', color: 'yellow', pat: '.xoo.xoo.xoo.xoa', sel: true },
-      { num: '3', name: 'Hats', color: 'white', pat: '..x...x...x...x.' },
-      { num: '4', name: 'Clap', color: 'blue', pat: '....x.......x...', mute: true },
-      { num: '5', name: 'Lead arp', color: 'green', pat: 'xoloxolox.lox.lo' },
-      { num: '6', name: 'Vox synth', color: 'blue', pat: 'x.o.....x.o.o...' },
-      { num: '7', name: 'Perc', color: 'white', pat: '.o.o.o.o.o.o.o.x', solo: true },
-      { num: '8', name: 'Forest pad', color: 'green', pat: '', ai: true }
+      { num: '1', name: 'Kick', inst: 'Kick', color: 'red', pat: 'a...x...x...x...', sel: false, vol: 82, db: '−1.5 dB' },
+      { num: '2', name: 'Rolling Bass', inst: 'Psy Bass', color: 'yellow', pat: '.xoo.xoo.xoo.xoa', sel: true, vol: 78, db: '−3.0 dB' },
+      { num: '3', name: 'Hats', inst: 'Sampler', color: 'white', pat: '..x...x...x...x.', vol: 64, db: '−7.5 dB' },
+      { num: '4', name: 'Clap', inst: 'Sampler', color: 'blue', pat: '....x.......x...', mute: true, vol: 70, db: '−5.0 dB' },
+      { num: '5', name: 'Lead arp', inst: 'Poly Synth', color: 'green', pat: 'xoloxolox.lox.lo', vol: 60, db: '−9.0 dB' },
+      { num: '6', name: 'Vox synth', inst: 'Poly Synth', color: 'blue', pat: 'x.o.....x.o.o...', vol: 66, db: '−6.5 dB' },
+      { num: '7', name: 'Perc', inst: 'Sampler', color: 'white', pat: '.o.o.o.o.o.o.o.x', solo: true, vol: 58, db: '−10 dB' },
+      { num: '8', name: 'Forest pad', inst: 'Audio Player', color: 'green', pat: '', ai: true, vol: 52, db: '−11 dB' }
     ];
     const chans = rows.map((r) => ({
       num: r.num, name: r.name, capCls: 'cap-' + r.color,
       rowCls: (r.sel ? 'sel' : '') + (r.mute ? ' dimmed' : ''),
       pat: r.pat, hasSteps: !r.ai, isAi: !!r.ai, head: r.ai ? '-1' : '5',
-      mCls: r.mute ? 'on' : '', sCls: r.solo ? 'on' : ''
+      mCls: r.mute ? 'on' : '', sCls: r.solo ? 'on' : '', inst: r.inst, db: r.db, vol: String(r.vol), capSt: 'left:' + Math.round(11 + 42 * r.vol / 100) + 'px'
     }));
     const BW = 94;
     const bars = [1, 2, 3, 4, 5, 6, 7, 8].map((n, i) => ({ n: String(n), st: 'left:' + (i * BW) + 'px' }));
-    const mk = (b, len, name, kind, seed, sel) => ({ pos: 'position:absolute;left:' + (b * BW) + 'px;top:6px', w: String(len * BW - 2), name: name, kind: kind, seed: String(seed), sel: sel ? '1' : '0' });
+    const mk = (b, len, name, kind, seed, sel) => ({ pos: 'position:absolute;left:' + (b * BW) + 'px;top:4px', w: String(len * BW - 2), name: name, kind: kind, seed: String(seed), sel: sel ? '1' : '0' });
     const tracks = [
       { name: 'Kick', sub: 'MIDI', color: 'red', blocks: [mk(0, 2, 'Kick A', 'midi', 1), mk(2, 2, 'Kick A', 'midi', 1), mk(4, 2, 'Kick A', 'midi', 1), mk(6, 2, 'Kick B', 'midi', 3)] },
       { name: 'Bass', sub: 'MIDI', color: 'yellow', blocks: [mk(1, 3, 'Bass roll', 'midi', 2), mk(4, 4, 'Bass roll', 'midi', 2, true)] },
       { name: 'Hats', sub: 'MIDI', color: 'white', blocks: [mk(2, 6, 'Hats off', 'midi', 6)] },
-      { name: 'Clap', sub: 'MIDI · muted', color: 'blue', blocks: [{ pos: 'position:absolute;left:' + (2 * BW) + 'px;top:6px', w: String(6 * BW - 2), name: 'Clap 2 & 4', kind: 'midi', seed: '8', sel: '0' }] },
+      { name: 'Clap', sub: 'MIDI · muted', color: 'blue', blocks: [{ pos: 'position:absolute;left:' + (2 * BW) + 'px;top:4px', w: String(6 * BW - 2), name: 'Clap 2 & 4', kind: 'midi', seed: '8', sel: '0' }] },
       { name: 'Lead', sub: 'MIDI', color: 'green', blocks: [mk(4, 2, 'Arp 1', 'midi', 5), mk(6, 2, 'Arp 2', 'midi', 7)] },
       { name: 'Vox', sub: 'Audio', color: 'blue', blocks: [mk(3.5, 2.5, 'Vox idea', 'audio', 3)] },
       { name: 'Pad', sub: 'AI audio', color: 'green', blocks: [mk(0, 4, 'Lyria · forest', 'audio', 5), mk(4, 4, 'Lyria · forest', 'audio', 8)] },
