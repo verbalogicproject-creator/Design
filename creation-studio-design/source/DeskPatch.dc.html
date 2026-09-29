@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Desktop · Patch and Mod</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="synth.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Permanent+Marker&display=swap">
+<style>body{margin:0;background:#33404a}</style>
+</helmet>
+<div class="sx" style="width: 1440px; height: 900px; display: flex; flex-direction: column">
+<div style="flex: none; height: 56px"><dc-import name="Transport" mode="wide" pos="005:2:01" bpm="146.0" cpu="38" lost="0" playing="1" rec="0" loop="1" hint-size="1440px,56px"></dc-import></div>
+<div class="desk-top" style="flex: none; height: 48px">
+<div class="f1"><dc-import name="Nav" mode="top" active="patch" hint-size="1000px,48px"></dc-import></div>
+<span class="tape s" style="margin-right: 12px">Rolling Bass 03</span>
+<span class="rev" style="margin-right: 12px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#8fd1a9" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5 11-11"></path></svg>saved r12</span>
+</div>
+<div class="r g8 astr" style="flex: 1 1 0; padding: 8px; min-height: 0">
+<div class="plate c g6" style="width: 240px; flex: none; padding: 10px">
+<span class="h2">Modules</span>
+<span class="lbl" style="margin-top: 4px">Instruments</span>
+<div class="dock-item">SuperSaw</div><div class="dock-item">Sampler</div><div class="dock-item">FM 4-op</div>
+<span class="lbl" style="margin-top: 6px">Effects</span>
+<div class="dock-item">Drive</div><div class="dock-item">Delay</div><div class="dock-item">Reverb</div><div class="dock-item">EQ · Compressor</div>
+<span class="lbl" style="margin-top: 6px">Utility</span>
+<div class="dock-item">LFO</div><div class="dock-item">Envelope</div><div class="dock-item">Macro</div>
+<span class="lbl" style="margin-top: 6px">AI</span>
+<div class="dock-item r jb"><span>Lyria generator</span><span class="chip" style="border-color: var(--tally); min-height: 26px"><span class="coin" style="width: 20px; height: 20px; font-size: 11px">$</span>0.08</span></div>
+<div class="f1"></div>
+<div class="r g12 sm b" style="flex-wrap: wrap"><span class="r g6"><i class="adi"></i>Audio</span><span class="r g6"><i class="ndi"></i>Notes</span><span class="r g6"><i class="mdi"></i>Mod</span></div>
+</div>
+<div class="plate c f1" style="padding: 0; min-width: 0">
+<div class="r g8 jb" style="height: 48px; padding: 0 10px">
+<div class="r g8"><div class="seg" role="group" aria-label="Connect method"><button class="btn on" aria-pressed="true">Tap A → B</button><button class="btn" aria-pressed="false">Drag</button></div><button class="btn ghost">Tidy</button></div>
+<div class="r g8"><span class="sm dim">Pan: space + drag · zoom: ctrl + wheel</span><button class="btn ghost sq" aria-label="Zoom out">−</button><button class="btn ghost sq" aria-label="Zoom in">+</button></div>
+</div>
+<div class="canvas-box f1" style="border-radius: 0; border-left: 0; border-right: 0; border-bottom: 0; background-image: radial-gradient(circle, #3a4751 1px, transparent 1.5px); background-size: 22px 22px">
+<svg class="abs" style="left: 0; top: 0" width="828" height="720" viewBox="0 0 828 720" aria-hidden="true">
+<sc-for list="{{ cables }}" as="c" hint-placeholder-count="10"><path d="{{ c.d }}" fill="none" stroke="{{ c.col }}" stroke-width="{{ c.w }}" stroke-dasharray="{{ c.dash }}" stroke-linecap="round"></path></sc-for>
+</svg>
+<sc-for list="{{ nodes }}" as="n" hint-placeholder-count="11">
+<div class="node {{ n.cls }}" style="{{ n.st }}">
+<div class="node-h" style="height: 30px"><span class="tape s">{{ n.name }}</span><span class="sm dim">{{ n.sub }}</span></div>
+<sc-for list="{{ n.rows }}" as="r" hint-placeholder-count="2">
+<div class="prow">
+<sc-if value="{{ r.hasL }}" hint-placeholder-val="{{ true }}"><button class="port {{ r.lcls }}" aria-label="{{ r.llab }}"><i class="pg"></i></button><span class="plbl f1">{{ r.ltxt }}</span></sc-if>
+<sc-if value="{{ r.noL }}" hint-placeholder-val="{{ false }}"><span class="f1"></span></sc-if>
+<sc-if value="{{ r.hasR }}" hint-placeholder-val="{{ true }}"><span class="plbl">{{ r.rtxt }}</span><button class="port {{ r.rcls }}" aria-label="{{ r.rlab }}"><i class="pg"></i></button></sc-if>
+</div>
+</sc-for>
+</div>
+</sc-for>
+<div class="chip abs" style="left: 12px; bottom: 12px">Tap a port, then tap a matching port to connect. Drag also works.</div>
+</div>
+</div>
+<div class="c g8" style="width: 340px; flex: none">
+<div class="plate" style="padding: 10px">
+<div class="r jb" style="margin-bottom: 6px"><span class="tape">Macro 1 · Tension</span><span class="badge gr"><i class="mdi"></i>3</span></div>
+<div class="r g8 ast">
+<dc-import name="Knob" label="Tension" size="lg" value="64" readout="64 %" hint-size="90px,120px"></dc-import>
+<div class="c g4 f1">
+<div class="mchip"><span class="f1">Cutoff</span><div class="rng" style="max-width: 60px"><i style="left: 20%; width: 50%"></i></div><span class="sm b">20–70</span></div>
+<div class="mchip"><span class="f1">Drive</span><div class="rng" style="max-width: 60px"><i style="left: 10%; width: 30%"></i></div><span class="sm b">10–40</span></div>
+<div class="mchip"><span class="f1">Reso</span><div class="rng" style="max-width: 60px"><i style="left: 0%; width: 25%"></i></div><span class="sm b">0–25</span></div>
+</div>
+</div>
+</div>
+<div class="plate" style="padding: 10px">
+<div class="r jb" style="margin-bottom: 6px"><span class="tape s">Env 2 · Filter</span><span class="sm dim">A H D S R</span></div>
+<dc-import name="EnvCurve" w="316" h="110" a="8" hold="4" d="26" s="55" r="24" t-a="2 ms" t-h="0 ms" t-d="220 ms" t-s="55%" t-r="300 ms" sel="d" hint-size="316px,152px"></dc-import>
+</div>
+<div class="plate" style="padding: 10px">
+<div class="r jb" style="margin-bottom: 6px"><span class="tape s">LFO 1</span><span class="sm dim b">1/8 · sine</span></div>
+<div class="r jb">
+<div class="canvas-box" style="width: 150px; height: 44px"><svg width="148" height="44" viewBox="0 0 148 44" aria-hidden="true"><path d="M0 22 C18 -6 36 -6 56 22 S94 50 112 22 S140 -6 148 22" fill="none" stroke="#5ba67a" stroke-width="2.6"></path></svg></div>
+<dc-import name="Knob" label="Rate" size="sm" value="45" readout="1/8" hint-size="64px,86px"></dc-import>
+<dc-import name="Knob" label="Depth" size="sm" value="70" readout="70 %" mod-start="40" mod-len="24" hint-size="64px,86px"></dc-import>
+</div>
+</div>
+<div class="plate c g4 f1" style="padding: 10px">
+<span class="h2">Routes</span>
+<div class="mchip"><span class="tape s">LFO 1</span><span class="mdi"></span><span class="f1">Cutoff</span><span class="v gr b">+32 %</span></div>
+<div class="mchip"><span class="tape s">Env 2</span><span class="mdi"></span><span class="f1">Cutoff</span><span class="v gr b">+58 %</span></div>
+<div class="mchip"><span class="tape s">Macro 1</span><span class="mdi"></span><span class="f1">Drive</span><span class="v gr b">10–40</span></div>
+</div>
+</div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":900}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const W = 150;
+    const def = [
+      { id: 'seq', name: 'Rolling seq', sub: 'MIDI', x: 24, y: 24, rows: [{ r: ['note', 'Notes'] }] },
+      { id: 'saw', name: 'SuperSaw', sub: 'synth', x: 224, y: 24, rows: [{ l: ['note', 'Notes'], r: ['audio', 'Audio'] }, { l: ['mod', 'Detune'] }, { l: ['mod', 'Pitch'] }] },
+      { id: 'flt', name: 'LP Ladder', sub: 'filter', x: 424, y: 24, sel: true, rows: [{ l: ['audio', 'In'], r: ['audio', 'Out'] }, { l: ['mod', 'Cutoff'] }, { l: ['mod', 'Reso'] }] },
+      { id: 'drv', name: 'Drive', sub: 'fx', x: 624, y: 24, rows: [{ l: ['audio', 'In'], r: ['audio', 'Out'] }, { l: ['mod', 'Amount'] }] },
+      { id: 'lfo', name: 'LFO 1', sub: '1/8', x: 24, y: 250, rows: [{ r: ['mod', 'Out'] }] },
+      { id: 'env', name: 'Env 2', sub: 'AHDSR', x: 224, y: 250, rows: [{ r: ['mod', 'Out'] }] },
+      { id: 'mac', name: 'Macro 1', sub: 'Tension', x: 424, y: 250, rows: [{ r: ['mod', 'Cutoff'] }, { r: ['mod', 'Reso'] }, { r: ['mod', 'Drive'] }] },
+      { id: 'lyr', name: 'Lyria pad', sub: 'AI audio', x: 24, y: 440, rows: [{ r: ['audio', 'Audio'] }] },
+      { id: 'dly', name: 'Delay', sub: 'fx', x: 424, y: 440, rows: [{ l: ['audio', 'In'], r: ['audio', 'Out'] }] },
+      { id: 'rev', name: 'Reverb', sub: 'fx', x: 224, y: 440, rows: [{ l: ['audio', 'In'], r: ['audio', 'Out'] }] },
+      { id: 'out', name: 'Master out', sub: 'mixer 2', x: 624, y: 440, rows: [{ l: ['audio', 'Bass'] }, { l: ['audio', 'FX'] }] }
+    ];
+    const by = {};
+    def.forEach((n) => { n.h = 31 + n.rows.length * 44 + 6; by[n.id] = n; });
+    const link = [
+      ['seq', 0, 'r', 'saw', 0, 'l'], ['saw', 0, 'r', 'flt', 0, 'l'], ['flt', 0, 'r', 'drv', 0, 'l'], ['drv', 0, 'r', 'out', 0, 'l'],
+      ['lfo', 0, 'r', 'flt', 1, 'l'], ['env', 0, 'r', 'flt', 1, 'l'], ['mac', 1, 'r', 'flt', 2, 'l'], ['mac', 2, 'r', 'drv', 1, 'l'],
+      ['drv', 0, 'r', 'dly', 0, 'l'], ['lyr', 0, 'r', 'rev', 0, 'l'], ['rev', 0, 'r', 'out', 1, 'l']
+    ];
+    const used = {};
+    const pt = (id, row, side) => { const n = by[id]; return [n.x + (side === 'l' ? 22 : W - 22), n.y + 31 + row * 44 + 22]; };
+    const cables = link.map((k) => {
+      used[k[0] + k[1] + k[2]] = 1; used[k[3] + k[4] + k[5]] = 1;
+      const a = pt(k[0], k[1], k[2]), b = pt(k[3], k[4], k[5]);
+      const type = by[k[0]].rows[k[1]].r[0];
+      const hl = Math.max(50, Math.abs(b[0] - a[0]) / 2);
+      const d = 'M' + a[0] + ' ' + a[1] + ' C' + (a[0] + hl) + ' ' + a[1] + ' ' + (b[0] - hl) + ' ' + b[1] + ' ' + b[0] + ' ' + b[1];
+      return type === 'audio' ? { d: d, col: '#f2b33d', w: '4.5', dash: '0' }
+        : type === 'note' ? { d: d, col: '#4a7fc1', w: '3.5', dash: '9 5' }
+        : { d: d, col: '#5ba67a', w: '3.5', dash: '1 6' };
+    });
+    const tname = { audio: 'Audio', note: 'Notes', mod: 'Modulation' };
+    const nodes = def.map((n) => ({
+      cls: n.sel ? 'sel' : '',
+      st: 'left:' + n.x + 'px;top:' + n.y + 'px;width:' + W + 'px;height:' + n.h + 'px',
+      name: n.name, sub: n.sub,
+      rows: n.rows.map((r, i) => ({
+        hasL: !!r.l, noL: !r.l, hasR: !!r.r,
+        lcls: r.l ? r.l[0] + (used[n.id + i + 'l'] ? ' used' : '') : '', llab: r.l ? tname[r.l[0]] + ' input ' + r.l[1] : '', ltxt: r.l ? r.l[1] : '',
+        rcls: r.r ? r.r[0] + (used[n.id + i + 'r'] ? ' used' : '') : '', rlab: r.r ? tname[r.r[0]] + ' output ' + r.r[1] : '', rtxt: r.r ? r.r[1] : ''
+      }))
+    }));
+    return { nodes: nodes, cables: cables };
+  }
+}
+</script>
+</body>
+</html>

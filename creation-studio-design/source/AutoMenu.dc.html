@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Phone · Knob menu, create automation</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="synth.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Permanent+Marker&display=swap">
+<style>body{margin:0;background:#33404a}</style>
+</helmet>
+<div class="sx" style="width: 412px; height: 880px">
+<dc-import name="PsyBass" hint-size="412px,880px"></dc-import>
+<div class="scrim"></div>
+<div class="sheet c g8" role="dialog" aria-label="Cutoff options" style="padding: 10px 12px 14px">
+<div class="grab"></div>
+<div class="r g12">
+<dc-import name="Knob" label="Cutoff" size="md" value="62" readout="1.2 kHz" mod-start="48" mod-len="22" state="pressed" hint-size="72px,100px"></dc-import>
+<div class="c g4 f1">
+<span class="tape">Cutoff</span>
+<span class="sm dim b">Rolling Bass · Psy Bass · Filter</span>
+<span class="sm dim">You held the knob. Choose what it should do.</span>
+</div>
+</div>
+<button class="menu-row primary">
+<span class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1f2a33" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17c3 0 4-9 8-9s4 6 7 6h3"></path><circle cx="11" cy="8" r="2"></circle><circle cx="18" cy="14" r="2"></circle></svg></span>
+<span class="f1"><b>Create automation clip</b><span class="sub">Opens a clip over the playlist at bar 29, starting at 1.2 kHz.</span></span>
+</button>
+<button class="menu-row">
+<span class="ic"><i class="mdi" style="width: 14px; height: 14px"></i></span>
+<span class="f1"><b>Add modulation</b><span class="sub">LFO, envelope or macro. Shows as a green ring.</span></span>
+</button>
+<button class="menu-row">
+<span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#e9ecee" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="8"></circle><path d="M12 12l4-4"></path></svg></span>
+<span class="f1"><b>Map to Macro 1 · Tension</b><span class="sub">Set a min and max range after.</span></span>
+</button>
+<button class="menu-row">
+<span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#e9ecee" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="12" rx="2"></rect><path d="M7 6v7M11 6v7M15 6v7"></path></svg></span>
+<span class="f1"><b>MIDI learn</b><span class="sub">Move a knob on your controller.</span></span>
+</button>
+<div class="r g8">
+<button class="btn ghost f1">Type a value</button>
+<button class="btn ghost f1">Reset · 800 Hz</button>
+</div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":412,"height":880}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

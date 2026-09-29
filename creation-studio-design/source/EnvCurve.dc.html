@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>AHDSR envelope editor</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="synth.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Permanent+Marker&display=swap">
+<style>body{margin:0;background:#33404a}</style>
+</helmet>
+<div class="sx" style="display: inline-block; overflow: visible; background: none; padding: 0">
+<div class="c g6 {{stCls}}" style="{{boxStyle}}">
+<div class="canvas-box" style="{{svgBox}}">
+<svg width="{{W}}" height="{{H}}" viewBox="0 0 {{W}} {{H}}" role="img" aria-label="AHDSR envelope: attack {{tA}}, hold {{tH}}, decay {{tD}}, sustain {{tS}}, release {{tR}}">
+<sc-for list="{{ vg }}" as="g" hint-placeholder-count="8"><line x1="{{ g.x }}" y1="0" x2="{{ g.x }}" y2="{{H}}" stroke="#232c33" stroke-width="1"></line></sc-for>
+<sc-for list="{{ hg }}" as="g" hint-placeholder-count="3"><line x1="0" y1="{{ g.y }}" x2="{{W}}" y2="{{ g.y }}" stroke="#232c33" stroke-width="1"></line></sc-for>
+<path d="{{fillD}}" fill="#f2b33d" fill-opacity="0.12"></path>
+<sc-if value="{{ showGhost }}" hint-placeholder-val="{{ false }}"><path d="{{ghostD}}" fill="none" stroke="#5ba67a" stroke-width="2" stroke-dasharray="5 4"></path></sc-if>
+<path d="{{pathD}}" fill="none" stroke="{{lineCol}}" stroke-width="2.6" stroke-linejoin="round" stroke-dasharray="{{lineDash}}"></path>
+<sc-if value="{{ showPress }}" hint-placeholder-val="{{ false }}">
+<line x1="{{px}}" y1="0" x2="{{px}}" y2="{{H}}" stroke="#f2b33d" stroke-width="1" stroke-dasharray="3 3"></line>
+<line x1="0" y1="{{py}}" x2="{{W}}" y2="{{py}}" stroke="#f2b33d" stroke-width="1" stroke-dasharray="3 3"></line>
+</sc-if>
+<sc-for list="{{ tens }}" as="t" hint-placeholder-count="3">
+<g>
+<circle cx="{{ t.x }}" cy="{{ t.y }}" r="22" fill="transparent"></circle>
+<rect x="{{ t.rx }}" y="{{ t.ry }}" width="9" height="9" transform="{{ t.rot }}" fill="#8e979d" stroke="#1f2a33" stroke-width="1.5"></rect>
+</g>
+</sc-for>
+<sc-for list="{{ hs }}" as="h" hint-placeholder-count="4">
+<g>
+<circle cx="{{ h.x }}" cy="{{ h.y }}" r="22" fill="transparent"></circle>
+<circle cx="{{ h.x }}" cy="{{ h.y }}" r="{{ h.ring }}" fill="none" stroke="#f2b33d" stroke-width="2.5" stroke-opacity="{{ h.ringOp }}"></circle>
+<circle cx="{{ h.x }}" cy="{{ h.y }}" r="7" fill="#c5cbcf" stroke="#1f2a33" stroke-width="2"></circle>
+</g>
+</sc-for>
+<sc-if value="{{ showPress }}" hint-placeholder-val="{{ false }}">
+<rect x="{{tipX}}" y="{{tipY}}" width="62" height="22" fill="#e6d6a2"></rect>
+<text x="{{tipTx}}" y="{{tipTy}}" text-anchor="middle" font-family="Permanent Marker, cursive" font-size="12" fill="#1f2a33">{{tipTxt}}</text>
+</sc-if>
+</svg>
+<sc-if value="{{ showMod }}" hint-placeholder-val="{{ false }}"><span class="badge gr abs" style="right: 6px; top: 6px">~ mod</span></sc-if>
+<sc-if value="{{ showAuto }}" hint-placeholder-val="{{ false }}"><span class="badge abs" style="right: 6px; top: 6px"><i class="dot"></i> auto</span></sc-if>
+<sc-if value="{{ isOff }}" hint-placeholder-val="{{ false }}"><span class="badge abs" style="right: 6px; top: 6px">bypass</span></sc-if>
+</div>
+<div class="r jb" style="{{rowStyle}}">
+<span class="tape s">A {{tA}}</span><span class="tape s">H {{tH}}</span><span class="tape s">D {{tD}}</span><span class="tape s">S {{tS}}</span><span class="tape s">R {{tR}}</span>
+</div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"w":{"editor":null,"default":"320"},"h":{"editor":null,"default":"150"},"a":{"editor":null,"default":"10"},"hold":{"editor":null,"default":"5"},"d":{"editor":null,"default":"22"},"s":{"editor":null,"default":"60"},"r":{"editor":null,"default":"26"},"cA":{"editor":null,"default":"0.7"},"cD":{"editor":null,"default":"0.5"},"cR":{"editor":null,"default":"0.4"},"tA":{"editor":null,"default":"2 ms"},"tH":{"editor":null,"default":"0 ms"},"tD":{"editor":null,"default":"180 ms"},"tS":{"editor":null,"default":"60%"},"tR":{"editor":null,"default":"260 ms"},"state":{"editor":null,"default":"default"},"sel":{"editor":null,"default":""},"$preview":{"width":320,"height":190}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const p = this.props;
+    const n = (v, d) => { const x = parseFloat(v); return isNaN(x) ? d : x; };
+    const W = n(p.w, 320), H = n(p.h, 150), pad = 16;
+    const iw = W - 2 * pad, ih = H - 2 * pad;
+    const st = p.state || 'default';
+    const sel = p.sel || '';
+    const build = (a, hd, d, s, r) => {
+      const x0 = pad, y0 = H - pad, top = pad;
+      const xA = x0 + a / 100 * iw, xH = xA + hd / 100 * iw, xD = xH + d / 100 * iw;
+      const yS = top + (1 - s / 100) * ih;
+      const xS = xD + 0.2 * iw, xR = Math.min(W - pad, xS + r / 100 * iw);
+      return { x0, y0, top, xA, xH, xD, yS, xS, xR };
+    };
+    const ctrl = (x1, y1, x2, y2, c) => {
+      const mx = (x1 + x2) / 2, my = (y1 + y2) / 2;
+      const cor = c >= 0 ? [x1, y2] : [x2, y1];
+      const k = Math.abs(c) * 0.8;
+      return [mx + (cor[0] - mx) * k, my + (cor[1] - my) * k];
+    };
+    const f = (v) => v.toFixed(1);
+    const draw = (g, cA, cD, cR) => {
+      const a = ctrl(g.x0, g.y0, g.xA, g.top, cA);
+      const d = ctrl(g.xH, g.top, g.xD, g.yS, cD);
+      const r = ctrl(g.xS, g.yS, g.xR, g.y0, cR);
+      return { a, d, r,
+        path: 'M' + f(g.x0) + ' ' + f(g.y0) + ' Q' + f(a[0]) + ' ' + f(a[1]) + ' ' + f(g.xA) + ' ' + f(g.top) +
+          ' L' + f(g.xH) + ' ' + f(g.top) + ' Q' + f(d[0]) + ' ' + f(d[1]) + ' ' + f(g.xD) + ' ' + f(g.yS) +
+          ' L' + f(g.xS) + ' ' + f(g.yS) + ' Q' + f(r[0]) + ' ' + f(r[1]) + ' ' + f(g.xR) + ' ' + f(g.y0) };
+    };
+    const cA = n(p.cA, 0.7), cD = n(p.cD, 0.5), cR = n(p.cR, 0.4);
+    const g = build(n(p.a, 10), n(p.hold, 5), n(p.d, 22), n(p.s, 60), n(p.r, 26));
+    const dr = draw(g, cA, cD, cR);
+    const g2 = build(n(p.a, 10) * 1.7, n(p.hold, 5), n(p.d, 22) * 0.55, Math.min(95, n(p.s, 60) + 18), n(p.r, 26) * 1.2);
+    const ghost = draw(g2, cA, cD, cR);
+    const mid = (P0, C, P2) => [0.25 * P0[0] + 0.5 * C[0] + 0.25 * P2[0], 0.25 * P0[1] + 0.5 * C[1] + 0.25 * P2[1]];
+    const tm = [
+      mid([g.x0, g.y0], dr.a, [g.xA, g.top]),
+      mid([g.xH, g.top], dr.d, [g.xD, g.yS]),
+      mid([g.xS, g.yS], dr.r, [g.xR, g.y0])
+    ];
+    const tens = tm.map((m) => ({ x: f(m[0]), y: f(m[1]), rx: f(m[0] - 4.5), ry: f(m[1] - 4.5), rot: 'rotate(45 ' + f(m[0]) + ' ' + f(m[1]) + ')' }));
+    const hp = [['a', g.xA, g.top], ['h', g.xH, g.top], ['d', g.xD, g.yS], ['r', g.xR, g.y0]];
+    const hs = hp.map((q) => ({ x: f(q[1]), y: f(q[2]), ring: sel === q[0] ? 12 : 0, ringOp: sel === q[0] ? 1 : 0 }));
+    const selPt = hp.find((q) => q[0] === sel);
+    const vg = [], hg = [];
+    for (let i = 1; i < 8; i++) vg.push({ x: f(W / 8 * i) });
+    [0.25, 0.5, 0.75].forEach((q) => hg.push({ y: f(pad + q * ih) }));
+    const press = st === 'pressed' && !!selPt;
+    const tx = selPt ? Math.min(W - 34, Math.max(34, selPt[1])) : 0;
+    const ty = selPt ? Math.max(4, selPt[2] - 42) : 0;
+    const vals = { a: p.tA || '2 ms', h: p.tH || '0 ms', d: p.tD || '180 ms', s: p.tS || '60%', r: p.tR || '260 ms' };
+    return {
+      W: W, H: H,
+      stCls: 'st-' + st,
+      boxStyle: 'width:' + W + 'px' + (st === 'disabled' ? ';opacity:.45' : ''),
+      svgBox: 'width:' + W + 'px;height:' + H + 'px',
+      rowStyle: 'width:' + W + 'px',
+      vg: vg, hg: hg,
+      pathD: dr.path,
+      fillD: dr.path + ' L' + f(g.xR) + ' ' + f(g.y0) + ' L' + f(g.x0) + ' ' + f(g.y0) + ' Z',
+      ghostD: ghost.path,
+      showGhost: st === 'modulated',
+      lineCol: st === 'disabled' ? '#8e979d' : '#f2b33d',
+      lineDash: st === 'disabled' ? '6 5' : '0',
+      tens: tens, hs: hs,
+      showPress: press,
+      px: selPt ? f(selPt[1]) : 0, py: selPt ? f(selPt[2]) : 0,
+      tipX: f(tx - 31), tipY: f(ty), tipTx: f(tx), tipTy: f(ty + 15),
+      tipTxt: sel === 'a' ? vals.a : sel === 'h' ? vals.h : sel === 'd' ? vals.d : vals.r,
+      showMod: st === 'modulated', showAuto: st === 'automated', isOff: st === 'disabled',
+      tA: vals.a, tH: vals.h, tD: vals.d, tS: vals.s, tR: vals.r
+    };
+  }
+}
+</script>
+</body>
+</html>

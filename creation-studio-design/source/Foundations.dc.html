@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Foundations</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="synth.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Permanent+Marker&display=swap">
+<style>body{margin:0;background:#33404a}</style>
+</helmet>
+<div class="sx" style="width: 1440px; height: 2900px; padding: 56px 64px">
+<div class="r jb ast" style="gap: 48px">
+<div class="c g16" style="width: 760px">
+<span class="tape l" style="align-self: flex-start">Synth tab</span>
+<h1 class="h1" style="margin: 0; font-size: 56px">A console you can hold in one hand.</h1>
+<p class="body" style="margin: 0; font-size: 17px; max-width: 700px">A modular synth and a DAW for psytrance and cinematic textures, inside Creation Studio. Local synthesis and AI generation sit side by side. The workflow is familiar to anyone who knows a channel rack, a playlist, a piano roll and a mixer. The look is ours: steel panels, masking-tape labels written in marker, amber for signal, red for recording and money.</p>
+</div>
+<div class="plate c g8" style="width: 500px; padding: 16px">
+<span class="h2">Design order</span>
+<div class="r g12"><span class="tape s">1</span><span class="body"><b>Android phone, Chrome, 412 px portrait.</b> Landscape for Playlist, Roll and Mixer.</span></div>
+<div class="r g12"><span class="tape s">2</span><span class="body"><b>Desktop, 1440 px.</b> Same app, panels docked side by side.</span></div>
+<div class="r g12"><span class="tape s">3</span><span class="body"><b>Plugin window, about 900 × 600.</b> One module faceplate, later.</span></div>
+</div>
+</div>
+
+<div class="c g12" style="margin-top: 48px">
+<span class="h2">Colour · tokens kept, a few added</span>
+<sc-for list="{{ groups }}" as="g" hint-placeholder-count="5">
+<div class="c g8" style="margin-top: 8px">
+<span class="lbl">{{ g.title }}</span>
+<div style="display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 12px">
+<sc-for list="{{ g.items }}" as="i" hint-placeholder-count="6">
+<div class="plate c g6" style="padding: 8px">
+<div class="swatch" style="{{ i.st }}"></div>
+<span class="b" style="font-size: 13px">{{ i.name }}</span>
+<span class="sm dim b">{{ i.hex }}</span>
+<span class="sm dim">{{ i.role }}</span>
+</div>
+</sc-for>
+</div>
+</div>
+</sc-for>
+</div>
+
+<div class="r g24 ast" style="margin-top: 40px">
+<div class="plate c g12 f1" style="padding: 16px">
+<span class="h2">Type</span>
+<div class="c g4"><span class="lbl">Archivo Variable · width 62–125, tabular numbers</span>
+<span style="font-size: 30px; font-weight: 700; font-stretch: 62%">CUTOFF 1.2 kHz · Condensed 62</span>
+<span style="font-size: 30px; font-weight: 700; font-stretch: 80%">Cutoff 1.2 kHz · Dense labels 80</span>
+<span style="font-size: 30px; font-weight: 500; font-stretch: 100%">Cutoff 1.2 kHz · Body 100</span></div>
+<div class="c g4"><span class="lbl">Numbers never jump: tabular figures</span>
+<span style="font-size: 26px; font-weight: 700; letter-spacing: .02em">012:3:04 · 146.0 BPM · −12.0 dB</span></div>
+<div class="c g8"><span class="lbl">Permanent Marker · only on tape</span>
+<div class="r g8 wrap"><span class="tape l">Rolling Bass</span><span class="tape">1.2 kHz</span><span class="tape s">Take 2</span></div>
+<span class="sm dim">Body text 14 px at 9.0:1, dim text 5.9:1 (5.0:1 on plates). Marker is never used for paragraphs.</span></div>
+</div>
+<div class="plate c g12" style="width: 520px; padding: 16px">
+<span class="h2">Cables · three types, never colour alone</span>
+<div class="r g12"><svg width="120" height="30" viewBox="0 0 120 30" aria-hidden="true"><path d="M4 15 L96 15" stroke="#f2b33d" stroke-width="4.5" stroke-linecap="round"></path><circle cx="108" cy="15" r="7" fill="#f2b33d" stroke="#2a353d" stroke-width="3"></circle></svg><div class="c"><span class="b">Audio</span><span class="sm dim">amber · solid · round port</span></div></div>
+<div class="r g12"><svg width="120" height="30" viewBox="0 0 120 30" aria-hidden="true"><path d="M4 15 L96 15" stroke="#4a7fc1" stroke-width="3.5" stroke-dasharray="9 5"></path><rect x="101" y="8" width="14" height="14" rx="2" fill="#4a7fc1"></rect></svg><div class="c"><span class="b">Notes and events</span><span class="sm dim">blue · dashed · square port</span></div></div>
+<div class="r g12"><svg width="120" height="30" viewBox="0 0 120 30" aria-hidden="true"><path d="M4 15 L96 15" stroke="#5ba67a" stroke-width="3.5" stroke-dasharray="1 6" stroke-linecap="round"></path><rect x="101" y="8" width="14" height="14" fill="#5ba67a" transform="rotate(45 108 15) scale(.8)" style="transform-origin: 108px 15px"></rect></svg><div class="c"><span class="b">Modulation</span><span class="sm dim">green · dotted · diamond port</span></div></div>
+<div class="callout">Only compatible ports light up while connecting. Tap port A, then port B. Dragging also works.</div>
+</div>
+</div>
+
+<div class="r g24 ast" style="margin-top: 24px">
+<div class="plate c g12 f1" style="padding: 16px">
+<span class="h2">Surfaces</span>
+<div class="r g12 ast">
+<div class="c g6 f1"><div class="plate" style="height: 72px"></div><span class="sm b">Plate</span><span class="sm dim">slate-lift, top light edge, seam under it</span></div>
+<div class="c g6 f1"><div class="well" style="height: 72px"></div><span class="sm b">Well</span><span class="sm dim">slate-deep, inset shadow: meters, lanes, LCDs</span></div>
+<div class="c g6 f1"><div class="r jc" style="height: 72px"><span class="tape l">Tape</span></div><span class="sm b">Tape</span><span class="sm dim">names and values only, slightly crooked</span></div>
+<div class="c g6 f1"><div class="r jc" style="height: 72px"><button class="btn big">Key</button></div><span class="sm b">Key</span><span class="sm dim">aluminium, presses 2 px into the panel</span></div>
+</div>
+<span class="sm dim">Brushed grain: horizontal 1 px lines at 1.6 % white across every panel. No gradients as decoration and no glow, except a lit lamp.</span>
+</div>
+<div class="plate c g8 f1" style="padding: 16px">
+<span class="h2">Meaning of colour</span>
+<div class="r g12"><i class="adi" style="width: 16px; height: 16px"></i><span class="body"><b>Amber</b> signal, level, playhead, focus ring, lit lamps.</span></div>
+<div class="r g12"><i class="dot" style="width: 16px; height: 16px; background: var(--tally); border-color: var(--tally)"></i><span class="body"><b>Tally red</b> recording, anything that costs money, destructive. Always with an icon or a price.</span></div>
+<div class="r g12"><i class="dot" style="width: 16px; height: 16px; background: var(--red)"></i><span class="body"><b>Cap colours</b> channel identity on fader caps, blocks and cables, always beside a name or number.</span></div>
+<div class="r g12"><i class="mdi" style="margin: 3px"></i><span class="body"><b>Green</b> modulation: ring on knobs, cables, routes.</span></div>
+</div>
+</div>
+
+<div class="c g12" style="margin-top: 32px">
+<span class="h2">One layout, four sizes</span>
+<div class="r g24 aend">
+<div class="c g6"><div class="well c" style="width: 150px; height: 300px; padding: 4px; gap: 4px"><div class="plate" style="height: 20px"></div><div class="plate c jc" style="height: 44px; padding: 4px; gap: 3px"><div class="deep" style="height: 14px"></div><div class="deep" style="height: 14px"></div></div><div class="f1 well c jc" style="padding: 6px"><span class="lbl">view</span></div><div class="plate r jb" style="height: 34px; padding: 3px"><i class="nv on" style="min-width: 14px; min-height: 20px; flex: 1"></i><i style="flex: 1; height: 20px; background: var(--slate-deep)"></i><i style="flex: 1; height: 20px; background: var(--slate-deep)"></i><i style="flex: 1; height: 20px; background: var(--slate-deep)"></i></div></div><span class="sm b">Phone · portrait 412</span><span class="sm dim" style="max-width: 150px">Two-row transport, view in the middle, seven-item nav at the thumb.</span></div>
+<div class="c g6"><div class="well c" style="width: 300px; height: 150px; padding: 4px; gap: 4px"><div class="plate" style="height: 20px"></div><div class="r f1" style="gap: 4px"><div class="plate" style="width: 26px"></div><div class="f1 well c jc" style="padding: 6px"><span class="lbl">playlist · roll · mixer</span></div></div></div><span class="sm b">Phone · landscape 892</span><span class="sm dim" style="max-width: 300px">One-row transport, nav becomes a left rail, the view gets the full width.</span></div>
+<div class="c g6"><div class="well c" style="width: 470px; height: 270px; padding: 4px; gap: 4px"><div class="plate" style="height: 20px"></div><div class="plate" style="height: 18px"></div><div class="r f1" style="gap: 4px"><div class="plate f1 c jc" style="padding: 6px"><span class="lbl">rack</span></div><div class="well f1 c jc" style="padding: 6px; flex-grow: 2"><span class="lbl">playlist or roll or patch</span></div><div class="plate f1 c jc" style="padding: 6px"><span class="lbl">inspector · mod</span></div></div><div class="plate" style="height: 60px"></div></div><span class="sm b">Desktop · 1440</span><span class="sm dim" style="max-width: 470px">Top tabs, a transport row, side panels and a dock. Two views can be open at once.</span></div>
+<div class="c g6"><div class="well c" style="width: 250px; height: 170px; padding: 4px; gap: 4px"><div class="plate" style="height: 18px"></div><div class="r" style="gap: 4px; height: 56px"><div class="plate f1"></div><div class="plate f1"></div><div class="plate f1"></div></div><div class="r f1" style="gap: 4px"><div class="plate f1"></div><div class="plate f1"></div><div class="plate" style="width: 30px"></div></div></div><span class="sm b">Plugin · 900 × 600</span><span class="sm dim" style="max-width: 250px">A single module faceplate. Same knobs, same tape.</span></div>
+</div>
+</div>
+
+<div class="r g24 ast" style="margin-top: 32px">
+<div class="plate c g8 f1" style="padding: 16px">
+<span class="h2">Hard rules · how they are met</span>
+<sc-for list="{{ rules }}" as="r" hint-placeholder-count="6">
+<div class="r g12 ast"><span class="badge" style="flex: none; min-width: 78px; justify-content: center">{{ r.k }}</span><span class="body">{{ r.v }}</span></div>
+</sc-for>
+</div>
+<div class="plate c g8" style="width: 620px; padding: 16px">
+<span class="h2">Familiar workflow, own identity</span>
+<sc-for list="{{ fl }}" as="r" hint-placeholder-count="6">
+<div class="r g8 ast" style="border-bottom: 1px solid var(--seam); padding-bottom: 6px"><span class="tape s" style="flex: none; width: 96px; text-align: center">{{ r.a }}</span><span class="b" style="flex: none; width: 76px">{{ r.b }}</span><span class="sm dim">{{ r.c }}</span></div>
+</sc-for>
+</div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":2900}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const sw = (name, hex, role) => ({ name: name, hex: hex, role: role, st: 'background:' + hex });
+    const groups = [
+      { title: 'Panels', items: [sw('slate', '#33404a', 'console panel, page background'), sw('slate-deep', '#2a353d', 'recesses, wells, channel gutters'), sw('slate-lift', '#3d4b56', 'raised faceplates'), sw('seam', '#232c33', 'panel seams, dividers')] },
+      { title: 'Metal, tape, ink', items: [sw('alu', '#c5cbcf', 'knobs, keys, buttons'), sw('alu-dim', '#8e979d', 'secondary controls, never text'), sw('tape', '#e6d6a2', 'scribble-strip labels only'), sw('tape-shadow', '#b9a978', 'tape edge'), sw('ink', '#1f2a33', 'marker on tape, 10:1')] },
+      { title: 'Signal and text', items: [sw('amber', '#f2b33d', 'signal, meters, playhead, focus · 5.7:1'), sw('tally', '#e0452b', 'recording, money, destructive · borders and fills'), sw('text', '#e9ecee', 'body text · 8.9:1'), sw('text-dim', '#b8c2c9', 'secondary text · 5.9:1, 5.0:1 on plates')] },
+      { title: 'Channel caps', items: [sw('red', '#d9483b', 'cap, block, cable'), sw('yellow', '#e8c547', 'cap, block, cable'), sw('blue', '#4a7fc1', 'cap, block · notes cable'), sw('white', '#eef0f1', 'cap, block'), sw('green', '#5ba67a', 'cap, block · modulation cable')] },
+      { title: 'Added, so text always passes', items: [sw('tally-text', '#ffa594', 'red as text · 5.6:1, 4.7:1 on plates'), sw('blue-text', '#a0c3ef', 'blue as text · 5.9:1, 4.9:1 on plates'), sw('green-text', '#8fd1a9', 'green as text · 6.0:1'), sw('well', '#1c2429', 'meter wells, LCD glass'), sw('alu-shade', '#6c757b', 'underside of a key'), sw('amber-off', '#4d4020', 'an unlit lamp')] }
+    ];
+    const rules = [
+      { k: 'Touch', v: 'Every target is at least 44 × 44 px. Step cells, ports, faders and toggles are 44 px on touch; a dense 26 to 36 px mode appears only for pointer devices. Note rows in the roll stay 44 px through Fold to scale.' },
+      { k: 'Not by colour', v: 'Ports differ by shape, cables by line style, lit states by a lamp and a raised or pressed key, meters by a CLIP word as well as the red lamp, mute and solo by lamp and label.' },
+      { k: 'Contrast', v: 'Body text 9.0:1 on slate, dim text 5.9:1 and 5.0:1 on plates, ink on tape 10:1. Red and blue text use lighter tally-text and blue-text tokens.' },
+      { k: 'Motion', v: 'Only three things move: the playhead, the recording lamp and a rendering pulse. Under reduced motion the pulses stop and state stays readable as text and a bar.' },
+      { k: 'No side scroll', v: 'The page never scrolls sideways. Only the timeline and roll canvases pan, and each shows a scroll thumb and an edge cue.' },
+      { k: 'Drag or tap', v: 'Every drag has a tap alternative: tap a knob for number entry with − and +, tap a note or handle for an inspector with steppers, tap port A then port B.' }
+    ];
+    const fl = [
+      { a: 'Channel rack', b: 'Rack', c: 'Channel tapes with mini step rows. Tap opens a 44 px step grid with velocity and accent.' },
+      { a: 'Playlist', b: 'Playlist', c: 'Reusable pattern blocks in three kinds, named on tape, previews drawn in ink.' },
+      { a: 'Piano roll', b: 'Roll', c: 'Fold to scale, ghost notes, a note inspector with steppers.' },
+      { a: 'Mixer', b: 'Mixer', c: 'Faders with channel-colour caps and honest amber stereo meters.' },
+      { a: 'Automation clip', b: 'Blocks', c: 'A pattern block that shows its curve. Edited with points, tension handles and a pencil.' },
+      { a: 'Patcher', b: 'Patch', c: 'Modules as faceplates, three cable types, tap-to-connect.' }
+    ];
+    return { groups: groups, rules: rules, fl: fl };
+  }
+}
+</script>
+</body>
+</html>

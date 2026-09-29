@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Knob</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="synth.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Permanent+Marker&display=swap">
+<style>body{margin:0;background:#3d4b56}</style>
+</helmet>
+<div class="sx" style="display: inline-block; overflow: visible; background: none; padding: 0">
+<div class="knob {{stCls}}">
+<span class="k-name">{{name}}</span>
+<div class="k-fig">
+<svg width="{{px}}" height="{{px}}" viewBox="0 0 64 64" aria-hidden="true">
+<path d="M13.62 50.38 A26 26 0 1 1 50.38 50.38" pathLength="100" fill="none" stroke="#232c33" stroke-width="4" stroke-linecap="round"></path>
+<path d="M13.62 50.38 A26 26 0 1 1 50.38 50.38" pathLength="100" fill="none" stroke="{{valStroke}}" stroke-width="4" stroke-linecap="round" stroke-dasharray="{{valDash}}"></path>
+<sc-if value="{{ showMod }}" hint-placeholder-val="{{ false }}">
+<path d="M10.79 53.21 A30 30 0 1 1 53.21 53.21" pathLength="100" fill="none" stroke="#5ba67a" stroke-width="3" stroke-dasharray="{{modDash}}" stroke-dashoffset="{{modOff}}"></path>
+<circle cx="{{lx}}" cy="{{ly}}" r="3.4" fill="#5ba67a" stroke="#1c2429" stroke-width="1.5"></circle>
+</sc-if>
+<circle cx="32" cy="32" r="18" fill="#c5cbcf"></circle>
+<circle cx="32" cy="32" r="18" fill="none" stroke="#8e979d" stroke-width="2" stroke-dasharray="1 1.4"></circle>
+<circle cx="32" cy="32" r="12" fill="#b6bdc2"></circle>
+<line x1="32" y1="17" x2="32" y2="27" stroke="#1f2a33" stroke-width="3.2" stroke-linecap="round" transform="{{rot}}"></line>
+</svg>
+<sc-if value="{{ showAuto }}" hint-placeholder-val="{{ false }}"><i class="k-auto"></i></sc-if>
+</div>
+<span class="tape s">{{readout}}</span>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"value":{"editor":null,"default":"50"},"label":{"editor":null,"default":"CUTOFF"},"readout":{"editor":null,"default":"1.2 kHz"},"state":{"editor":null,"default":"default"},"size":{"editor":null,"default":"md"},"modStart":{"editor":null,"default":"0"},"modLen":{"editor":null,"default":"0"},"auto":{"editor":null,"default":"0"},"$preview":{"width":120,"height":140}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const p = this.props;
+    const n = (v, d) => { const x = parseFloat(v); return isNaN(x) ? d : x; };
+    const value = Math.max(0, Math.min(100, n(p.value, 50)));
+    const st = p.state || 'default';
+    const size = p.size || 'md';
+    const px = size === 'sm' ? 44 : size === 'lg' ? 76 : 60;
+    let modLen = n(p.modLen, 0);
+    let modStart = n(p.modStart, 0);
+    if (st === 'modulated' && modLen === 0) { modStart = 35; modLen = 30; }
+    const showMod = modLen > 0;
+    const ang = (135 + 270 * ((modStart + modLen * 0.6) / 100)) * Math.PI / 180;
+    const auto = p.auto === '1' || st === 'automated';
+    return {
+      px: px,
+      stCls: 'st-' + st + ' k-' + size,
+      name: p.label || '',
+      readout: st === 'disabled' ? '—' : (auto ? 'A ' : '') + (p.readout || ''),
+      rot: 'rotate(' + (-135 + 2.7 * value) + ' 32 32)',
+      valDash: value + ' 100',
+      valStroke: st === 'disabled' ? '#8e979d' : '#e9ecee',
+      modDash: modLen + ' 100',
+      modOff: String(-modStart),
+      showMod: showMod,
+      showAuto: auto,
+      lx: (32 + 30 * Math.cos(ang)).toFixed(2),
+      ly: (32 + 30 * Math.sin(ang)).toFixed(2)
+    };
+  }
+}
+</script>
+</body>
+</html>

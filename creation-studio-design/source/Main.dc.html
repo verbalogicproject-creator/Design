@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Phone · Rack</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="synth.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Permanent+Marker&display=swap">
+<style>body{margin:0;background:#33404a}</style>
+</helmet>
+<div class="sx ph" style="width: 412px; height: 880px">
+<div class="ph-hdr">
+<b class="h3">Synth</b>
+<span class="tape s">Rolling Bass 03</span>
+<span class="f1"></span>
+<button class="btn ghost sq" aria-label="Undo"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#e9ecee" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 7L4 12l5 5M4 12h10a5 5 0 0 1 0 10h-3"></path></svg></button>
+<button class="btn ghost sq" aria-label="Redo"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#e9ecee" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7l5 5-5 5M20 12H10a5 5 0 0 0 0 10h3"></path></svg></button>
+<span class="rev"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#8fd1a9" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5 11-11"></path></svg>saved r12</span>
+</div>
+<div style="flex: none; height: 106px">
+<dc-import name="Transport" mode="phone" pos="012:3:04" bpm="146.0" cpu="72" lost="2" playing="1" rec="0" loop="1" hint-size="412px,106px"></dc-import>
+</div>
+<div class="ph-body">
+<div class="sec jb" style="height: 48px">
+<span class="h2">Channel rack · 6</span>
+<button class="btn" aria-label="Add module"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1f2a33" stroke-width="3" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg>Add module</button>
+</div>
+<sc-for list="{{ chans }}" as="ch" hint-placeholder-count="6">
+<div class="rk {{ ch.rowCls }}">
+<div class="r g8 rkin" style="height: 50px">
+<i class="chcap {{ ch.capCls }}" style="height: 40px"></i>
+<span class="chnum">{{ ch.num }}</span>
+<span class="tape" style="max-width: 130px; overflow: hidden; text-overflow: ellipsis">{{ ch.name }}</span>
+<span class="sm dim b f1" style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap">{{ ch.inst }}</span>
+<button class="btn sq tg m {{ ch.mCls }}" aria-label="Mute {{ ch.name }}" aria-pressed="{{ ch.mute }}">M</button>
+<button class="btn sq tg s {{ ch.sCls }}" aria-label="Solo {{ ch.name }}" aria-pressed="{{ ch.solo }}">S</button>
+</div>
+<div class="r g8 rkin" style="height: 46px; padding-left: 24px">
+<div class="hf"><input type="range" class="ovl" min="0" max="100" value="{{ ch.vol }}" aria-label="Volume {{ ch.name }}" aria-valuetext="{{ ch.db }}"><i class="slot"></i><i class="hfcap {{ ch.capCls }}" style="{{ ch.capSt }}"></i></div>
+<button class="db-btn" aria-label="Volume {{ ch.name }} {{ ch.db }}. Tap to type a value.">{{ ch.db }}</button>
+<div class="r f1" style="min-width: 0; justify-content: flex-end">
+<sc-if value="{{ ch.hasSteps }}" hint-placeholder-val="{{ true }}"><dc-import name="StepRow" pat="{{ ch.pat }}" cell="12" cols="16" head="{{ ch.head }}" hint-size="183px,16px"></dc-import></sc-if>
+<sc-if value="{{ ch.isAudio }}" hint-placeholder-val="{{ false }}"><span class="chip" style="min-height: 26px">audio clip · no steps</span></sc-if>
+</div>
+</div>
+</div>
+</sc-for>
+</div>
+<div style="flex: none; height: 60px">
+<dc-import name="Nav" mode="bottom" active="rack" hint-size="412px,60px"></dc-import>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":412,"height":880}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const rows = [
+      { num: '1', name: 'Kick', inst: 'Kick', color: 'red', pat: 'a...x...x...x...', vol: 82, db: '−1.5 dB' },
+      { num: '2', name: 'Rolling Bass', inst: 'Psy Bass', color: 'yellow', pat: '.xoo.xoo.xoo.xoa', vol: 78, db: '−3.0 dB', sel: true },
+      { num: '3', name: 'Hats', inst: 'Sampler', color: 'white', pat: '..x...x...x...x.', vol: 64, db: '−7.5 dB', solo: true },
+      { num: '4', name: 'Clap', inst: 'Sampler', color: 'blue', pat: '....x.......x...', vol: 70, db: '−5.0 dB', mute: true },
+      { num: '5', name: 'Lead arp', inst: 'Poly Synth', color: 'green', pat: 'xoloxolox.lox.lo', vol: 60, db: '−9.0 dB' },
+      { num: '6', name: 'Forest pad', inst: 'Audio Player', color: 'green', pat: '', vol: 52, db: '−11 dB', audio: true }
+    ];
+    return {
+      chans: rows.map((r) => ({
+        num: r.num, name: r.name, inst: r.inst, capCls: 'cap-' + r.color,
+        rowCls: (r.sel ? 'sel' : '') + (r.mute ? ' dimmed' : ''),
+        mCls: r.mute ? 'on' : '', sCls: r.solo ? 'on' : '', mute: !!r.mute, solo: !!r.solo,
+        capSt: 'left:' + Math.round(11 + (112 - 22) * r.vol / 100) + 'px',
+        db: r.db, vol: String(r.vol), pat: r.pat, hasSteps: !r.audio, isAudio: !!r.audio, head: r.audio ? '-1' : '5'
+      }))
+    };
+  }
+}
+</script>
+</body>
+</html>

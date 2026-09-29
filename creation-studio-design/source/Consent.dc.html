@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Phone · Cloud consent sheet</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="synth.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Permanent+Marker&display=swap">
+<style>body{margin:0;background:#33404a}</style>
+</helmet>
+<div class="sx" style="width: 412px; height: 880px">
+<dc-import name="SingReview" hint-size="412px,880px"></dc-import>
+<div class="scrim"></div>
+<div class="sheet" role="dialog" aria-label="Send your voice to the cloud?">
+<div class="grab"></div>
+<div class="r g12 ast">
+<span class="toast" style="padding: 8px; box-shadow: none"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#e9ecee" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 18a4 4 0 0 1-.5-8A6 6 0 0 1 18 9a4.5 4.5 0 0 1 0 9zM12 15v-5M9.5 12L12 9.5 14.5 12"></path></svg></span>
+<div class="c f1"><span class="h3">Send your voice to the cloud?</span><span class="sm dim">Polish with AI cleans up pitch and timing. It needs to upload Take 1.</span></div>
+</div>
+<div class="c g8" style="margin-top: 12px">
+<div class="r g8 ast body"><span class="tape s" style="flex: none; width: 64px; text-align: center">Sent</span><span class="f1">Take 1, 12 seconds of your voice, as audio.</span></div>
+<div class="r g8 ast body"><span class="tape s" style="flex: none; width: 64px; text-align: center">To</span><span class="f1">Google Lyria, to clean up pitch and timing.</span></div>
+<div class="r g8 ast body"><span class="tape s" style="flex: none; width: 64px; text-align: center">Kept</span><span class="f1">How long they keep it is set by the provider. <b style="text-decoration: underline">Read their terms</b></span></div>
+</div>
+<label class="r g12" style="margin-top: 12px; min-height: 44px"><span class="check"><input type="checkbox" class="ovl" checked><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#f2b33d" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5 11-11"></path></svg></span><span class="f1 body">Everyone heard in this recording has said this is OK, including family.</span></label>
+<div class="r g12" style="min-height: 44px">
+<button class="btn tg on tiny" style="min-height: 44px" aria-pressed="true">Ask</button>
+<span class="f1 sm dim">Ask every time. Voice and family audio always asks.</span>
+</div>
+<div class="r g8" style="margin-top: 10px">
+<button class="btn ghost big f1">Keep on device</button>
+<button class="cost big f1" style="justify-content: center" aria-label="Send and polish, costs 4 cents"><span class="coin">$</span>Send &amp; polish · <span class="price">$0.04</span></button>
+</div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":412,"height":880}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

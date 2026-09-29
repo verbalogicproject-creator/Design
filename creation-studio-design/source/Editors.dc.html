@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Library · Editors</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="synth.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Permanent+Marker&display=swap">
+<style>body{margin:0;background:#33404a}</style>
+</helmet>
+<div class="sx" style="width: 1440px; height: 2700px; padding: 56px 64px">
+<div class="r g16"><span class="tape l">Editors</span><span class="h2">Curves, blocks and lanes</span></div>
+
+<div class="c g12" style="margin-top: 32px">
+<div class="r jb"><span class="h3">4 · Envelope curve editor · AHDSR</span><span class="sm dim">Round handles move time and level. Diamonds bend the curve of a stage. Tap any handle for its number field.</span></div>
+<div class="grid3">
+<sc-for list="{{ envs }}" as="e" hint-placeholder-count="6">
+<div class="state-card"><dc-import name="EnvCurve" w="380" h="140" state="{{ e.state }}" sel="{{ e.sel }}" a="{{ e.a }}" hold="4" d="24" s="58" r="26" hint-size="380px,190px"></dc-import><span class="cap">{{ e.cap }}</span><span class="dsc">{{ e.dsc }}</span></div>
+</sc-for>
+</div>
+<div class="r g16 ast">
+<div class="plate c g8" style="width: 420px; padding: 12px">
+<div class="r jb"><span class="tape s">Decay</span><span class="sm dim">tap the handle</span></div>
+<div class="r g6"><button class="btn ghost sq" aria-label="Shorter">−</button><div class="field f1 focus" style="justify-content: flex-end; font-weight: 700; font-size: 20px">180<span class="sm dim" style="margin-left: 6px">ms</span></div><button class="btn ghost sq" aria-label="Longer">+</button></div>
+<div class="r g6"><span class="lbl" style="width: 52px">Shape</span><div class="seg f1"><button class="btn f1 sq">Slow</button><button class="btn f1 sq on">Lin</button><button class="btn f1 sq">Fast</button></div></div>
+</div>
+<div class="callout f1">Curve shape per stage lives on the diamond: pull toward the corner for a fast start, away for a slow start. Sustain is the level of the third handle. Hold and sustain length are fixed so the picture stays readable on 412 px.</div>
+</div>
+</div>
+
+<div class="c g12" style="margin-top: 36px">
+<div class="r jb"><span class="h3">5 · EQ curve · five bands</span><span class="sm dim">The spectrum sits behind the curve. Band dots are numbered, so colour is only a second cue.</span></div>
+<div class="grid3">
+<sc-for list="{{ eqs }}" as="e" hint-placeholder-count="6">
+<div class="state-card"><dc-import name="EqCurve" w="410" h="210" state="{{ e.state }}" sel="{{ e.sel }}" hint-size="410px,210px"></dc-import><span class="cap">{{ e.cap }}</span><span class="dsc">{{ e.dsc }}</span></div>
+</sc-for>
+</div>
+</div>
+
+<div class="c g12" style="margin-top: 36px">
+<div class="r jb"><span class="h3">8 · Pattern blocks</span><span class="sm dim">Channel colour fills the block. The name is written on tape. Ink shows the content. Grips at both ends resize.</span></div>
+<div class="grid5" style="grid-template-columns: 110px repeat(5, minmax(0, 1fr))">
+<span></span><span class="lbl">Default</span><span class="lbl">Hover · focus · selected</span><span class="lbl">Pressed · moving</span><span class="lbl">Disabled · muted</span><span class="lbl">Automated</span>
+<sc-for list="{{ blocks }}" as="b" hint-placeholder-count="3">
+<div class="c g2 jc"><span class="tape s" style="align-self: flex-start">{{ b.kind }}</span><span class="sm dim">{{ b.note }}</span></div>
+<div class="plate r jc" style="padding: 14px 8px"><dc-import name="PatternBlock" kind="{{ b.k }}" label="{{ b.name }}" color="{{ b.color }}" w="190" h="52" seed="{{ b.seed }}" hint-size="190px,52px"></dc-import></div>
+<div class="plate r jc" style="padding: 14px 8px"><dc-import name="PatternBlock" kind="{{ b.k }}" label="{{ b.name }}" color="{{ b.color }}" w="190" h="52" seed="{{ b.seed }}" sel="1" hint-size="190px,52px"></dc-import></div>
+<div class="plate c" style="padding: 8px 8px 14px; align-items: center; gap: 4px"><span class="tape s">bar 6 · snapped</span><div style="box-shadow: 0 8px 12px rgba(0,0,0,.5); transform: translateY(-4px)"><dc-import name="PatternBlock" kind="{{ b.k }}" label="{{ b.name }}" color="{{ b.color }}" w="190" h="52" seed="{{ b.seed }}" sel="1" hint-size="190px,52px"></dc-import></div></div>
+<div class="plate r jc" style="padding: 14px 8px"><dc-import name="PatternBlock" kind="{{ b.k }}" label="{{ b.name }}" color="{{ b.color }}" w="190" h="52" seed="{{ b.seed }}" muted="1" hint-size="190px,52px"></dc-import></div>
+<div class="plate c" style="padding: 8px 8px 14px; align-items: center; gap: 4px"><span class="badge"><i class="dot"></i> Cutoff · Bass</span><dc-import name="PatternBlock" kind="auto" label="Cutoff sweep" color="{{ b.color }}" w="190" h="52" seed="{{ b.seed }}" hint-size="190px,52px"></dc-import></div>
+</sc-for>
+</div>
+<div class="callout">Modulated does not apply to a block itself. The green ~ appears on the parameter that an automation block drives, and the automation block is the block form of it.</div>
+</div>
+
+<div class="c g12" style="margin-top: 36px">
+<div class="r jb"><span class="h3">9 · Automation lane and clip</span><span class="sm dim">Points, lines, curve-tension handles, a pencil mode. Tap a point for its number fields.</span></div>
+<div class="r g16 ast">
+<div class="plate c g8 f1" style="padding: 12px">
+<div class="r jb">
+<div class="r g8"><span class="tape">Bass · Cutoff</span><span class="badge"><i class="dot"></i> automation</span></div>
+<div class="seg" role="group" aria-label="Lane tool"><button class="btn on" aria-pressed="true">Point</button><button class="btn" aria-pressed="false">Pencil</button><button class="btn" aria-pressed="false">Line</button></div>
+</div>
+<div class="canvas-box">
+<svg width="800" height="230" viewBox="0 0 800 230" role="img" aria-label="Cutoff automation over four bars: five points, three curved segments and one straight">
+<path d="M0 57H800M0 115H800M0 172H800" stroke="#232c33" stroke-width="1" fill="none"></path>
+<path d="M0 0V230M200 0V230M400 0V230M600 0V230M800 0V230" stroke="#4a5a66" stroke-width="1.5" fill="none"></path>
+<path d="M100 0V230M300 0V230M500 0V230M700 0V230" stroke="#232c33" stroke-width="1" fill="none"></path>
+<text x="6" y="16" font-size="11" font-weight="700" fill="#b8c2c9">Bar 5</text><text x="206" y="16" font-size="11" font-weight="700" fill="#b8c2c9">6</text><text x="406" y="16" font-size="11" font-weight="700" fill="#b8c2c9">7</text><text x="606" y="16" font-size="11" font-weight="700" fill="#b8c2c9">8</text>
+<path d="M40 190 C110 190 150 70 220 70 C290 70 330 140 400 140 L560 56 C620 56 690 150 760 150 L760 230 L40 230 Z" fill="#e8c547" fill-opacity="0.12"></path>
+<path d="M40 190 C110 190 150 70 220 70 C290 70 330 140 400 140 L560 56 C620 56 690 150 760 150" fill="none" stroke="#e8c547" stroke-width="3" stroke-linejoin="round"></path>
+<path d="M596 70 L610 90 L624 60 L638 100 L652 66" fill="none" stroke="#eef0f1" stroke-width="2" stroke-dasharray="4 3" opacity="0"></path>
+<g stroke="#1f2a33" stroke-width="1.5"><rect x="123" y="93" width="9" height="9" transform="rotate(45 127.5 97.5)" fill="#8e979d"></rect><rect x="303" y="99" width="9" height="9" transform="rotate(45 307.5 103.5)" fill="#8e979d"></rect><rect x="473" y="93" width="9" height="9" transform="rotate(45 477.5 97.5)" fill="none" stroke="#8e979d" stroke-dasharray="2 2"></rect><rect x="641" y="92" width="9" height="9" transform="rotate(45 645.5 96.5)" fill="#8e979d"></rect></g>
+<g stroke="#1f2a33" stroke-width="2.5" fill="#c5cbcf"><circle cx="40" cy="190" r="7"></circle><circle cx="220" cy="70" r="7"></circle><circle cx="400" cy="140" r="7"></circle><circle cx="560" cy="56" r="7"></circle><circle cx="760" cy="150" r="7"></circle></g>
+<circle cx="400" cy="140" r="13" fill="none" stroke="#f2b33d" stroke-width="2.5"></circle>
+<rect x="362" y="96" width="76" height="24" fill="#e6d6a2"></rect>
+<text x="400" y="113" text-anchor="middle" font-family="Permanent Marker, cursive" font-size="13" fill="#1f2a33">7.1 · 34%</text>
+</svg>
+</div>
+<div class="r g16 wrap">
+<div class="r g6"><span class="lbl" style="width: 44px">Time</span><div class="step-b"><button class="btn ghost sq" aria-label="Earlier">−</button><span class="v">7.1.1</span><button class="btn ghost sq" aria-label="Later">+</button></div></div>
+<div class="r g6"><span class="lbl" style="width: 44px">Value</span><div class="step-b"><button class="btn ghost sq" aria-label="Lower">−</button><span class="v">34 %</span><button class="btn ghost sq" aria-label="Higher">+</button></div></div>
+<div class="r g6"><span class="lbl" style="width: 44px">Curve</span><div class="seg"><button class="btn sq">Step</button><button class="btn sq on">Lin</button><button class="btn sq">Bend</button></div></div>
+</div>
+</div>
+<div class="c g8" style="width: 400px">
+<div class="plate c g8" style="padding: 12px"><span class="lbl">Pencil mode</span>
+<div class="canvas-box"><svg width="374" height="90" viewBox="0 0 374 90" role="img" aria-label="Freehand pencil line snapped to a grid"><path d="M0 60H374M0 30H374" stroke="#232c33"></path><path d="M10 70 L40 70 L40 50 L80 50 L80 30 L120 30 L120 62 L160 62 L160 22 L200 22 L200 48 L240 48 L240 70 L280 70 L280 40 L320 40 L320 24 L364 24" fill="none" stroke="#e8c547" stroke-width="3"></path><circle cx="364" cy="24" r="9" fill="#c5cbcf" stroke="#1f2a33" stroke-width="2.5"></circle></svg></div>
+<span class="sm dim">Freehand draws stepped values on the snap grid, so a shaky finger still gives a clean rhythm. Undo removes one stroke.</span></div>
+<div class="plate c g6" style="padding: 12px"><span class="lbl">States</span>
+<div class="r g8 sm"><span class="badge" style="min-width: 78px">Default</span><span>points and lines at rest</span></div>
+<div class="r g8 sm"><span class="badge" style="min-width: 78px">Selected</span><span>amber ring, tape shows time and value</span></div>
+<div class="r g8 sm"><span class="badge" style="min-width: 78px">Pressed</span><span>guide lines meet at the point</span></div>
+<div class="r g8 sm"><span class="badge" style="min-width: 78px">Disabled</span><span>dashed line, ignores touch</span></div>
+<div class="r g8 sm"><span class="badge gr" style="min-width: 78px">~ Modulated</span><span>ghost green line shows the live result</span></div>
+<div class="r g8 sm"><span class="badge" style="min-width: 78px"><i class="dot"></i> Automated</span><span>this lane is the automation</span></div></div>
+</div>
+</div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":2700}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const envs = [
+      { cap: 'Default', state: 'default', sel: '', a: '10', dsc: 'Handles at rest, diamonds on each curved stage.' },
+      { cap: 'Hover · focus', state: 'focus', sel: 'd', a: '10', dsc: 'Selected handle wears an amber ring.' },
+      { cap: 'Pressed', state: 'pressed', sel: 'a', a: '10', dsc: 'Guide lines and a tape tip show the value while dragging.' },
+      { cap: 'Disabled', state: 'disabled', sel: '', a: '10', dsc: 'Dashed grey line, badge says bypass.' },
+      { cap: 'Modulated', state: 'modulated', sel: '', a: '10', dsc: 'Green dashed ghost is the envelope as modulated right now.' },
+      { cap: 'Automated', state: 'automated', sel: '', a: '10', dsc: 'A dot and the word auto in the corner.' }
+    ];
+    const eqs = [
+      { cap: 'Default', state: 'default', sel: '0', dsc: 'Amber spectrum, white curve, five numbered dots.' },
+      { cap: 'Hover · focus', state: 'focus', sel: '3', dsc: 'Selected band gets an amber ring.' },
+      { cap: 'Pressed', state: 'pressed', sel: '2', dsc: 'Crosshair and a tape tip: 90 Hz +3.5 dB.' },
+      { cap: 'Disabled', state: 'disabled', sel: '0', dsc: 'Flat dashed line, badge says bypass.' },
+      { cap: 'Modulated', state: 'modulated', sel: '0', dsc: 'Band 3 is moved by an LFO: green ghost curve.' },
+      { cap: 'Automated', state: 'automated', sel: '0', dsc: 'Band 3 gain is automated.' }
+    ];
+    const blocks = [
+      { kind: 'MIDI', note: 'Ink notes, tinted by pitch', k: 'midi', name: 'Bass roll', color: 'yellow', seed: '2' },
+      { kind: 'Audio', note: 'Ink waveform', k: 'audio', name: 'Vox idea', color: 'blue', seed: '3' },
+      { kind: 'Automation', note: 'Ink curve with points', k: 'auto', name: 'Cutoff sweep', color: 'red', seed: '7' }
+    ];
+    return { envs: envs, eqs: eqs, blocks: blocks };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Fader with stereo meter</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="synth.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Permanent+Marker&display=swap">
+<style>body{margin:0;background:#3d4b56}</style>
+</helmet>
+<div class="sx" style="display: inline-block; overflow: visible; background: none; padding: 0">
+<div class="fdr {{stCls}}">
+<div class="fdr-clip {{clipCls}}"><i></i><span>{{clipTxt}}</span></div>
+<div class="fdr-body" style="{{bodyStyle}}">
+<sc-if value="{{ scale }}" hint-placeholder-val="{{ false }}">
+<div class="fdr-scale">
+<sc-for list="{{ ticks }}" as="t" hint-placeholder-count="5"><span style="{{ t.st }}">{{ t.txt }}</span></sc-for>
+</div>
+</sc-if>
+<div class="fdr-track">
+<div class="fdr-slot"></div>
+<sc-if value="{{ showMod }}" hint-placeholder-val="{{ false }}"><div class="fdr-mod" style="{{modStyle}}"></div></sc-if>
+<div class="fdr-cap {{capCls}}" style="{{capStyle}}">
+<i class="ln"></i>
+<sc-if value="{{ showAuto }}" hint-placeholder-val="{{ false }}"><i class="fdr-auto"></i></sc-if>
+<sc-if value="{{ pressed }}" hint-placeholder-val="{{ false }}"><span class="tape s fdr-tip">{{readout}}</span></sc-if>
+</div>
+</div>
+<div class="fdr-meter">
+<div class="mt {{clipL}}"><div class="mt-fill" style="{{lStyle}}"></div><i class="mt-grid"></i><i class="mt-pk" style="{{pkLStyle}}"></i></div>
+<div class="mt {{clipR}}"><div class="mt-fill" style="{{rStyle}}"></div><i class="mt-grid"></i><i class="mt-pk" style="{{pkRStyle}}"></i></div>
+</div>
+</div>
+<span class="tape s">{{tapeTxt}}</span>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"value":{"editor":null,"default":"80"},"color":{"editor":null,"default":"yellow"},"h":{"editor":null,"default":"220"},"l":{"editor":null,"default":"55"},"r":{"editor":null,"default":"48"},"pkL":{"editor":null,"default":"70"},"pkR":{"editor":null,"default":"62"},"clip":{"editor":null,"default":"0"},"scale":{"editor":null,"default":"1"},"state":{"editor":null,"default":"default"},"auto":{"editor":null,"default":"0"},"modStart":{"editor":null,"default":"0"},"modLen":{"editor":null,"default":"0"},"readout":{"editor":null,"default":""},"$preview":{"width":120,"height":320}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const p = this.props;
+    const n = (v, d) => { const x = parseFloat(v); return isNaN(x) ? d : x; };
+    const cl = (x) => Math.max(0, Math.min(100, x));
+    const h = n(p.h, 220);
+    const v = cl(n(p.value, 80));
+    const st = p.state || 'default';
+    const pts = [[0, -60], [20, -24], [40, -12], [60, -6], [80, 0], [100, 6]];
+    let db = -60;
+    for (let i = 0; i < pts.length - 1; i++) {
+      if (v <= pts[i + 1][0]) { const a = pts[i], b = pts[i + 1]; db = a[1] + (b[1] - a[1]) * (v - a[0]) / (b[0] - a[0]); break; }
+    }
+    const rd = p.readout || (v <= 1 ? '−∞ dB' : (db > 0 ? '+' : '') + db.toFixed(1).replace('-', '−') + ' dB');
+    const pos = (f) => 'bottom: calc((100% - 26px) * ' + (f / 100).toFixed(3) + ' + 13px)';
+    const ticks = [['+6', 100], ['0', 80], ['−6', 60], ['−12', 40], ['−24', 20]].map((t) => ({ txt: t[0], st: pos(t[1]) }));
+    const clip = p.clip === '1';
+    const mLen = n(p.modLen, 0);
+    const mStart = n(p.modStart, 0);
+    const showMod = mLen > 0 || st === 'modulated';
+    const ms = mLen > 0 ? mStart : 55;
+    const ml = mLen > 0 ? mLen : 22;
+    return {
+      stCls: 'st-' + st,
+      bodyStyle: 'height:' + h + 'px',
+      scale: p.scale !== '0',
+      ticks: ticks,
+      capCls: 'cap-' + (p.color || 'yellow'),
+      capStyle: 'bottom: calc((100% - 26px) * ' + (v / 100).toFixed(3) + ')',
+      showAuto: p.auto === '1' || st === 'automated',
+      showMod: showMod,
+      modStyle: 'bottom: calc((100% - 26px) * ' + (ms / 100).toFixed(3) + ' + 13px); height: calc((100% - 26px) * ' + (ml / 100).toFixed(3) + ')',
+      pressed: st === 'pressed',
+      readout: rd,
+      tapeTxt: st === 'disabled' ? '—' : ((p.auto === '1' || st === 'automated') ? 'A ' : '') + rd,
+      clipCls: clip ? 'on' : '',
+      clipTxt: clip ? 'CLIP' : 'OK',
+      clipL: clip ? 'clipd' : '',
+      clipR: clip ? 'clipd' : '',
+      lStyle: 'height:' + cl(n(p.l, 55)) + '%',
+      rStyle: 'height:' + cl(n(p.r, 48)) + '%',
+      pkLStyle: 'bottom:' + cl(n(p.pkL, 70)) + '%',
+      pkRStyle: 'bottom:' + cl(n(p.pkR, 62)) + '%'
+    };
+  }
+}
+</script>
+</body>
+</html>

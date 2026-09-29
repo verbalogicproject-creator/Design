@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Pattern block</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="synth.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Permanent+Marker&display=swap">
+<style>body{margin:0;background:#2a353d}</style>
+</helmet>
+<div class="sx" style="display: inline-block; overflow: visible; background: none; padding: 0">
+<div class="blk {{stCls}}" style="{{boxStyle}}">
+<i class="grip l"></i><i class="grip r"></i>
+<span class="tape s blk-tape">{{name}}</span>
+<span class="blk-kind">{{kindTxt}}</span>
+<div class="blk-prev">
+<sc-if value="{{ isMidi }}" hint-placeholder-val="{{ true }}">
+<sc-for list="{{ notes }}" as="nt" hint-placeholder-count="8"><i class="nt" style="{{ nt.st }}"></i></sc-for>
+</sc-if>
+<sc-if value="{{ isAudio }}" hint-placeholder-val="{{ false }}">
+<div class="wvw"><sc-for list="{{ bars }}" as="b" hint-placeholder-count="12"><i class="wv" style="{{ b.st }}"></i></sc-for></div>
+</sc-if>
+<sc-if value="{{ isAuto }}" hint-placeholder-val="{{ false }}">
+<svg class="au" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><path d="{{curve}}" fill="none" stroke="#1f2a33" stroke-width="2.4" vector-effect="non-scaling-stroke"></path></svg>
+<sc-for list="{{ dots }}" as="d" hint-placeholder-count="5"><i class="ad" style="{{ d.st }}"></i></sc-for>
+</sc-if>
+</div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"kind":{"editor":null,"default":"midi"},"label":{"editor":null,"default":"Bass roll"},"color":{"editor":null,"default":"yellow"},"w":{"editor":null,"default":"168"},"h":{"editor":null,"default":"44"},"seed":{"editor":null,"default":"2"},"sel":{"editor":null,"default":"0"},"muted":{"editor":null,"default":"0"},"$preview":{"width":200,"height":60}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const p = this.props;
+    const n = (v, d) => { const x = parseFloat(v); return isNaN(x) ? d : x; };
+    const w = n(p.w, 168), h = n(p.h, 44), seed = n(p.seed, 2);
+    const kind = p.kind || 'midi';
+    let s = seed * 9301 + 49297;
+    const rnd = () => { s = (s * 9301 + 49297) % 233280; return s / 233280; };
+    const notes = [], bars = [], dots = [];
+    let curve = '';
+    if (kind === 'midi') {
+      const cols = Math.max(4, Math.round(w / 7));
+      const bass = seed % 2 === 0;
+      for (let i = 0; i < cols; i++) {
+        if (bass && i % 4 === 0) continue;
+        const top = bass ? (i % 8 === 6 ? 30 : 70) : Math.round(6 + rnd() * 66);
+        notes.push({ st: 'left:' + (i / cols * 100).toFixed(2) + '%;width:' + (100 / cols * 0.78).toFixed(2) + '%;top:' + top + '%;height:' + (bass ? 22 : 18) + '%' });
+      }
+    } else if (kind === 'audio') {
+      const cnt = Math.min(90, Math.floor((w - 24) / 3));
+      for (let i = 0; i < cnt; i++) {
+        const env = 0.35 + 0.65 * Math.abs(Math.sin(i / cnt * Math.PI * (2 + seed % 3)));
+        const hh = Math.max(12, Math.min(100, env * (0.45 + 0.55 * rnd()) * 100));
+        bars.push({ st: 'height:' + hh.toFixed(0) + '%' });
+      }
+    } else {
+      const pts = [];
+      const k = 6;
+      for (let i = 0; i < k; i++) pts.push([i / (k - 1) * 100, 12 + rnd() * 76]);
+      curve = 'M' + pts[0][0] + ' ' + pts[0][1].toFixed(1);
+      for (let i = 1; i < k - 1; i++) {
+        const mx = (pts[i][0] + pts[i + 1][0]) / 2, my = (pts[i][1] + pts[i + 1][1]) / 2;
+        curve += ' Q' + pts[i][0].toFixed(1) + ' ' + pts[i][1].toFixed(1) + ' ' + mx.toFixed(1) + ' ' + my.toFixed(1);
+      }
+      curve += ' L100 ' + pts[k - 1][1].toFixed(1);
+      pts.forEach((q) => dots.push({ st: 'left:' + q[0].toFixed(1) + '%;top:' + q[1].toFixed(1) + '%' }));
+    }
+    return {
+      stCls: 'c-' + (p.color || 'yellow') + (p.sel === '1' ? ' sel' : '') + (p.muted === '1' ? ' mute' : ''),
+      boxStyle: 'width:' + w + 'px;height:' + h + 'px',
+      name: p.label || '',
+      kindTxt: kind === 'midi' ? 'MIDI' : kind === 'audio' ? 'AUDIO' : 'AUTO',
+      isMidi: kind === 'midi', isAudio: kind === 'audio', isAuto: kind === 'auto',
+      notes: notes, bars: bars, dots: dots, curve: curve
+    };
+  }
+}
+</script>
+</body>
+</html>

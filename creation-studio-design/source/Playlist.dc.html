@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Phone · Playlist</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="synth.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Permanent+Marker&display=swap">
+<style>body{margin:0;background:#33404a}</style>
+</helmet>
+<div class="sx ph" style="width: 412px; height: 880px">
+<div class="ph-hdr">
+<b class="h3">Synth</b>
+<span class="tape s">Rolling Bass 03</span>
+<span class="f1"></span>
+<button class="btn ghost sq" aria-label="Undo"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#e9ecee" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 7L4 12l5 5M4 12h10a5 5 0 0 1 0 10h-3"></path></svg></button>
+<button class="btn ghost sq" aria-label="Redo"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#e9ecee" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7l5 5-5 5M20 12H10a5 5 0 0 0 0 10h3"></path></svg></button>
+<span class="rev un"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#f2b33d" stroke-width="2.6"><circle cx="12" cy="12" r="6"></circle></svg>unsaved · r12</span>
+</div>
+<div style="flex: none; height: 106px">
+<dc-import name="Transport" mode="phone" pos="005:2:01" bpm="146.0" cpu="38" lost="0" playing="1" rec="0" loop="1" hint-size="412px,106px"></dc-import>
+</div>
+<div class="ph-body">
+<div class="r jb g6" style="padding: 0 8px; height: 52px">
+<div class="seg" role="group" aria-label="Playlist tool">
+<button class="btn sq on" aria-label="Select" aria-pressed="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="#1f2a33"><path d="M5 3l14 8-6 2-3 6z"></path></svg></button>
+<button class="btn sq" aria-label="Draw"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1f2a33" stroke-width="2.4" stroke-linejoin="round"><path d="M4 20l1-5L16 4l4 4L9 19z"></path></svg></button>
+<button class="btn sq" aria-label="Slice"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1f2a33" stroke-width="2.4" stroke-linecap="round"><path d="M12 3v18M6 8l6-5 6 5"></path></svg></button>
+<button class="btn sq" aria-label="Mute block"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1f2a33" stroke-width="2.4" stroke-linecap="round"><path d="M4 9h4l5-4v14l-5-4H4zM17 9l5 6M22 9l-5 6"></path></svg></button>
+</div>
+<button class="btn ghost" aria-label="Snap 1/4 bar">Snap ¼</button>
+<div class="r g4">
+<button class="btn ghost sq" aria-label="Zoom out">−</button>
+<button class="btn ghost sq" aria-label="Zoom in">+</button>
+</div>
+</div>
+<div class="rel">
+<div class="r" style="height: 28px; background: var(--slate-lift); border-bottom: 1px solid var(--seam)">
+<div style="width: 64px; flex: none" class="lbl pad8">Bar</div>
+<div class="ruler f1" style="border-bottom: 0">
+<sc-for list="{{ bars }}" as="b" hint-placeholder-count="5"><b style="{{ b.st }}">{{ b.n }}</b></sc-for>
+<i class="loopbar" style="left: 0; width: 336px"></i>
+</div>
+</div>
+<sc-for list="{{ tracks }}" as="t" hint-placeholder-count="6">
+<div class="trk">
+<div class="trk-h" style="width: 64px">
+<i class="stripe cap-{{ t.color }}"></i>
+<div class="c"><span class="lbl" style="color: var(--text)">{{ t.name }}</span><span class="sm dim">{{ t.sub }}</span></div>
+</div>
+<div class="lane">
+<sc-for list="{{ t.blocks }}" as="b" hint-placeholder-count="2">
+<div style="{{ b.pos }}"><dc-import name="PatternBlock" kind="{{ b.kind }}" label="{{ b.name }}" color="{{ t.color }}" w="{{ b.w }}" h="44" seed="{{ b.seed }}" sel="{{ b.sel }}" hint-size="168px,44px"></dc-import></div>
+</sc-for>
+</div>
+</div>
+</sc-for>
+<div class="playhead" style="left: 169px"></div>
+<i class="panhint" style="top: 28px; height: 336px"></i>
+<div class="scroll-h" style="position: relative; height: 8px"><i style="left: 26%; width: 34%"></i></div>
+</div>
+<div style="padding: 8px 8px 0">
+<div class="r jb" style="margin-bottom: 6px"><span class="h2">Patterns</span><span class="sm dim">tap one, then tap a track to stamp</span></div>
+<div class="r wrap g8">
+<sc-for list="{{ pats }}" as="p" hint-placeholder-count="6">
+<dc-import name="PatternBlock" kind="{{ p.kind }}" label="{{ p.name }}" color="{{ p.color }}" w="120" h="44" seed="{{ p.seed }}" sel="{{ p.sel }}" hint-size="120px,44px"></dc-import>
+</sc-for>
+</div>
+</div>
+<div class="r g8 jb" style="padding: 12px 8px 0">
+<div class="c"><span class="b">Bass roll</span><span class="sm dim">bars 5–8 · 4 bars</span></div>
+<div class="r g6">
+<button class="btn ghost" aria-label="Duplicate block">Duplicate</button>
+<button class="btn ghost" aria-label="Split block">Split</button>
+<button class="btn ghost sq" style="box-shadow: inset 0 0 0 2px var(--tally)" aria-label="Delete block"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ffa594" stroke-width="2.4" stroke-linecap="round"><path d="M5 7h14M9 7V4h6v3M7 7l1 13h8l1-13"></path></svg></button>
+</div>
+</div>
+</div>
+<div style="flex: none; height: 60px">
+<dc-import name="Nav" mode="bottom" active="playlist" hint-size="412px,60px"></dc-import>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":412,"height":880}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const BW = 84;
+    const bars = [5, 6, 7, 8, 9].map((n, i) => ({ n: String(n), st: 'left:' + (i * BW) + 'px' }));
+    const mk = (x, w, name, kind, seed, sel) => ({ pos: 'position:absolute;left:' + x + 'px;top:6px', w: String(w), name: name, kind: kind, seed: String(seed), sel: sel ? '1' : '0' });
+    const tracks = [
+      { name: 'Kick', sub: 'MIDI', color: 'red', blocks: [mk(0, 166, 'Kick A', 'midi', 1), mk(170, 166, 'Kick A', 'midi', 1), mk(338, 166, 'Kick B', 'midi', 3)] },
+      { name: 'Bass', sub: 'MIDI', color: 'yellow', blocks: [mk(0, 334, 'Bass roll', 'midi', 2, true), mk(338, 166, 'Bass fill', 'midi', 4)] },
+      { name: 'Hats', sub: 'MIDI', color: 'white', blocks: [mk(86, 250, 'Hats off', 'midi', 6)] },
+      { name: 'Vox', sub: 'Audio', color: 'blue', blocks: [mk(44, 208, 'Vox idea', 'audio', 3)] },
+      { name: 'Pad', sub: 'AI audio', color: 'green', blocks: [mk(0, 334, 'Lyria · forest', 'audio', 5)] },
+      { name: 'Cutoff', sub: 'Automation', color: 'yellow', blocks: [mk(86, 166, 'Cutoff sweep', 'auto', 7)] }
+    ];
+    const pats = [
+      { name: 'Kick A', kind: 'midi', color: 'red', seed: 1, sel: '0' },
+      { name: 'Bass roll', kind: 'midi', color: 'yellow', seed: 2, sel: '1' },
+      { name: 'Hats off', kind: 'midi', color: 'white', seed: 6, sel: '0' },
+      { name: 'Vox idea', kind: 'audio', color: 'blue', seed: 3, sel: '0' },
+      { name: 'Forest pad', kind: 'audio', color: 'green', seed: 5, sel: '0' },
+      { name: 'Cutoff sweep', kind: 'auto', color: 'yellow', seed: 7, sel: '0' }
+    ];
+    return { bars: bars, tracks: tracks, pats: pats };
+  }
+}
+</script>
+</body>
+</html>

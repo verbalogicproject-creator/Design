@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Phone · Tempo</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="synth.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Permanent+Marker&display=swap">
+<style>body{margin:0;background:#33404a}</style>
+</helmet>
+<div class="sx" style="width: 412px; height: 880px">
+<dc-import name="Main" hint-size="412px,880px"></dc-import>
+<div class="scrim"></div>
+<div class="sheet c g8" role="dialog" aria-label="Tempo" style="top: 420px; overflow: hidden">
+<div class="grab"></div>
+<div class="r g8" style="min-height: 44px"><div class="c f1"><span class="h3">Tempo and meter</span></div><button class="btn ghost sq" aria-label="Close"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#e9ecee" stroke-width="2.6" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg></button></div>
+<div class="r g6"><button class="btn ghost sq" aria-label="Minus 1 BPM">−1</button><button class="btn ghost sq" aria-label="Minus 0.1 BPM">−.1</button>
+<div class="field f1 focus" style="justify-content: center; font-weight: 800; font-size: 28px">146.0<span class="sm dim" style="margin-left: 6px">BPM</span></div>
+<button class="btn ghost sq" aria-label="Plus 0.1 BPM">+.1</button><button class="btn ghost sq" aria-label="Plus 1 BPM">+1</button></div>
+<button class="btn big" style="min-height: 72px; font-size: 16px">Tap tempo · tap 4 times</button>
+<div class="r g8"><span class="lbl" style="width: 60px">Meter</span><div class="seg"><button class="btn on" aria-pressed="true">4/4</button><button class="btn">3/4</button><button class="btn">7/8</button></div></div>
+<div class="r g8"><button class="btn tg on" aria-pressed="true">Stretch audio</button><span class="sm dim f1">AI and sung audio clips follow the new tempo.</span></div>
+<div class="r g8"><button class="btn ghost f1">Cancel</button><button class="btn f1">Set 146.0</button></div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":412,"height":880}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

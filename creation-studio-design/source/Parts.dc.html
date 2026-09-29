@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Library · Rack, mixer and flow parts</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="synth.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Permanent+Marker&display=swap">
+<style>body{margin:0;background:#33404a}</style>
+</helmet>
+<div class="sx" style="width: 1440px; height: 3000px; padding: 56px 64px">
+<div class="r g16"><span class="tape l">More parts</span><span class="h2">Everything added after the first library pass, in every state that applies</span></div>
+
+<div class="c g12" style="margin-top: 32px">
+<div class="r jb"><span class="h3">15 · Volume mini-fader</span><span class="sm dim">Rack rows. A real range input sits over the drawing. The dB value beside it is a 44 px button that opens number entry.</span></div>
+<div class="grid6">
+<div class="state-card"><div class="r g4"><div class="hf" style="width: 112px"><i class="slot"></i><i class="hfcap cap-yellow" style="left: 81px"></i></div><span class="db-btn">−3.0 dB</span></div><span class="cap">Default</span><span class="dsc">Cap in channel colour, value beside it.</span></div>
+<div class="state-card"><div class="r g4"><div class="hf" style="width: 112px; outline: 2px solid var(--amber); outline-offset: 2px; border-radius: 4px"><i class="slot"></i><i class="hfcap cap-yellow" style="left: 81px; filter: brightness(1.1)"></i></div><span class="db-btn">−3.0 dB</span></div><span class="cap">Hover · focus</span><span class="dsc">Arrow keys step 0.5 dB.</span></div>
+<div class="state-card"><div class="r g4"><div class="hf" style="width: 112px"><i class="slot"></i><i class="hfcap cap-yellow" style="left: 66px; top: 10px; box-shadow: 0 1px 0 rgba(0,0,0,.4)"></i><span class="tape s abs" style="left: 44px; top: -18px">−6.5 dB</span></div><span class="db-btn">−6.5 dB</span></div><span class="cap">Pressed</span><span class="dsc">Cap sinks, a tape tip shows the value.</span></div>
+<div class="state-card"><div class="r g4" style="opacity: .42"><div class="hf" style="width: 112px"><i class="slot"></i><i class="hfcap cap-yellow" style="left: 81px"></i></div><span class="db-btn">—</span></div><span class="cap">Disabled</span><span class="dsc">Channel frozen: dimmed, value is a dash.</span></div>
+<div class="state-card"><div class="r g4"><div class="hf" style="width: 112px"><i class="slot"></i><i class="abs" style="left: 52px; width: 40px; top: 19px; height: 6px; background: var(--green); border-radius: 3px; box-shadow: 0 0 0 2px rgba(91,166,122,.35)"></i><i class="hfcap cap-yellow" style="left: 81px"></i></div><span class="db-btn gr">~ −3.0</span></div><span class="cap">Modulated</span><span class="dsc">Green bar in the slot is the range.</span></div>
+<div class="state-card"><div class="r g4"><div class="hf" style="width: 112px"><i class="slot"></i><i class="hfcap cap-yellow" style="left: 81px"><i class="fdr-auto"></i></i></div><span class="db-btn">A −3.0</span></div><span class="cap">Automated</span><span class="dsc">White dot on the cap, A before the value.</span></div>
+</div>
+</div>
+
+<div class="c g12" style="margin-top: 36px">
+<div class="r jb"><span class="h3">16 · Insert slot and duck indicator</span><span class="sm dim">Eight slots per strip in a 2 × 4 grid. Empty slots are dashed. Bypass strikes the name through as well as dimming it.</span></div>
+<div class="grid6">
+<sc-for list="{{ slots }}" as="s" hint-placeholder-count="6">
+<div class="state-card"><button class="slot-b {{ s.cls }}" style="{{ s.st }}"><span class="n">{{ s.n }}</span><span class="t">{{ s.t }}</span></button><span class="cap">{{ s.cap }}</span><span class="dsc">{{ s.dsc }}</span></div>
+</sc-for>
+</div>
+<div class="grid3">
+<sc-for list="{{ ducks }}" as="d" hint-placeholder-count="3">
+<div class="state-card" style="align-items: stretch"><div class="r g6 sm b"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#f2b33d" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v14M6 12l6 6 6-6"></path></svg><span class="f1">{{ d.t }}</span><div class="gr-m" style="max-width: 64px"><i style="{{ d.st }}"></i></div></div><span class="dsc">{{ d.dsc }}</span></div>
+</sc-for>
+</div>
+</div>
+
+<div class="c g12" style="margin-top: 36px">
+<div class="r jb"><span class="h3">17 · Section flag and minimap</span><span class="sm dim">Flags sit above the ruler. The dashed box shows the real 44 px hit area, which reaches down into the ruler.</span></div>
+<div class="grid5">
+<div class="state-card"><div class="rel" style="height: 50px; width: 110px"><span class="tape s" style="display: inline-flex; gap: 4px; align-items: center">Build<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#1f2a33" stroke-width="2.6" stroke-linecap="round"><rect x="5" y="11" width="14" height="9" rx="2"></rect><path d="M8 11V8a4 4 0 0 1 7-2.5"></path></svg></span></div><span class="cap">Unlocked</span><span class="dsc">Open padlock. Moves with bar edits.</span></div>
+<div class="state-card"><div class="rel" style="height: 50px; width: 110px"><span class="tape s" style="display: inline-flex; gap: 4px; align-items: center">Drop<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#1f2a33" stroke-width="2.6" stroke-linecap="round"><rect x="5" y="11" width="14" height="9" rx="2" fill="#1f2a33"></rect><path d="M8 11V8a4 4 0 0 1 8 0v3"></path></svg><b style="font-family: Archivo, sans-serif; font-size: 11px">LOCKED</b></span></div><span class="cap">Locked</span><span class="dsc">Closed padlock and the word. Stays put.</span></div>
+<div class="state-card"><div class="rel" style="height: 50px; width: 110px; outline: 2px dashed var(--alu-dim); outline-offset: 0"><span class="tape s" style="display: inline-flex; gap: 4px; margin: 3px; outline: 2px solid var(--amber); outline-offset: 2px">Build</span></div><span class="cap">Focus · hit area</span><span class="dsc">Dashed box = 44 px target, amber ring = focus.</span></div>
+<div class="state-card"><div class="rel" style="height: 50px; width: 110px"><span class="tape s" style="display: inline-flex; gap: 4px; transform: translateY(-3px) rotate(-.5deg); box-shadow: 0 6px 10px rgba(0,0,0,.5)">Build · bar 17</span></div><span class="cap">Pressed · dragging</span><span class="dsc">Lifts, shows the bar it will land on.</span></div>
+<div class="state-card"><div class="rel" style="height: 50px; width: 110px"><span class="tape s" style="display: inline-flex; gap: 4px; align-items: center"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#1f2a33" stroke-width="3" stroke-linecap="round"><path d="M15 5l-7 7 7 7"></path></svg>Build</span></div><span class="cap">Sticky</span><span class="dsc">Section starts off-screen: pinned left with an arrow.</span></div>
+</div>
+<div class="state-card" style="align-items: stretch">
+<svg width="100%" height="30" viewBox="0 0 1300 30" preserveAspectRatio="none" role="img" aria-label="Minimap of 80 bars with sections and viewport" style="background: var(--well); border-radius: 4px"><path d="M0 0V30M260 0V30M520 0V30M1040 0V30" stroke="#3d4b56" stroke-width="2"></path><rect x="0" y="15" width="1040" height="3" fill="#d9483b"></rect><rect x="260" y="19" width="780" height="3" fill="#e8c547"></rect><rect x="0" y="23" width="1300" height="3" fill="#5ba67a"></rect><rect x="390" y="12" width="240" height="17" rx="2" fill="#f2b33d" fill-opacity="0.14" stroke="#f2b33d" stroke-width="2"></rect><path d="M455 10V30" stroke="#f2b33d" stroke-width="2"></path></svg>
+<span class="dsc" style="text-align: left">Minimap: one line per lane in channel colour, section dividers, the amber viewport box and playhead. Tap to jump, drag the box to scroll. Section names sit above it in the real strip.</span>
+</div>
+</div>
+
+<div class="c g12" style="margin-top: 36px">
+<div class="r jb"><span class="h3">18 · Mixer navigation</span><span class="sm dim">Bank switch in landscape, strip-type selector in portrait. Both are segmented keys with a lit lamp.</span></div>
+<div class="grid4">
+<div class="state-card"><div class="seg" style="flex-direction: column; padding: 3px"><button class="btn on" style="padding: 8px 0 0; min-width: 44px">1–4</button><button class="btn" style="padding: 8px 0 0; min-width: 44px">5–8</button><button class="btn" style="padding: 8px 0 0; min-width: 44px">Buses</button></div><span class="cap">Bank · default</span><span class="dsc">Master is outside the bank and never scrolls away.</span></div>
+<div class="state-card"><div class="seg" style="flex-direction: column; padding: 3px"><button class="btn" style="padding: 8px 0 0; min-width: 44px">1–4</button><button class="btn focus" style="padding: 8px 0 0; min-width: 44px">5–8</button><button class="btn disabled" style="padding: 8px 0 0; min-width: 44px">9–12</button></div><span class="cap">Bank · focus, disabled</span><span class="dsc">A bank with no channels is hatched.</span></div>
+<div class="state-card"><div class="seg" style="width: 100%"><button class="btn f1 on">Channels</button><button class="btn f1">Buses</button><button class="btn f1">Master</button></div><span class="cap">Strip type</span><span class="dsc">Portrait one-strip mode. Swipe or ‹ › moves within a type.</span></div>
+<div class="state-card"><div class="r g6" style="width: 100%"><button class="btn ghost sq">‹</button><div class="f1 c" style="align-items: center"><span class="tape s">Bass</span><span class="sm dim">2 of 8</span></div><button class="btn ghost sq">›</button></div><span class="cap">Strip stepper</span><span class="dsc">Ends disable their arrow.</span></div>
+</div>
+</div>
+
+<div class="c g12" style="margin-top: 36px">
+<div class="r jb"><span class="h3">19 · Knob menu row and knob fine mode</span><span class="sm dim">Hold any knob for its menu. The first row is the main action on an aluminium key.</span></div>
+<div class="grid5">
+<div class="state-card" style="align-items: stretch"><button class="menu-row primary"><span class="f1"><b>Create automation clip</b><span class="sub">At bar 29</span></span></button><span class="cap">Primary</span></div>
+<div class="state-card" style="align-items: stretch"><button class="menu-row"><span class="f1"><b>MIDI learn</b><span class="sub">Move a knob</span></span></button><span class="cap">Default</span></div>
+<div class="state-card" style="align-items: stretch"><button class="menu-row" style="outline: 2px solid var(--amber); outline-offset: 2px; background: #324049"><span class="f1"><b>MIDI learn</b><span class="sub">Move a knob</span></span></button><span class="cap">Hover · focus</span></div>
+<div class="state-card" style="align-items: stretch"><button class="menu-row" style="background: var(--well); box-shadow: inset 0 2px 4px rgba(0,0,0,.5)"><span class="f1"><b>MIDI learn</b><span class="sub">Listening…</span></span></button><span class="cap">Pressed</span></div>
+<div class="state-card" style="align-items: stretch"><button class="menu-row" style="opacity: .45"><span class="f1"><b>Map to macro</b><span class="sub">No macros yet</span></span></button><span class="cap">Disabled</span></div>
+</div>
+<div class="r g16 ast">
+<div class="state-card" style="flex-direction: row; gap: 20px; padding: 16px 24px">
+<dc-import name="Knob" label="Cutoff" size="lg" value="62" readout="fine · 1.214 kHz" state="pressed" hint-size="110px,150px"></dc-import>
+<div class="c g6" style="align-items: center"><i style="width: 56px; height: 56px; border-radius: 50%; border: 2px dashed var(--amber); display: grid; place-items: center"><b class="sm amb">2nd</b></i><span class="sm b">second finger</span></div>
+</div>
+<div class="callout f1">Fine mode: while dragging a knob, rest a second finger anywhere on the panel. The drag slows to one tenth, the tape adds a decimal place and the word <b>fine</b>. Lift the second finger to go back. On desktop, hold Shift. Keyboard: Shift + arrow.</div>
+</div>
+</div>
+
+<div class="c g12" style="margin-top: 36px">
+<div class="r jb"><span class="h3">20 · Sing parts</span><span class="sm dim">Step indicator, big Record, option card, beat lamps and horizontal meter.</span></div>
+<div class="grid4">
+<div class="state-card" style="align-items: stretch"><div class="stp"><div class="s done"><i class="bar"></i><span class="t">1 Ready</span></div><div class="s cur"><i class="bar"></i><span class="t">2 Record</span></div><div class="s"><i class="bar"></i><span class="t">3 Review</span></div><div class="s"><i class="bar"></i><span class="t">4 Use</span></div></div><span class="dsc">Step indicator: done steps grey, current amber and white text. Not a control.</span></div>
+<div class="state-card"><div class="r g16"><button class="bigrec" style="width: 88px; height: 88px" aria-label="Record"><i style="width: 42px; height: 42px"></i></button><button class="bigrec" style="width: 88px; height: 88px; transform: translateY(3px); box-shadow: 0 2px 0 var(--alu-shade)" aria-label="Stop"><i style="width: 34px; height: 34px; border-radius: 4px; background: var(--ink); box-shadow: none"></i></button></div><span class="dsc">Big Record, ready and recording. Recording turns it into a Stop key.</span></div>
+<div class="state-card"><div class="r g16"><button class="bigrec" style="width: 88px; height: 88px; outline: 2px solid var(--amber); outline-offset: 3px" aria-label="Record"><i style="width: 42px; height: 42px"></i></button><button class="bigrec" style="width: 88px; height: 88px; opacity: .42" aria-label="Record, microphone blocked"><i style="width: 42px; height: 42px; background: var(--alu-dim)"></i></button></div><span class="dsc">Focus, and disabled when the mic is blocked (grey dot, reason shown under it).</span></div>
+<div class="state-card"><div class="r g4"><span class="beat" style="font-size: 26px">4</span><span class="beat on" style="font-size: 26px">3</span><span class="beat" style="font-size: 26px">2</span><span class="beat" style="font-size: 26px">1</span></div><span class="dsc">Count-in: lamps count down. With reduced motion they light without the pulse.</span></div>
+</div>
+<div class="grid4">
+<sc-for list="{{ opts }}" as="o" hint-placeholder-count="4">
+<div class="state-card" style="align-items: stretch"><span class="optcard {{ o.cls }}" style="{{ o.st }}"><span class="r g8"><i class="radio {{ o.rcls }}"></i><b>Fit to song</b></span><span class="sm dim">Plays the song with a click.</span></span><span class="cap">{{ o.cap }}</span></div>
+</sc-for>
+</div>
+<div class="grid4">
+<sc-for list="{{ meters }}" as="m" hint-placeholder-count="4">
+<div class="state-card" style="align-items: stretch"><div class="r g8"><div class="hmeter"><i style="{{ m.st }}"></i><b style="{{ m.pk }}"></b><u></u></div><span class="sm b {{ m.tc }}" style="width: 96px; text-align: right">{{ m.t }}</span></div><span class="dsc">{{ m.dsc }}</span></div>
+</sc-for>
+</div>
+</div>
+
+<div class="c g12" style="margin-top: 36px">
+<div class="r jb"><span class="h3">21 · Notes in the roll</span><span class="sm dim">Channel colour fill with an ink edge. Every note type has a second cue besides colour.</span></div>
+<div class="grid5">
+<sc-for list="{{ notes }}" as="n" hint-placeholder-count="5">
+<div class="state-card"><div class="roll" style="width: 150px; height: 44px; border-radius: 4px"><div class="rnote {{ n.cls }}" style="{{ n.st }}"><sc-if value="{{ n.q }}" hint-placeholder-val="{{ false }}"><b class="q">?</b></sc-if><sc-if value="{{ n.num }}" hint-placeholder-val="{{ false }}"><b class="sm" style="position: absolute; left: 6px; top: 7px; color: var(--text)">1</b></sc-if></div></div><span class="cap">{{ n.cap }}</span><span class="dsc">{{ n.dsc }}</span></div>
+</sc-for>
+</div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":3000}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const slots = [
+      { cap: 'Used', n: '1', t: 'EQ', cls: '', st: 'width: 150px', dsc: 'Tap to open its faceplate.' },
+      { cap: 'Sidechain', n: '3', t: 'Comp ← Kick', cls: '', st: 'width: 150px', dsc: 'Arrow and key name.' },
+      { cap: 'Bypassed', n: '4', t: 'Limiter · off', cls: 'byp', st: 'width: 150px', dsc: 'Dimmed and struck through.' },
+      { cap: 'Empty', n: '5', t: '+ Add', cls: 'emp', st: 'width: 150px', dsc: 'Dashed. Opens the effects list.' },
+      { cap: 'Focus · pressed', n: '2', t: 'Saturator', cls: '', st: 'width: 150px; outline: 2px solid var(--amber); outline-offset: 2px; background: var(--well)', dsc: 'Amber ring, sinks while held.' },
+      { cap: 'Disabled', n: '2', t: 'Saturator', cls: '', st: 'width: 150px; opacity: .42', dsc: 'Strip frozen: slots locked.' }
+    ];
+    const ducks = [
+      { t: 'Ducked by Kick −0.5 dB', st: 'width: 5%', dsc: 'Barely touching: short bar.' },
+      { t: 'Ducked by Kick −3 dB', st: 'width: 25%', dsc: 'Typical rolling-bass pump.' },
+      { t: 'Ducked by Kick −9 dB', st: 'width: 75%', dsc: 'Heavy: the number says so, not only the bar.' }
+    ];
+    const opts = [
+      { cap: 'Default', cls: '', rcls: '', st: '' },
+      { cap: 'Selected', cls: 'on', rcls: 'on', st: '' },
+      { cap: 'Hover · focus', cls: '', rcls: '', st: 'outline: 2px solid var(--amber); outline-offset: 1px' },
+      { cap: 'Disabled', cls: '', rcls: '', st: 'opacity: .42' }
+    ];
+    const meters = [
+      { t: '−32 dB · quiet', tc: 'amb', st: 'width: 22%', pk: 'left: 28%', dsc: 'Too quiet: text says sing louder or move closer.' },
+      { t: '−14 dB · good', tc: 'gr', st: 'width: 62%', pk: 'left: 70%', dsc: 'Good: green text, amber bar.' },
+      { t: '−3 dB · hot', tc: 'amb', st: 'width: 86%', pk: 'left: 89%', dsc: 'Hot: close to the red zone.' },
+      { t: 'CLIP · too loud', tc: 'tal', st: 'width: 100%', pk: 'left: 98%', dsc: 'Clipped: the word CLIP, then advice.' }
+    ];
+    const box = 'left: 20px; top: 9px; width: 110px; height: 26px';
+    const notes = [
+      { cap: 'Note', cls: '', q: false, num: false, st: box, dsc: 'Channel colour, ink edge.' },
+      { cap: 'Selected', cls: 'sel', q: false, num: false, st: box, dsc: 'Amber ring, resize grips.' },
+      { cap: 'Unsure', cls: 'unc', q: true, num: false, st: box, dsc: 'Dashed edge, hatching, ? badge.' },
+      { cap: 'Ghost', cls: 'ghost', q: false, num: true, st: box + '; box-shadow: inset 0 0 0 2px var(--red)', dsc: 'Outline only, channel number inside.' },
+      { cap: 'Disabled', cls: '', q: false, num: false, st: box + '; opacity: .42', dsc: 'Muted channel.' }
+    ];
+    return { slots: slots, ducks: ducks, opts: opts, meters: meters, notes: notes };
+  }
+}
+</script>
+</body>
+</html>

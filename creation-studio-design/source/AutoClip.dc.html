@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Landscape · Automation clip editor</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="synth.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Permanent+Marker&display=swap">
+<style>body{margin:0;background:#33404a}</style>
+</helmet>
+<div class="sx" style="width: 892px; height: 412px; display: flex; flex-direction: column">
+<div style="flex: none; height: 56px"><dc-import name="Transport" mode="wide" pos="030:3:01" bpm="146.0" cpu="38" lost="0" playing="{{playing}}" rec="0" loop="1" hint-size="892px,56px"></dc-import></div>
+<div class="r astr" style="flex: 1 1 0; min-height: 0">
+<div style="flex: none; width: 60px; height: 356px"><dc-import name="Nav" mode="rail" active="playlist" hint-size="60px,356px"></dc-import></div>
+<div class="f1 c rel" style="min-width: 0; overflow: hidden">
+
+<div class="r" style="height: 24px; flex: none; background: var(--slate-lift); border-bottom: 1px solid var(--seam)">
+<div style="width: 96px; flex: none" class="lbl pad8">Bar</div>
+<div class="ruler f1" style="height: 24px; border-bottom: 0"><sc-for list="{{ rbars }}" as="b" hint-placeholder-count="8"><b style="{{ b.st }}; top: 6px">{{ b.n }}</b></sc-for></div>
+</div>
+<div class="trk" style="height: 48px; flex: none">
+<div class="trk-h" style="width: 96px"><i class="stripe cap-yellow"></i><div class="c"><span class="lbl" style="color: var(--text)">Cutoff</span><span class="sm dim">Automation</span></div></div>
+<div class="lane" style="background-image: repeating-linear-gradient(90deg,#232c33 0 1px,transparent 1px 92px)">
+<div style="position: absolute; left: 0; top: 5px"><dc-import name="PatternBlock" kind="auto" label="Cutoff · new" color="yellow" w="366" h="38" seed="7" sel="1" hint-size="366px,38px"></dc-import></div>
+</div>
+</div>
+
+<div class="abs plate c" style="left: 0; right: 0; top: 72px; bottom: 0; border-radius: 8px 8px 0 0; border-top: 2px solid var(--alu-dim); padding: 6px 8px; gap: 6px; box-shadow: 0 -8px 18px rgba(0,0,0,.4); z-index: 6" role="dialog" aria-label="Automation clip editor, Rolling Bass Cutoff">
+<i class="abs" style="left: 270px; top: -12px; border: 10px solid transparent; border-bottom: 10px solid var(--alu-dim); border-top: 0"></i>
+<div class="r g8" style="height: 44px; flex: none">
+<span class="tape">Rolling Bass · Cutoff</span>
+<span class="chip">bars 29–33</span>
+<div class="seg" role="group" aria-label="Clip tool">
+<button class="btn {{ptCls}}" aria-pressed="{{isPoint}}"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1f2a33" stroke-width="2.4"><circle cx="12" cy="12" r="5"></circle></svg>Point</button>
+<button class="btn {{pcCls}}" aria-pressed="{{isPencil}}"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1f2a33" stroke-width="2.4" stroke-linejoin="round"><path d="M4 20l1-5L16 4l4 4L9 19z"></path></svg>Pencil</button>
+<button class="btn" aria-pressed="false"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1f2a33" stroke-width="2.4" stroke-linecap="round"><path d="M4 19L20 5"></path></svg>Line</button>
+</div>
+<button class="btn ghost">Snap 1/16</button>
+<span class="f1"></span>
+<button class="btn">Done</button>
+</div>
+<div class="r" style="flex: none">
+<div class="rel" style="width: 44px; height: 172px; flex: none">
+<sc-for list="{{ axis }}" as="a" hint-placeholder-count="4"><span class="sm dim b abs" style="{{ a.st }}">{{ a.t }}</span></sc-for>
+</div>
+<div class="canvas-box" style="width: 760px; height: 172px">
+<svg width="760" height="172" viewBox="0 0 760 172" role="img" aria-label="{{svgLabel}}">
+<sc-for list="{{ grid }}" as="g" hint-placeholder-count="17"><path d="{{ g.d }}" stroke="{{ g.c }}" stroke-width="{{ g.w }}"></path></sc-for>
+<sc-for list="{{ bars }}" as="b" hint-placeholder-count="4"><text x="{{ b.x }}" y="14" font-size="11" font-weight="700" fill="#b8c2c9">{{ b.t }}</text></sc-for>
+<path d="{{fillD}}" fill="#e8c547" fill-opacity="{{fillOp}}"></path>
+<path d="{{oldD}}" fill="none" stroke="#e8c547" stroke-width="2" stroke-dasharray="{{oldDash}}" opacity="{{oldOp}}"></path>
+<path d="{{curveD}}" fill="none" stroke="#e8c547" stroke-width="3" stroke-linejoin="round"></path>
+<sc-if value="{{ isPencil }}" hint-placeholder-val="{{ false }}">
+<path d="{{rawD}}" fill="none" stroke="#e9ecee" stroke-width="1.4" opacity="0.55"></path>
+<path d="{{stepD}}" fill="none" stroke="#e8c547" stroke-width="3" stroke-linejoin="round"></path>
+<circle cx="{{fx}}" cy="{{fy}}" r="20" fill="#e9ecee" fill-opacity="0.08" stroke="#f2b33d" stroke-width="2.5"></circle>
+<circle cx="{{fx}}" cy="{{fy}}" r="4" fill="#f2b33d"></circle>
+</sc-if>
+<sc-for list="{{ dia }}" as="d" hint-placeholder-count="5"><g><circle cx="{{ d.cx }}" cy="{{ d.cy }}" r="22" fill="transparent"></circle><rect x="{{ d.x }}" y="{{ d.y }}" width="9" height="9" transform="{{ d.rot }}" fill="{{ d.fill }}" stroke="{{ d.stroke }}" stroke-width="1.5"></rect></g></sc-for>
+<sc-for list="{{ pts }}" as="p" hint-placeholder-count="6"><g><circle cx="{{ p.cx }}" cy="{{ p.cy }}" r="22" fill="transparent"></circle><circle cx="{{ p.cx }}" cy="{{ p.cy }}" r="7" fill="#c5cbcf" stroke="#1f2a33" stroke-width="2.5"></circle></g></sc-for>
+<sc-if value="{{ isPoint }}" hint-placeholder-val="{{ true }}">
+<circle cx="{{sx}}" cy="{{sy}}" r="13" fill="none" stroke="#f2b33d" stroke-width="2.5"></circle>
+<rect x="{{bx}}" y="{{by}}" width="84" height="22" fill="#e6d6a2"></rect>
+<text x="{{btx}}" y="{{bty}}" text-anchor="middle" font-family="Permanent Marker, cursive" font-size="12" fill="#1f2a33">drag ◇ to bend</text>
+</sc-if>
+<rect x="{{tx}}" y="{{ty}}" width="{{tw}}" height="22" fill="#e6d6a2"></rect>
+<text x="{{ttx}}" y="{{tty}}" text-anchor="middle" font-family="Permanent Marker, cursive" font-size="12" fill="#1f2a33">{{tipTxt}}</text>
+<path d="M{{phx}} 0V172" stroke="#f2b33d" stroke-width="2"></path>
+</svg>
+</div>
+</div>
+<sc-if value="{{ isPoint }}" hint-placeholder-val="{{ true }}">
+<div class="r g12" style="height: 44px; flex: none">
+<span class="b sm" style="width: 56px">Point 3</span>
+<div class="r g4"><span class="lbl">Time</span><div class="step-b"><button class="btn ghost sq" aria-label="Earlier">−</button><span class="v">30.3.1</span><button class="btn ghost sq" aria-label="Later">+</button></div></div>
+<div class="r g4"><span class="lbl">Value</span><div class="step-b"><button class="btn ghost sq" aria-label="Lower">−</button><span class="v" style="min-width: 64px">820 Hz</span><button class="btn ghost sq" aria-label="Higher">+</button></div></div>
+<div class="r g4"><span class="lbl">Curve</span><div class="seg" style="padding: 0; background: none"><button class="btn sq">Step</button><button class="btn sq on">Lin</button><button class="btn sq">Bend</button></div></div>
+<span class="f1"></span>
+<button class="btn ghost sq" style="box-shadow: inset 0 0 0 2px var(--tally)" aria-label="Delete point 3"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ffa594" stroke-width="2.4" stroke-linecap="round"><path d="M5 7h14M9 7V4h6v3M7 7l1 13h8l1-13"></path></svg></button>
+</div>
+</sc-if>
+<sc-if value="{{ isPencil }}" hint-placeholder-val="{{ false }}">
+<div class="r g12" style="height: 44px; flex: none">
+<span class="sm f1"><b>Drawing.</b> Snaps to 1/16 while you drag. Lift your finger to finish; the dashed old curve after it stays.</span>
+<div class="seg" style="padding: 0; background: none" role="group" aria-label="Pencil shape"><button class="btn on" aria-pressed="true">Stepped</button><button class="btn" aria-pressed="false">Smooth</button></div>
+<button class="btn ghost">Thin to points</button>
+<button class="btn ghost">Undo stroke</button>
+</div>
+</sc-if>
+</div>
+
+</div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"mode":{"editor":"enum","options":["point","pencil"],"default":"point"},"$preview":{"width":892,"height":412}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const mode = this.props.mode === 'pencil' ? 'pencil' : 'point';
+    const isPoint = mode === 'point', isPencil = !isPoint;
+    const W = 760, H = 172, P = 12;
+    const f1 = (n) => n.toFixed(1);
+    const X = (f) => f * W, Y = (v) => P + (1 - v) * (H - 2 * P);
+    const rbars = [];
+    for (let i = 0; i < 8; i++) rbars.push({ n: String(29 + i), st: 'left:' + (i * 92) + 'px' });
+    const grid = [];
+    for (let i = 0; i <= 16; i++) grid.push({ d: 'M' + f1(i * W / 16) + ' 0V' + H, c: i % 4 === 0 ? '#4a5a66' : '#232c33', w: i % 4 === 0 ? '1.5' : '1' });
+    [0.25, 0.5, 0.75].forEach((v) => grid.push({ d: 'M0 ' + f1(Y(v)) + 'H' + W, c: '#232c33', w: '1' }));
+    const bars = [29, 30, 31, 32].map((n, i) => ({ x: f1(i * W / 4 + 5), t: String(n) }));
+    const axis = [[1, '8 kHz'], [0.667, '2 kHz'], [0.333, '500'], [0, '125 Hz']].map((a) => ({ t: a[1], st: 'right:6px;top:' + f1(Y(a[0]) - 7) + 'px;text-align:right' }));
+    const ctrl = (x1, y1, x2, y2, c) => { const mx = (x1 + x2) / 2, my = (y1 + y2) / 2; const cor = c >= 0 ? [x1, y2] : [x2, y1]; const k = Math.abs(c) * 0.8; return [mx + (cor[0] - mx) * k, my + (cor[1] - my) * k]; };
+    const build = (pts, ten) => {
+      let d = 'M' + f1(X(pts[0][0])) + ' ' + f1(Y(pts[0][1]));
+      const dia = [];
+      for (let i = 0; i < pts.length - 1; i++) {
+        const a = [X(pts[i][0]), Y(pts[i][1])], b = [X(pts[i + 1][0]), Y(pts[i + 1][1])];
+        const c = ctrl(a[0], a[1], b[0], b[1], ten[i]);
+        d += ' Q' + f1(c[0]) + ' ' + f1(c[1]) + ' ' + f1(b[0]) + ' ' + f1(b[1]);
+        const m = [0.25 * a[0] + 0.5 * c[0] + 0.25 * b[0], 0.25 * a[1] + 0.5 * c[1] + 0.25 * b[1]];
+        dia.push({ cx: f1(m[0]), cy: f1(m[1]), x: f1(m[0] - 4.5), y: f1(m[1] - 4.5), rot: 'rotate(45 ' + f1(m[0]) + ' ' + f1(m[1]) + ')', fill: ten[i] === 0 ? '#2a353d' : '#8e979d', stroke: ten[i] === 0 ? '#8e979d' : '#1f2a33' });
+      }
+      return { d: d, dia: dia };
+    };
+    const allPts = [[0, 0.25], [0.22, 0.72], [0.45, 0.4], [0.62, 0.85], [0.8, 0.55], [1, 0.3]];
+    const allTen = [0.5, -0.4, 0, 0.6, -0.3];
+    const full = build(allPts, allTen);
+    let out = {};
+    if (isPoint) {
+      const pts = allPts.map((p) => ({ cx: f1(X(p[0])), cy: f1(Y(p[1])) }));
+      const sx = X(0.45), sy = Y(0.4);
+      const d3 = full.dia[3];
+      out = {
+        curveD: full.d, fillD: full.d + ' L' + W + ' ' + H + ' L0 ' + H + ' Z', fillOp: '0.12',
+        oldD: 'M0 0', oldDash: '0', oldOp: '0',
+        dia: full.dia, pts: pts,
+        sx: f1(sx), sy: f1(sy),
+        bx: f1(parseFloat(d3.cx) - 42), by: f1(parseFloat(d3.cy) + 14), btx: d3.cx, bty: f1(parseFloat(d3.cy) + 29),
+        tipTxt: '30.3.1 · 820 Hz', tw: '112', tx: f1(sx - 56), ty: f1(sy - 40), ttx: f1(sx), tty: f1(sy - 25),
+        phx: f1(X(0.55)),
+        svgLabel: 'Cutoff automation, bars 29 to 33: six points; point 3 at bar 30 beat 3 is selected at 820 hertz'
+      };
+    } else {
+      const keep = build([[0, 0.25], [0.22, 0.72], [0.34, 0.5]], [0.5, -0.4]);
+      const x0 = 0.34, n = 28;
+      const v = (k) => Math.max(0.08, Math.min(0.95, 0.5 + 0.28 * Math.sin(k * 0.45) + 0.06 * Math.sin(k * 1.7)));
+      let sd = 'M' + f1(X(x0)) + ' ' + f1(Y(0.5));
+      for (let k = 0; k < n; k++) sd += ' H' + f1(X(x0 + k / 64)) + ' V' + f1(Y(v(k)));
+      sd += ' H' + f1(X(x0 + n / 64));
+      let rd = '';
+      for (let i = 0; i <= 160; i++) { const k = i / 160 * n; const y = Y(v(k) + 0.035 * Math.sin(i * 1.3)); rd += (i ? ' L' : 'M') + f1(X(x0 + k / 64)) + ' ' + f1(y); }
+      const fx = X(x0 + n / 64), fy = Y(v(n - 1));
+      out = {
+        curveD: keep.d, fillD: 'M0 0', fillOp: '0',
+        oldD: full.d, oldDash: '6 5', oldOp: '0.45',
+        dia: keep.dia, pts: [[0, 0.25], [0.22, 0.72], [0.34, 0.5]].map((p) => ({ cx: f1(X(p[0])), cy: f1(Y(p[1])) })),
+        stepD: sd, rawD: rd, fx: f1(fx), fy: f1(fy),
+        sx: 0, sy: 0, bx: 0, by: 0, btx: 0, bty: 0,
+        tipTxt: '31.4.2 · 2.4 kHz', tw: '120', tx: f1(fx - 60), ty: f1(Math.max(2, fy - 48)), ttx: f1(fx), tty: f1(Math.max(2, fy - 48) + 15),
+        phx: f1(X(0.12)),
+        svgLabel: 'Pencil stroke in progress from bar 30 to bar 31, snapped to sixteenth steps'
+      };
+    }
+    return Object.assign({
+      isPoint: isPoint, isPencil: isPencil, ptCls: isPoint ? 'on' : '', pcCls: isPencil ? 'on' : '',
+      playing: isPoint ? '1' : '0',
+      rbars: rbars, grid: grid, bars: bars, axis: axis
+    }, out);
+  }
+}
+</script>
+</body>
+</html>

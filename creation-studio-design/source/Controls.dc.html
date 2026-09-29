@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Library · Controls</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="synth.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Permanent+Marker&display=swap">
+<style>body{margin:0;background:#33404a}</style>
+</helmet>
+<div class="sx" style="width: 1440px; height: 2200px; padding: 56px 64px">
+<div class="r g16"><span class="tape l">Controls</span><span class="h2">Each one shown default, hover or focus, pressed, disabled, modulated, automated</span></div>
+
+<div class="c g12" style="margin-top: 32px">
+<div class="r jb"><span class="h3">1 · Knob</span><span class="sm dim">Drag up or down. A second finger held on the panel switches to fine mode. Tap for number entry.</span></div>
+<div class="grid6">
+<sc-for list="{{ knobs }}" as="k" hint-placeholder-count="6">
+<div class="state-card"><dc-import name="Knob" label="Cutoff" size="lg" value="{{ k.value }}" readout="1.2 kHz" state="{{ k.state }}" mod-start="{{ k.ms }}" mod-len="{{ k.ml }}" hint-size="110px,150px"></dc-import><span class="cap">{{ k.cap }}</span><span class="dsc">{{ k.dsc }}</span></div>
+</sc-for>
+</div>
+<div class="r g16 ast">
+<div class="plate c g8" style="width: 320px; padding: 12px">
+<div class="r jb"><span class="tape">Cutoff</span><span class="sm dim">tap the value</span></div>
+<div class="r g6"><button class="btn ghost sq" aria-label="Decrease">−</button><div class="field f1 focus" style="justify-content: flex-end; font-weight: 700; font-size: 20px">1.20<span class="sm dim" style="margin-left: 6px">kHz</span></div><button class="btn ghost sq" aria-label="Increase">+</button></div>
+<div class="r g6"><button class="btn ghost f1">Reset 800 Hz</button><button class="btn ghost f1">Snap to note</button></div>
+<div class="r g6"><button class="btn ghost f1">Cancel</button><button class="btn f1">Set</button></div>
+</div>
+<div class="plate c g6 f1" style="padding: 12px">
+<span class="h2">Gestures</span>
+<div class="grid2" style="gap: 6px 24px">
+<div class="r g8"><span class="tape s" style="width: 96px; text-align: center">Drag</span><span class="sm">Vertical. Full range in 200 px.</span></div>
+<div class="r g8"><span class="tape s" style="width: 96px; text-align: center">2nd finger</span><span class="sm">Fine mode, one tenth the speed.</span></div>
+<div class="r g8"><span class="tape s" style="width: 96px; text-align: center">Tap</span><span class="sm">Number entry with − and +.</span></div>
+<div class="r g8"><span class="tape s" style="width: 96px; text-align: center">Double tap</span><span class="sm">Back to default.</span></div>
+<div class="r g8"><span class="tape s" style="width: 96px; text-align: center">Hold</span><span class="sm">Menu: automate, map to macro, MIDI learn.</span></div>
+<div class="r g8"><span class="tape s" style="width: 96px; text-align: center">Screen reader</span><span class="sm">A slider: arrows step, page keys jump.</span></div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="c g12" style="margin-top: 36px">
+<div class="r jb"><span class="h3">2 · Fader and stereo meter</span><span class="sm dim">Cap colour is the channel. The tape under it names the value. Meters are amber, peak hold is a white line, clip is a tally lamp and the word CLIP.</span></div>
+<div class="grid6">
+<sc-for list="{{ faders }}" as="f" hint-placeholder-count="6">
+<div class="state-card"><dc-import name="Fader" h="190" value="{{ f.value }}" color="yellow" state="{{ f.state }}" clip="{{ f.clip }}" l="{{ f.l }}" r="{{ f.r }}" pk-l="{{ f.pk }}" pk-r="{{ f.pk }}" hint-size="120px,270px"></dc-import><span class="cap">{{ f.cap }}</span><span class="dsc">{{ f.dsc }}</span></div>
+</sc-for>
+</div>
+</div>
+
+<div class="c g12" style="margin-top: 36px">
+<div class="r jb"><span class="h3">3 · Toggle and segmented buttons</span><span class="sm dim">Aluminium console keys. A lit lamp and a pressed-in key mean on; colour is never the only signal.</span></div>
+<div class="grid6">
+<sc-for list="{{ toggles }}" as="t" hint-placeholder-count="6">
+<div class="state-card"><div class="rel"><button class="btn tg {{ t.cls }}" style="min-width: 88px">{{ t.label }}</button><sc-if value="{{ t.auto }}" hint-placeholder-val="{{ false }}"><i class="mkr-auto"></i></sc-if></div><span class="cap">{{ t.cap }}</span><span class="dsc">{{ t.dsc }}</span></div>
+</sc-for>
+</div>
+<div class="grid3">
+<div class="state-card"><div class="seg" role="group" aria-label="Wave"><button class="btn on" aria-pressed="true">Saw</button><button class="btn" aria-pressed="false">Square</button><button class="btn" aria-pressed="false">Tri</button></div><span class="cap">Segmented · default</span><span class="dsc">One lamp, one key pressed in.</span></div>
+<div class="state-card"><div class="seg" role="group" aria-label="Wave"><button class="btn on" aria-pressed="true">Saw</button><button class="btn focus" aria-pressed="false">Square</button><button class="btn" aria-pressed="false">Tri</button></div><span class="cap">Segmented · focus</span><span class="dsc">Amber ring, 2 px out. Arrow keys move it.</span></div>
+<div class="state-card"><div class="seg" role="group" aria-label="Wave"><button class="btn on disabled" aria-pressed="true">Saw</button><button class="btn disabled" aria-pressed="false">Square</button><button class="btn disabled" aria-pressed="false">Tri</button></div><span class="cap">Segmented · disabled</span><span class="dsc">Hatched and dimmed. It says why on tap.</span></div>
+</div>
+</div>
+
+<div class="c g12" style="margin-top: 36px">
+<div class="r jb"><span class="h3">6 · XY pad</span><span class="sm dim">Two parameters, one thumb. Tap anywhere jumps the puck. Two number fields below are the tap alternative.</span></div>
+<div class="grid6">
+<sc-for list="{{ pads }}" as="p" hint-placeholder-count="6">
+<div class="state-card"><dc-import name="XyPad" w="150" x="{{ p.x }}" y="{{ p.y }}" state="{{ p.state }}" hint-size="150px,190px"></dc-import><span class="cap">{{ p.cap }}</span><span class="dsc">{{ p.dsc }}</span></div>
+</sc-for>
+</div>
+</div>
+<div class="c g12" style="margin-top: 36px">
+<div class="r jb"><span class="h3">7 · Step-grid cell</span><span class="sm dim">16 steps in two rows of 8 on a phone. Each cell is 44 × 44. Tap toggles. Hold slides velocity. Double tap sets accent.</span></div>
+<div class="grid5">
+<sc-for list="{{ cells }}" as="c" hint-placeholder-count="10">
+<div class="state-card"><div class="steps s44"><div class="srow"><button class="cell {{ c.cls }}" aria-label="{{ c.cap }}"><i class="lamp"></i><i class="vel" style="{{ c.vst }}"></i><b class="acc">{{ c.mark }}</b><sc-if value="{{ c.prob }}" hint-placeholder-val="{{ false }}"><span class="mkr-prob">60%</span></sc-if></button></div></div><span class="cap">{{ c.cap }}</span><span class="dsc">{{ c.dsc }}</span></div>
+</sc-for>
+</div>
+<div class="r g16 ast">
+<div class="plate c g8" style="padding: 12px">
+<span class="lbl">A bar of rolling bass</span>
+<dc-import name="StepRow" pat=".xoo.xoo.xoo.xoa" cell="44" cols="8" head="5" nums="1" hint-size="376px,92px"></dc-import>
+</div>
+<div class="plate c g8 f1" style="padding: 12px">
+<span class="lbl">Cell inspector · the tap alternative to hold-and-slide</span>
+<div class="r g16"><div class="r g6"><span class="lbl" style="width: 60px">Velocity</span><div class="step-b"><button class="btn ghost sq" aria-label="Softer">−</button><span class="v">96</span><button class="btn ghost sq" aria-label="Louder">+</button></div></div>
+<button class="btn tg on" aria-pressed="true">Accent</button>
+<button class="btn tg" aria-pressed="false">Probability</button></div>
+<span class="sm dim">Step 8 · Rolling Bass · velocity is drawn as an ink bar in the cell; accent adds a &gt; mark and an outline.</span>
+</div>
+</div>
+</div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":2200}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const knobs = [
+      { cap: 'Default', state: 'default', value: '62', ms: '0', ml: '0', dsc: 'Aluminium cap, white value arc, tape shows the value.' },
+      { cap: 'Hover · focus', state: 'focus', value: '62', ms: '0', ml: '0', dsc: 'Hover adds a pale halo. Keyboard focus adds the amber ring.' },
+      { cap: 'Pressed', state: 'pressed', value: '68', ms: '0', ml: '0', dsc: 'Cap sinks, the tape grows and is ringed while you drag.' },
+      { cap: 'Disabled', state: 'disabled', value: '62', ms: '0', ml: '0', dsc: 'Dimmed, arc grey, value shows a dash.' },
+      { cap: 'Modulated', state: 'modulated', value: '62', ms: '48', ml: '22', dsc: 'Green arc is the modulation range. The green dot is where it is now.' },
+      { cap: 'Automated', state: 'automated', value: '62', ms: '0', ml: '0', dsc: 'White dot on the cap corner and an A on the tape.' }
+    ];
+    const faders = [
+      { cap: 'Default', state: 'default', value: '80', clip: '0', l: '58', r: '52', pk: '70', dsc: 'Unity at 0 dB. Peak hold line rides above the bar.' },
+      { cap: 'Hover · focus', state: 'focus', value: '80', clip: '0', l: '58', r: '52', pk: '70', dsc: 'Cap brightens on hover, amber ring on focus.' },
+      { cap: 'Pressed', state: 'pressed', value: '66', clip: '0', l: '46', r: '42', pk: '60', dsc: 'Cap sinks and a tape tip shows the dB.' },
+      { cap: 'Disabled', state: 'disabled', value: '80', clip: '0', l: '0', r: '0', pk: '0', dsc: 'Dimmed, meters idle, value is a dash.' },
+      { cap: 'Modulated', state: 'modulated', value: '70', clip: '0', l: '50', r: '48', pk: '62', dsc: 'A green bar lies along the slot for the range.' },
+      { cap: 'Clipping', state: 'default', value: '84', clip: '1', l: '98', r: '94', pk: '100', dsc: 'Red lamp and the word CLIP. Tap to clear.' }
+    ];
+    const toggles = [
+      { cap: 'Off', cls: '', label: 'Loop', auto: false, dsc: 'Lamp dark, key up.' },
+      { cap: 'On', cls: 'on', label: 'Loop', auto: false, dsc: 'Amber lamp lit, key pressed in.' },
+      { cap: 'Hover · focus', cls: 'focus hover', label: 'Loop', auto: false, dsc: 'Brighter key with the amber focus ring.' },
+      { cap: 'Pressed', cls: 'pressed', label: 'Loop', auto: false, dsc: 'Key travels 2 px down while held.' },
+      { cap: 'Disabled', cls: 'disabled', label: 'Loop', auto: false, dsc: 'Hatched, dimmed, not focusable.' },
+      { cap: 'Modulated · automated', cls: 'on mod', label: 'Drive', auto: true, dsc: 'A green ~ when modulated, a white dot when automated.' }
+    ];
+    const cells = [
+      { cap: 'Off', cls: '', vst: 'height:0', mark: '', prob: false, dsc: 'Recessed well, dark lamp.' },
+      { cap: 'On · soft', cls: 'on', vst: 'height:20%', mark: '', prob: false, dsc: 'Raised key, lamp lit, short ink bar.' },
+      { cap: 'On · loud', cls: 'on', vst: 'height:32%', mark: '', prob: false, dsc: 'Taller velocity bar.' },
+      { cap: 'Accent', cls: 'on acc', vst: 'height:32%', mark: '>', prob: false, dsc: 'A > mark and an ink outline.' },
+      { cap: 'Playing', cls: 'on head', vst: 'height:28%', mark: '', prob: false, dsc: 'Amber bar under the current step.' },
+      { cap: 'Hover · focus', cls: 'on focus hov', vst: 'height:28%', mark: '', prob: false, dsc: 'Brighter, amber focus ring.' },
+      { cap: 'Pressed', cls: 'on pressed', vst: 'height:28%', mark: '', prob: false, dsc: 'Key sinks while you hold to set velocity.' },
+      { cap: 'Disabled', cls: 'on dis', vst: 'height:28%', mark: '', prob: false, dsc: 'Channel muted or locked: dimmed.' },
+      { cap: 'Modulated', cls: 'on', vst: 'height:28%', mark: '', prob: true, dsc: 'Green % is the chance this step plays.' },
+      { cap: 'Automated', cls: 'on', vst: 'height:28%', mark: '', prob: false, dsc: 'Velocity follows a lane: dot in the corner.' }
+    ];
+    const pads = [
+      { cap: 'Default', state: 'default', x: '62', y: '70', dsc: 'Puck, crosshair, tape names for both axes.' },
+      { cap: 'Hover · focus', state: 'focus', x: '62', y: '70', dsc: 'Amber ring on the puck.' },
+      { cap: 'Pressed', state: 'pressed', x: '48', y: '38', dsc: 'Larger puck with a value tip above it.' },
+      { cap: 'Disabled', state: 'disabled', x: '62', y: '70', dsc: 'Dimmed, ignores touch.' },
+      { cap: 'Modulated', state: 'modulated', x: '62', y: '70', dsc: 'A green dashed box is the range in both axes.' },
+      { cap: 'Automated', state: 'automated', x: '30', y: '55', dsc: 'White dot and the word auto.' }
+    ];
+    return { knobs: knobs, faders: faders, toggles: toggles, cells: cells, pads: pads };
+  }
+}
+</script>
+</body>
+</html>

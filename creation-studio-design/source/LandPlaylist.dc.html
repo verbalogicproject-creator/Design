@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Landscape · Playlist</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="synth.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Permanent+Marker&display=swap">
+<style>body{margin:0;background:#33404a}</style>
+</helmet>
+<div class="sx" style="width: 892px; height: 412px; display: flex; flex-direction: column">
+<div style="flex: none; height: 56px"><dc-import name="Transport" mode="wide" pos="030:2:01" bpm="146.0" cpu="38" lost="0" playing="1" rec="0" loop="1" hint-size="892px,56px"></dc-import></div>
+<div class="r astr" style="flex: 1 1 0; min-height: 0">
+<div style="flex: none; width: 60px; height: 356px"><dc-import name="Nav" mode="rail" active="playlist" hint-size="60px,356px"></dc-import></div>
+<div class="f1 c rel" style="min-width: 0; overflow: hidden">
+
+<div class="r g6" style="height: 44px; padding: 0 6px; flex: none">
+<div class="seg" style="padding: 0 4px; background: none" role="group" aria-label="Playlist tool">
+<button class="btn sq on" aria-label="Select" aria-pressed="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="#1f2a33"><path d="M5 3l14 8-6 2-3 6z"></path></svg></button>
+<button class="btn sq" aria-label="Draw"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1f2a33" stroke-width="2.4" stroke-linejoin="round"><path d="M4 20l1-5L16 4l4 4L9 19z"></path></svg></button>
+<button class="btn sq" aria-label="Slice"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1f2a33" stroke-width="2.4" stroke-linecap="round"><path d="M12 3v18M6 8l6-5 6 5"></path></svg></button>
+</div>
+<button class="btn tg on" aria-pressed="true" aria-label="Pattern picker, open">Patterns</button>
+<button class="btn tg on" aria-pressed="true" aria-label="Lock sections">Lock sections</button>
+<span class="f1"></span>
+<span class="chip t"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#e9ecee" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="7" cy="17" r="2.5"></circle><circle cx="17" cy="7" r="2.5"></circle><path d="M10 14l-2 2M14 10l2-2M5 13v4h4M15 7h4v4"></path></svg>Pinch · 1 bar = 46 px</span>
+<button class="btn ghost sq" aria-label="Zoom out">−</button>
+<button class="btn ghost sq" aria-label="Zoom in">+</button>
+</div>
+
+<div class="r" style="height: 30px; flex: none; border-top: 1px solid var(--seam)">
+<div style="width: 96px; flex: none" class="lbl pad8">Map</div>
+<div class="f1 rel" style="background: var(--well); box-shadow: inset 0 2px 3px rgba(0,0,0,.5)">
+<svg class="abs" style="left: 0; top: 0" width="736" height="30" viewBox="0 0 736 30" role="img" aria-label="Song overview, 80 bars: Intro, Build, Drop, Break. You are viewing bars 25 to 40.">
+<sc-for list="{{ secs }}" as="s" hint-placeholder-count="4"><g><path d="M{{ s.x }} 0V30" stroke="#3d4b56" stroke-width="1.5"></path><text x="{{ s.tx }}" y="11" font-size="11" font-weight="{{ s.fw }}" fill="{{ s.fill }}">{{ s.name }}</text></g></sc-for>
+<sc-for list="{{ mm }}" as="b" hint-placeholder-count="20"><rect x="{{ b.x }}" y="{{ b.y }}" width="{{ b.w }}" height="3" fill="{{ b.col }}"></rect></sc-for>
+<rect x="257.6" y="26" width="36.8" height="3" fill="#f2b33d"></rect>
+<rect x="221" y="14" width="147" height="15" rx="2" fill="#f2b33d" fill-opacity="0.14" stroke="#f2b33d" stroke-width="2"></rect>
+<path d="M279 12V30" stroke="#f2b33d" stroke-width="2"></path>
+</svg>
+</div>
+</div>
+
+<div class="r" style="height: 26px; flex: none; background: var(--slate-lift); border-top: 1px solid var(--seam)">
+<div style="width: 96px; flex: none" class="lbl pad8">Sections</div>
+<div class="f1 rel" style="overflow: visible; z-index: 7">
+<button class="flag-hit" style="left: 4px" aria-label="Build section, unlocked. Tap for options, hold to drag."><span class="tape s" style="display: flex; align-items: center; gap: 4px"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#1f2a33" stroke-width="3" stroke-linecap="round"><path d="M15 5l-7 7 7 7"></path></svg>Build<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#1f2a33" stroke-width="2.6" stroke-linecap="round" aria-label="unlocked"><rect x="5" y="11" width="14" height="9" rx="2"></rect><path d="M8 11V8a4 4 0 0 1 7-2.5"></path></svg></span></button>
+<button class="flag-hit" style="left: 368px" aria-label="Drop section, locked. Tap for options."><span class="tape s" style="display: flex; align-items: center; gap: 4px">Drop<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#1f2a33" stroke-width="2.6" stroke-linecap="round" aria-label="locked"><rect x="5" y="11" width="14" height="9" rx="2" fill="#1f2a33"></rect><path d="M8 11V8a4 4 0 0 1 8 0v3"></path></svg><b style="font-family: Archivo, sans-serif; font-size: 11px; letter-spacing: .06em">LOCKED</b></span></button>
+</div>
+</div>
+
+<div class="r" style="height: 24px; flex: none; background: var(--slate-lift); border-top: 1px solid var(--seam)">
+<div style="width: 96px; flex: none" class="lbl pad8">Bar</div>
+<div class="ruler f1" style="height: 24px; border-bottom: 0"><sc-for list="{{ bars }}" as="b" hint-placeholder-count="16"><b style="{{ b.st }}; top: 6px">{{ b.n }}</b></sc-for><i class="loopbar" style="left: 184px; width: 184px"></i></div>
+</div>
+
+<div class="rel" style="flex: none">
+<sc-for list="{{ tracks }}" as="t" hint-placeholder-count="4">
+<div class="trk" style="height: 56px">
+<div class="trk-h" style="width: 96px; gap: 4px">
+<i class="stripe cap-{{ t.color }}"></i>
+<div class="c f1"><span class="lbl" style="color: var(--text)">{{ t.name }}</span><span class="sm dim">{{ t.sub }}</span></div>
+<button class="btn sq tg tiny" style="min-width: 44px; min-height: 44px" aria-label="Mute {{ t.name }}">M</button>
+</div>
+<div class="lane" style="background-image: repeating-linear-gradient(90deg,#232c33 0 1px,transparent 1px 46px), repeating-linear-gradient(90deg,#3a4852 0 1px,transparent 1px 184px)">
+<sc-for list="{{ t.blocks }}" as="b" hint-placeholder-count="3">
+<div style="{{ b.pos }}"><dc-import name="PatternBlock" kind="{{ b.kind }}" label="{{ b.name }}" color="{{ t.color }}" w="{{ b.w }}" h="44" seed="{{ b.seed }}" sel="{{ b.sel }}" hint-size="184px,44px"></dc-import></div>
+</sc-for>
+</div>
+</div>
+</sc-for>
+<div class="scroll-h" style="position: relative; height: 8px"><i style="left: 28%; width: 18%"></i></div>
+</div>
+
+<div class="abs" style="left: 280px; top: 100px; width: 184px; height: 248px; background: rgba(242,179,61,.09); border-left: 2px solid var(--amber); border-right: 2px solid var(--amber); pointer-events: none; z-index: 3"></div>
+<div class="abs" style="left: 464px; top: 74px; height: 274px; border-left: 2px dashed var(--alu-dim); z-index: 3"></div>
+<div class="playhead" style="left: 349px; top: 74px; bottom: 8px"></div>
+
+<div class="abs r g4 plate" style="left: 208px; top: 118px; z-index: 6; padding: 4px" role="toolbar" aria-label="Block actions: Bass roll, used 4 times">
+<button class="btn ghost">Duplicate</button>
+<button class="btn ghost">Split</button>
+<button class="btn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1f2a33" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 15l-2 2a3.5 3.5 0 0 1-5-5l3-3M15 9l2-2a3.5 3.5 0 0 1 5 5l-3 3M10 14l4-4M4 4l16 16"></path></svg>Make unique</button>
+<button class="btn ghost sq" style="box-shadow: inset 0 0 0 2px var(--tally)" aria-label="Delete block"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ffa594" stroke-width="2.4" stroke-linecap="round"><path d="M5 7h14M9 7V4h6v3M7 7l1 13h8l1-13"></path></svg></button>
+</div>
+<div class="abs" style="left: 292px; top: 172px; z-index: 6; border: 8px solid transparent; border-top: 10px solid var(--alu-dim); border-bottom: 0"></div>
+
+<div class="abs c" style="right: 0; top: 44px; bottom: 0; width: 200px; z-index: 8; background: var(--slate-lift); border-left: 2px solid var(--alu-dim); box-shadow: -8px 0 16px rgba(0,0,0,.35)" role="dialog" aria-label="Pattern picker">
+<div class="r jb" style="height: 40px; padding: 0 8px"><span class="h2">Patterns</span><button class="btn tiny ghost" aria-label="New pattern">+ New</button></div>
+<div class="c g6 f1" style="padding: 0 8px 6px; overflow: hidden">
+<sc-for list="{{ pats }}" as="p" hint-placeholder-count="5">
+<dc-import name="PatternBlock" kind="{{ p.kind }}" label="{{ p.name }}" color="{{ p.color }}" w="182" h="44" seed="{{ p.seed }}" sel="{{ p.sel }}" hint-size="182px,44px"></dc-import>
+</sc-for>
+</div>
+</div>
+
+</div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":892,"height":412}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const BW = 46, V0 = 25;
+    const bars = [];
+    for (let i = 0; i < 16; i++) bars.push({ n: String(V0 + i), st: 'left:' + (i * BW) + 'px' });
+    const mk = (b0, b1, name, kind, seed, sel) => ({ pos: 'position:absolute;left:' + ((b0 - V0) * BW) + 'px;top:6px', w: String((b1 - b0) * BW - 2), name: name, kind: kind, seed: String(seed), sel: sel ? '1' : '0' });
+    const tracks = [
+      { name: 'Kick', sub: 'MIDI', color: 'red', blocks: [mk(25, 29, 'Kick A ×6', 'midi', 1), mk(29, 33, 'Kick A ×6', 'midi', 1), mk(33, 37, 'Kick B', 'midi', 3), mk(37, 41, 'Kick B', 'midi', 3)] },
+      { name: 'Bass', sub: 'MIDI', color: 'yellow', blocks: [mk(25, 29, 'Bass build', 'midi', 4), mk(29, 33, 'Bass roll ×4', 'midi', 2, true), mk(33, 37, 'Bass roll ×4', 'midi', 2), mk(37, 41, 'Bass roll ×4', 'midi', 2)] },
+      { name: 'Pad', sub: 'Audio · AI', color: 'green', blocks: [mk(25, 33, 'Lyria · forest', 'audio', 5), mk(33, 41, 'Lyria · drop', 'audio', 8)] },
+      { name: 'Cutoff', sub: 'Automation', color: 'yellow', blocks: [mk(29, 33, 'Cutoff sweep', 'auto', 7), mk(37, 41, 'Cutoff sweep', 'auto', 9)] }
+    ];
+    const pats = [
+      { name: 'Kick A ×6', kind: 'midi', color: 'red', seed: 1, sel: '0' },
+      { name: 'Bass roll ×4', kind: 'midi', color: 'yellow', seed: 2, sel: '1' },
+      { name: 'Hats off ×3', kind: 'midi', color: 'white', seed: 6, sel: '0' },
+      { name: 'Vox idea', kind: 'audio', color: 'blue', seed: 3, sel: '0' },
+      { name: 'Cutoff sweep', kind: 'auto', color: 'yellow', seed: 7, sel: '0' }
+    ];
+    const S = 736 / 80;
+    const secDef = [['Intro', 0], ['Build', 16], ['Drop', 32], ['Break', 64]];
+    const secs = secDef.map((s) => ({ name: s[0], x: (s[1] * S).toFixed(1), tx: (s[1] * S + 4).toFixed(1), fw: s[0] === 'Build' ? '800' : '600', fill: s[0] === 'Build' ? '#f2b33d' : '#b8c2c9' }));
+    const mm = [];
+    const seg = (b0, b1, row, col) => mm.push({ x: (b0 * S).toFixed(1), w: ((b1 - b0) * S - 0.5).toFixed(1), y: 15 + row * 4, col: col });
+    seg(0, 64, 0, '#d9483b'); seg(64, 72, 0, '#d9483b');
+    seg(16, 64, 1, '#e8c547'); seg(72, 80, 1, '#e8c547');
+    seg(0, 80, 2, '#5ba67a');
+    seg(20, 32, 3, '#8e979d'); seg(44, 52, 3, '#8e979d');
+    return { bars: bars, tracks: tracks, pats: pats, secs: secs, mm: mm };
+  }
+}
+</script>
+</body>
+</html>

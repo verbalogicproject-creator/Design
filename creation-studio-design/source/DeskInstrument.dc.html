@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Desktop · Instruments and automation</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="synth.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Permanent+Marker&display=swap">
+<style>body{margin:0;background:#33404a}</style>
+</helmet>
+<div class="sx" style="width: 1440px; height: 900px; display: flex; flex-direction: column">
+<div style="flex: none; height: 56px"><dc-import name="Transport" mode="wide" pos="030:3:01" bpm="146.0" cpu="38" lost="0" playing="1" rec="0" loop="1" hint-size="1440px,56px"></dc-import></div>
+<div class="desk-top" style="flex: none; height: 48px">
+<div class="f1"><dc-import name="Nav" mode="top" active="rack" hint-size="1000px,48px"></dc-import></div>
+<span class="tape s" style="margin-right: 12px">Rolling Bass 03</span>
+<span class="rev un" style="margin-right: 12px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#f2b33d" stroke-width="2.6"><circle cx="12" cy="12" r="6"></circle></svg>unsaved · r12</span>
+</div>
+<div class="r g8 astr" style="flex: 1 1 0; padding: 8px; min-height: 0">
+
+<div class="plate c" style="width: 280px; flex: none; padding: 0">
+<div class="r jb" style="height: 44px; padding: 0 10px"><span class="h2">Channels</span><button class="btn tiny">+ Add</button></div>
+<sc-for list="{{ chans }}" as="c" hint-placeholder-count="8">
+<button class="chrow {{ c.cls }}" style="height: 52px; width: 100%; border: 0; border-bottom: 1px solid var(--seam); background: transparent; color: var(--text); text-align: left; cursor: pointer; {{ c.bg }}">
+<i class="chcap {{ c.cap }}"></i><span class="chnum">{{ c.num }}</span>
+<span class="c g2 f1" style="min-width: 0"><span class="tape s" style="align-self: flex-start">{{ c.name }}</span><span class="sm dim">{{ c.inst }}</span></span>
+<span class="sm dim b">{{ c.db }}</span>
+</button>
+</sc-for>
+</div>
+
+<div class="c g8 f1" style="min-width: 0">
+<div class="plate screws c g8" style="padding: 12px 14px 10px">
+<div class="r g12"><span class="tape l">Psy Bass</span><span class="sm dim b">Rolling Bass · ch 2</span><span class="f1"></span><button class="chip t">Forest 146 ▾</button></div>
+<div class="r g16 ast">
+<div class="c g6">
+<div class="r jb"><span class="tape s">Osc</span><span class="sm dim">saw → square</span></div>
+<div class="r g8">
+<div class="canvas-box" style="width: 190px; height: 90px"><svg width="188" height="88" viewBox="0 0 188 88" role="img" aria-label="Waveform at 35 percent morph"><path d="M0 44H188" stroke="#232c33"></path><path d="{{ waveD }}" fill="none" stroke="#f2b33d" stroke-width="2.4"></path></svg></div>
+<div class="c g4"><dc-import name="Knob" label="Morph" size="sm" value="35" readout="35 %" hint-size="64px,86px"></dc-import><dc-import name="Knob" label="Detune" size="sm" value="34" readout="+14 ct" hint-size="64px,86px"></dc-import></div>
+</div>
+</div>
+<i class="vr"></i>
+<div class="c g6">
+<div class="r jb g8"><span class="tape s">Filter</span><div class="seg" role="group" aria-label="Filter type"><button class="btn on" aria-pressed="true">Moog</button><button class="btn" aria-pressed="false">TPT</button></div></div>
+<div class="r g8">
+<dc-import name="Knob" label="Cutoff" value="62" readout="1.2 kHz" mod-start="48" mod-len="22" auto="1" hint-size="72px,100px"></dc-import>
+<dc-import name="Knob" label="Resonance" value="28" readout="28 %" hint-size="80px,100px"></dc-import>
+<dc-import name="Knob" label="Env amt" value="70" readout="+70 %" hint-size="72px,100px"></dc-import>
+</div>
+</div>
+<i class="vr"></i>
+<div class="c g6"><div class="r jb"><span class="tape s">Amp env</span><span class="sm dim">AHDSR</span></div>
+<dc-import name="EnvCurve" w="280" h="96" a="6" hold="0" d="22" s="70" r="24" t-a="1 ms" t-h="0 ms" t-d="140 ms" t-s="70%" t-r="180 ms" hint-size="280px,140px"></dc-import></div>
+<i class="vr"></i>
+<div class="c g4">
+<dc-import name="Knob" label="Glide" size="sm" value="12" readout="18 ms" hint-size="64px,86px"></dc-import>
+<dc-import name="Knob" label="Drive" size="sm" value="40" readout="4.2 dB" hint-size="64px,86px"></dc-import>
+</div>
+<dc-import name="Fader" h="150" value="80" color="yellow" l="62" r="58" pk-l="72" pk-r="68" scale="0" hint-size="70px,220px"></dc-import>
+</div>
+</div>
+
+<div class="plate c g6" style="padding: 8px 12px; flex: 1 1 0; min-height: 0; border-top: 2px solid var(--alu-dim)">
+<div class="r g8" style="height: 44px; flex: none">
+<span class="tape">Rolling Bass · Cutoff</span><span class="badge"><i class="dot"></i> automation clip</span><span class="chip">bars 29–33</span>
+<div class="seg" role="group" aria-label="Clip tool"><button class="btn on" aria-pressed="true">Point</button><button class="btn" aria-pressed="false">Pencil</button><button class="btn" aria-pressed="false">Line</button></div>
+<button class="btn ghost">Snap 1/16</button><span class="f1"></span>
+<span class="sm dim">Double-click adds a point · Alt-drag bends · Delete removes</span>
+<button class="btn">Done</button>
+</div>
+<div class="canvas-box f1" style="min-height: 0">
+<svg width="100%" height="100%" viewBox="0 0 1040 200" preserveAspectRatio="none" role="img" aria-label="Cutoff automation over four bars">
+<sc-for list="{{ grid }}" as="g" hint-placeholder-count="17"><path d="{{ g.d }}" stroke="{{ g.c }}" stroke-width="{{ g.w }}" vector-effect="non-scaling-stroke"></path></sc-for>
+<path d="{{ fillD }}" fill="#e8c547" fill-opacity="0.12"></path>
+<path d="{{ curveD }}" fill="none" stroke="#e8c547" stroke-width="3" vector-effect="non-scaling-stroke"></path>
+<path d="M572 0V200" stroke="#f2b33d" stroke-width="2" vector-effect="non-scaling-stroke"></path>
+</svg>
+<sc-for list="{{ pts }}" as="p" hint-placeholder-count="6"><i class="abs" style="{{ p.st }}"></i></sc-for>
+</div>
+<div class="r g12" style="height: 44px; flex: none">
+<span class="b sm">Point 3</span>
+<div class="r g4"><span class="lbl">Time</span><div class="step-b"><button class="btn ghost sq" aria-label="Earlier">−</button><span class="v">30.3.1</span><button class="btn ghost sq" aria-label="Later">+</button></div></div>
+<div class="r g4"><span class="lbl">Value</span><div class="step-b"><button class="btn ghost sq" aria-label="Lower">−</button><span class="v" style="min-width: 64px">820 Hz</span><button class="btn ghost sq" aria-label="Higher">+</button></div></div>
+<div class="r g4"><span class="lbl">Curve</span><div class="seg" style="padding: 0; background: none"><button class="btn sq">Step</button><button class="btn sq on">Lin</button><button class="btn sq">Bend</button></div></div>
+</div>
+</div>
+
+<div class="plate screws r g16" style="padding: 12px 14px; flex: none">
+<div class="c g6"><div class="r g12"><span class="tape l">Kick</span><button class="btn tiny">Hit</button></div>
+<div class="canvas-box" style="width: 300px; height: 96px"><svg width="298" height="94" viewBox="0 0 298 94" role="img" aria-label="Kick waveform"><path d="M0 47H298" stroke="#232c33"></path><path d="{{ kickD }}" fill="none" stroke="#f2b33d" stroke-width="1.4"></path></svg></div></div>
+<i class="vr"></i>
+<div class="r g8 f1 jb">
+<dc-import name="Knob" label="Tune" value="40" readout="48 Hz" hint-size="72px,100px"></dc-import>
+<dc-import name="Knob" label="Pitch amt" value="62" readout="+34 st" hint-size="80px,100px"></dc-import>
+<dc-import name="Knob" label="Pitch decay" value="30" readout="28 ms" hint-size="88px,100px"></dc-import>
+<dc-import name="Knob" label="Decay" value="55" readout="140 ms" hint-size="72px,100px"></dc-import>
+<dc-import name="Knob" label="Click" value="35" readout="35 %" auto="1" hint-size="72px,100px"></dc-import>
+<dc-import name="Knob" label="Drive" value="25" readout="3.0 dB" mod-start="18" mod-len="20" hint-size="72px,100px"></dc-import>
+<dc-import name="Knob" label="Output" value="80" readout="0 dB" hint-size="72px,100px"></dc-import>
+</div>
+</div>
+</div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":900}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const f1 = (n) => n.toFixed(1);
+    const rows = [['1', 'Kick', 'Kick', 'red', '−1.5'], ['2', 'Rolling Bass', 'Psy Bass', 'yellow', '−3.0', 1], ['3', 'Hats', 'Sampler', 'white', '−7.5'], ['4', 'Clap', 'Sampler', 'blue', '−5.0'], ['5', 'Lead arp', 'Poly Synth', 'green', '−9.0'], ['6', 'Vox synth', 'Poly Synth', 'blue', '−6.5'], ['7', 'Perc', 'Sampler', 'white', '−10'], ['8', 'Forest pad', 'Audio Player', 'green', '−11']];
+    const chans = rows.map((r) => ({ num: r[0], name: r[1], inst: r[2], cap: 'cap-' + r[3], db: r[4] + ' dB', cls: r[5] ? 'sel' : '', bg: r[5] ? 'background: var(--slate); box-shadow: inset 3px 0 0 var(--amber)' : '' }));
+    let wd = '';
+    for (let i = 0; i <= 188; i++) { const p = i / 188 * 2; const saw = 2 * (p - Math.floor(p + 0.5)); const sq = (p - Math.floor(p)) < 0.5 ? 1 : -1; const v = 0.65 * saw + 0.35 * sq; wd += (i ? ' L' : 'M') + i + ' ' + f1(44 - v * 34); }
+    let kd = '', ph = 0; const N = 900, T = 0.25;
+    for (let i = 0; i <= N; i++) { const t = i / N * T; const fr = 48 + 150 * Math.exp(-t / 0.028); ph += 2 * Math.PI * fr * T / N; let y = Math.exp(-t / 0.11) * Math.sin(ph); if (t < 0.004) y += 0.3 * Math.sin(2 * Math.PI * 3000 * t); y = Math.max(-1, Math.min(1, y)); kd += (i ? ' L' : 'M') + f1(i / N * 298) + ' ' + f1(47 - y * 40); }
+    const W = 1040, H = 200, P = 14;
+    const X = (f) => f * W, Y = (v) => P + (1 - v) * (H - 2 * P);
+    const grid = [];
+    for (let i = 0; i <= 16; i++) grid.push({ d: 'M' + f1(i * W / 16) + ' 0V' + H, c: i % 4 === 0 ? '#4a5a66' : '#232c33', w: i % 4 === 0 ? '1.5' : '1' });
+    const pts = [[0, 0.25], [0.22, 0.72], [0.45, 0.4], [0.62, 0.85], [0.8, 0.55], [1, 0.3]];
+    const ten = [0.5, -0.4, 0, 0.6, -0.3];
+    const ctrl = (x1, y1, x2, y2, c) => { const mx = (x1 + x2) / 2, my = (y1 + y2) / 2; const cor = c >= 0 ? [x1, y2] : [x2, y1]; const k = Math.abs(c) * 0.8; return [mx + (cor[0] - mx) * k, my + (cor[1] - my) * k]; };
+    let d = 'M0 ' + f1(Y(pts[0][1]));
+    for (let i = 0; i < pts.length - 1; i++) { const a = [X(pts[i][0]), Y(pts[i][1])], b = [X(pts[i + 1][0]), Y(pts[i + 1][1])]; const c = ctrl(a[0], a[1], b[0], b[1], ten[i]); d += ' Q' + f1(c[0]) + ' ' + f1(c[1]) + ' ' + f1(b[0]) + ' ' + f1(b[1]); }
+    const pp = pts.map((p, i) => ({ st: 'left:calc(' + (p[0] * 100).toFixed(1) + '% - 7px);top:calc(' + (Y(p[1]) / H * 100).toFixed(1) + '% - 7px);width:14px;height:14px;border-radius:50%;background:#c5cbcf;border:2.5px solid #1f2a33' + (i === 2 ? ';box-shadow:0 0 0 4px #3d4b56,0 0 0 6px #f2b33d' : '') }));
+    return { chans: chans, waveD: wd, kickD: kd, grid: grid, curveD: d, fillD: d + ' L' + W + ' ' + H + ' L0 ' + H + ' Z', pts: pp };
+  }
+}
+</script>
+</body>
+</html>

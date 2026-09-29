@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Phone · Psy Bass panel</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="synth.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Permanent+Marker&display=swap">
+<style>body{margin:0;background:#33404a}</style>
+</helmet>
+<div class="sx ph" style="width: 412px; height: 880px">
+<div class="ph-hdr">
+<button class="btn ghost sq" aria-label="Back to rack">‹</button>
+<span class="tape s">Rolling Bass</span>
+<span class="sm dim b">ch 2</span>
+<span class="f1"></span>
+<span class="rev un"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#f2b33d" stroke-width="2.6"><circle cx="12" cy="12" r="6"></circle></svg>unsaved · r12</span>
+</div>
+<div style="flex: none; height: 106px">
+<dc-import name="Transport" mode="phone" pos="012:3:04" bpm="146.0" cpu="38" lost="0" playing="1" rec="0" loop="1" hint-size="412px,106px"></dc-import>
+</div>
+<div class="ph-body c" style="padding: 6px 8px; gap: 6px">
+<div class="r jb" style="min-height: 40px">
+<span class="tape l">Psy Bass</span>
+<button class="chip t" aria-label="Preset Forest 146">Forest 146 ▾</button>
+</div>
+<div class="plate" style="padding: 10px">
+<div class="r jb" style="margin-bottom: 6px"><span class="tape s">Osc</span><span class="sm dim b">wave morph · saw to square</span></div>
+<div class="r g12">
+<div class="c g4" style="width: 176px; flex: none">
+<div class="canvas-box" style="height: 84px"><svg width="174" height="84" viewBox="0 0 174 84" role="img" aria-label="Oscillator waveform at 35 percent morph between saw and square">
+<path d="M0 42H174" stroke="#232c33" stroke-width="1"></path>
+<path d="{{ sawD }}" fill="none" stroke="#8e979d" stroke-width="1.2" stroke-dasharray="3 3"></path>
+<path d="{{ sqD }}" fill="none" stroke="#8e979d" stroke-width="1.2" stroke-dasharray="3 3"></path>
+<path d="{{ waveD }}" fill="none" stroke="#f2b33d" stroke-width="2.6" stroke-linejoin="round"></path>
+</svg></div>
+<div class="r jb"><span class="lbl">Saw</span><span class="lbl">Square</span></div>
+</div>
+<dc-import name="Knob" label="Morph" size="md" value="35" readout="35 %" hint-size="72px,100px"></dc-import>
+<dc-import name="Knob" label="Detune" size="sm" value="34" readout="+14 ct" hint-size="64px,86px"></dc-import>
+</div>
+</div>
+<div class="plate" style="padding: 10px">
+<div class="r jb" style="margin-bottom: 8px"><span class="tape s">Filter</span>
+<div class="seg" role="group" aria-label="Filter type"><button class="btn on" aria-pressed="true">Moog</button><button class="btn" aria-pressed="false">TPT</button></div></div>
+<div class="r jb">
+<dc-import name="Knob" label="Cutoff" size="md" value="62" readout="1.2 kHz" mod-start="48" mod-len="22" hint-size="72px,100px"></dc-import>
+<dc-import name="Knob" label="Resonance" size="md" value="28" readout="28 %" hint-size="84px,100px"></dc-import>
+<dc-import name="Knob" label="Env amount" size="md" value="70" readout="+70 %" hint-size="90px,100px"></dc-import>
+</div>
+</div>
+<div class="plate" style="padding: 10px">
+<div class="r jb" style="margin-bottom: 6px"><span class="tape s">Amp envelope</span><span class="sm dim b">A H D S R</span></div>
+<dc-import name="EnvCurve" w="354" h="84" a="6" hold="0" d="22" s="70" r="24" t-a="1 ms" t-h="0 ms" t-d="140 ms" t-s="70%" t-r="180 ms" sel="d" hint-size="354px,130px"></dc-import>
+</div>
+<div class="plate r jb" style="padding: 6px 10px">
+<dc-import name="Knob" label="Glide" size="md" value="12" readout="18 ms" hint-size="72px,100px"></dc-import>
+<dc-import name="Knob" label="Drive" size="md" value="40" readout="4.2 dB" auto="1" hint-size="72px,100px"></dc-import>
+<dc-import name="Knob" label="Output" size="md" value="80" readout="0 dB" hint-size="72px,100px"></dc-import>
+<div class="r g4" style="align-self: center"><div class="mt" style="height: 64px"><div class="mt-fill" style="height: 62%"></div><i class="mt-grid"></i><i class="mt-pk" style="bottom: 72%"></i></div><div class="mt" style="height: 64px"><div class="mt-fill" style="height: 58%"></div><i class="mt-grid"></i><i class="mt-pk" style="bottom: 68%"></i></div></div>
+</div>
+</div>
+<div style="flex: none; height: 60px">
+<dc-import name="Nav" mode="bottom" active="rack" hint-size="412px,60px"></dc-import>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":412,"height":880}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const W = 174, H = 84, cy = 42, amp = 32, per = 2;
+    const saw = (p) => 2 * (p - Math.floor(p + 0.5));
+    const sq = (p) => (p - Math.floor(p)) < 0.5 ? 1 : -1;
+    const build = (m) => {
+      let d = '';
+      for (let i = 0; i <= 174; i++) {
+        const p = i / W * per;
+        const v = (1 - m) * saw(p) + m * sq(p);
+        d += (i ? ' L' : 'M') + i + ' ' + (cy - v * amp).toFixed(1);
+      }
+      return d;
+    };
+    return { waveD: build(0.35), sawD: build(0), sqD: build(1) };
+  }
+}
+</script>
+</body>
+</html>

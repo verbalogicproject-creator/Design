@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Desktop · Mixer</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="synth.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Permanent+Marker&display=swap">
+<style>body{margin:0;background:#33404a}</style>
+</helmet>
+<div class="sx" style="width: 1440px; height: 900px; display: flex; flex-direction: column">
+<div style="flex: none; height: 56px"><dc-import name="Transport" mode="wide" pos="005:2:01" bpm="146.0" cpu="38" lost="0" playing="1" rec="0" loop="1" hint-size="1440px,56px"></dc-import></div>
+<div class="desk-top" style="flex: none; height: 48px">
+<div class="f1"><dc-import name="Nav" mode="top" active="mixer" hint-size="1000px,48px"></dc-import></div>
+<span class="tape s" style="margin-right: 12px">Rolling Bass 03</span>
+<span class="rev" style="margin-right: 12px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#8fd1a9" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5 11-11"></path></svg>saved r12</span>
+</div>
+<div class="r g8 astr" style="flex: 1 1 0; padding: 8px; min-height: 0">
+<div class="r ast" style="gap: 4px; flex: none">
+<sc-for list="{{ strips }}" as="s" hint-placeholder-count="10">
+<dc-import name="Strip" label="{{ s.name }}" num="{{ s.num }}" color="{{ s.color }}" vol="{{ s.vol }}" pan="{{ s.pan }}" l="{{ s.l }}" r="{{ s.r }}" pk="{{ s.pk }}" clip="{{ s.clip }}" mute="{{ s.mute }}" solo="{{ s.solo }}" sel="{{ s.sel }}" fx="{{ s.fx }}" fh="{{ s.fh }}" w="84" badge="{{ s.badge }}" badge-cls="{{ s.bc }}" show-fx="0" hint-size="84px,740px"></dc-import>
+</sc-for>
+<div style="width: 6px"></div>
+<dc-import name="Strip" label="Master" num="M" color="white" vol="80" pan="0" l="74" r="71" pk="86" fx="0" fh="424" w="104" layout="row" no-ms="1" show-fx="0" badge="limit −1.2" hint-size="104px,640px"></dc-import>
+</div>
+<div class="c g8 f1" style="min-width: 0">
+<div class="plate c g8 f1" style="padding: 10px; min-height: 0">
+<div class="r jb"><span class="tape">EQ · Bass</span><div class="r g8"><button class="btn tg on tiny" style="min-height: 44px" aria-pressed="true">On</button><button class="btn ghost">Reset</button></div></div>
+<dc-import name="EqCurve" w="320" h="200" sel="2" hint-size="320px,200px"></dc-import>
+<div class="r jb">
+<dc-import name="Knob" label="Freq" size="sm" value="34" readout="90 Hz" hint-size="64px,86px"></dc-import>
+<dc-import name="Knob" label="Gain" size="sm" value="62" readout="+3.5 dB" auto="1" hint-size="64px,86px"></dc-import>
+<dc-import name="Knob" label="Q" size="sm" value="45" readout="1.2" hint-size="64px,86px"></dc-import>
+<dc-import name="Knob" label="Out" size="sm" value="50" readout="0 dB" hint-size="64px,86px"></dc-import>
+</div>
+</div>
+<div class="plate c g6" style="padding: 10px">
+<div class="r jb"><span class="tape s">Bass · inserts</span><span class="sm dim b">4 of 8</span></div>
+<div class="r g6 sm b" style="min-height: 22px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#f2b33d" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v14M6 12l6 6 6-6"></path></svg><span class="f1">Ducked by Kick −3 dB</span><div class="gr-m" style="max-width: 64px" aria-label="Gain reduction 3 decibels"><i style="width: 25%"></i></div></div>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4px">
+<sc-for list="{{ slots }}" as="x" hint-placeholder-count="8"><button class="slot-b {{ x.cls }}" aria-label="{{ x.label }}"><span class="n">{{ x.n }}</span><span class="t">{{ x.t }}</span></button></sc-for>
+</div>
+<div class="r jb"><span class="tape s">Sends</span><span class="sm dim">pre-fader off</span></div>
+<div class="r jb">
+<dc-import name="Knob" label="Pan" size="sm" value="46" readout="L8" hint-size="64px,86px"></dc-import>
+<dc-import name="Knob" label="To Verb" size="sm" value="24" readout="−12 dB" hint-size="72px,86px"></dc-import>
+<dc-import name="Knob" label="To Delay" size="sm" value="0" readout="off" hint-size="72px,86px"></dc-import>
+<span class="chip">→ Drums</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":900}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const base = [
+      { name: 'Kick', num: '1', color: 'red', vol: 82, pan: 0, l: 96, r: 92, pk: 100, clip: 1, badge: '→ Drums' },
+      { name: 'Bass', num: '2', color: 'yellow', vol: 78, pan: -8, l: 58, r: 55, pk: 70, sel: 1, badge: 'duck −3', bc: 'am' },
+      { name: 'Hats', num: '3', color: 'white', vol: 64, pan: 22, l: 34, r: 38, pk: 52, solo: 1, badge: '→ Drums' },
+      { name: 'Clap', num: '4', color: 'blue', vol: 70, pan: -14, l: 46, r: 44, pk: 60, mute: 1, badge: '→ Drums' },
+      { name: 'Lead', num: '5', color: 'green', vol: 60, pan: 10, l: 40, r: 42, pk: 55 },
+      { name: 'Vox', num: '6', color: 'blue', vol: 66, pan: 0, l: 44, r: 44, pk: 58 },
+      { name: 'Perc', num: '7', color: 'white', vol: 58, pan: 30, l: 26, r: 30, pk: 40, badge: '→ Drums' },
+      { name: 'Pad', num: '8', color: 'green', vol: 52, pan: 0, l: 30, r: 31, pk: 44 },
+      { name: 'Drums', num: 'G1', color: 'white', vol: 74, pan: 0, l: 80, r: 76, pk: 88, badge: 'group' },
+      { name: 'Verb', num: 'R1', color: 'blue', vol: 48, pan: 0, l: 22, r: 24, pk: 36, badge: 'return' },
+      { name: 'Delay', num: 'R2', color: 'green', vol: 44, pan: 0, l: 18, r: 20, pk: 30, badge: 'return' }
+    ];
+    const sl = (n, t, cls, label) => ({ n: String(n), t: t, cls: cls || '', label: label || (n + ' ' + t) });
+    const slots = [sl(1, 'EQ'), sl(2, 'Saturator'), sl(3, 'Comp ← Kick', '', '3 Compressor, sidechain key Kick'), sl(4, 'Limiter · off', 'byp', '4 Limiter, bypassed'), sl(5, '+ Add', 'emp', '5 empty slot'), sl(6, '+ Add', 'emp', '6 empty slot'), sl(7, '+ Add', 'emp', '7 empty slot'), sl(8, '+ Add', 'emp', '8 empty slot')];
+    return {
+      slots: slots,
+      strips: base.map((s) => ({
+        name: s.name, num: s.num, color: s.color, vol: String(s.vol), pan: String(s.pan), l: String(s.l), r: String(s.r), pk: String(s.pk),
+        badge: s.badge || '', bc: s.bc || '', clip: s.clip ? '1' : '0', mute: s.mute ? '1' : '0', solo: s.solo ? '1' : '0', sel: s.sel ? '1' : '0', fx: '0', fh: '380'
+      }))
+    };
+  }
+}
+</script>
+</body>
+</html>

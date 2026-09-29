@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Take card</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="synth.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Permanent+Marker&display=swap">
+<style>body{margin:0;background:#33404a}</style>
+</helmet>
+<div class="sx" style="width: 100%; overflow: visible; background: none">
+<div class="take {{chosenCls}}">
+<div class="r jb g8">
+<div class="r g8"><span class="tape">{{name}}</span><span class="sm dim b">{{dur}}</span></div>
+<span class="badge">{{kindTxt}}</span>
+</div>
+<div class="well mini-wave" style="margin-top: 8px" role="img" aria-label="Waveform of {{name}}">
+<sc-for list="{{ bars }}" as="b" hint-placeholder-count="40"><i class="{{ b.cls }}" style="{{ b.st }}"></i></sc-for>
+</div>
+<div class="seg" style="margin-top: 8px; width: 100%">
+<button class="btn f1 {{vCls}}" aria-pressed="{{vOn}}">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="#1f2a33"><path d="M8 5v14l11-7z"></path></svg>{{aLabel}}</button>
+<button class="btn f1 {{iCls}}" aria-pressed="{{iOn}}">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="#1f2a33"><path d="M8 5v14l11-7z"></path></svg>{{bLabel}}</button>
+</div>
+<div class="c g6" style="margin-top: 10px">
+<div class="r g8 ast sm">
+<span class="badge {{confCls}}">{{confTxt}}</span>
+<span class="f1 dim">{{note}}</span>
+</div>
+<div class="r g8 ast sm">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#f2b33d" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" style="flex: none; margin-top: 1px"><path d="M12 3 2 21h20z"></path><path d="M12 10v5M12 18v.5"></path></svg>
+<span class="f1">{{warn}}</span>
+</div>
+</div>
+<div class="r g8" style="margin-top: 12px">
+<button class="btn f1">{{useLabel}}</button>
+<button class="btn ghost" style="box-shadow: inset 0 0 0 2px var(--tally)" aria-label="Discard {{name}}"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ffa594" stroke-width="2.4" stroke-linecap="round"><path d="M5 7h14M9 7V4h6v3M7 7l1 13h8l1-13"></path></svg>Discard</button>
+</div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"label":{"editor":null,"default":"Take 2"},"dur":{"editor":null,"default":"0:12"},"kind":{"editor":null,"default":"sing"},"playing":{"editor":null,"default":"inst"},"conf":{"editor":null,"default":"High"},"confPct":{"editor":null,"default":"92%"},"note":{"editor":null,"default":"Melody matches your voice closely."},"warn":{"editor":null,"default":"Bar 3: pitch wobbles, snapped to the nearest note."},"chosen":{"editor":null,"default":"0"},"seed":{"editor":null,"default":"3"},"$preview":{"width":380,"height":250}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const p = this.props;
+    const kind = p.kind || 'sing';
+    const play = p.playing || '';
+    let s = (parseInt(p.seed) || 3) * 9301 + 49297;
+    const rnd = () => { s = (s * 9301 + 49297) % 233280; return s / 233280; };
+    const bars = [];
+    for (let i = 0; i < 64; i++) {
+      const env = 0.3 + 0.7 * Math.abs(Math.sin(i / 64 * Math.PI * 3.2));
+      bars.push({ cls: (kind === 'sing' && i % 8 === 2) ? 'nn' : '', st: 'height:' + Math.max(10, Math.round(env * (0.4 + 0.6 * rnd()) * 100)) + '%' });
+    }
+    const conf = p.conf || 'High';
+    return {
+      name: p.label || 'Take', dur: p.dur || '0:12',
+      kindTxt: kind === 'sing' ? 'Voice to notes' : 'AI generation',
+      chosenCls: p.chosen === '1' ? 'chosen' : '',
+      bars: bars,
+      aLabel: kind === 'sing' ? 'Voice' : 'Original', bLabel: kind === 'sing' ? 'Instrument' : 'In project key',
+      vOn: play === 'voice', iOn: play === 'inst',
+      vCls: play === 'voice' ? 'on' : '', iCls: play === 'inst' ? 'on' : '',
+      confTxt: (kind === 'sing' ? 'Pitch ' : 'Key fit ') + (p.confPct || '92%') + ' · ' + conf,
+      confCls: conf === 'High' ? 'gr' : 'am',
+      note: p.note || '', warn: p.warn || '',
+      useLabel: p.chosen === '1' ? 'In project · tap to undo' : 'Use this take'
+    };
+  }
+}
+</script>
+</body>
+</html>

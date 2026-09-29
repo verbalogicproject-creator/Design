@@ -1,0 +1,564 @@
+{
+ "v": 3,
+ "createdOnFiles": {
+  "v": 1,
+  "at": "2026-09-29T11:20:00Z"
+ },
+ "title": "Synth tab \u00b7 Creation Studio",
+ "launch": {
+  "view": "canvas"
+ },
+ "pages": [],
+ "boards": {
+  "Foundations.dc.html": {
+   "x": 0,
+   "y": 0,
+   "w": 1440,
+   "h": 2900,
+   "title": "Foundations"
+  },
+  "Controls.dc.html": {
+   "x": 1520,
+   "y": 0,
+   "w": 1440,
+   "h": 2200,
+   "title": "Library \u00b7 Controls"
+  },
+  "Editors.dc.html": {
+   "x": 3040,
+   "y": 0,
+   "w": 1440,
+   "h": 2700,
+   "title": "Library \u00b7 Editors"
+  },
+  "Objects.dc.html": {
+   "x": 4560,
+   "y": 0,
+   "w": 1440,
+   "h": 3100,
+   "title": "Library \u00b7 Objects and states"
+  },
+  "Main.dc.html": {
+   "x": 0,
+   "y": 3440,
+   "w": 412,
+   "h": 880,
+   "title": "Phone \u00b7 Rack"
+  },
+  "Playlist.dc.html": {
+   "x": 492,
+   "y": 3440,
+   "w": 412,
+   "h": 880,
+   "title": "Phone \u00b7 Playlist"
+  },
+  "Mixer.dc.html": {
+   "x": 984,
+   "y": 3440,
+   "w": 412,
+   "h": 880,
+   "title": "Phone \u00b7 Mixer"
+  },
+  "Roll.dc.html": {
+   "x": 1476,
+   "y": 3440,
+   "w": 412,
+   "h": 880,
+   "title": "Phone \u00b7 Piano roll"
+  },
+  "Patch.dc.html": {
+   "x": 1968,
+   "y": 3440,
+   "w": 412,
+   "h": 880,
+   "title": "Phone \u00b7 Patch"
+  },
+  "Mod.dc.html": {
+   "x": 2460,
+   "y": 3440,
+   "w": 412,
+   "h": 880,
+   "title": "Phone \u00b7 Mod"
+  },
+  "Generate.dc.html": {
+   "x": 3444,
+   "y": 3440,
+   "w": 412,
+   "h": 880,
+   "title": "Phone \u00b7 AI generate"
+  },
+  "Consent.dc.html": {
+   "x": 3936,
+   "y": 3440,
+   "w": 412,
+   "h": 880,
+   "title": "Sing \u00b7 Polish consent (over Review)"
+  },
+  "LandPlaylist.dc.html": {
+   "x": 0,
+   "y": 4660,
+   "w": 892,
+   "h": 412,
+   "title": "Landscape \u00b7 Playlist"
+  },
+  "LandRoll.dc.html": {
+   "x": 972,
+   "y": 4660,
+   "w": 892,
+   "h": 412,
+   "title": "Landscape \u00b7 Piano roll"
+  },
+  "LandMixer.dc.html": {
+   "x": 1944,
+   "y": 4660,
+   "w": 892,
+   "h": 412,
+   "title": "Landscape \u00b7 Mixer"
+  },
+  "Plugin.dc.html": {
+   "x": 2916,
+   "y": 4660,
+   "w": 900,
+   "h": 600,
+   "title": "Plugin window 900 \u00d7 600"
+  },
+  "DeskWorkspace.dc.html": {
+   "x": 0,
+   "y": 5600,
+   "w": 1440,
+   "h": 900,
+   "title": "Desktop \u00b7 Rack + Playlist"
+  },
+  "DeskRoll.dc.html": {
+   "x": 1520,
+   "y": 5600,
+   "w": 1440,
+   "h": 900,
+   "title": "Desktop \u00b7 Piano roll"
+  },
+  "DeskPatch.dc.html": {
+   "x": 3040,
+   "y": 5600,
+   "w": 1440,
+   "h": 900,
+   "title": "Desktop \u00b7 Patch + Mod"
+  },
+  "DeskMixer.dc.html": {
+   "x": 4560,
+   "y": 5600,
+   "w": 1440,
+   "h": 900,
+   "title": "Desktop \u00b7 Mixer"
+  },
+  "Transport.dc.html": {
+   "x": 0,
+   "y": 6840,
+   "w": 412,
+   "h": 106,
+   "title": "Part \u00b7 Transport bar"
+  },
+  "Nav.dc.html": {
+   "x": 492,
+   "y": 6840,
+   "w": 412,
+   "h": 60,
+   "title": "Part \u00b7 View navigation"
+  },
+  "Knob.dc.html": {
+   "x": 984,
+   "y": 6840,
+   "w": 120,
+   "h": 140,
+   "title": "Part \u00b7 Knob"
+  },
+  "Fader.dc.html": {
+   "x": 1184,
+   "y": 6840,
+   "w": 120,
+   "h": 320,
+   "title": "Part \u00b7 Fader"
+  },
+  "Strip.dc.html": {
+   "x": 1384,
+   "y": 6840,
+   "w": 90,
+   "h": 560,
+   "title": "Part \u00b7 Mixer strip"
+  },
+  "PatternBlock.dc.html": {
+   "x": 1554,
+   "y": 6840,
+   "w": 200,
+   "h": 60,
+   "title": "Part \u00b7 Pattern block"
+  },
+  "StepRow.dc.html": {
+   "x": 1834,
+   "y": 6840,
+   "w": 400,
+   "h": 100,
+   "title": "Part \u00b7 Step grid"
+  },
+  "EnvCurve.dc.html": {
+   "x": 2314,
+   "y": 6840,
+   "w": 320,
+   "h": 190,
+   "title": "Part \u00b7 Envelope editor"
+  },
+  "EqCurve.dc.html": {
+   "x": 2714,
+   "y": 6840,
+   "w": 420,
+   "h": 200,
+   "title": "Part \u00b7 EQ curve"
+  },
+  "TakeCard.dc.html": {
+   "x": 3214,
+   "y": 6840,
+   "w": 380,
+   "h": 250,
+   "title": "Part \u00b7 Take card"
+  },
+  "XyPad.dc.html": {
+   "x": 3674,
+   "y": 6840,
+   "w": 200,
+   "h": 240,
+   "title": "Part \u00b7 XY pad"
+  },
+  "System.dc.html": {
+   "x": 6080,
+   "y": 0,
+   "w": 1440,
+   "h": 3420,
+   "title": "Design system sheet"
+  },
+  "AddModule.dc.html": {
+   "x": 4428,
+   "y": 3440,
+   "w": 412,
+   "h": 880,
+   "title": "Phone \u00b7 Add module sheet"
+  },
+  "PsyBass.dc.html": {
+   "x": 5412,
+   "y": 3440,
+   "w": 412,
+   "h": 880,
+   "title": "Phone \u00b7 Psy Bass panel"
+  },
+  "KickPanel.dc.html": {
+   "x": 5904,
+   "y": 3440,
+   "w": 412,
+   "h": 880,
+   "title": "Phone \u00b7 Kick panel"
+  },
+  "MixerSingle.dc.html": {
+   "x": 6396,
+   "y": 3440,
+   "w": 412,
+   "h": 880,
+   "title": "Phone \u00b7 Mixer, one strip"
+  },
+  "LandMixerBuses.dc.html": {
+   "x": 3896,
+   "y": 4660,
+   "w": 892,
+   "h": 412,
+   "title": "Landscape \u00b7 Mixer, buses bank"
+  },
+  "MixerSingleBus.dc.html": {
+   "x": 6888,
+   "y": 3440,
+   "w": 412,
+   "h": 880,
+   "title": "Phone \u00b7 Mixer, group bus"
+  },
+  "MixerSingleMaster.dc.html": {
+   "x": 7380,
+   "y": 3440,
+   "w": 412,
+   "h": 880,
+   "title": "Phone \u00b7 Mixer, master"
+  },
+  "RackVolume.dc.html": {
+   "x": 7872,
+   "y": 3440,
+   "w": 412,
+   "h": 880,
+   "title": "Phone \u00b7 Rack, volume entry"
+  },
+  "SingReady.dc.html": {
+   "x": 0,
+   "y": 7800,
+   "w": 412,
+   "h": 880,
+   "title": "Sing 1 \u00b7 Ready"
+  },
+  "SingRec.dc.html": {
+   "x": 492,
+   "y": 7800,
+   "w": 412,
+   "h": 880,
+   "title": "Sing 2 \u00b7 Recording"
+  },
+  "SingReview.dc.html": {
+   "x": 984,
+   "y": 7800,
+   "w": 412,
+   "h": 880,
+   "title": "Sing 3 \u00b7 Review"
+  },
+  "SingUse.dc.html": {
+   "x": 1476,
+   "y": 7800,
+   "w": 412,
+   "h": 880,
+   "title": "Sing 4 \u00b7 Use as"
+  },
+  "AutoMenu.dc.html": {
+   "x": 2128,
+   "y": 7800,
+   "w": 412,
+   "h": 880,
+   "title": "Automation 1 \u00b7 Knob menu"
+  },
+  "AutoClip.dc.html": {
+   "x": 2620,
+   "y": 7800,
+   "w": 892,
+   "h": 412,
+   "title": "Automation 2 \u00b7 Clip editor, points"
+  },
+  "AutoClipPencil.dc.html": {
+   "x": 3592,
+   "y": 7800,
+   "w": 892,
+   "h": 412,
+   "title": "Automation 3 \u00b7 Clip editor, pencil"
+  },
+  "Parts.dc.html": {
+   "x": 7600,
+   "y": 0,
+   "w": 1440,
+   "h": 3000,
+   "title": "Library \u00b7 More parts"
+  },
+  "DeskInstrument.dc.html": {
+   "x": 6080,
+   "y": 5600,
+   "w": 1440,
+   "h": 900,
+   "title": "Desktop \u00b7 Instruments + automation"
+  },
+  "StartAudio.dc.html": {
+   "x": 0,
+   "y": 9100,
+   "w": 412,
+   "h": 880,
+   "title": "First run \u00b7 Tap to start audio"
+  },
+  "AudioSettings.dc.html": {
+   "x": 492,
+   "y": 9100,
+   "w": 412,
+   "h": 880,
+   "title": "Settings \u00b7 Audio and latency"
+  },
+  "Keys.dc.html": {
+   "x": 984,
+   "y": 9100,
+   "w": 412,
+   "h": 880,
+   "title": "Play \u00b7 On-screen keys"
+  },
+  "History.dc.html": {
+   "x": 1476,
+   "y": 9100,
+   "w": 412,
+   "h": 880,
+   "title": "Project \u00b7 Revision history"
+  },
+  "Export.dc.html": {
+   "x": 1968,
+   "y": 9100,
+   "w": 412,
+   "h": 880,
+   "title": "Project \u00b7 Export"
+  },
+  "Tempo.dc.html": {
+   "x": 2460,
+   "y": 9100,
+   "w": 412,
+   "h": 880,
+   "title": "Sheet \u00b7 Tempo and meter"
+  },
+  "Presets.dc.html": {
+   "x": 2952,
+   "y": 9100,
+   "w": 412,
+   "h": 880,
+   "title": "Sheet \u00b7 Preset browser"
+  },
+  "ModAssign.dc.html": {
+   "x": 3444,
+   "y": 9100,
+   "w": 412,
+   "h": 880,
+   "title": "Flow \u00b7 Add modulation"
+  },
+  "AISpend.dc.html": {
+   "x": 3936,
+   "y": 9100,
+   "w": 412,
+   "h": 880,
+   "title": "AI \u00b7 Spending and cap"
+  },
+  "SingCountIn.dc.html": {
+   "x": 4428,
+   "y": 9100,
+   "w": 412,
+   "h": 880,
+   "title": "Sing 2a \u00b7 Count-in"
+  },
+  "SingDetect.dc.html": {
+   "x": 4920,
+   "y": 9100,
+   "w": 412,
+   "h": 880,
+   "title": "Sing 3a \u00b7 Sang freely, confirm"
+  },
+  "Overload.dc.html": {
+   "x": 5412,
+   "y": 9100,
+   "w": 412,
+   "h": 880,
+   "title": "Error \u00b7 CPU overload"
+  },
+  "MicDenied.dc.html": {
+   "x": 5904,
+   "y": 9100,
+   "w": 412,
+   "h": 880,
+   "title": "Error \u00b7 Microphone blocked"
+  }
+ },
+ "order": [
+  "System.dc.html",
+  "Foundations.dc.html",
+  "Controls.dc.html",
+  "Editors.dc.html",
+  "Objects.dc.html",
+  "Parts.dc.html",
+  "Main.dc.html",
+  "Playlist.dc.html",
+  "Mixer.dc.html",
+  "Roll.dc.html",
+  "Patch.dc.html",
+  "Mod.dc.html",
+  "Generate.dc.html",
+  "Consent.dc.html",
+  "AddModule.dc.html",
+  "PsyBass.dc.html",
+  "KickPanel.dc.html",
+  "MixerSingle.dc.html",
+  "MixerSingleBus.dc.html",
+  "MixerSingleMaster.dc.html",
+  "RackVolume.dc.html",
+  "LandPlaylist.dc.html",
+  "LandRoll.dc.html",
+  "LandMixer.dc.html",
+  "LandMixerBuses.dc.html",
+  "Plugin.dc.html",
+  "DeskWorkspace.dc.html",
+  "DeskRoll.dc.html",
+  "DeskPatch.dc.html",
+  "DeskMixer.dc.html",
+  "DeskInstrument.dc.html",
+  "Transport.dc.html",
+  "Nav.dc.html",
+  "Knob.dc.html",
+  "Fader.dc.html",
+  "Strip.dc.html",
+  "PatternBlock.dc.html",
+  "StepRow.dc.html",
+  "EnvCurve.dc.html",
+  "EqCurve.dc.html",
+  "TakeCard.dc.html",
+  "XyPad.dc.html",
+  "SingReady.dc.html",
+  "SingRec.dc.html",
+  "SingReview.dc.html",
+  "SingUse.dc.html",
+  "AutoMenu.dc.html",
+  "AutoClip.dc.html",
+  "AutoClipPencil.dc.html",
+  "StartAudio.dc.html",
+  "AudioSettings.dc.html",
+  "Keys.dc.html",
+  "History.dc.html",
+  "Export.dc.html",
+  "Tempo.dc.html",
+  "Presets.dc.html",
+  "ModAssign.dc.html",
+  "AISpend.dc.html",
+  "SingCountIn.dc.html",
+  "SingDetect.dc.html",
+  "Overload.dc.html",
+  "MicDenied.dc.html"
+ ],
+ "notes": {
+  "t0": {
+   "x": 0,
+   "y": -300,
+   "text": "Synth tab \u00b7 foundations and component library",
+   "kind": "title1",
+   "maxW": 9040
+  },
+  "t1": {
+   "x": 0,
+   "y": 3140,
+   "text": "Phone \u00b7 412 px portrait, thumb first",
+   "kind": "title1",
+   "maxW": 2400
+  },
+  "t2": {
+   "x": 0,
+   "y": 4360,
+   "text": "Landscape 892 \u00d7 412 and the plugin window",
+   "kind": "title1",
+   "maxW": 2400
+  },
+  "t3": {
+   "x": 0,
+   "y": 5300,
+   "text": "Desktop \u00b7 1440 px, panels docked side by side",
+   "kind": "title1",
+   "maxW": 7520
+  },
+  "t4": {
+   "x": 0,
+   "y": 6540,
+   "text": "Parts \u00b7 the library components the screens are built from",
+   "kind": "title1",
+   "maxW": 2400
+  },
+  "t5": {
+   "x": 0,
+   "y": 7500,
+   "text": "Flows \u00b7 Sing an idea, and automating a knob",
+   "kind": "title1",
+   "maxW": 4480
+  },
+  "t6": {
+   "x": 0,
+   "y": 8800,
+   "text": "Product gaps \u00b7 first run, settings, project, sheets and errors",
+   "kind": "title1",
+   "maxW": 6300
+  }
+ },
+ "designSystems": []
+}
