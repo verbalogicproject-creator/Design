@@ -69,3 +69,14 @@ Breakpoints: phone portrait 412 x 880, phone landscape 892 x 412, desktop 1440 x
 | [SingDetect](SingDetect.png) | 412 x 880 | Sing | Sing 3a · Sang freely, confirm | After singing freely: confirm tempo and key. |
 | [Overload](Overload.png) | 412 x 880 | Error | Error · CPU overload | CPU overload: heaviest channels, Freeze. |
 | [MicDenied](MicDenied.png) | 412 x 880 | Error | Error · Microphone blocked | Microphone blocked: three steps to fix. |
+| [LiteParts](LiteParts.png) | 1440 x 1680 | Lite · library | Library · Lite parts | Profile badge, drum pad (new), frozen state, budget and voice meters, Lite nav. |
+| [LiteRack](LiteRack.png) | 412 x 880 | Lite | Tracks | Lite rack with budget line, one frozen Full part, an AI audio track. |
+| [LiteAdd](LiteAdd.png) | 412 x 880 | Lite | Add track | Only Lite instruments; Full-only items shown dashed with a FULL badge. |
+| [DrumKit](DrumKit.png) | 412 x 880 | Lite | Drum Kit | Eight pads (six loaded), selected pad settings, choke group. |
+| [DrumGrid](DrumGrid.png) | 412 x 880 | Lite | Drum grid | One lane at 44 px, lane picker, overview of all lanes. |
+| [LandDrumGrid](LandDrumGrid.png) | 892 x 412 | Lite | Drum grid, landscape | Six lanes x 16 steps at 44 px, swing, length. |
+| [LiteSynth](LiteSynth.png) | 412 x 880 | Lite | Lite Synth | Two oscillators, filter, AHDSR, LFO, voice meter. |
+| [LiteStrip](LiteStrip.png) | 412 x 880 | Lite | Mixer, one track | Volume, pan, M/S, 3-band EQ, reverb and delay sends, duck from Kick. |
+| [LiteShared](LiteShared.png) | 412 x 880 | Lite | Reverb, delay, master | Shared reverb and delay, master limiter and loudness. |
+| [FromFull](FromFull.png) | 412 x 880 | Lite | Opened a Full song | Which parts are frozen and why; nothing is lost. |
+| [Freeze](Freeze.png) | 412 x 880 | Lite | Freeze a track | CPU before and after, what stays live, what locks. |

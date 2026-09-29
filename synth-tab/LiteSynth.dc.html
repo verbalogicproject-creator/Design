@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Lite · Lite Synth</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="synth.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Permanent+Marker&display=swap">
+<style>body{margin:0;background:#33404a}</style>
+</helmet>
+<div class="sx ph" style="width: 412px; height: 880px">
+<div class="ph-hdr" style="gap: 4px; padding: 0 6px">
+<button class="btn ghost sq" aria-label="Back to tracks">‹</button>
+<span class="tape s">Lead</span>
+<span class="f1"></span>
+<span class="rev un"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#f2b33d" stroke-width="2.6"><circle cx="12" cy="12" r="6"></circle></svg>unsaved · r12</span>
+</div>
+<div style="flex: none; height: 106px">
+<dc-import name="Transport" mode="phone" pos="009:2:03" bpm="146.0" cpu="58" lost="0" playing="1" rec="0" loop="1" hint-size="412px,106px"></dc-import>
+</div>
+<div class="ph-body c" style="padding: 6px 8px; gap: 6px">
+<div class="r g8" style="min-height: 44px">
+<span class="tape l">Lite Synth</span>
+<button class="chip t f1">Glass pluck ▾</button>
+<div class="c g2" style="align-items: flex-end" role="img" aria-label="Voices: 4 of 6 playing"><span class="lbl">Voices 4 / 6</span><span class="voice-m"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span></div>
+</div>
+<div class="plate r g8 ast" style="padding: 8px">
+<div class="c g6 f1"><span class="tape s" style="align-self: flex-start">Osc 1</span><div class="seg" role="group" aria-label="Wave"><button class="btn sq on" style="min-width: 40px; width: 40px" aria-label="Saw" aria-pressed="true">Saw</button><button class="btn sq" style="min-width: 40px; width: 40px" aria-label="Square" aria-pressed="false">Squ</button><button class="btn sq" style="min-width: 40px; width: 40px" aria-label="Triangle" aria-pressed="false">Tri</button><button class="btn sq" style="min-width: 40px; width: 40px" aria-label="Sine" aria-pressed="false">Sin</button></div>
+<div class="r jb"><dc-import name="Knob" label="Pitch" size="sm" value="50" readout="0 st" hint-size="64px,86px"></dc-import><dc-import name="Knob" label="Level" size="sm" value="80" readout="−2 dB" hint-size="64px,86px"></dc-import></div></div>
+<i class="vr"></i>
+<div class="c g6 f1"><span class="tape s" style="align-self: flex-start">Osc 2</span><div class="seg" role="group" aria-label="Wave"><button class="btn sq" style="min-width: 40px; width: 40px" aria-label="Saw" aria-pressed="false">Saw</button><button class="btn sq on" style="min-width: 40px; width: 40px" aria-label="Square" aria-pressed="true">Squ</button><button class="btn sq" style="min-width: 40px; width: 40px" aria-label="Triangle" aria-pressed="false">Tri</button><button class="btn sq" style="min-width: 40px; width: 40px" aria-label="Sine" aria-pressed="false">Sin</button></div>
+<div class="r jb"><dc-import name="Knob" label="Pitch" size="sm" value="64" readout="+7 st" hint-size="64px,86px"></dc-import><dc-import name="Knob" label="Detune" size="sm" value="56" readout="+6 ct" hint-size="64px,86px"></dc-import></div></div>
+</div>
+<div class="plate c g4" style="padding: 8px">
+<div class="r jb"><span class="tape s">Filter</span><div class="seg" role="group" aria-label="Filter type"><button class="btn on" aria-pressed="true">Low</button><button class="btn" aria-pressed="false">High</button></div></div>
+<div class="r jb"><dc-import name="Knob" label="Cutoff" size="sm" value="58" readout="2.1 kHz" mod-start="44" mod-len="24" hint-size="64px,86px"></dc-import><dc-import name="Knob" label="Reso" size="sm" value="30" readout="30 %" hint-size="64px,86px"></dc-import><dc-import name="Knob" label="Env amt" size="sm" value="66" readout="+66 %" hint-size="64px,86px"></dc-import><dc-import name="Knob" label="Osc mix" size="sm" value="45" readout="55/45" hint-size="64px,86px"></dc-import></div>
+</div>
+<div class="plate c g4" style="padding: 8px">
+<div class="r jb"><span class="tape s">Envelope</span><span class="sm dim b">A H D S R</span></div>
+<dc-import name="EnvCurve" w="376" h="64" a="2" hold="3" d="18" s="40" r="20" t-a="1 ms" t-h="10 ms" t-d="160 ms" t-s="40%" t-r="220 ms" hint-size="376px,100px"></dc-import>
+</div>
+<div class="plate r g8" style="padding: 8px">
+<div class="c g6 f1"><span class="tape s" style="align-self: flex-start">LFO</span>
+<div class="seg" role="group" aria-label="LFO target"><button class="btn" aria-pressed="false">Pitch</button><button class="btn on" aria-pressed="true">Cutoff</button><button class="btn" aria-pressed="false">Level</button></div></div>
+<dc-import name="Knob" label="Rate" size="sm" value="40" readout="1/8" hint-size="64px,86px"></dc-import>
+<dc-import name="Knob" label="Depth" size="sm" value="35" readout="35 %" hint-size="64px,86px"></dc-import>
+</div>
+</div>
+<div style="flex: none; height: 60px">
+<dc-import name="Nav" mode="bottom" profile="lite" active="rack" hint-size="412px,60px"></dc-import>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":412,"height":880}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Lite · Drum grid, landscape</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="synth.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Permanent+Marker&display=swap">
+<style>body{margin:0;background:#33404a}</style>
+</helmet>
+<div class="sx" style="width: 892px; height: 412px; display: flex; flex-direction: column">
+<div style="flex: none; height: 56px"><dc-import name="Transport" mode="wide" pos="009:2:03" bpm="146.0" cpu="58" lost="0" playing="1" rec="0" loop="1" hint-size="892px,56px"></dc-import></div>
+<div class="r astr" style="flex: 1 1 0; min-height: 0">
+<div style="flex: none; width: 60px; height: 356px"><dc-import name="Nav" mode="rail" profile="lite" active="drums" hint-size="60px,356px"></dc-import></div>
+<div class="f1 c" style="min-width: 0; padding: 0 4px">
+<div class="r g8" style="height: 44px; flex: none">
+<span class="tape">Drums A</span><span class="sm dim b">1 bar</span>
+<button class="btn ghost">Length · 16</button>
+<div class="r g4"><span class="lbl">Swing</span><div class="step-b"><button class="btn ghost sq" aria-label="Less swing">−</button><span class="v">54 %</span><button class="btn ghost sq" aria-label="More swing">+</button></div></div>
+<span class="f1"></span>
+<button class="btn tg" aria-pressed="false">Velocity</button>
+</div>
+<div class="r" style="height: 20px; flex: none"><span style="width: 88px; flex: none"></span>
+<sc-for list="{{ nums }}" as="n" hint-placeholder-count="16"><span style="{{ n.st }}">{{ n.t }}</span></sc-for></div>
+<div class="c" style="gap: 4px">
+<sc-for list="{{ lanes }}" as="l" hint-placeholder-count="6">
+<div class="r" style="gap: 0">
+<button class="lane-h" style="width: 86px; flex: none; margin-right: 2px; border: 0; border-radius: 4px; cursor: pointer; font-family: inherit; {{ l.hst }}" aria-label="{{ l.n }}: tap to hear, hold for pad settings"><span class="tape s" style="max-width: 74px; overflow: hidden; text-overflow: ellipsis">{{ l.n }}</span></button>
+<div class="steps s44"><div class="srow" style="gap: 2px">
+<sc-for list="{{ l.cells }}" as="c" hint-placeholder-count="16"><button class="cell {{ c.cls }}" style="{{ c.st }}" aria-label="{{ c.lab }}"><i class="lamp"></i><i class="vel" style="{{ c.vst }}"></i><b class="acc">{{ c.mark }}</b></button></sc-for>
+</div></div>
+</div>
+</sc-for>
+</div>
+</div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":892,"height":412}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const L = [['Snare', '....x.......x...'], ['Clap', '....x.......x..o'], ['Closed hat', 'x.x.x.x.x.x.xox.'], ['Open hat', '..x...x...x...x.'], ['Crash', 'a...............'], ['Ride', '................']];
+    const nums = [];
+    for (let i = 0; i < 16; i++) nums.push({ t: String(i + 1), st: 'width:44px;margin-right:2px;text-align:center;font-size:11px;font-weight:' + (i % 4 === 0 ? '800;color:#e9ecee' : '600;color:#b8c2c9') });
+    const lanes = L.map((l, li) => ({
+      n: l[0], hst: li === 2 ? 'box-shadow: inset 3px 0 0 var(--amber)' : '',
+      cells: l[1].split('').map((ch, i) => {
+        const on = ch !== '.', vel = ch === 'o' ? 70 : ch === 'l' ? 40 : on ? 100 : 0;
+        return { cls: (on ? 'on' : '') + (ch === 'a' ? ' acc' : '') + (i === 5 ? ' head' : ''), mark: ch === 'a' ? '>' : '',
+          vst: 'height:' + Math.round(vel * 0.28) + '%', st: i % 4 === 0 && i ? 'box-shadow: -2px 0 0 #4a5a66' + (on ? ', 0 2px 0 var(--alu-shade)' : '') : '',
+          lab: l[0] + ' step ' + (i + 1) + (on ? ', on' : ', off') };
+      })
+    }));
+    return { nums: nums, lanes: lanes };
+  }
+}
+</script>
+</body>
+</html>

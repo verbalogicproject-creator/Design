@@ -11,6 +11,7 @@ Visual identity: **the console and the scribble strip**. Steel panels, masking-t
 | `tokens/tokens.css` | The same as CSS variables, prefixed `--cs-`. Rename to match your own. |
 | `specs/components.md` | Component specs: sizes, paddings, geometry, states, touch and keyboard alternatives. |
 | `specs/structure.md` | App shell, responsive rules, regions per view, data shapes the UI needs, interaction model, suggested React component map, accessibility. |
+| `specs/lite.md` | The Lite profile: what is in it, which screen shows each item, which components are reused, rules. |
 | `specs/token-notes.md` | What was kept, changed and added in the token set, and why. |
 | `specs/open-questions.md` | Assumptions, placeholder values, and what is not designed yet. **Read before M4.** |
 | `screens/*.png` | Every screen and library board as an image at 1x. `screens/INDEX.md` lists them. |
@@ -23,6 +24,9 @@ Visual identity: **the console and the scribble strip**. Steel panels, masking-t
 2. Read `specs/components.md` alongside them. Every component lists its states and its **tap alternative** for every drag.
 3. Use `screens/INDEX.md` to find a screen. Phone screens are 412 x 880, landscape 892 x 412, desktop 1440 x 900, plugin 900 x 600.
 4. `specs/structure.md` is the guide for rebuilding in React with your own CSS variables.
+
+## Lite profile (phone add-on)
+`specs/lite.md` maps every item of the Lite set to its screen and the existing components it reuses. New: the drum pad (spec 26) and the frozen state (27). Screens: `LiteParts`, `LiteRack`, `LiteAdd`, `DrumKit`, `DrumGrid`, `LandDrumGrid`, `LiteSynth`, `LiteStrip`, `LiteShared`, `FromFull`, `Freeze`.
 
 ## The signature feature: Morph
 `screens/Morph.png` and spec 24 in `specs/components.md`. A scene-morph pad: four stored sounds on the corners, drag between them and every knob blends live, tap a corner to glide over a musical length, Ride to record the movement as automation. On the live canvas it is a working prototype.

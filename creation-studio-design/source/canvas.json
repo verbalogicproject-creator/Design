@@ -451,6 +451,83 @@
    "h": 880,
    "title": "Morph \u00b7 scene morph pad (interactive)",
    "is_interactive": true
+  },
+  "LiteParts.dc.html": {
+   "x": 0,
+   "y": 10400,
+   "w": 1440,
+   "h": 1680,
+   "title": "Library \u00b7 Lite parts"
+  },
+  "LiteRack.dc.html": {
+   "x": 1520,
+   "y": 10400,
+   "w": 412,
+   "h": 880,
+   "title": "Lite \u00b7 Tracks"
+  },
+  "LiteAdd.dc.html": {
+   "x": 2012,
+   "y": 10400,
+   "w": 412,
+   "h": 880,
+   "title": "Lite \u00b7 Add track"
+  },
+  "DrumKit.dc.html": {
+   "x": 2504,
+   "y": 10400,
+   "w": 412,
+   "h": 880,
+   "title": "Lite \u00b7 Drum Kit"
+  },
+  "DrumGrid.dc.html": {
+   "x": 2996,
+   "y": 10400,
+   "w": 412,
+   "h": 880,
+   "title": "Lite \u00b7 Drum grid"
+  },
+  "LiteSynth.dc.html": {
+   "x": 3488,
+   "y": 10400,
+   "w": 412,
+   "h": 880,
+   "title": "Lite \u00b7 Lite Synth"
+  },
+  "LiteStrip.dc.html": {
+   "x": 3980,
+   "y": 10400,
+   "w": 412,
+   "h": 880,
+   "title": "Lite \u00b7 Mixer, one track"
+  },
+  "LiteShared.dc.html": {
+   "x": 4472,
+   "y": 10400,
+   "w": 412,
+   "h": 880,
+   "title": "Lite \u00b7 Reverb, delay, master"
+  },
+  "FromFull.dc.html": {
+   "x": 4964,
+   "y": 10400,
+   "w": 412,
+   "h": 880,
+   "title": "Lite \u00b7 Opened a Full song"
+  },
+  "Freeze.dc.html": {
+   "x": 5456,
+   "y": 10400,
+   "w": 412,
+   "h": 880,
+   "title": "Lite \u00b7 Freeze a track"
+  },
+  "LandDrumGrid.dc.html": {
+   "x": 5948,
+   "y": 10400,
+   "w": 892,
+   "h": 412,
+   "title": "Lite \u00b7 Drum grid, landscape"
   }
  },
  "order": [
@@ -516,7 +593,18 @@
   "SingCountIn.dc.html",
   "SingDetect.dc.html",
   "Overload.dc.html",
-  "MicDenied.dc.html"
+  "MicDenied.dc.html",
+  "LiteParts.dc.html",
+  "LiteRack.dc.html",
+  "LiteAdd.dc.html",
+  "DrumKit.dc.html",
+  "DrumGrid.dc.html",
+  "LiteSynth.dc.html",
+  "LiteStrip.dc.html",
+  "LiteShared.dc.html",
+  "FromFull.dc.html",
+  "Freeze.dc.html",
+  "LandDrumGrid.dc.html"
  ],
  "notes": {
   "t0": {
@@ -567,6 +655,13 @@
    "text": "Product gaps \u00b7 first run, settings, project, sheets and errors",
    "kind": "title1",
    "maxW": 6300
+  },
+  "t7": {
+   "x": 0,
+   "y": 10100,
+   "text": "Lite profile \u00b7 the phone set (add-on)",
+   "kind": "title1",
+   "maxW": 6920
   }
  },
  "designSystems": []

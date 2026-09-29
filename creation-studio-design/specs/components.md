@@ -191,3 +191,33 @@ Radius `10 10 0 0`, top edge 2px `alu-dim`, `sheet` shadow, grab handle 44 x 5. 
 **States:** idle; dragging (bigger halo); gliding (puck animates); riding (tally); disabled (instrument frozen: pad dimmed, reason shown).
 
 **Seen in:** `screens/Morph.png`, `source/Morph.dc.html` (a working prototype: open the live canvas and use Play).
+
+
+---
+
+## Lite profile additions (see `lite.md`)
+
+### 25. Profile badge (new state of a label, not a new control)
+A 44 x 44 button holding a text badge: `LITE` (2px `alu-dim` outline) or `FULL` (2px `amber` outline, amber text), 11px/800, tracking .1em. Sits left of the project name in the phone header, replacing the "Synth" title. Tap opens "What's in Lite". Optional `frz-tag` beside it: "4 frozen". States: default, focus (amber ring), pressed (well fill).
+
+### 26. Drum pad (new component)
+**Why new:** nothing existing plays on touch-down while also showing a sample name, a choke group and a live hit lamp. Keys (on-screen keys) are pitched and have no per-pad settings; step cells are toggles, not triggers.
+- **Size:** 4 per row on a phone: about 94 x 88. Min 44 x 44 in any layout.
+- **Anatomy:** aluminium key (`alu`, `key` shadow, radius 6), 6px channel-colour stripe on top, lamp top-right (14 x 4), name (13px/800 upper, ink), optional choke badge (`ink` chip, `tape` text), sample file name (11px).
+- **Play:** plays on pointer-down. Velocity from the vertical hit position (top louder). Multi-touch: every finger is a hit.
+- **Select:** hold selects without playing; the selected pad's settings show below (tune, decay, level, pan, choke).
+- **Keyboard:** Space plays, Enter selects, arrows move between pads.
+- **States:** default; hit (key sinks, amber inner rim, lit lamp); selected (amber outline); hover/focus (amber ring); empty (dashed `alu-dim`, "+ Load sample"); disabled (42 %, the reason replaces the sample name).
+
+### 27. Frozen state (new state on rows, blocks and strips)
+- **Row:** diagonal hatch over the row, `frz-tag` (snowflake + FROZEN, 11px/800, `well` fill, `alu-dim` border). Mix controls stay live.
+- **Pattern block:** hatch, kind tag reads `FROZEN`, preview is the audio waveform.
+- **Freezing:** progress bar plus "bar 30 of 64".
+- **Unfreeze:** a button with the CPU cost in words; Lite instruments only.
+- **From Full:** "edit on desktop" sentence instead of a dead button; other Full-only features get a named tag (`Morph off`).
+
+### 28. Budget line and voice meter (reuse)
+Budget: horizontal meter (22) with a text summary, whole line is a 44 px button opening details. Voice meter: CPU segment style (15), 10 x 14 segments, the stolen voice outlined in ink.
+
+### 29. Lite navigation (reuse)
+The same nav component with `profile="lite"`: Rack, Playlist, Mixer, Roll, Drums, Keys. Patch, Mod and Sing are Full only (Sing: see open questions).

@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Lite · Mixer, one track</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="synth.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Permanent+Marker&display=swap">
+<style>body{margin:0;background:#33404a}</style>
+</helmet>
+<div class="sx ph" style="width: 412px; height: 880px">
+<div class="ph-hdr" style="gap: 4px; padding: 0 6px">
+<button class="prof" aria-label="Lite profile. Tap to see what Lite includes."><b>LITE</b></button>
+<span class="tape s">Forest Roll 07</span>
+<span class="f1"></span>
+<button class="btn ghost sq" aria-label="Undo"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#e9ecee" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 7L4 12l5 5M4 12h10a5 5 0 0 1 0 10h-3"></path></svg></button>
+<button class="btn ghost sq" aria-label="Redo"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#e9ecee" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7l5 5-5 5M20 12H10a5 5 0 0 0 0 10h3"></path></svg></button>
+<span class="rev"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#8fd1a9" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5 11-11"></path></svg>saved r12</span>
+</div>
+<div style="flex: none; height: 106px">
+<dc-import name="Transport" mode="phone" pos="009:2:03" bpm="146.0" cpu="58" lost="0" playing="1" rec="0" loop="1" hint-size="412px,106px"></dc-import>
+</div>
+<div class="ph-body c" style="padding: 6px 8px; gap: 6px">
+<div class="seg" style="width: 100%" role="group" aria-label="Strip type"><button class="btn f1 on" aria-pressed="true">Tracks</button><button class="btn f1" aria-pressed="false">Reverb · Delay</button><button class="btn f1" aria-pressed="false">Master</button></div>
+<div class="r g8" style="height: 48px">
+<button class="btn ghost sq" aria-label="Previous track">‹</button>
+<div class="f1 r jc g8"><i class="chcap cap-yellow" style="height: 30px"></i><div class="c" style="align-items: center"><span class="tape">Rolling Bass</span><span class="sm dim b">track 3 of 6 · swipe or tap ‹ ›</span></div></div>
+<button class="btn ghost sq" aria-label="Next track">›</button>
+</div>
+<div class="r g8 ast">
+<div class="plate c" style="width: 118px; flex: none; padding: 10px 4px 8px; align-items: center">
+<dc-import name="Fader" h="380" value="78" color="yellow" l="58" r="55" pk-l="70" pk-r="68" scale="1" hint-size="110px,450px"></dc-import>
+</div>
+<div class="c g6 f1" style="min-width: 0">
+<div class="plate r jb" style="padding: 6px 8px">
+<dc-import name="Knob" label="Pan" size="sm" value="46" readout="L8" hint-size="64px,86px"></dc-import>
+<div class="c g6"><button class="btn sq tg m" aria-label="Mute Rolling Bass" style="width: 56px">M</button><button class="btn sq tg s" aria-label="Solo Rolling Bass" style="width: 56px">S</button></div>
+</div>
+<div class="plate c g2" style="padding: 6px 8px">
+<div class="r jb"><span class="tape s">EQ</span><span class="sm dim">3 band</span></div>
+<div class="r jb"><dc-import name="Knob" label="Low" size="sm" value="58" readout="+2 dB" hint-size="64px,86px"></dc-import><dc-import name="Knob" label="Mid" size="sm" value="44" readout="−1.5" hint-size="64px,86px"></dc-import><dc-import name="Knob" label="High" size="sm" value="40" readout="−3 dB" hint-size="64px,86px"></dc-import></div>
+</div>
+<div class="plate c g2" style="padding: 6px 8px">
+<div class="r jb"><span class="tape s">Sends</span><span class="sm dim">shared</span></div>
+<div class="r jb"><dc-import name="Knob" label="Reverb" size="sm" value="18" readout="−18 dB" hint-size="64px,86px"></dc-import><dc-import name="Knob" label="Delay" size="sm" value="0" readout="off" hint-size="64px,86px"></dc-import></div>
+</div>
+<div class="plate c g4" style="padding: 6px 8px">
+<div class="r g8"><button class="btn tg on" aria-pressed="true">Duck</button><span class="sm b f1">from Kick</span></div>
+<div class="r g6 sm b"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#f2b33d" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v14M6 12l6 6 6-6"></path></svg><span class="f1">−3 dB now</span><div class="gr-m" style="max-width: 60px" aria-label="Gain reduction 3 decibels"><i style="width: 25%"></i></div></div>
+<div class="r g6"><span class="lbl">Depth</span><div class="step-b"><button class="btn ghost sq" aria-label="Less ducking">−</button><span class="v">6 dB</span><button class="btn ghost sq" aria-label="More ducking">+</button></div></div>
+</div>
+</div>
+</div>
+</div>
+<div style="flex: none; height: 60px">
+<dc-import name="Nav" mode="bottom" profile="lite" active="mixer" hint-size="412px,60px"></dc-import>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":412,"height":880}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

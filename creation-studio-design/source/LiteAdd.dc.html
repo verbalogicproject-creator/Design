@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Lite · Add track</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="synth.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Permanent+Marker&display=swap">
+<style>body{margin:0;background:#33404a}</style>
+</helmet>
+<div class="sx" style="width: 412px; height: 880px">
+<dc-import name="LiteRack" hint-size="412px,880px"></dc-import>
+<div class="scrim"></div>
+<div class="sheet c g8" role="dialog" aria-label="Add track" style="top: 96px; overflow: hidden">
+<div class="grab"></div>
+<div class="r g8" style="min-height: 44px"><div class="c f1"><span class="h3">Add track</span><span class="sm dim">Lite has everything to finish a track on this phone.</span></div><button class="btn ghost sq" aria-label="Close"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#e9ecee" stroke-width="2.6" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg></button></div>
+<div class="c g6">
+<div class="r jb"><span class="tape s">Instruments</span><span class="sm dim">each is a new track</span></div>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px">
+<button class="mod-card" aria-label="Kick"><b>Kick</b><span class="io"><i class="ndi"></i>Notes<span>→</span><i class="adi"></i>Audio</span></button><button class="mod-card" aria-label="Drum Kit"><b>Drum Kit</b><span class="io"><i class="ndi"></i>Notes<span>→</span><i class="adi"></i>Audio · 8 pads</span></button><button class="mod-card" aria-label="Psy Bass"><b>Psy Bass</b><span class="io"><i class="ndi"></i>Notes<span>→</span><i class="adi"></i>Audio</span></button><button class="mod-card" aria-label="Lite Synth"><b>Lite Synth</b><span class="io"><i class="ndi"></i>Notes<span>→</span><i class="adi"></i>Audio · 1 of 2 left</span></button>
+<button class="mod-card" aria-label="Lyria AI audio, costs money per take"><span class="r jb"><b>Lyria take</b><span class="coin" style="width: 18px; height: 18px">$</span></span><span class="io"><i class="adi"></i>Audio · from $0.08</span></button>
+</div>
+</div>
+<div class="callout" style="font-size: 12px">No effects to add: every Lite track already has a 3-band EQ, reverb and delay sends, and ducking from the kick.</div>
+<div class="c g6">
+<div class="r jb"><span class="tape s">In Full, on desktop</span><span class="sm dim">open this song on a PC</span></div>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px">
+<button class="mod-card" style="border-style: dashed; border-color: var(--alu-dim); background: transparent; box-shadow: none" aria-disabled="true" aria-label="Poly Synth, only in Full on desktop"><span class="r jb"><b>Poly Synth</b><span class="badge">FULL</span></span><span class="io">Too heavy for the phone</span></button><button class="mod-card" style="border-style: dashed; border-color: var(--alu-dim); background: transparent; box-shadow: none" aria-disabled="true" aria-label="Sampler, only in Full on desktop"><span class="r jb"><b>Sampler</b><span class="badge">FULL</span></span><span class="io">Multi-sample, stretching</span></button><button class="mod-card" style="border-style: dashed; border-color: var(--alu-dim); background: transparent; box-shadow: none" aria-disabled="true" aria-label="Patch canvas, only in Full on desktop"><span class="r jb"><b>Patch canvas</b><span class="badge">FULL</span></span><span class="io">Modules and cables</span></button><button class="mod-card" style="border-style: dashed; border-color: var(--alu-dim); background: transparent; box-shadow: none" aria-disabled="true" aria-label="Plugins, AI stems, only in Full on desktop"><span class="r jb"><b>Plugins, AI stems</b><span class="badge">FULL</span></span><span class="io">Desktop only</span></button>
+</div>
+</div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":412,"height":880}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

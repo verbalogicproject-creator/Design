@@ -47,3 +47,12 @@
 1. Confirm the assumptions above, especially 1, 2, 3 and the export cost.
 2. Decide the `--cs-` prefix and how these tokens map onto existing Creation Studio variables. `text-dim` changes value (see token-notes.md).
 3. Build the **Key**, **Tape**, **Knob** and **Fader** primitives first; most of the screens are made from them.
+
+## Lite profile (new)
+1. **Sing in Lite?** Sing is not in the Lite set, so it is left out of the Lite nav. Confirm, or measure it and add it back.
+2. **Audio clips from files** are not in the Lite set, so Add track offers only Lyria for audio. Confirm.
+3. **Lite Synth limit** assumed 2 tracks, 6 voices each (from the brief). Drum Kit hits at once: 8 (placeholder).
+4. **Budget thresholds** 75 % "busy" and 90 % "full" are placeholders until measured on the device.
+5. **Morph in a Full song on the phone:** assumed off, with its recorded automation still playing and the knobs editable. Confirm.
+6. **Unfreeze on the phone** only for Lite instruments. Parts made with Full-only instruments stay frozen until opened on the desktop.
+7. Desktop (Full) versions of the Lite-only screens (Drum Kit, drum grid, Lite Synth) were not requested this round.
