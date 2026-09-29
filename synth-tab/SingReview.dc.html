@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Phone · Sing 3, review</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="synth.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Permanent+Marker&display=swap">
+<style>body{margin:0;background:#33404a}</style>
+</helmet>
+<div class="sx ph" style="width: 412px; height: 880px">
+<div class="ph-hdr">
+<b class="h3">Synth</b>
+<span class="tape s">Rolling Bass 03</span>
+<span class="f1"></span>
+<span class="rev"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#8fd1a9" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5 11-11"></path></svg>saved r12</span>
+</div>
+<div style="flex: none; height: 106px">
+<dc-import name="Transport" mode="phone" pos="005:1:00" bpm="146.0" cpu="30" lost="0" playing="0" rec="0" loop="1" hint-size="412px,106px"></dc-import>
+</div>
+<div class="ph-body c g8" style="padding: 8px">
+<div class="r jb" style="min-height: 44px">
+<span class="h3">Sing an idea</span>
+<span class="sm dim b">3 takes</span>
+</div>
+<div class="stp" aria-label="Step 3 of 4, Review">
+<div class="s done"><i class="bar"></i><span class="t">1 Ready</span></div>
+<div class="s done"><i class="bar"></i><span class="t">2 Record</span></div>
+<div class="s cur"><i class="bar"></i><span class="t">3 Review</span></div>
+<div class="s"><i class="bar"></i><span class="t">4 Use</span></div>
+</div>
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px">
+<sc-for list="{{ takes }}" as="t" hint-placeholder-count="3">
+<div class="tkc {{ t.cls }}" role="group" aria-label="{{ t.name }}">
+<div class="r jb"><span class="tape s">{{ t.name }}</span><span class="sm dim b">{{ t.dur }}</span></div>
+<span class="badge {{ t.bcls }}" style="align-self: flex-start">{{ t.conf }}</span>
+<div class="r g4">
+<button class="btn ghost sq f1" style="min-width: 0" aria-label="Play {{ t.name }} voice"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#e9ecee" stroke-width="2.2" stroke-linecap="round"><rect x="9" y="3" width="6" height="11" rx="3"></rect><path d="M5 11a7 7 0 0 0 14 0M12 18v3"></path></svg></button>
+<button class="btn ghost sq f1" style="min-width: 0" aria-label="Play {{ t.name }} as instrument"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#e9ecee" stroke-width="2.2" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="1.5"></rect><path d="M8 5v9M12 5v9M16 5v9"></path></svg></button>
+</div>
+<button class="btn tiny {{ t.pickCls }}" style="min-height: 44px">{{ t.pick }}</button>
+</div>
+</sc-for>
+</div>
+<div class="r jb"><span class="h2">Notes · Take 1</span><span class="sm b r g6">12 notes · 2 <i style="display: inline-block; width: 16px; height: 10px; border: 2px dashed var(--ink); background: #f6e29a; border-radius: 2px"></i>unsure, tap to fix</span></div>
+<div class="r">
+<div class="rel" style="width: 36px; height: 156px; flex: none"><sc-for list="{{ keys }}" as="k" hint-placeholder-count="7"><span class="sm dim b abs" style="{{ k.st }}">{{ k.n }}</span></sc-for></div>
+<div class="roll f1" style="height: 156px; border-radius: 5px; background-image: repeating-linear-gradient(90deg,#232c33 0 1px,transparent 1px 22.5px), repeating-linear-gradient(90deg,#4a5a66 0 2px,transparent 2px 180px)">
+<sc-for list="{{ rows }}" as="r" hint-placeholder-count="7"><div class="rrow {{ r.cls }}" style="{{ r.st }}"></div></sc-for>
+<svg class="abs" style="left: 0; top: 0" width="360" height="156" viewBox="0 0 360 156" aria-hidden="true"><path d="{{traceD}}" fill="none" stroke="#e9ecee" stroke-width="1.4" opacity="0.4"></path></svg>
+<sc-for list="{{ notes }}" as="n" hint-placeholder-count="12"><div class="rnote {{ n.cls }}" style="{{ n.st }}"><sc-if value="{{ n.unc }}" hint-placeholder-val="{{ false }}"><b class="q" aria-label="Unsure note">?</b></sc-if></div></sc-for>
+</div>
+</div>
+<div class="plate c g6" style="padding: 8px 10px">
+<div class="r jb"><span class="tape s">Timing</span><span class="sm b">60 % tight</span></div>
+<div class="r g8">
+<span class="sm b" style="width: 54px">Natural</span>
+<div class="rel f1" style="height: 44px" role="slider" aria-label="Timing, natural to tight" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100">
+<i class="abs" style="left: 0; right: 0; top: 19px; height: 6px; background: var(--well); border-radius: 3px; box-shadow: inset 0 1px 3px rgba(0,0,0,.7)"></i>
+<sc-for list="{{ ticks }}" as="t" hint-placeholder-count="5"><i class="abs" style="{{ t.st }}"></i></sc-for>
+<i class="hfcap cap-white abs" style="left: 60%; top: 8px; width: 24px; height: 28px; margin-left: -12px; border-radius: 3px; box-shadow: 0 3px 0 rgba(0,0,0,.4)"></i>
+</div>
+<span class="sm b" style="width: 34px; text-align: right">Tight</span>
+</div>
+<span class="sm dim">Natural keeps your push and pull. Tight snaps every note to 1/16.</span>
+</div>
+<div class="r g8" style="margin-top: auto">
+<button class="btn ghost big">Sing again</button>
+<button class="btn big f1">Use Take 1<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1f2a33" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></button>
+</div>
+</div>
+<div style="flex: none; height: 60px">
+<dc-import name="Nav" mode="bottom" active="sing" hint-size="412px,60px"></dc-import>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":412,"height":880}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const takes = [
+      { name: 'Take 1', dur: '0:13', conf: 'High · 92 %', bcls: 'gr', cls: 'on', pick: 'Chosen', pickCls: '' },
+      { name: 'Take 2', dur: '0:12', conf: 'Med · 71 %', bcls: 'am', cls: '', pick: 'Choose', pickCls: 'ghost' },
+      { name: 'Take 3', dur: '0:09', conf: 'High · 84 %', bcls: 'gr', cls: '', pick: 'Choose', pickCls: 'ghost' }
+    ];
+    const names = ['F#4', 'E4', 'D4', 'C#4', 'B3', 'A3'];
+    const RH = 26, SW = 22.5;
+    const keys = names.map((n, i) => ({ n: n, st: 'right:6px;top:' + (i * RH + 6) + 'px' }));
+    const rows = names.map((n, i) => ({ st: 'top:' + (i * RH) + 'px;height:' + RH + 'px', cls: i % 2 ? 'black' : '' }));
+    const src = [[0, 2, 5], [2, 1, 5], [3, 1, 3], [4, 2, 2], [6, 2, 3], [8, 3, 5], [11, 1, 4, 1], [12, 2, 2], [14, 2, 1, 1], [16, 1, 3], [17, 1, 4], [18, 3, 5]];
+    const notes = src.map((q) => ({ cls: q[3] ? 'unc' : '', unc: !!q[3], st: 'left:' + (q[0] * SW + 1) + 'px;top:' + (q[1] * 0 + q[2] * RH + 3) + 'px;width:' + (q[1] * SW - 2) + 'px;height:' + (RH - 6) + 'px' }));
+    let d = '';
+    for (let i = 0; i <= 240; i++) {
+      const s = i / 240 * 21;
+      let k = 0;
+      for (let j = 0; j < src.length; j++) if (s >= src[j][0]) k = j;
+      const y = src[k][2] * RH + 13 + Math.sin(s * 4.1) * (src[k][3] ? 7 : 2.5) + (s - src[k][0] < 0.2 ? 4 : 0);
+      d += (i ? ' L' : 'M') + (s * SW * 0.985 + 3).toFixed(1) + ' ' + y.toFixed(1);
+    }
+    const ticks = [0, 25, 50, 75, 100].map((p) => ({ st: 'left:' + p + '%;top:30px;width:2px;height:8px;margin-left:-1px;background:#8e979d' }));
+    return { takes: takes, keys: keys, rows: rows, notes: notes, traceD: d, ticks: ticks };
+  }
+}
+</script>
+</body>
+</html>

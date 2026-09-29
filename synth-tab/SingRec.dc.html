@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Phone · Sing 2, recording</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="synth.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Permanent+Marker&display=swap">
+<style>body{margin:0;background:#33404a}</style>
+</helmet>
+<div class="sx ph" style="width: 412px; height: 880px">
+<div class="ph-hdr">
+<b class="h3">Synth</b>
+<span class="tape s">Rolling Bass 03</span>
+<span class="f1"></span>
+<span class="rev"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#8fd1a9" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5 11-11"></path></svg>saved r12</span>
+</div>
+<div style="flex: none; height: 106px">
+<dc-import name="Transport" mode="phone" pos="006:3:02" bpm="146.0" cpu="41" lost="0" playing="1" rec="1" loop="0" hint-size="412px,106px"></dc-import>
+</div>
+<div class="ph-body c g8" style="padding: 8px">
+<div class="r jb" style="min-height: 44px">
+<span class="h3">Sing an idea</span>
+<span class="r g8 b tal"><i class="pulse" style="display: inline-block; width: 12px; height: 12px; border-radius: 50%; background: var(--tally)"></i>RECORDING 0:03.3</span>
+</div>
+<div class="stp" aria-label="Step 2 of 4, Record">
+<div class="s done"><i class="bar"></i><span class="t">1 Ready</span></div>
+<div class="s cur"><i class="bar"></i><span class="t">2 Record</span></div>
+<div class="s"><i class="bar"></i><span class="t">3 Review</span></div>
+<div class="s"><i class="bar"></i><span class="t">4 Use</span></div>
+</div>
+<div class="plate r g8" style="padding: 8px 10px">
+<div class="c g2" style="width: 88px"><span class="lbl">Beat</span><span class="sm b">Bar 2 of 8</span></div>
+<div class="r g6 f1 je" role="img" aria-label="Beat 3 of 4">
+<span class="beat">1</span><span class="beat">2</span><span class="beat on pulse">3</span><span class="beat">4</span>
+</div>
+</div>
+<span class="sm dim" style="margin-top: -2px">The same lamps count you in, 4 3 2 1, then recording starts on the next 1.</span>
+<div class="r">
+<div class="rel" style="width: 36px; height: 272px; flex: none">
+<sc-for list="{{ keys }}" as="k" hint-placeholder-count="8"><span class="sm dim b abs" style="{{ k.st }}">{{ k.n }}</span></sc-for>
+</div>
+<div class="canvas-box f1" style="height: 272px">
+<svg width="358" height="272" viewBox="0 0 358 272" role="img" aria-label="Live melody: your voice as a pitch line, with notes forming under it">
+<sc-for list="{{ rows }}" as="r" hint-placeholder-count="8"><rect x="0" y="{{ r.y }}" width="358" height="34" fill="{{ r.fill }}"></rect></sc-for>
+<sc-for list="{{ beats }}" as="b" hint-placeholder-count="8"><path d="{{ b.d }}" stroke="{{ b.c }}" stroke-width="{{ b.w }}"></path></sc-for>
+<sc-for list="{{ notes }}" as="n" hint-placeholder-count="7"><rect x="{{ n.x }}" y="{{ n.y }}" width="{{ n.w }}" height="26" rx="3" fill="{{ n.fill }}" stroke="#1f2a33" stroke-width="2" stroke-dasharray="{{ n.dash }}"></rect></sc-for>
+<sc-for list="{{ qs }}" as="q" hint-placeholder-count="1"><g><circle cx="{{ q.x }}" cy="{{ q.y }}" r="8" fill="#1f2a33"></circle><text x="{{ q.x }}" y="{{ q.ty }}" text-anchor="middle" font-size="11" font-weight="900" fill="#e6d6a2">?</text></g></sc-for>
+<path d="{{traceD}}" fill="none" stroke="#f2b33d" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round"></path>
+<rect x="{{nowX}}" y="0" width="{{futW}}" height="272" fill="#1c2429" fill-opacity="0.55"></rect>
+<path d="M{{nowX}} 0V272" stroke="#f2b33d" stroke-width="2"></path>
+<circle cx="{{nowX}}" cy="{{nowY}}" r="6" fill="#f2b33d" stroke="#1f2a33" stroke-width="2"></circle>
+</svg>
+</div>
+</div>
+<div class="r g12 sm b" style="padding: 0 2px">
+<span class="r g6"><i style="display: inline-block; width: 18px; height: 3px; background: var(--amber)"></i>your voice</span>
+<span class="r g6"><i style="display: inline-block; width: 16px; height: 10px; background: var(--blue); box-shadow: inset 0 0 0 2px var(--ink); border-radius: 2px"></i>note</span>
+<span class="r g6"><i style="display: inline-block; width: 16px; height: 10px; border: 2px dashed var(--ink); background: #9ab6db; border-radius: 2px"></i>forming or unsure</span>
+</div>
+<div class="plate r g8" style="padding: 8px 10px">
+<span class="sm b" style="width: 40px">Input</span>
+<div class="hmeter" role="img" aria-label="Input level minus 11 dB"><i style="width: 70%"></i><b style="left: 78%"></b><u></u></div>
+<span class="sm b gr" style="width: 72px; text-align: right">−11 dB · good</span>
+</div>
+<div class="r g8" style="margin-top: auto">
+<button class="btn ghost big">Cancel</button>
+<button class="btn big f1" aria-label="Stop recording"><svg width="20" height="20" viewBox="0 0 24 24" fill="#1f2a33"><path d="M6 6h12v12H6z"></path></svg>Stop</button>
+</div>
+</div>
+<div style="flex: none; height: 60px">
+<dc-import name="Nav" mode="bottom" active="sing" hint-size="412px,60px"></dc-import>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":412,"height":880}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const RH = 34, W = 358, BW = W / 8;
+    const names = ['F#4', 'E4', 'D4', 'C#4', 'B3', 'A3', 'G#3', 'F#3'];
+    const keys = names.map((n, i) => ({ n: n, st: 'right:6px;top:' + (i * RH + 10) + 'px' }));
+    const rows = names.map((n, i) => ({ y: i * RH, fill: i % 2 ? '#262f36' : '#2a353d' }));
+    const beats = [];
+    for (let i = 1; i < 8; i++) beats.push({ d: 'M' + (i * BW).toFixed(1) + ' 0V272', c: i % 4 === 0 ? '#4a5a66' : '#232c33', w: i % 4 === 0 ? '1.5' : '1' });
+    const sung = [[0, 1, 5], [1, 0.5, 5], [1.5, 0.5, 3], [2, 1, 2], [3, 1, 3], [4, 1.5, 5], [5.5, 0.5, 4, 'u'], [6, 0.6, 2, 'f']];
+    const now = 6.6;
+    const notes = sung.map((s) => ({
+      x: (s[0] * BW + 2).toFixed(1), y: (s[2] * RH + 4).toFixed(1), w: (s[1] * BW - 4).toFixed(1),
+      fill: s[3] ? '#9ab6db' : '#4a7fc1', dash: s[3] ? '4 3' : '0'
+    }));
+    const qs = sung.filter((s) => s[3] === 'u').map((s) => ({ x: (s[0] * BW + 12).toFixed(1), y: (s[2] * RH + 17).toFixed(1), ty: (s[2] * RH + 21).toFixed(1) }));
+    let d = '';
+    const cy = (r) => r * RH + 17;
+    for (let i = 0; i <= 200; i++) {
+      const t = i / 200 * now;
+      let k = 0;
+      for (let j = 0; j < sung.length; j++) if (t >= sung[j][0]) k = j;
+      const s = sung[k];
+      let y = cy(s[2]);
+      const into = t - s[0];
+      if (k > 0 && into < 0.12) { const p = cy(sung[k - 1][2]); y = p + (y - p) * (into / 0.12); }
+      y += Math.sin(t * 22) * (s[3] ? 6 : 2.2);
+      d += (i ? ' L' : 'M') + (t * BW).toFixed(1) + ' ' + y.toFixed(1);
+    }
+    const nowX = now * BW;
+    return { keys: keys, rows: rows, beats: beats, notes: notes, qs: qs, traceD: d, nowX: nowX.toFixed(1), futW: (W - nowX).toFixed(1), nowY: (cy(2) + Math.sin(now * 22) * 2.2).toFixed(1) };
+  }
+}
+</script>
+</body>
+</html>

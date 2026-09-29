@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Phone · Sing 4, use as</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="synth.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Permanent+Marker&display=swap">
+<style>body{margin:0;background:#33404a}</style>
+</helmet>
+<div class="sx ph" style="width: 412px; height: 880px">
+<div class="ph-hdr">
+<b class="h3">Synth</b>
+<span class="tape s">Rolling Bass 03</span>
+<span class="f1"></span>
+<span class="rev"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#8fd1a9" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5 11-11"></path></svg>saved r12</span>
+</div>
+<div style="flex: none; height: 106px">
+<dc-import name="Transport" mode="phone" pos="005:1:00" bpm="146.0" cpu="30" lost="0" playing="0" rec="0" loop="1" hint-size="412px,106px"></dc-import>
+</div>
+<div class="ph-body c g8" style="padding: 8px">
+<div class="r g8" style="min-height: 44px">
+<button class="btn ghost sq" aria-label="Back to review">‹</button>
+<span class="h3 f1">Sing an idea</span>
+<span class="tape s">Take 1</span>
+<span class="sm dim b">12 notes · 2 bars</span>
+</div>
+<div class="stp" aria-label="Step 4 of 4, Use">
+<div class="s done"><i class="bar"></i><span class="t">1 Ready</span></div>
+<div class="s done"><i class="bar"></i><span class="t">2 Record</span></div>
+<div class="s done"><i class="bar"></i><span class="t">3 Review</span></div>
+<div class="s cur"><i class="bar"></i><span class="t">4 Use</span></div>
+</div>
+<span class="lbl" style="margin-top: 2px">Use as</span>
+<div class="c g6" role="radiogroup" aria-label="Use as">
+<button class="optcard" role="radio" aria-checked="false"><span class="r g8"><i class="radio"></i><b>Lead</b></span><span class="sm dim">Its own channel, played on Pluck lead.</span></button>
+<div class="optcard on" role="radio" aria-checked="true" tabindex="0">
+<span class="r g8"><i class="radio on"></i><b class="f1">Bass</b><span class="badge am">selected</span></span>
+<span class="sm dim">Drops the melody and plays it on Psy Bass.</span>
+<div class="r g8">
+<div class="seg" role="group" aria-label="Octave"><button class="btn" aria-pressed="false">−12</button><button class="btn on" aria-pressed="true">−24</button></div>
+<button class="chip t">Psy Bass ▾</button>
+<button class="btn tg on tiny" style="min-height: 44px" aria-pressed="true">Roll 1/16</button>
+</div>
+</div>
+<button class="optcard" role="radio" aria-checked="false"><span class="r g8"><i class="radio"></i><b>Chords underneath</b></span><span class="sm dim">F# minor chords under the melody, one per bar.</span></button>
+<button class="optcard" role="radio" aria-checked="false"><span class="r g8"><i class="radio"></i><b>Arp source</b></span><span class="sm dim">Your notes choose the chord; an arp plays 1/16.</span></button>
+</div>
+<div class="r g8 wrap">
+<button class="chip t">At bar 5 ▾</button>
+<button class="chip t">New channel · Sung bass ▾</button>
+</div>
+<div class="r g8">
+<button class="btn tg" aria-pressed="false">Keep voice</button>
+<span class="sm dim f1">Also keep the recording as an audio clip on its own lane.</span>
+</div>
+<div class="r g8" style="margin-top: auto">
+<button class="btn ghost big" aria-label="Hear it in the song from bar 5"><svg width="18" height="18" viewBox="0 0 24 24" fill="#e9ecee"><path d="M8 5v14l11-7z"></path></svg>Hear</button>
+<button class="btn big f1"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1f2a33" stroke-width="3" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg>Add to song</button>
+</div>
+</div>
+<div style="flex: none; height: 60px">
+<dc-import name="Nav" mode="bottom" active="sing" hint-size="412px,60px"></dc-import>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":412,"height":880}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

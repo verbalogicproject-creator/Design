@@ -80,13 +80,6 @@
    "h": 880,
    "title": "Phone \u00b7 Mod"
   },
-  "Sing.dc.html": {
-   "x": 2952,
-   "y": 3440,
-   "w": 412,
-   "h": 880,
-   "title": "Phone \u00b7 Sing an idea"
-  },
   "Generate.dc.html": {
    "x": 3444,
    "y": 3440,
@@ -303,6 +296,55 @@
    "w": 412,
    "h": 880,
    "title": "Phone \u00b7 Rack, volume entry"
+  },
+  "SingReady.dc.html": {
+   "x": 0,
+   "y": 7800,
+   "w": 412,
+   "h": 880,
+   "title": "Sing 1 \u00b7 Ready"
+  },
+  "SingRec.dc.html": {
+   "x": 492,
+   "y": 7800,
+   "w": 412,
+   "h": 880,
+   "title": "Sing 2 \u00b7 Recording"
+  },
+  "SingReview.dc.html": {
+   "x": 984,
+   "y": 7800,
+   "w": 412,
+   "h": 880,
+   "title": "Sing 3 \u00b7 Review"
+  },
+  "SingUse.dc.html": {
+   "x": 1476,
+   "y": 7800,
+   "w": 412,
+   "h": 880,
+   "title": "Sing 4 \u00b7 Use as"
+  },
+  "AutoMenu.dc.html": {
+   "x": 2128,
+   "y": 7800,
+   "w": 412,
+   "h": 880,
+   "title": "Automation 1 \u00b7 Knob menu"
+  },
+  "AutoClip.dc.html": {
+   "x": 2620,
+   "y": 7800,
+   "w": 892,
+   "h": 412,
+   "title": "Automation 2 \u00b7 Clip editor, points"
+  },
+  "AutoClipPencil.dc.html": {
+   "x": 3592,
+   "y": 7800,
+   "w": 892,
+   "h": 412,
+   "title": "Automation 3 \u00b7 Clip editor, pencil"
   }
  },
  "order": [
@@ -317,7 +359,6 @@
   "Roll.dc.html",
   "Patch.dc.html",
   "Mod.dc.html",
-  "Sing.dc.html",
   "Generate.dc.html",
   "Consent.dc.html",
   "AddModule.dc.html",
@@ -347,7 +388,14 @@
   "EnvCurve.dc.html",
   "EqCurve.dc.html",
   "TakeCard.dc.html",
-  "XyPad.dc.html"
+  "XyPad.dc.html",
+  "SingReady.dc.html",
+  "SingRec.dc.html",
+  "SingReview.dc.html",
+  "SingUse.dc.html",
+  "AutoMenu.dc.html",
+  "AutoClip.dc.html",
+  "AutoClipPencil.dc.html"
  ],
  "notes": {
   "t0": {
@@ -384,6 +432,13 @@
    "text": "Parts \u00b7 the library components the screens are built from",
    "kind": "title1",
    "maxW": 2400
+  },
+  "t5": {
+   "x": 0,
+   "y": 7500,
+   "text": "Flows \u00b7 Sing an idea, and automating a knob",
+   "kind": "title1",
+   "maxW": 4480
   }
  },
  "designSystems": []

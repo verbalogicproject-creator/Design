@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Phone · Sing 1, ready</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="synth.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Permanent+Marker&display=swap">
+<style>body{margin:0;background:#33404a}</style>
+</helmet>
+<div class="sx ph" style="width: 412px; height: 880px">
+<div class="ph-hdr">
+<b class="h3">Synth</b>
+<span class="tape s">Rolling Bass 03</span>
+<span class="f1"></span>
+<span class="rev"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#8fd1a9" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5 11-11"></path></svg>saved r12</span>
+</div>
+<div style="flex: none; height: 106px">
+<dc-import name="Transport" mode="phone" pos="005:1:00" bpm="146.0" cpu="24" lost="0" playing="0" rec="0" loop="0" hint-size="412px,106px"></dc-import>
+</div>
+<div class="ph-body c g8" style="padding: 8px">
+<div class="r jb" style="min-height: 44px">
+<span class="h3">Sing an idea</span>
+<button class="btn ghost sq" aria-label="Close Sing an idea"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#e9ecee" stroke-width="2.6" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>
+</div>
+<div class="stp" aria-label="Step 1 of 4, Ready">
+<div class="s cur"><i class="bar"></i><span class="t">1 Ready</span></div>
+<div class="s"><i class="bar"></i><span class="t">2 Record</span></div>
+<div class="s"><i class="bar"></i><span class="t">3 Review</span></div>
+<div class="s"><i class="bar"></i><span class="t">4 Use</span></div>
+</div>
+<div class="toast warn" style="box-shadow: none; padding: 8px 10px">
+<span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#f2b33d" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15v-3a8 8 0 0 1 16 0v3"></path><rect x="3" y="14" width="4" height="6" rx="1.5"></rect><rect x="17" y="14" width="4" height="6" rx="1.5"></rect></svg></span>
+<div class="c g2 f1"><b style="font-size: 13px">No headphones found</b><span class="sm dim">Plug some in. Without them the click and the song leak into the mic and the notes come out messy.</span></div>
+</div>
+<span class="lbl" style="margin-top: 2px">How do you want to sing?</span>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px">
+<button class="optcard on" aria-pressed="true"><span class="r g8"><i class="radio on"></i><b>Fit to song</b></span><span class="sm dim">Plays the song from bar 5 with a click. Notes lock to 146 BPM, F# minor.</span></button>
+<button class="optcard" aria-pressed="false"><span class="r g8"><i class="radio"></i><b>Sing freely</b></span><span class="sm dim">No song, no click. Tempo and key are worked out after.</span></button>
+</div>
+<div class="r g8 wrap">
+<button class="btn tg on" aria-pressed="true">Click on</button>
+<button class="chip t">Count-in · 1 bar</button>
+<button class="chip t">From bar 5</button>
+</div>
+<div class="plate r g8" style="padding: 8px 10px">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#e9ecee" stroke-width="2.2" stroke-linecap="round"><rect x="9" y="3" width="6" height="11" rx="3"></rect><path d="M5 11a7 7 0 0 0 14 0M12 18v3"></path></svg>
+<span class="sm b" style="width: 72px">Phone mic</span>
+<div class="hmeter" role="img" aria-label="Input level minus 14 dB, good"><i style="width: 62%"></i><b style="left: 70%"></b><u></u></div>
+<span class="sm b gr" style="width: 72px; text-align: right">−14 dB · good</span>
+</div>
+<div class="c g6" style="align-items: center; margin-top: 8px">
+<button class="bigrec" aria-label="Record"><i></i></button>
+<b class="h3">Record</b>
+<span class="sm dim">Starts after a one-bar count-in.</span>
+</div>
+<div class="r g8 jc" style="margin-top: auto; padding-bottom: 4px">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#a9b4bc" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="9" rx="2"></rect><path d="M8 11V8a4 4 0 0 1 8 0v3"></path></svg>
+<span class="sm dim">Your voice stays on this phone.</span>
+</div>
+</div>
+<div style="flex: none; height: 60px">
+<dc-import name="Nav" mode="bottom" active="sing" hint-size="412px,60px"></dc-import>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":412,"height":880}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

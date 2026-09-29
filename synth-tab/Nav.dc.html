@@ -20,7 +20,7 @@
 <button class="nv {{a.roll}}" aria-current="{{c.roll}}"><svg width="22" height="22" viewBox="0 0 24 24"><path d="M3 7h18M3 12h18M3 17h18"></path><rect x="5" y="4.5" width="6" height="5" rx="1"></rect><rect x="10" y="14.5" width="8" height="5" rx="1"></rect></svg><span>Roll</span></button>
 <button class="nv {{a.patch}}" aria-current="{{c.patch}}"><svg width="22" height="22" viewBox="0 0 24 24"><rect x="3" y="4" width="7" height="6" rx="1"></rect><rect x="14" y="14" width="7" height="6" rx="1"></rect><path d="M10 7h2a2 2 0 0 1 2 2v5"></path></svg><span>Patch</span></button>
 <button class="nv {{a.mod}}" aria-current="{{c.mod}}"><svg width="22" height="22" viewBox="0 0 24 24"><path d="M2 12c3-9 5-9 8 0s5 9 8 0c1-3 2-3 4 0"></path></svg><span>Mod</span></button>
-<button class="nv sing" aria-label="Sing an idea"><svg width="22" height="22" viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"></rect><path d="M5 11a7 7 0 0 0 14 0M12 18v3"></path></svg><span class="tape s">Sing</span></button>
+<button class="nv sing {{a.sing}}" aria-current="{{c.sing}}" aria-label="Sing an idea"><svg width="22" height="22" viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"></rect><path d="M5 11a7 7 0 0 0 14 0M12 18v3"></path></svg><span class="tape s">Sing</span></button>
 </nav>
 </div>
 </x-dc>
@@ -28,7 +28,7 @@
 class Component extends DCLogic {
   renderVals() {
     const act = this.props.active || 'rack';
-    const ids = ['rack', 'playlist', 'mixer', 'roll', 'patch', 'mod'];
+    const ids = ['rack', 'playlist', 'mixer', 'roll', 'patch', 'mod', 'sing'];
     const a = {}, c = {};
     ids.forEach((id) => { a[id] = id === act ? 'on' : ''; c[id] = id === act ? 'page' : 'false'; });
     const m = this.props.mode;
