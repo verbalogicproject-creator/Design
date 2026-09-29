@@ -570,6 +570,20 @@
    "w": 412,
    "h": 880,
    "title": "Lite \u00b7 Lite Synth, scrolled to the end"
+  },
+  "TrackFx.dc.html": {
+   "x": 2952,
+   "y": 11700,
+   "w": 412,
+   "h": 880,
+   "title": "Lite \u00b7 Track FX sheet"
+  },
+  "LiteFrozen.dc.html": {
+   "x": 3444,
+   "y": 11700,
+   "w": 1440,
+   "h": 1040,
+   "title": "Lite \u00b7 Frozen track states"
   }
  },
  "order": [
@@ -652,7 +666,9 @@
   "SamplePickerLoading.dc.html",
   "SamplePickerEmpty.dc.html",
   "SamplePickerOffline.dc.html",
-  "LiteSynthScrolled.dc.html"
+  "LiteSynthScrolled.dc.html",
+  "TrackFx.dc.html",
+  "LiteFrozen.dc.html"
  ],
  "notes": {
   "t0": {

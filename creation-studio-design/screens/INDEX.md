@@ -71,7 +71,7 @@ Breakpoints: phone portrait 412 x 880, phone landscape 892 x 412, desktop 1440 x
 | [MicDenied](MicDenied.png) | 412 x 880 | Error | Error · Microphone blocked | Microphone blocked: three steps to fix. |
 | [LiteParts](LiteParts.png) | 1440 x 1680 | Lite · library | Library · Lite parts | Profile badge, drum pad (new), frozen state, budget and voice meters, Lite nav. |
 | [LiteRack](LiteRack.png) | 412 x 880 | Lite | Tracks | Lite rack with budget line, one frozen Full part, an AI audio track. |
-| [LiteAdd](LiteAdd.png) | 412 x 880 | Lite | Add track | Only Lite instruments; Full-only items shown dashed with a FULL badge. |
+| [LiteAdd](LiteAdd.png) | 412 x 880 | Lite | Add track | Only Lite instruments; Full-only items shown dashed with the On PC chip. |
 | [DrumKit](DrumKit.png) | 412 x 880 | Lite | Drum Kit | 4 x 2 pads on tape (playing, selected, muted, empty, sample missing); selected pad waveform with start/end handles, Tune, Decay, Filter, Level, Pan, choke group, Change sample. |
 | [DrumGrid](DrumGrid.png) | 412 x 880 | Lite | Drum grid | Kick + kit rows, 8 steps per page at 44 px, off/on/accent, mute, fill menu open, bars 1-4, length, swing, playhead. |
 | [LandDrumGrid](LandDrumGrid.png) | 892 x 412 | Lite | Drum grid, landscape | Every row x 16 steps at 44 px, playhead column, bars, length, swing, velocity popover open. |
@@ -86,3 +86,5 @@ Breakpoints: phone portrait 412 x 880, phone landscape 892 x 412, desktop 1440 x
 | [SamplePickerLoading](SamplePickerLoading.png) | 412 x 880 | Lite | Sample picker · loading | Skeleton rows, Searching Freesound. |
 | [SamplePickerEmpty](SamplePickerEmpty.png) | 412 x 880 | Lite | Sample picker · no results | Query shown, two ways out. |
 | [SamplePickerOffline](SamplePickerOffline.png) | 412 x 880 | Lite | Sample picker · no connection | Freesound offline; Kit and My library still work. |
+| [TrackFx](TrackFx.png) | 412 x 880 | Lite | Track FX sheet | 3-band EQ over the EQ curve, Reverb and Delay sends, Duck with the duck indicator, On PC line for the full mixer. |
+| [LiteFrozen](LiteFrozen.png) | 1440 x 1040 | Lite · states | Frozen track states | Rack row frozen, freezing, frozen from Full; Playlist lane frozen; disabled controls with reasons; can't freeze; On PC chip. |

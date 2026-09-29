@@ -235,3 +235,10 @@ Inline 22 px chip, 1.5px outline, 11px/800. `CC0`: `alu-dim` outline. `CC-BY`: `
 
 ### 33. Sample row (composition)
 Play key (44) + a button (name, meta line, 72 x 28 waveform in a well) + licence chip. Selected: `slate` fill and a 3px amber left edge, `aria-pressed="true"`. Loading skeleton: the same geometry in `slate-deep` blocks.
+
+
+### 34. "On PC" chip (reuse of the chip)
+24 px high, radius 12, 1.5px **dashed** `alu-dim` outline, transparent fill, screen icon, "ON PC" 11px/800 upper. Not interactive: the row or card it sits in explains, and the action (if any) is elsewhere. Pairs with the FROZEN tag (solid, snowflake) without being confused with it: different outline style, icon and word.
+
+### EQ curve, 3-band mode (variant of 5)
+`bands="3"` with `low`, `mid`, `high` gains in dB: low shelf ~120 Hz, bell ~1 kHz, high shelf ~7 kHz. Dots labelled L, M, H. Used small (366 x 112) behind the Track FX knobs.

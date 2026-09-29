@@ -24,12 +24,12 @@ A Lite song opens in Full unchanged. A Full song opens in Lite with its heavy pa
 | **Lite Synth**: 2 oscillators, filter, AHDSR, 1 LFO, output, 6 voices | `LiteSynth`, `LiteSynthScrolled` | plates Osc (wave, octave stepper, detune, mix), Filter (Low/High/Band, cutoff, resonance, env amount), Amp envelope (4), LFO (shape, rate with Sync/Free, amount, target Cutoff/Pitch/Volume), Output (glide, level). Preset chip opens the existing preset sheet. |
 | **Sample picker** | `SamplePicker` (Freesound), `SamplePickerLib` (My library), `SamplePickerLoading`, `SamplePickerEmpty`, `SamplePickerOffline` | bottom sheet (23), segmented tabs, field, chips (type filter), rows with play key, waveform well, licence chip |
 | Lyria takes as audio tracks | `Generate` (existing), audio row in `LiteRack` | unchanged |
-| Per track: volume, pan, mute, solo, 3-band EQ, reverb send, delay send, duck from kick | `LiteStrip` | one-strip mixer (MixerSingle), fader + meter, knobs, duck indicator (18). No insert slots: the Lite chain is fixed. |
+| Per track: volume, pan, mute, solo, 3-band EQ, reverb send, delay send, duck from kick | `LiteStrip`, and the **Track FX sheet** `TrackFx` (from a Rack row or a mixer strip) | one-strip mixer (MixerSingle), fader + meter, knobs, duck indicator (18). No insert slots: the Lite chain is fixed. |
 | Shared reverb, delay, master limiter | `LiteShared` | knobs, segmented (delay time), LCD readouts, gain-reduction meter |
 | Piano roll, playlist, on-screen keys | `Roll`, `Playlist`, `Keys` (existing) | unchanged; nav reaches Keys directly |
 | CPU meter | Transport (existing) + budget line in `LiteRack` | CPU segment meter, horizontal meter |
 | Voice limits | voice meter in `LiteSynth`; drum pad note | CPU segment style |
-| Freeze | `Freeze` sheet, frozen rows in `LiteRack`, `Overload` (existing) | sheet, horizontal meter, frozen state (27) |
+| Freeze | `Freeze` sheet, `LiteFrozen` (all frozen states on existing parts), frozen row in `LiteRack`, `Overload` (existing) | sheet, horizontal meter, frozen state (27), On PC chip (34) |
 | Opening a Full song | `FromFull` | sheet, frozen state tags |
 
 ## Rules specific to Lite
@@ -67,3 +67,21 @@ Drum Kit hits at once (8), budget thresholds (75 %, 90 %), CPU freed by freezing
 
 ## Lite Synth layout
 The header (transport, project) and the nav stay fixed; the **panel scrolls inside itself** (vertical only, with a thumb on the right). Top of the panel: name tape, preset chip (opens the existing preset sheet), and "6 voices" in small caps. Plates in order: Osc, Filter, Amp envelope, LFO, Output. `LiteSynthScrolled` shows the end of the panel.
+
+## Track FX sheet
+Bottom sheet opened from a Rack row (FX key or hold) or a mixer strip. Channel cap + "Track FX" + the track and instrument.
+- **EQ:** three knobs (Low, Mid, High gain) with the existing EQ curve drawn behind them in its 3-band mode (low shelf ~120 Hz, bell ~1 kHz, high shelf ~7 kHz; dots labelled L, M, H). Dots drag; knobs are the tap alternative.
+- **Sends:** Reverb and Delay knobs, to the song's shared effects.
+- **Duck:** an on/off toggle, the existing duck indicator ("Ducked by Kick −3 dB" with the gain-reduction bar) and an Amount stepper (the most the kick can pull it down).
+- **Last line:** "Full mixer with insert slots and groups" with the **On PC** chip.
+
+## Frozen states and "On PC"
+All on existing parts (`LiteFrozen`):
+- **Rack row, frozen:** hatch, snowflake + FROZEN chip, instrument name in dim italics. Volume, mute, solo stay live. An **Unfreeze** key (44 px). Tapping the row opens a note, not the instrument: "Lead is frozen. Unfreeze to change notes or sound. Needs about 14 % CPU; 22 % free."
+- **Rack row, freezing:** progress in bars and % with Cancel. Playback continues.
+- **Rack row, frozen from Full:** no Unfreeze key; FROZEN and **On PC** chips.
+- **Playlist lane, frozen:** lane name with "Lite Synth · frozen"; blocks hatched with kind tag FROZEN and a waveform; Draw and Slice disabled with the reason beside them; Unfreeze. Blocks can still be moved, copied, deleted.
+- **Mixer and panel:** mix controls (EQ, sends, duck) stay live; sound controls are disabled with a dash for the value and a reason line.
+- **Can't freeze:** the Freeze key is disabled and the reason is in words: already audio; can't freeze while recording; not enough space (with numbers).
+- **On PC chip:** dashed outline, screen icon, "ON PC". Used wherever Lite shows something it can't do: stems in Export, Full instruments in Add track, insert slots and groups, Morph in a Full song. It replaces the earlier `FULL` badge. Frozen (solid, snowflake) = plays as audio here; On PC (dashed, screen) = lives in the Full version; a part can show both.
+- **Disabled controls** stay visible, hatched and dimmed, with the reason beside them. Never hidden, never a silent dead tap.

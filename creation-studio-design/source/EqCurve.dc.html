@@ -49,7 +49,7 @@
 </div>
 </div>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props='{"w":{"editor":null,"default":"420"},"h":{"editor":null,"default":"200"},"state":{"editor":null,"default":"default"},"sel":{"editor":null,"default":"0"},"$preview":{"width":420,"height":200}}'>
+<script type="text/x-dc" data-dc-script data-props='{"w":{"editor":null,"default":"420"},"h":{"editor":null,"default":"200"},"state":{"editor":null,"default":"default"},"bands":{"editor":null,"default":"5"},"low":{"editor":null,"default":"2"},"mid":{"editor":null,"default":"-1.5"},"high":{"editor":null,"default":"-3"},"sel":{"editor":null,"default":"0"},"$preview":{"width":420,"height":200}}'>
 class Component extends DCLogic {
   renderVals() {
     const p = this.props;
@@ -62,7 +62,13 @@ class Component extends DCLogic {
     const lo = Math.log10(20), span = 3;
     const X = (fr) => (Math.log10(fr) - lo) / span * W;
     const Y = (db) => Hm / 2 - db / 15 * (Hm / 2 - 6);
-    const bands = [
+    const three = p.bands === '3';
+    const gl = n(p.low, 2), gm = n(p.mid, -1.5), gh = n(p.high, -3);
+    const bands = three ? [
+      { f: 120, g: gl, t: 'ls', col: '#e8c547', lab: 'L' },
+      { f: 1000, g: gm, t: 'bell', bw: 1.1, col: '#eef0f1', lab: 'M' },
+      { f: 7000, g: gh, t: 'hs', col: '#4a7fc1', lab: 'H' }
+    ] : [
       { f: 32, g: 0, t: 'hp', col: '#d9483b' },
       { f: 90, g: 3.5, t: 'bell', bw: 0.55, col: '#e8c547' },
       { f: 400, g: -4, t: 'bell', bw: 0.6, col: '#4a7fc1' },
@@ -75,6 +81,7 @@ class Component extends DCLogic {
         const l = Math.log2(fr / b.f);
         if (b.t === 'hp') s += -30 / (1 + Math.pow(fr / b.f, 3));
         else if (b.t === 'bell') s += b.g * Math.exp(-Math.pow(l / b.bw, 2));
+        else if (b.t === 'ls') s += b.g / (1 + Math.exp(l * 3));
         else s += b.g / (1 + Math.exp(-l * 3));
       });
       return s;
@@ -102,7 +109,7 @@ class Component extends DCLogic {
     const dots = bands.map((b, i) => {
       const yy = b.t === 'hp' ? Y(0) : Y(resp(b.f, [b]));
       const on = sel === i + 1;
-      return { x: f1(X(b.f)), y: f1(yy), n: String(i + 1), col: b.col, r: on ? 11 : 9, ring: on ? 15 : 0, ty: f1(yy + 4), nst: 'left:' + f1(X(b.f) - 10) + 'px;top:' + f1(yy - 8) + 'px;width:20px;text-align:center;font-size:11px;font-weight:800;line-height:16px;color:#e9ecee;pointer-events:none' };
+      return { x: f1(X(b.f)), y: f1(yy), n: b.lab || String(i + 1), col: b.col, r: on ? 11 : 9, ring: on ? 15 : 0, ty: f1(yy + 4), nst: 'left:' + f1(X(b.f) - 10) + 'px;top:' + f1(yy - 8) + 'px;width:20px;text-align:center;font-size:11px;font-weight:800;line-height:16px;color:#e9ecee;pointer-events:none' };
     });
     const sb = sel ? bands[sel - 1] : null;
     const selY = sb ? (sb.t === 'hp' ? Y(0) : Y(resp(sb.f, [sb]))) : 0;
