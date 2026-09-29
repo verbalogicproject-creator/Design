@@ -47,7 +47,7 @@
 <div class="f1" style="min-width: 0">
 <div class="roll" style="height: 220px; background-image: repeating-linear-gradient(90deg,#232c33 0 1px,transparent 1px 44px), repeating-linear-gradient(90deg,#4a5a66 0 2px,transparent 2px 176px)">
 <sc-for list="{{ rows }}" as="r" hint-placeholder-count="8"><div class="rrow {{ r.cls }}" style="{{ r.st }}"></div></sc-for>
-<sc-for list="{{ ghosts }}" as="g" hint-placeholder-count="8"><div class="rnote ghost" style="{{ g.st }}"></div></sc-for>
+<sc-for list="{{ ghosts }}" as="g" hint-placeholder-count="8"><div class="rnote ghost" style="{{ g.st }}"><b class="sm" style="position: absolute; left: 5px; top: 10px; color: var(--text)">{{ g.n }}</b></div></sc-for>
 <sc-for list="{{ notes }}" as="n" hint-placeholder-count="14"><div class="rnote {{ n.cls }}" style="{{ n.st }}"><i class="l"></i><i class="r"></i><sc-if value="{{ n.unc }}" hint-placeholder-val="{{ false }}"><b class="q" aria-label="Unsure note">?</b></sc-if></div></sc-for>
 <span class="tape s abs" style="left: 236px; top: 60px; z-index: 6">A2 · 62 % sure</span>
 <div class="playhead" style="left: 418px"></div>
@@ -80,7 +80,7 @@ class Component extends DCLogic {
       unc: !!q.unc,
       st: 'left:' + (q.s * SW + 2) + 'px;top:' + (q.r * RH + 3) + 'px;width:' + (q.l * SW - 4) + 'px;height:' + (RH - 6) + 'px'
     }));
-    const gh = (s, l, r, col) => ({ st: 'left:' + (s * SW + 2) + 'px;top:' + (r * RH + 3) + 'px;width:' + (l * SW - 4) + 'px;height:' + (RH - 6) + 'px;box-shadow:inset 0 0 0 2px ' + col });
+    const gh = (s, l, r, col) => ({ n: col.indexOf('red') > 0 ? '1' : '5', st: 'left:' + (s * SW + 2) + 'px;top:' + (r * RH + 3) + 'px;width:' + (l * SW - 4) + 'px;height:' + (RH - 6) + 'px;box-shadow:inset 0 0 0 2px ' + col });
     const ghosts = [gh(0, 1, 4, 'var(--red)'), gh(4, 1, 4, 'var(--red)'), gh(8, 1, 4, 'var(--red)'), gh(12, 1, 4, 'var(--red)'), gh(2, 2, 0, 'var(--green)'), gh(11, 3, 1, 'var(--green)')];
     const vels = src.map((q) => ({
       st: 'left:' + (q.s * SW + 14) + 'px;bottom:0;width:14px;height:' + Math.round(q.v * 0.5) + 'px;background:' + (q.unc ? '#f6e29a' : 'var(--alu-dim)') + ';' + (q.sel ? 'box-shadow:0 0 0 2px var(--amber);' : '') + (q.unc ? 'border:2px dashed var(--ink)' : '')

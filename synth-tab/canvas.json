@@ -231,7 +231,7 @@
    "x": 6080,
    "y": 0,
    "w": 1440,
-   "h": 3120,
+   "h": 3420,
    "title": "Design system sheet"
   },
   "AddModule.dc.html": {
@@ -338,6 +338,13 @@
    "w": 892,
    "h": 412,
    "title": "Automation 3 \u00b7 Clip editor, pencil"
+  },
+  "Parts.dc.html": {
+   "x": 7600,
+   "y": 0,
+   "w": 1440,
+   "h": 3000,
+   "title": "Library \u00b7 More parts"
   }
  },
  "order": [
@@ -346,6 +353,7 @@
   "Controls.dc.html",
   "Editors.dc.html",
   "Objects.dc.html",
+  "Parts.dc.html",
   "Main.dc.html",
   "Playlist.dc.html",
   "Mixer.dc.html",
@@ -395,7 +403,7 @@
    "y": -300,
    "text": "Synth tab \u00b7 foundations and component library",
    "kind": "title1",
-   "maxW": 3000
+   "maxW": 9040
   },
   "t1": {
    "x": 0,

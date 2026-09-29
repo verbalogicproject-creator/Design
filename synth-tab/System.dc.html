@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Permanent+Marker&display=swap">
 <style>body{margin:0;background:#33404a}</style>
 </helmet>
-<div class="sx" style="width: 1440px; height: 3120px; padding: 56px 64px">
+<div class="sx" style="width: 1440px; height: 3420px; padding: 56px 64px">
 <div class="r g16"><span class="tape l">Design system</span><span class="h2">Tokens and component coverage · the console and the scribble strip</span></div>
 
 <div class="c g12" style="margin-top: 32px">
@@ -103,7 +103,7 @@
 </div>
 </div>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":3120}}'>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":3420}}'>
 class Component extends DCLogic {
   renderVals() {
     const c = (name, hex) => ({ name: name, hex: hex, st: 'background:' + hex });
@@ -191,7 +191,14 @@ class Component extends DCLogic {
       row('11 Macro knob and chips', 'Objects', all),
       row('12 Take card', 'Objects', [Y, Y, Y, NA('always live'), NA('not a parameter'), NA('not a parameter')]),
       row('13 Cost and consent chip', 'Objects', [Y, Y, Y, Y, NA('price is fixed'), NA('price is fixed')]),
-      row('14 Toasts and states', 'Objects', [Y, NA('not focusable'), NA('has its button'), NA('n/a'), NA('n/a'), NA('n/a')])
+      row('14 Toasts and states', 'Objects', [Y, NA('not focusable'), NA('has its button'), NA('n/a'), NA('n/a'), NA('n/a')]),
+      row('15 Volume mini-fader + dB entry', 'More parts', all),
+      row('16 Insert slot, duck indicator', 'More parts', [Y, Y, Y, Y, NA('not a parameter'), NA('not a parameter')]),
+      row('17 Section flag, minimap', 'More parts', [Y, Y, Y, NA('never off'), NA('n/a'), NA('n/a')]),
+      row('18 Bank switch, strip selector', 'More parts', [Y, Y, Y, Y, NA('n/a'), NA('n/a')]),
+      row('19 Knob menu row, fine mode', 'More parts', [Y, Y, Y, Y, NA('n/a'), NA('n/a')]),
+      row('20 Sing parts', 'More parts', [Y, Y, Y, Y, NA('n/a'), NA('n/a')]),
+      row('21 Notes: unsure, ghost', 'More parts', [Y, Y, Y, Y, NA('n/a'), NA('lane below')])
     ];
     return { colours: colours, pairs: pairs, types: types, spaces: spaces, radii: radii, depths: depths, misc: misc, matrix: matrix };
   }
