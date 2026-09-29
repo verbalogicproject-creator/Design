@@ -25,23 +25,42 @@
 <dc-import name="Transport" mode="phone" pos="009:2:03" bpm="146.0" cpu="58" lost="0" playing="1" rec="0" loop="1" hint-size="412px,106px"></dc-import>
 </div>
 <div class="ph-body c" style="padding: 6px 8px; gap: 6px">
-<div class="r jb" style="min-height: 44px">
-<div class="r g8"><span class="tape">Drums A</span><span class="sm dim b">1 bar · 16 steps</span></div>
-<span class="r g6 sm dim"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#b8c2c9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="2" width="10" height="20" rx="2"></rect><path d="M2 9a8 8 0 0 1 4-5M22 15a8 8 0 0 1-4 5"></path></svg>Turn for all lanes</span>
+<div class="r g8" style="min-height: 44px">
+<span class="tape">Drums A</span>
+<span class="lbl">Bars</span>
+<div class="seg" role="group" aria-label="Pattern length in bars"><button class="btn sq" aria-pressed="false">1</button><button class="btn sq" aria-pressed="false">2</button><button class="btn sq on" aria-pressed="true">4</button></div>
+<span class="f1"></span>
+<button class="btn ghost" aria-label="Swing 54 percent. Tap to change.">Swing 54 %</button>
 </div>
-<div class="seg" style="display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 4px" role="group" aria-label="Lane"><button class="btn" style="padding: 8px 0 0; min-width: 0" aria-pressed="false">Snare</button><button class="btn" style="padding: 8px 0 0; min-width: 0" aria-pressed="false">Clap</button><button class="btn on" style="padding: 8px 0 0; min-width: 0" aria-pressed="true">C.hat</button><button class="btn" style="padding: 8px 0 0; min-width: 0" aria-pressed="false">O.hat</button><button class="btn" style="padding: 8px 0 0; min-width: 0" aria-pressed="false">Crash</button><button class="btn" style="padding: 8px 0 0; min-width: 0" aria-pressed="false">Ride</button></div>
-<div class="plate c g6" style="padding: 8px">
-<div class="r jb"><span class="lbl">Closed hat · steps 1–16</span><span class="sm dim">tap on/off · hold for velocity</span></div>
-<dc-import name="StepRow" pat="x.x.x.x.x.x.xox" cell="44" cols="8" head="5" hint-size="376px,92px"></dc-import>
-<div class="r g12"><span class="lbl">Step 6</span><div class="step-b"><button class="btn ghost sq" aria-label="Softer">−</button><span class="v">vel 70</span><button class="btn ghost sq" aria-label="Louder">+</button></div><button class="btn tg" aria-pressed="false">Accent</button></div>
+<div class="r g8" style="min-height: 44px">
+<span class="lbl">Bar</span>
+<div class="seg" role="group" aria-label="Bar"><button class="btn sq" aria-pressed="false">1</button><button class="btn sq on" aria-pressed="true">2</button><button class="btn sq" aria-pressed="false">3</button><button class="btn sq" aria-pressed="false">4</button></div>
+<span class="f1"></span>
+<div class="seg" role="group" aria-label="Steps shown"><button class="btn on" aria-pressed="true">1–8</button><button class="btn" aria-pressed="false">9–16</button></div>
 </div>
-<div class="c" style="margin: 0 -8px; border-top: 1px solid var(--seam)">
-<button class="r g8" style="min-height: 44px; width: 100%; padding: 0 8px; border: 0; border-bottom: 1px solid var(--seam); background: transparent; color: var(--text); font-family: inherit; cursor: pointer; " aria-label="Snare lane, select"><span class="tape s" style="width: 86px; text-align: center">Snare</span><span class="f1"></span><dc-import name="StepRow" pat="....x.......x..." cell="12" cols="16" head="5" hint-size="183px,16px"></dc-import></button>
-<button class="r g8" style="min-height: 44px; width: 100%; padding: 0 8px; border: 0; border-bottom: 1px solid var(--seam); background: transparent; color: var(--text); font-family: inherit; cursor: pointer; " aria-label="Clap lane, select"><span class="tape s" style="width: 86px; text-align: center">Clap</span><span class="f1"></span><dc-import name="StepRow" pat="....x.......x..o" cell="12" cols="16" head="5" hint-size="183px,16px"></dc-import></button>
-<button class="r g8" style="min-height: 44px; width: 100%; padding: 0 8px; border: 0; border-bottom: 1px solid var(--seam); background: transparent; color: var(--text); font-family: inherit; cursor: pointer; background: var(--slate-lift); box-shadow: inset 3px 0 0 var(--amber);" aria-label="Closed hat lane, select"><span class="tape s" style="width: 86px; text-align: center">Closed hat</span><span class="f1"></span><dc-import name="StepRow" pat="x.x.x.x.x.x.x.x." cell="12" cols="16" head="5" hint-size="183px,16px"></dc-import></button>
-<button class="r g8" style="min-height: 44px; width: 100%; padding: 0 8px; border: 0; border-bottom: 1px solid var(--seam); background: transparent; color: var(--text); font-family: inherit; cursor: pointer; " aria-label="Open hat lane, select"><span class="tape s" style="width: 86px; text-align: center">Open hat</span><span class="f1"></span><dc-import name="StepRow" pat="..x...x...x...x." cell="12" cols="16" head="5" hint-size="183px,16px"></dc-import></button>
-<button class="r g8" style="min-height: 44px; width: 100%; padding: 0 8px; border: 0; border-bottom: 1px solid var(--seam); background: transparent; color: var(--text); font-family: inherit; cursor: pointer; " aria-label="Crash lane, select"><span class="tape s" style="width: 86px; text-align: center">Crash</span><span class="f1"></span><dc-import name="StepRow" pat="a..............." cell="12" cols="16" head="5" hint-size="183px,16px"></dc-import></button>
-<button class="r g8" style="min-height: 44px; width: 100%; padding: 0 8px; border: 0; border-bottom: 1px solid var(--seam); background: transparent; color: var(--text); font-family: inherit; cursor: pointer; " aria-label="Ride lane, select"><span class="tape s" style="width: 86px; text-align: center">Ride</span><span class="f1"></span><dc-import name="StepRow" pat="................" cell="12" cols="16" head="5" hint-size="183px,16px"></dc-import></button>
+<span class="sm dim">Tap a step: off, on, accent. Hold for velocity. Turn the phone for all 16 steps.</span>
+<div class="c rel" style="gap: 6px">
+<sc-for list="{{ lanes }}" as="l" hint-placeholder-count="7">
+<div class="c" style="gap: 4px">
+<div class="r g6" style="min-height: 44px">
+<i class="chcap cap-{{ l.c }}" style="height: 30px"></i>
+<span class="tape s" style="width: 76px; overflow: hidden; text-overflow: ellipsis">{{ l.n }}</span>
+<span class="f1" aria-hidden="true"><dc-import name="StepRow" pat="{{ l.p }}" cell="12" cols="16" head="5" hint-size="183px,16px"></dc-import></span>
+<button class="btn sq tg m {{ l.mCls }}" aria-pressed="{{ l.muted }}" aria-label="Mute {{ l.n }}">M</button>
+<button class="btn ghost sq {{ l.fCls }}" aria-label="Fill menu for {{ l.n }}" aria-expanded="{{ l.open }}"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#e9ecee" stroke-width="2.4" stroke-linecap="round"><path d="M4 8h2M9 8h2M14 8h2M19 8h1M4 16h16"></path></svg></button>
+</div>
+<div class="steps s44 {{ l.fade }}"><div class="srow">
+<sc-for list="{{ l.cells }}" as="c" hint-placeholder-count="8"><button class="cell {{ c.cls }}" style="{{ c.hst }}" aria-label="{{ c.lab }}"><i class="lamp"></i><i class="vel" style="{{ c.vst }}"></i><b class="acc">{{ c.mark }}</b></button></sc-for>
+</div></div>
+</div>
+</sc-for>
+<div class="popm" style="right: 0; top: 244px; width: 230px" role="menu" aria-label="Fill Closed hat">
+<span class="lbl" style="display: block; padding: 6px 10px 4px">Fill · Closed hat · bar 2</span>
+<button class="mi" role="menuitem">Every 2nd step</button>
+<button class="mi" role="menuitem">Every 4th step</button>
+<button class="mi" role="menuitem">Off-beats</button>
+<button class="mi" role="menuitem" style="color: var(--tally-text)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ffa594" stroke-width="2.4" stroke-linecap="round"><path d="M5 7h14M9 7V4h6v3M7 7l1 13h8l1-13"></path></svg>Clear row</button>
+</div>
 </div>
 </div>
 <div style="flex: none; height: 60px">
@@ -51,7 +70,27 @@
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":412,"height":880}}'>
 class Component extends DCLogic {
-  renderVals() { return {}; }
+  renderVals() {
+    const L = [
+      { n: 'Kick', s: 'Kick', c: 'red', p: 'a...x...x...x...', note: 'Kick track' },
+      { n: 'Snare', s: 'Snare', c: 'red', p: '....x.......x...' },
+      { n: 'Closed hat', s: 'C. hat', c: 'yellow', p: 'x.x.x.x.x.xax.x.' },
+      { n: 'Open hat', s: 'O. hat', c: 'yellow', p: '..x...x...x...a.' },
+      { n: 'Crash', s: 'Crash', c: 'blue', p: 'a...............' },
+      { n: 'Ride', s: 'Ride', c: 'blue', p: 'x.x.x.x.x.x.x.x.', muted: true },
+      { n: 'Clap', s: 'Clap', c: 'green', p: '....x.......x..x' }
+    ];
+    const HEAD = 5;
+    const cells = (l, from, to) => l.p.slice(from, to).split('').map((ch, k) => {
+      const i = from + k, on = ch !== '.', acc = ch === 'a';
+      return { hst: i === HEAD ? 'background-color: rgba(242,179,61,.18)' : '', cls: (on ? 'on' : '') + (acc ? ' acc' : '') + (i === HEAD ? ' head' : ''), mark: acc ? '>' : '',
+        vst: 'height:' + (acc ? 28 : on ? 20 : 0) + '%',
+        lab: l.n + ', step ' + (i + 1) + ', ' + (acc ? 'accent' : on ? 'on' : 'off') + '. Tap to change, hold for velocity.' };
+    });
+
+    return { lanes: L.map((l, li) => ({ n: l.n, c: l.c, p: l.p, muted: !!l.muted, mCls: l.muted ? 'on' : '', fade: l.muted ? 'fade' : '',
+      open: li === 2, fCls: li === 2 ? 'pressed' : '', cells: cells(l, 0, 8) })) };
+  }
 }
 </script>
 </body>

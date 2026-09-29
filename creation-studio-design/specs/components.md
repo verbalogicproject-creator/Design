@@ -203,11 +203,11 @@ A 44 x 44 button holding a text badge: `LITE` (2px `alu-dim` outline) or `FULL` 
 ### 26. Drum pad (new component)
 **Why new:** nothing existing plays on touch-down while also showing a sample name, a choke group and a live hit lamp. Keys (on-screen keys) are pitched and have no per-pad settings; step cells are toggles, not triggers.
 - **Size:** 4 per row on a phone: about 94 x 88. Min 44 x 44 in any layout.
-- **Anatomy:** aluminium key (`alu`, `key` shadow, radius 6), 6px channel-colour stripe on top, lamp top-right (14 x 4), name (13px/800 upper, ink), optional choke badge (`ink` chip, `tape` text), sample file name (11px).
+- **Anatomy:** aluminium key (`alu`, `key` shadow, radius 6), 6px channel-colour stripe on top, lamp top-right (14 x 4), **name on tape** (`tape-s`), optional choke badge (`ink` chip, `tape` text), sample file name (11px).
 - **Play:** plays on pointer-down. Velocity from the vertical hit position (top louder). Multi-touch: every finger is a hit.
-- **Select:** hold selects without playing; the selected pad's settings show below (tune, decay, level, pan, choke).
+- **Tap plays and selects.** The selected pad's settings show below: waveform with start/end handles, Tune, Decay, Filter, Level, Pan, Choke group, Change sample.
 - **Keyboard:** Space plays, Enter selects, arrows move between pads.
-- **States:** default; hit (key sinks, amber inner rim, lit lamp); selected (amber outline); hover/focus (amber ring); empty (dashed `alu-dim`, "+ Load sample"); disabled (42 %, the reason replaces the sample name).
+- **States:** default; playing (key sinks, amber inner rim, lit lamp); selected (amber outline); hover/focus (amber ring); muted (hatch, `M · MUTED` chip; still auditions when tapped); empty (dashed `alu-dim`, "+ Choose sample"); sample missing (`slate-deep` fill, 2px amber rim, warning icon, "Sample missing"; tap opens the sample picker); disabled (42 %, the reason replaces the sample name).
 
 ### 27. Frozen state (new state on rows, blocks and strips)
 - **Row:** diagonal hatch over the row, `frz-tag` (snowflake + FROZEN, 11px/800, `well` fill, `alu-dim` border). Mix controls stay live.
@@ -221,3 +221,10 @@ Budget: horizontal meter (22) with a text summary, whole line is a 44 px button 
 
 ### 29. Lite navigation (reuse)
 The same nav component with `profile="lite"`: Rack, Playlist, Mixer, Roll, Drums, Keys. Patch, Mod and Sing are Full only (Sing: see open questions).
+
+
+### 30. Fill menu (reuse of the popover pattern)
+Opened from a 44 px key on a drum-grid row. A popover (`slate-lift`, 2px `alu-dim` top edge, radius 6) with a label naming the row and bar, then 44 px menu rows: Every 2nd step, Every 4th step, Off-beats, Clear row (tally text + trash icon). Focus moves into the menu; Escape closes it.
+
+### 31. Step velocity popover (reuse)
+Opened by holding a step. Tape title (row and step), a velocity slider (mini-fader with a real range input, 1-127) with -/+ steppers, and an Off / On / Acc segmented control that mirrors the tap cycle. Room is left for per-step settings later.

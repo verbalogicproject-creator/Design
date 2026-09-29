@@ -23,31 +23,52 @@
 <dc-import name="Transport" mode="phone" pos="009:2:03" bpm="146.0" cpu="58" lost="0" playing="1" rec="0" loop="1" hint-size="412px,106px"></dc-import>
 </div>
 <div class="ph-body c" style="padding: 6px 8px; gap: 6px">
-<div class="r jb" style="min-height: 40px">
+<div class="r jb" style="min-height: 44px">
 <span class="tape l">Drum Kit</span>
 <button class="chip t">Goa kit ▾</button>
 </div>
 <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px">
-<button class="dpad c-red" aria-label="Snare pad"><i class="lamp"></i><span class="nm">Snare</span><span class="c g2"><span></span><span class="sub">sn_tape_02</span></span></button>
-<button class="dpad c-red" aria-label="Clap pad"><i class="lamp"></i><span class="nm">Clap</span><span class="c g2"><span></span><span class="sub">clap_room</span></span></button>
-<button class="dpad c-yellow hit" aria-label="Closed hat pad, Choke A"><i class="lamp"></i><span class="nm">Closed hat</span><span class="c g2"><span class="badge" style="background: var(--ink); color: var(--tape)">Choke A</span><span class="sub">ch_tight</span></span></button>
-<button class="dpad c-yellow sel" aria-label="Open hat pad, Choke A"><i class="lamp"></i><span class="nm">Open hat</span><span class="c g2"><span class="badge" style="background: var(--ink); color: var(--tape)">Choke A</span><span class="sub">oh_tape_03</span></span></button>
-<button class="dpad c-blue" aria-label="Crash pad"><i class="lamp"></i><span class="nm">Crash</span><span class="c g2"><span></span><span class="sub">crash_dark</span></span></button>
-<button class="dpad c-blue" aria-label="Ride pad"><i class="lamp"></i><span class="nm">Ride</span><span class="c g2"><span></span><span class="sub">ride_ping</span></span></button>
-<button class="dpad empty" aria-label="Empty pad 7. Tap to load a sample."><span class="nm">Pad 7</span><span class="sub">+ Load sample</span></button>
-<button class="dpad empty" aria-label="Empty pad 8. Tap to load a sample."><span class="nm">Pad 8</span><span class="sub">+ Load sample</span></button>
+<button class="dpad c-red " aria-label="Snare" aria-pressed="false"><i class="lamp"></i><span class="tape s">Snare</span><span class="sub">sn_tape_02</span></button>
+<button class="dpad c-yellow hit" aria-label="Closed hat, playing" aria-pressed="false"><i class="lamp"></i><span class="tape s">Closed hat</span><span class="sub">ch_tight</span></button>
+<button class="dpad c-yellow sel" aria-label="Open hat, selected" aria-pressed="true"><i class="lamp"></i><span class="tape s">Open hat</span><span class="sub">oh_tape_03</span></button>
+<button class="dpad c-blue " aria-label="Crash" aria-pressed="false"><i class="lamp"></i><span class="tape s">Crash</span><span class="sub">crash_dark</span></button>
+<button class="dpad c-blue muted" aria-label="Ride, muted" aria-pressed="false"><i class="lamp"></i><span class="tape s">Ride</span><span class="st">M · MUTED</span></button>
+<button class="dpad c-green " aria-label="Clap" aria-pressed="false"><i class="lamp"></i><span class="tape s">Clap</span><span class="sub">clap_room</span></button>
+<button class="dpad empty" aria-label="Pad 7, empty. Tap to choose a sample."><span class="tape s">Pad 7</span><span class="sub">+ Choose sample</span></button>
+<button class="dpad c-white missing" aria-label="Pad 8, sample perc_03.wav is missing. Tap to find it." aria-pressed="false"><i class="lamp"></i><span class="tape s">Pad 8</span><span class="sub r g4" style="display: flex"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#f2b33d" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true"><path d="M12 3 2 21h20z"></path><path d="M12 10v5M12 18v.5"></path></svg>Sample missing</span></button>
 </div>
-<span class="sm dim">Tap a pad to hear it, hold to select without playing. Pads 7 and 8 are free for your own samples.</span>
+<span class="sm dim">Tap a pad to play it and select it. Lamp = playing.</span>
 <div class="plate c g6" style="padding: 8px 10px">
-<div class="r g8"><span class="tape">Open hat</span><button class="chip f1" style="min-height: 44px; justify-content: space-between">oh_tape_03.wav <span>▾</span></button></div>
-<div class="canvas-box" style="height: 44px"><svg width="100%" height="44" viewBox="0 0 360 44" preserveAspectRatio="none" aria-label="Open hat sample, 0.6 seconds"><path d="{{ waveD }}" fill="#f2b33d" fill-opacity="0.8"></path></svg></div>
+<div class="r g8" style="min-height: 44px">
+<span class="tape">Open hat</span>
+<span class="sm dim f1" style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap">oh_tape_03.wav · 0.62 s</span>
+<button class="btn">Change sample</button>
+</div>
+<div class="canvas-box rel" style="height: 80px">
+<svg width="100%" height="80" viewBox="0 0 376 80" preserveAspectRatio="none" role="img" aria-label="Open hat sample waveform. Plays from 12 milliseconds to 420 milliseconds.">
+<path d="{{ waveD }}" fill="#f2b33d" fill-opacity="0.85"></path>
+<rect x="0" y="0" width="{{ sx }}" height="80" fill="#1c2429" fill-opacity="0.72"></rect>
+<rect x="{{ ex }}" y="0" width="{{ ew }}" height="80" fill="#1c2429" fill-opacity="0.72"></rect>
+</svg>
+<button class="abs" style="left: calc({{ sp }}% - 22px); top: 0; width: 44px; height: 80px; background: transparent; border: 0; cursor: ew-resize; z-index: 3" aria-label="Sample start, 12 ms. Drag, or use the steppers."><i class="abs" style="left: 21px; top: 0; bottom: 0; width: 2px; background: #e9ecee"></i><span class="tape s abs" style="left: 22px; top: 2px">S</span></button>
+<button class="abs" style="left: calc({{ ep }}% - 22px); top: 0; width: 44px; height: 80px; background: transparent; border: 0; cursor: ew-resize; z-index: 3" aria-label="Sample end, 420 ms. Drag, or use the steppers."><i class="abs" style="left: 21px; top: 0; bottom: 0; width: 2px; background: #e9ecee"></i><span class="tape s abs" style="right: 22px; bottom: 2px">E</span></button>
+</div>
+<div class="r jb">
+<div class="r g4"><span class="lbl">Start</span><div class="step-b"><button class="btn ghost sq" aria-label="Start earlier">−</button><span class="v">12 ms</span><button class="btn ghost sq" aria-label="Start later">+</button></div></div>
+<div class="r g4"><span class="lbl">End</span><div class="step-b"><button class="btn ghost sq" aria-label="End earlier">−</button><span class="v">420 ms</span><button class="btn ghost sq" aria-label="End later">+</button></div></div>
+</div>
 <div class="r jb">
 <dc-import name="Knob" label="Tune" size="sm" value="50" readout="0 st" hint-size="64px,86px"></dc-import>
 <dc-import name="Knob" label="Decay" size="sm" value="62" readout="340 ms" hint-size="64px,86px"></dc-import>
+<dc-import name="Knob" label="Filter" size="sm" value="80" readout="9 kHz" hint-size="64px,86px"></dc-import>
 <dc-import name="Knob" label="Level" size="sm" value="72" readout="−2 dB" hint-size="64px,86px"></dc-import>
 <dc-import name="Knob" label="Pan" size="sm" value="60" readout="R20" hint-size="64px,86px"></dc-import>
 </div>
-<div class="r g8"><span class="lbl" style="width: 44px">Choke</span><div class="seg" role="group" aria-label="Choke group"><button class="btn" aria-pressed="false">Off</button><button class="btn on" aria-pressed="true">A</button><button class="btn" aria-pressed="false">B</button></div><span class="sm dim f1">Closed hat cuts this open hat.</span></div>
+<div class="r g8">
+<button class="btn tg on" aria-pressed="true">Choke group</button>
+<div class="seg" role="group" aria-label="Choke group"><button class="btn on" aria-pressed="true">A</button><button class="btn" aria-pressed="false">B</button></div>
+<span class="sm f1">Closed hat (also A) cuts this open hat.</span>
+</div>
 </div>
 </div>
 <div style="flex: none; height: 60px">
@@ -58,12 +79,12 @@
 <script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":412,"height":880}}'>
 class Component extends DCLogic {
   renderVals() {
-    let d = 'M0 22', s = 7;
+    let s = 7;
     const r = () => { s = (s * 9301 + 49297) % 233280; return s / 233280; };
     const top = [], bot = [];
-    for (let i = 0; i <= 120; i++) { const x = i * 3, e = Math.exp(-i / 38) * (0.4 + 0.6 * r()); top.push(x + ' ' + (22 - e * 20).toFixed(1)); bot.push(x + ' ' + (22 + e * 20).toFixed(1)); }
-    d = 'M' + top.join(' L') + ' L' + bot.reverse().join(' L') + ' Z';
-    return { waveD: d };
+    for (let i = 0; i <= 188; i++) { const x = i * 2, e = (i < 3 ? i / 3 : 1) * Math.exp(-i / 60) * (0.35 + 0.65 * r()); top.push(x + ' ' + (40 - e * 36).toFixed(1)); bot.push(x + ' ' + (40 + e * 36).toFixed(1)); }
+    const sp = 2, ep = 68;
+    return { waveD: 'M' + top.join(' L') + ' L' + bot.reverse().join(' L') + ' Z', sp: sp, ep: ep, sx: (376 * sp / 100).toFixed(1), ex: (376 * ep / 100).toFixed(1), ew: (376 * (100 - ep) / 100).toFixed(1) };
   }
 }
 </script>
