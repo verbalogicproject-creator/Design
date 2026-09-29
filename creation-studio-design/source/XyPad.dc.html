@@ -27,10 +27,9 @@
 <circle cx="{{px}}" cy="{{py}}" r="{{puckR}}" fill="#c5cbcf" stroke="#1f2a33" stroke-width="2.5"></circle>
 <circle cx="{{px}}" cy="{{py}}" r="3" fill="#1f2a33"></circle>
 <sc-if value="{{ showTip }}" hint-placeholder-val="{{ false }}">
-<rect x="{{tipX}}" y="{{tipY}}" width="76" height="22" fill="#e6d6a2"></rect>
-<text x="{{tipTx}}" y="{{tipTy}}" text-anchor="middle" font-family="Permanent Marker, cursive" font-size="12" fill="#1f2a33">{{xv}} · {{yv}}</text>
 </sc-if>
 </svg>
+<sc-if value="{{ showTip }}" hint-placeholder-val="{{ false }}"><span class="tape s abs" style="{{tipSt}}">{{xv}} · {{yv}}</span></sc-if>
 <sc-if value="{{ showMod }}" hint-placeholder-val="{{ false }}"><span class="badge gr abs" style="right: 6px; top: 6px">~ mod</span></sc-if>
 <sc-if value="{{ showAuto }}" hint-placeholder-val="{{ false }}"><span class="badge abs" style="right: 6px; top: 6px"><i class="dot"></i> auto</span></sc-if>
 </div>
@@ -61,6 +60,7 @@ class Component extends DCLogic {
       showMod: st === 'modulated', showAuto: st === 'automated',
       rx: Math.max(0, px - rw / 2).toFixed(1), ry: Math.max(0, py - rh / 2).toFixed(1), rw: rw.toFixed(1), rh: rh.toFixed(1),
       showTip: st === 'pressed',
+      tipSt: 'left:' + Math.min(W - 40, Math.max(40, px)).toFixed(1) + 'px;top:' + Math.max(4, py - 46).toFixed(1) + 'px;transform:translateX(-50%);z-index:3',
       tipX: Math.min(W - 78, Math.max(2, px - 38)).toFixed(1), tipY: Math.max(4, py - 46).toFixed(1),
       tipTx: Math.min(W - 40, Math.max(40, px)).toFixed(1), tipTy: (Math.max(4, py - 46) + 15).toFixed(1)
     };

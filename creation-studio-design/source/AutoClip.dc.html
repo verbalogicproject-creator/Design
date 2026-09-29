@@ -50,7 +50,6 @@
 <div class="canvas-box" style="width: 760px; height: 172px">
 <svg width="760" height="172" viewBox="0 0 760 172" role="img" aria-label="{{svgLabel}}">
 <sc-for list="{{ grid }}" as="g" hint-placeholder-count="17"><path d="{{ g.d }}" stroke="{{ g.c }}" stroke-width="{{ g.w }}"></path></sc-for>
-<sc-for list="{{ bars }}" as="b" hint-placeholder-count="4"><text x="{{ b.x }}" y="14" font-size="11" font-weight="700" fill="#b8c2c9">{{ b.t }}</text></sc-for>
 <path d="{{fillD}}" fill="#e8c547" fill-opacity="{{fillOp}}"></path>
 <path d="{{oldD}}" fill="none" stroke="#e8c547" stroke-width="2" stroke-dasharray="{{oldDash}}" opacity="{{oldOp}}"></path>
 <path d="{{curveD}}" fill="none" stroke="#e8c547" stroke-width="3" stroke-linejoin="round"></path>
@@ -64,13 +63,12 @@
 <sc-for list="{{ pts }}" as="p" hint-placeholder-count="6"><g><circle cx="{{ p.cx }}" cy="{{ p.cy }}" r="22" fill="transparent"></circle><circle cx="{{ p.cx }}" cy="{{ p.cy }}" r="7" fill="#c5cbcf" stroke="#1f2a33" stroke-width="2.5"></circle></g></sc-for>
 <sc-if value="{{ isPoint }}" hint-placeholder-val="{{ true }}">
 <circle cx="{{sx}}" cy="{{sy}}" r="13" fill="none" stroke="#f2b33d" stroke-width="2.5"></circle>
-<rect x="{{bx}}" y="{{by}}" width="84" height="22" fill="#e6d6a2"></rect>
-<text x="{{btx}}" y="{{bty}}" text-anchor="middle" font-family="Permanent Marker, cursive" font-size="12" fill="#1f2a33">drag ◇ to bend</text>
 </sc-if>
-<rect x="{{tx}}" y="{{ty}}" width="{{tw}}" height="22" fill="#e6d6a2"></rect>
-<text x="{{ttx}}" y="{{tty}}" text-anchor="middle" font-family="Permanent Marker, cursive" font-size="12" fill="#1f2a33">{{tipTxt}}</text>
 <path d="M{{phx}} 0V172" stroke="#f2b33d" stroke-width="2"></path>
 </svg>
+<sc-for list="{{ bars }}" as="b" hint-placeholder-count="4"><span class="abs" style="left: {{ b.x }}px; top: 2px; font-size: 11px; font-weight: 700; color: #b8c2c9">{{ b.t }}</span></sc-for>
+<span class="tape s abs" style="{{tipSt}}">{{tipTxt}}</span>
+<sc-if value="{{ isPoint }}" hint-placeholder-val="{{ true }}"><span class="tape s abs" style="{{bendSt}}">drag ◇ to bend</span></sc-if>
 </div>
 </div>
 <sc-if value="{{ isPoint }}" hint-placeholder-val="{{ true }}">
@@ -139,7 +137,7 @@ class Component extends DCLogic {
         dia: full.dia, pts: pts,
         sx: f1(sx), sy: f1(sy),
         bx: f1(parseFloat(d3.cx) - 42), by: f1(parseFloat(d3.cy) + 14), btx: d3.cx, bty: f1(parseFloat(d3.cy) + 29),
-        tipTxt: '30.3.1 · 820 Hz', tw: '112', tx: f1(sx - 56), ty: f1(sy - 40), ttx: f1(sx), tty: f1(sy - 25),
+        tipTxt: '30.3.1 · 820 Hz', tipSt: 'left:' + f1(sx) + 'px;top:' + f1(sy - 40) + 'px;transform:translateX(-50%);z-index:3', bendSt: 'left:' + d3.cx + 'px;top:' + f1(parseFloat(d3.cy) + 16) + 'px;transform:translateX(-50%);z-index:3', tw: '112',
         phx: f1(X(0.55)),
         svgLabel: 'Cutoff automation, bars 29 to 33: six points; point 3 at bar 30 beat 3 is selected at 820 hertz'
       };
@@ -159,7 +157,7 @@ class Component extends DCLogic {
         dia: keep.dia, pts: [[0, 0.25], [0.22, 0.72], [0.34, 0.5]].map((p) => ({ cx: f1(X(p[0])), cy: f1(Y(p[1])) })),
         stepD: sd, rawD: rd, fx: f1(fx), fy: f1(fy),
         sx: 0, sy: 0, bx: 0, by: 0, btx: 0, bty: 0,
-        tipTxt: '31.4.2 · 2.4 kHz', tw: '120', tx: f1(fx - 60), ty: f1(Math.max(2, fy - 48)), ttx: f1(fx), tty: f1(Math.max(2, fy - 48) + 15),
+        tipTxt: '31.4.2 · 2.4 kHz', tipSt: 'left:' + f1(fx) + 'px;top:' + f1(Math.max(2, fy - 48)) + 'px;transform:translateX(-50%);z-index:3', bendSt: '', tw: '120',
         phx: f1(X(0.12)),
         svgLabel: 'Pencil stroke in progress from bar 30 to bar 31, snapped to sixteenth steps'
       };

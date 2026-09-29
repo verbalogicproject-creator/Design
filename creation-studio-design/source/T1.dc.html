@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>t</title><script src="./support.js"></script></head>
+<body><x-dc>
+<div style="width:400px;height:200px;background:#333">
+<svg width="400" height="100" viewBox="0 0 400 100">
+<text x="10" y="20" fill="#fff" font-size="14">A:{{a}}</text>
+<text x="10" y="40" fill="#fff" font-size="14"><tspan>B:{{a}}</tspan></text>
+<sc-for list="{{ items }}" as="i"><text x="{{ i.x }}" y="60" fill="#fff" font-size="14">C:{{ i.t }}</text></sc-for>
+<sc-for list="{{ items }}" as="i"><text x="{{ i.x }}" y="80" fill="#fff" font-size="14"><tspan>D:{{ i.t }}</tspan></text></sc-for>
+</svg>
+<div style="color:#fff">HTML:{{a}}</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":400,"height":200}}'>
+class Component extends DCLogic { renderVals(){ return {a:'hello', items:[{x:'10',t:'one'},{x:'100',t:'two'}]}; } }
+</script></body></html>

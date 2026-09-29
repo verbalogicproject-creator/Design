@@ -70,7 +70,7 @@
 <div class="r jb"><span class="h3">6 · XY pad</span><span class="sm dim">Two parameters, one thumb. Tap anywhere jumps the puck. Two number fields below are the tap alternative.</span></div>
 <div class="grid6">
 <sc-for list="{{ pads }}" as="p" hint-placeholder-count="6">
-<div class="state-card"><dc-import name="XyPad" w="150" x="{{ p.x }}" y="{{ p.y }}" state="{{ p.state }}" hint-size="150px,190px"></dc-import><span class="cap">{{ p.cap }}</span><span class="dsc">{{ p.dsc }}</span></div>
+<div class="state-card"><dc-import name="XyPad" w="150" x="{{ p.x }}" y="{{ p.y }}" xl="Cutoff" yl="Reso" state="{{ p.state }}" hint-size="150px,190px"></dc-import><span class="cap">{{ p.cap }}</span><span class="dsc">{{ p.dsc }}</span></div>
 </sc-for>
 </div>
 </div>

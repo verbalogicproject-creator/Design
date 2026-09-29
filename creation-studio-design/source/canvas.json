@@ -182,7 +182,7 @@
    "x": 1384,
    "y": 6840,
    "w": 90,
-   "h": 560,
+   "h": 620,
    "title": "Part \u00b7 Mixer strip"
   },
   "PatternBlock.dc.html": {
@@ -217,7 +217,7 @@
    "x": 3214,
    "y": 6840,
    "w": 380,
-   "h": 250,
+   "h": 270,
    "title": "Part \u00b7 Take card"
   },
   "XyPad.dc.html": {

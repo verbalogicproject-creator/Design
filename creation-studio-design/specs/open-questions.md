@@ -33,6 +33,10 @@
 - Sample library and audio recording of hardware inputs; MIDI mapping screens.
 - Collaboration, sharing, cloud sync states beyond the revision badge.
 
+## Known drawing gaps
+- The Psy Bass and Kick panel headers show a back button but no undo/redo pair (every other phone header has one).
+- The automation editor's Y-axis label `125 Hz` wraps onto two lines.
+
 ## Things the drawings do not show
 - Keyboard focus order and shortcuts (see components.md and structure.md).
 - Motion timing (only "two things move" is specified).

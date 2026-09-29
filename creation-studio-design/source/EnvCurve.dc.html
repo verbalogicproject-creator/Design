@@ -39,10 +39,9 @@
 </g>
 </sc-for>
 <sc-if value="{{ showPress }}" hint-placeholder-val="{{ false }}">
-<rect x="{{tipX}}" y="{{tipY}}" width="62" height="22" fill="#e6d6a2"></rect>
-<text x="{{tipTx}}" y="{{tipTy}}" text-anchor="middle" font-family="Permanent Marker, cursive" font-size="12" fill="#1f2a33">{{tipTxt}}</text>
 </sc-if>
 </svg>
+<sc-if value="{{ showPress }}" hint-placeholder-val="{{ false }}"><span class="tape s abs" style="{{tipSt}}">{{tipTxt}}</span></sc-if>
 <sc-if value="{{ showMod }}" hint-placeholder-val="{{ false }}"><span class="badge gr abs" style="right: 6px; top: 6px">~ mod</span></sc-if>
 <sc-if value="{{ showAuto }}" hint-placeholder-val="{{ false }}"><span class="badge abs" style="right: 6px; top: 6px"><i class="dot"></i> auto</span></sc-if>
 <sc-if value="{{ isOff }}" hint-placeholder-val="{{ false }}"><span class="badge abs" style="right: 6px; top: 6px">bypass</span></sc-if>
@@ -123,6 +122,7 @@ class Component extends DCLogic {
       tens: tens, hs: hs,
       showPress: press,
       px: selPt ? f(selPt[1]) : 0, py: selPt ? f(selPt[2]) : 0,
+      tipSt: 'left:' + f(tx) + 'px;top:' + f(ty) + 'px;transform:translateX(-50%);z-index:3',
       tipX: f(tx - 31), tipY: f(ty), tipTx: f(tx), tipTy: f(ty + 15),
       tipTxt: sel === 'a' ? vals.a : sel === 'h' ? vals.h : sel === 'd' ? vals.d : vals.r,
       showMod: st === 'modulated', showAuto: st === 'automated', isOff: st === 'disabled',

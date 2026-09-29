@@ -14,7 +14,7 @@ Visual identity: **the console and the scribble strip**. Steel panels, masking-t
 | `specs/token-notes.md` | What was kept, changed and added in the token set, and why. |
 | `specs/open-questions.md` | Assumptions, placeholder values, and what is not designed yet. **Read before M4.** |
 | `screens/*.png` | Every screen and library board as an image at 1x. `screens/INDEX.md` lists them. |
-| `html/static/*.html` | Rendered HTML of every screen (structure and class names as designed), styled by `html/synth.css`. Open them directly in a browser. |
+| `html/static/*.html` | Rendered HTML of every screen (structure and class names as designed), styled by `html/synth.css` and the bundled fonts. Open them directly in a browser. They are static snapshots: not interactive. |
 | `html/synth.css` | The shared stylesheet the designs use. A reference for measurements, not code to ship. |
 | `source/` | The design canvas source files (`*.dc.html`, `canvas.json`). These only render inside the design tool. |
 
