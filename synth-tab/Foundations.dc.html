@@ -57,7 +57,7 @@
 <span style="font-size: 26px; font-weight: 700; letter-spacing: .02em">012:3:04 · 146.0 BPM · −12.0 dB</span></div>
 <div class="c g8"><span class="lbl">Permanent Marker · only on tape</span>
 <div class="r g8 wrap"><span class="tape l">Rolling Bass</span><span class="tape">1.2 kHz</span><span class="tape s">Take 2</span></div>
-<span class="sm dim">Body text 14 px at 8.9:1, dim text 5.0:1. Marker is never used for paragraphs.</span></div>
+<span class="sm dim">Body text 14 px at 9.0:1, dim text 5.9:1 (5.0:1 on plates). Marker is never used for paragraphs.</span></div>
 </div>
 <div class="plate c g12" style="width: 520px; padding: 16px">
 <span class="h2">Cables · three types, never colour alone</span>
@@ -121,14 +121,14 @@ class Component extends DCLogic {
     const groups = [
       { title: 'Panels', items: [sw('slate', '#33404a', 'console panel, page background'), sw('slate-deep', '#2a353d', 'recesses, wells, channel gutters'), sw('slate-lift', '#3d4b56', 'raised faceplates'), sw('seam', '#232c33', 'panel seams, dividers')] },
       { title: 'Metal, tape, ink', items: [sw('alu', '#c5cbcf', 'knobs, keys, buttons'), sw('alu-dim', '#8e979d', 'secondary controls, never text'), sw('tape', '#e6d6a2', 'scribble-strip labels only'), sw('tape-shadow', '#b9a978', 'tape edge'), sw('ink', '#1f2a33', 'marker on tape, 10:1')] },
-      { title: 'Signal and text', items: [sw('amber', '#f2b33d', 'signal, meters, playhead, focus · 5.7:1'), sw('tally', '#e0452b', 'recording, money, destructive · borders and fills'), sw('text', '#e9ecee', 'body text · 8.9:1'), sw('text-dim', '#a9b4bc', 'secondary text · 5.0:1')] },
+      { title: 'Signal and text', items: [sw('amber', '#f2b33d', 'signal, meters, playhead, focus · 5.7:1'), sw('tally', '#e0452b', 'recording, money, destructive · borders and fills'), sw('text', '#e9ecee', 'body text · 8.9:1'), sw('text-dim', '#b8c2c9', 'secondary text · 5.9:1, 5.0:1 on plates')] },
       { title: 'Channel caps', items: [sw('red', '#d9483b', 'cap, block, cable'), sw('yellow', '#e8c547', 'cap, block, cable'), sw('blue', '#4a7fc1', 'cap, block · notes cable'), sw('white', '#eef0f1', 'cap, block'), sw('green', '#5ba67a', 'cap, block · modulation cable')] },
-      { title: 'Added, so text always passes', items: [sw('tally-text', '#ff9580', 'red as text on dark · 5.0:1'), sw('blue-text', '#8db4e8', 'blue as text · 5.0:1'), sw('green-text', '#8fd1a9', 'green as text · 6.0:1'), sw('well', '#1c2429', 'meter wells, LCD glass'), sw('alu-shade', '#6c757b', 'underside of a key'), sw('amber-off', '#4d4020', 'an unlit lamp')] }
+      { title: 'Added, so text always passes', items: [sw('tally-text', '#ffa594', 'red as text · 5.6:1, 4.7:1 on plates'), sw('blue-text', '#a0c3ef', 'blue as text · 5.9:1, 4.9:1 on plates'), sw('green-text', '#8fd1a9', 'green as text · 6.0:1'), sw('well', '#1c2429', 'meter wells, LCD glass'), sw('alu-shade', '#6c757b', 'underside of a key'), sw('amber-off', '#4d4020', 'an unlit lamp')] }
     ];
     const rules = [
       { k: 'Touch', v: 'Every target is at least 44 × 44 px. Step cells, ports, faders and toggles are 44 px on touch; a dense 26 to 36 px mode appears only for pointer devices. Note rows in the roll stay 44 px through Fold to scale.' },
       { k: 'Not by colour', v: 'Ports differ by shape, cables by line style, lit states by a lamp and a raised or pressed key, meters by a CLIP word as well as the red lamp, mute and solo by lamp and label.' },
-      { k: 'Contrast', v: 'Body text 8.9:1 on slate, dim text 5.0:1, ink on tape 10:1. Red and blue text use lighter tally-text and blue-text tokens.' },
+      { k: 'Contrast', v: 'Body text 9.0:1 on slate, dim text 5.9:1 and 5.0:1 on plates, ink on tape 10:1. Red and blue text use lighter tally-text and blue-text tokens.' },
       { k: 'Motion', v: 'Only three things move: the playhead, the recording lamp and a rendering pulse. Under reduced motion the pulses stop and state stays readable as text and a bar.' },
       { k: 'No side scroll', v: 'The page never scrolls sideways. Only the timeline and roll canvases pan, and each shows a scroll thumb and an edge cue.' },
       { k: 'Drag or tap', v: 'Every drag has a tap alternative: tap a knob for number entry with − and +, tap a note or handle for an inspector with steppers, tap port A then port B.' }

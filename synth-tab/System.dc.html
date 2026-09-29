@@ -16,7 +16,7 @@
 <div class="r g16"><span class="tape l">Design system</span><span class="h2">Tokens and component coverage · the console and the scribble strip</span></div>
 
 <div class="c g12" style="margin-top: 32px">
-<div class="r jb"><span class="h3">1 · Colour</span><span class="sm dim">CSS custom properties, dark only. Extensions are marked +.</span></div>
+<div class="r jb"><span class="h3">1 · Colour</span><span class="sm dim">CSS custom properties, dark only. Extensions are marked +. ~ = value raised so text passes 4.5:1 on raised plates too (was #a9b4bc).</span></div>
 <div style="display: grid; grid-template-columns: repeat(8, minmax(0, 1fr)); gap: 10px">
 <sc-for list="{{ colours }}" as="c" hint-placeholder-count="24">
 <div class="plate c g4" style="padding: 6px"><div class="swatch" style="{{ c.st }}; height: 40px"></div><span class="b" style="font-size: 12px">{{ c.name }}</span><span class="sm dim">{{ c.hex }}</span></div>
@@ -111,18 +111,18 @@ class Component extends DCLogic {
       c('slate', '#33404a'), c('slate-deep', '#2a353d'), c('slate-lift', '#3d4b56'), c('seam', '#232c33'),
       c('alu', '#c5cbcf'), c('alu-dim', '#8e979d'), c('tape', '#e6d6a2'), c('tape-shadow', '#b9a978'),
       c('ink', '#1f2a33'), c('amber', '#f2b33d'), c('tally', '#e0452b'), c('text', '#e9ecee'),
-      c('text-dim', '#a9b4bc'), c('cap-red', '#d9483b'), c('cap-yellow', '#e8c547'), c('cap-blue', '#4a7fc1'),
-      c('cap-white', '#eef0f1'), c('cap-green', '#5ba67a'), c('+ tally-text', '#ff9580'), c('+ blue-text', '#8db4e8'),
+      c('text-dim ~', '#b8c2c9'), c('cap-red', '#d9483b'), c('cap-yellow', '#e8c547'), c('cap-blue', '#4a7fc1'),
+      c('cap-white', '#eef0f1'), c('cap-green', '#5ba67a'), c('+ tally-text', '#ffa594'), c('+ blue-text', '#a0c3ef'),
       c('+ green-text', '#8fd1a9'), c('+ well', '#1c2429'), c('+ alu-shade', '#6c757b'), c('+ amber-off', '#4d4020')
     ];
     const pr = (label, fg, bg, ratio) => ({ label: label, ratio: ratio, st: 'color:' + fg + ';background:' + bg });
     const pairs = [
       pr('text on slate', '#e9ecee', '#33404a', '8.9:1'), pr('text on slate-deep', '#e9ecee', '#2a353d', '10.5:1'),
-      pr('text-dim on slate', '#a9b4bc', '#33404a', '5.0:1'), pr('text-dim on slate-deep', '#a9b4bc', '#2a353d', '5.9:1'),
+      pr('text-dim on slate', '#b8c2c9', '#33404a', '5.9:1'), pr('text-dim on slate-deep', '#b8c2c9', '#2a353d', '6.9:1'),
       pr('ink on tape', '#1f2a33', '#e6d6a2', '10.1:1'), pr('ink on alu', '#1f2a33', '#c5cbcf', '8.9:1'),
       pr('amber on slate', '#f2b33d', '#33404a', '5.7:1'), pr('amber on well', '#f2b33d', '#1c2429', '8.4:1'),
-      pr('tally-text on slate', '#ff9580', '#33404a', '5.0:1'), pr('blue-text on slate', '#8db4e8', '#33404a', '5.0:1'),
-      pr('green-text on slate', '#8fd1a9', '#33404a', '6.0:1'), pr('tally outline on slate-deep', '#e0452b', '#2a353d', '3.0:1 ui')
+      pr('tally-text on slate', '#ffa594', '#33404a', '5.6:1'), pr('blue-text on slate', '#a0c3ef', '#33404a', '5.9:1'),
+      pr('green-text on slate', '#8fd1a9', '#33404a', '6.0:1'), pr('text-dim on plate (lift)', '#b8c2c9', '#3d4b56', '5.0:1'), pr('amber on plate', '#f2b33d', '#3d4b56', '4.8:1'), pr('tally-text on plate', '#ffa594', '#3d4b56', '4.7:1'), pr('blue-text on plate', '#a0c3ef', '#3d4b56', '4.9:1'), pr('tally outline on slate-deep', '#e0452b', '#2a353d', '3.0:1 ui')
     ];
     const t = (name, sample, st, spec) => ({ name: name, sample: sample, st: st, spec: spec });
     const types = [

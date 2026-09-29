@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>Plugin window · Rolling Bass</title>
+<title>Plugin window · Psy Bass</title>
 <script src="./support.js"></script>
 <link rel="stylesheet" href="synth.css">
 </head>
@@ -14,35 +14,33 @@
 </helmet>
 <div class="sx" style="width: 900px; height: 600px; display: flex; flex-direction: column">
 <div class="r g12" style="height: 48px; flex: none; padding: 0 12px; background: var(--slate-deep); border-bottom: 1px solid var(--seam)">
-<span class="tape l">Rolling Bass</span>
-<span class="sm dim b">Creation Studio · plugin</span>
+<span class="tape l">Psy Bass</span>
+<span class="sm dim b">Creation Studio · Rolling Bass</span>
 <span class="f1"></span>
 <button class="btn ghost sq" aria-label="Previous preset">‹</button>
 <div class="field" style="width: 200px">Forest 146</div>
 <button class="btn ghost sq" aria-label="Next preset">›</button>
 <span class="rev"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#8fd1a9" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5 11-11"></path></svg>saved r12</span>
-<button class="btn panic" style="min-width: 96px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ff9580" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2h8l6 6v8l-6 6H8l-6-6V8z"></path><path d="M9 9l6 6M15 9l-6 6"></path></svg>Panic</button>
+<button class="btn panic" style="min-width: 96px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ffa594" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2h8l6 6v8l-6 6H8l-6-6V8z"></path><path d="M9 9l6 6M15 9l-6 6"></path></svg>Panic</button>
 </div>
 <div class="c g8" style="flex: 1 1 0; padding: 10px 12px 0; min-height: 0">
 <div class="r g8 astr" style="height: 206px">
 <div class="plate screws" style="width: 300px; padding: 12px 10px 8px">
-<div class="r jb" style="margin-bottom: 6px"><span class="tape s">Osc</span>
-<div class="seg" role="group" aria-label="Waveform"><button class="btn on" aria-pressed="true">Saw</button><button class="btn" aria-pressed="false">Sq</button><button class="btn" aria-pressed="false">Tri</button></div></div>
+<div class="r jb" style="margin-bottom: 6px"><span class="tape s">Osc</span><span class="sm dim b">morph saw → square</span></div>
 <div class="r jb">
+<dc-import name="Knob" label="Morph" value="35" readout="35 %" hint-size="72px,100px"></dc-import>
 <dc-import name="Knob" label="Detune" value="34" readout="+14 ct" hint-size="72px,100px"></dc-import>
-<dc-import name="Knob" label="Voices" value="55" readout="5" hint-size="72px,100px"></dc-import>
-<dc-import name="Knob" label="Sub" value="70" readout="−6 dB" hint-size="72px,100px"></dc-import>
-<dc-import name="Knob" label="Glide" value="12" readout="18 ms" auto="1" hint-size="72px,100px"></dc-import>
+<dc-import name="Knob" label="Glide" value="12" readout="18 ms" hint-size="72px,100px"></dc-import>
 </div>
 </div>
 <div class="plate screws" style="width: 300px; padding: 12px 10px 8px">
 <div class="r jb" style="margin-bottom: 6px"><span class="tape s">Filter</span>
-<div class="seg" role="group" aria-label="Filter type"><button class="btn on" aria-pressed="true">LP</button><button class="btn" aria-pressed="false">BP</button><button class="btn" aria-pressed="false">HP</button></div></div>
+<div class="seg" role="group" aria-label="Filter type"><button class="btn on" aria-pressed="true">Moog</button><button class="btn" aria-pressed="false">TPT</button></div></div>
 <div class="r jb">
 <dc-import name="Knob" label="Cutoff" value="62" readout="1.2 kHz" mod-start="48" mod-len="22" hint-size="72px,100px"></dc-import>
-<dc-import name="Knob" label="Reso" value="28" readout="28 %" hint-size="72px,100px"></dc-import>
-<dc-import name="Knob" label="Drive" value="40" readout="4.2 dB" hint-size="72px,100px"></dc-import>
-<dc-import name="Knob" label="Env" value="70" readout="+70 %" hint-size="72px,100px"></dc-import>
+<dc-import name="Knob" label="Resonance" value="28" readout="28 %" hint-size="80px,100px"></dc-import>
+<dc-import name="Knob" label="Env amt" value="70" readout="+70 %" hint-size="72px,100px"></dc-import>
+<dc-import name="Knob" label="Drive" value="40" readout="4.2 dB" auto="1" hint-size="72px,100px"></dc-import>
 </div>
 </div>
 <div class="plate screws f1" style="padding: 12px 10px 8px">

@@ -92,7 +92,7 @@
    "y": 3440,
    "w": 412,
    "h": 880,
-   "title": "Phone \u00b7 Cloud consent"
+   "title": "Sing \u00b7 Polish consent (over Review)"
   },
   "LandPlaylist.dc.html": {
    "x": 0,
@@ -241,13 +241,6 @@
    "h": 880,
    "title": "Phone \u00b7 Add module sheet"
   },
-  "RackOpen.dc.html": {
-   "x": 4920,
-   "y": 3440,
-   "w": 412,
-   "h": 880,
-   "title": "Phone \u00b7 Rack, channel open"
-  },
   "PsyBass.dc.html": {
    "x": 5412,
    "y": 3440,
@@ -362,7 +355,6 @@
   "Generate.dc.html",
   "Consent.dc.html",
   "AddModule.dc.html",
-  "RackOpen.dc.html",
   "PsyBass.dc.html",
   "KickPanel.dc.html",
   "MixerSingle.dc.html",

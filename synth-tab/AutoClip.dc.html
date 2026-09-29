@@ -50,7 +50,7 @@
 <div class="canvas-box" style="width: 760px; height: 172px">
 <svg width="760" height="172" viewBox="0 0 760 172" role="img" aria-label="{{svgLabel}}">
 <sc-for list="{{ grid }}" as="g" hint-placeholder-count="17"><path d="{{ g.d }}" stroke="{{ g.c }}" stroke-width="{{ g.w }}"></path></sc-for>
-<sc-for list="{{ bars }}" as="b" hint-placeholder-count="4"><text x="{{ b.x }}" y="14" font-size="11" font-weight="700" fill="#a9b4bc">{{ b.t }}</text></sc-for>
+<sc-for list="{{ bars }}" as="b" hint-placeholder-count="4"><text x="{{ b.x }}" y="14" font-size="11" font-weight="700" fill="#b8c2c9">{{ b.t }}</text></sc-for>
 <path d="{{fillD}}" fill="#e8c547" fill-opacity="{{fillOp}}"></path>
 <path d="{{oldD}}" fill="none" stroke="#e8c547" stroke-width="2" stroke-dasharray="{{oldDash}}" opacity="{{oldOp}}"></path>
 <path d="{{curveD}}" fill="none" stroke="#e8c547" stroke-width="3" stroke-linejoin="round"></path>
@@ -80,7 +80,7 @@
 <div class="r g4"><span class="lbl">Value</span><div class="step-b"><button class="btn ghost sq" aria-label="Lower">−</button><span class="v" style="min-width: 64px">820 Hz</span><button class="btn ghost sq" aria-label="Higher">+</button></div></div>
 <div class="r g4"><span class="lbl">Curve</span><div class="seg" style="padding: 0; background: none"><button class="btn sq">Step</button><button class="btn sq on">Lin</button><button class="btn sq">Bend</button></div></div>
 <span class="f1"></span>
-<button class="btn ghost sq" style="box-shadow: inset 0 0 0 2px var(--tally)" aria-label="Delete point 3"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ff9580" stroke-width="2.4" stroke-linecap="round"><path d="M5 7h14M9 7V4h6v3M7 7l1 13h8l1-13"></path></svg></button>
+<button class="btn ghost sq" style="box-shadow: inset 0 0 0 2px var(--tally)" aria-label="Delete point 3"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ffa594" stroke-width="2.4" stroke-linecap="round"><path d="M5 7h14M9 7V4h6v3M7 7l1 13h8l1-13"></path></svg></button>
 </div>
 </sc-if>
 <sc-if value="{{ isPencil }}" hint-placeholder-val="{{ false }}">

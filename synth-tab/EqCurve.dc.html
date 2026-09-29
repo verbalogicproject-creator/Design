@@ -16,10 +16,10 @@
 <div class="canvas-box {{stCls}}" style="{{boxStyle}}">
 <svg width="{{W}}" height="{{H}}" viewBox="0 0 {{W}} {{H}}" role="img" aria-label="Five band equaliser curve over live spectrum">
 <sc-for list="{{ vg }}" as="g" hint-placeholder-count="8">
-<g><line x1="{{ g.x }}" y1="0" x2="{{ g.x }}" y2="{{ Hm }}" stroke="#232c33" stroke-width="1"></line><text x="{{ g.x }}" y="{{ Hb }}" text-anchor="middle" font-size="11" font-weight="600" fill="#a9b4bc">{{ g.t }}</text></g>
+<g><line x1="{{ g.x }}" y1="0" x2="{{ g.x }}" y2="{{ Hm }}" stroke="#232c33" stroke-width="1"></line><text x="{{ g.x }}" y="{{ Hb }}" text-anchor="middle" font-size="11" font-weight="600" fill="#b8c2c9">{{ g.t }}</text></g>
 </sc-for>
 <sc-for list="{{ hg }}" as="g" hint-placeholder-count="5">
-<g><line x1="0" y1="{{ g.y }}" x2="{{W}}" y2="{{ g.y }}" stroke="{{ g.col }}" stroke-width="1"></line><text x="4" y="{{ g.ty }}" font-size="11" font-weight="600" fill="#a9b4bc">{{ g.t }}</text></g>
+<g><line x1="0" y1="{{ g.y }}" x2="{{W}}" y2="{{ g.y }}" stroke="{{ g.col }}" stroke-width="1"></line><text x="4" y="{{ g.ty }}" font-size="11" font-weight="600" fill="#b8c2c9">{{ g.t }}</text></g>
 </sc-for>
 <polygon points="{{spec}}" fill="#f2b33d" fill-opacity="0.22" stroke="#f2b33d" stroke-opacity="0.5" stroke-width="1"></polygon>
 <sc-if value="{{ showGhost }}" hint-placeholder-val="{{ false }}"><path d="{{ghostD}}" fill="none" stroke="#5ba67a" stroke-width="2" stroke-dasharray="5 4"></path></sc-if>
